@@ -8,5 +8,5 @@ generated/**/*.rb
 -
 README.md
 MIGRATING.md
-CONTRIBUTING.md
+.github/CONTRIBUTING.md
 LICENSE

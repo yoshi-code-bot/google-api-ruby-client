@@ -4,11 +4,11 @@ These client libraries are officially supported by Google.  However, the librari
 
 ## Google Cloud Platform
 
-For Google Cloud Platform APIs such as Datastore, Cloud Storage or Pub/Sub, we recommend using [GoogleCloudPlatform/google-cloud-ruby](https://github.com/GoogleCloudPlatform/google-cloud-ruby) which is under active development.
+For Google Cloud Platform APIs such as Datastore, Cloud Storage or Pub/Sub, we recommend using [googleapis/google-cloud-ruby](https://github.com/googleapis/google-cloud-ruby) which is under active development.
 
 ## Migrating from 0.8.x
 
-See [MIGRATING](MIGRATING.md) for additional details on how to migrate to the latest version.
+See [MIGRATING](https://github.com/googleapis/google-api-ruby-client/blob/master/MIGRATING.md) for additional details on how to migrate to the latest version.
 
 ## Installation
 
@@ -205,16 +205,16 @@ be a string containing the raw JSON from the server.
 
 [OAuth 2](https://developers.google.com/accounts/docs/OAuth2) is used to authorize applications. This library uses
 both [Signet](https://github.com/google/signet) and
-[Google Auth Library for Ruby](https://github.com/google/google-auth-library-ruby) for OAuth 2 support.
+[Google Auth Library for Ruby](https://github.com/googleapis/google-auth-library-ruby) for OAuth 2 support.
 
-The [Google Auth Library for Ruby](https://github.com/google/google-auth-library-ruby) provides an implementation of
+The [Google Auth Library for Ruby](https://github.com/googleapis/google-auth-library-ruby) provides an implementation of
 [application default credentials] for Ruby. It offers a simple way to get authorization credentials for use in
 calling Google APIs, best suited for cases when the call needs to have the same identity
 and authorization level for the application independent of the user. This is
 the recommended approach to authorize calls to Cloud APIs, particularly when
 you're building an application that uses Google Compute Engine.
 
-For per-user authorization, use [Signet](https://github.com/google/signet) to obtain user authorization.
+For per-user authorization, use [Signet](https://github.com/googleapis/signet) to obtain user authorization.
 
 ### Passing authorization to requests
 
@@ -258,7 +258,7 @@ puts result.translations.first.translated_text
 
 ### Authorization using environment variables
 
-The [GoogleAuth Library for Ruby](https://github.com/google/google-auth-library-ruby) also supports authorization via
+The [GoogleAuth Library for Ruby](https://github.com/googleapis/google-auth-library-ruby) also supports authorization via
 environment variables if you do not want to check in developer credentials
 or private keys. Simply set the following variables for your application:
 
@@ -308,7 +308,7 @@ document = docs_service.get_document("my-document-id")
 See the [samples](https://github.com/google/google-api-ruby-client/tree/master/samples) for examples on how to use the client library for various
 services.
 
-Contributions for additional samples are welcome. See [CONTRIBUTING](CONTRIBUTING.md).
+Contributions for additional samples are welcome. See [CONTRIBUTING](https://github.com/googleapis/google-api-ruby-client/blob/master/.github/CONTRIBUTING.md).
 
 ## Generating APIs
 
@@ -341,11 +341,11 @@ See https://www.ruby-lang.org/en/downloads/branches/ for further details.
 ## License
 
 This library is licensed under Apache 2.0. Full license text is
-available in [LICENSE](LICENSE).
+available in [LICENSE](https://github.com/googleapis/google-api-ruby-client/blob/master/LICENSE).
 
 ## Contributing
 
-See [CONTRIBUTING](.github/CONTRIBUTING.md).
+See [CONTRIBUTING](https://github.com/googleapis/google-api-ruby-client/blob/master/.github/CONTRIBUTING.md).
 
 ## Support
 

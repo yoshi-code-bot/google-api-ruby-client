@@ -1,4 +1,5 @@
 require "bundler/gem_tasks"
+require "json"
 
 task default: :spec
 
