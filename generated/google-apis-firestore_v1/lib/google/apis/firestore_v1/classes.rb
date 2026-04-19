@@ -2191,12 +2191,13 @@ module Google
         attr_accessor :name
       
         # The TTL (time-to-live) configuration for documents that have this `Field` set.
-        # Storing a timestamp value into a TTL-enabled field will be treated as the
-        # document's absolute expiration time. For Enterprise edition databases, the
-        # timestamp value may also be stored in an array value in the TTL-enabled field.
-        # Timestamp values in the past indicate that the document is eligible for
-        # immediate expiration. Using any other data type or leaving the field absent
-        # will disable expiration for the individual document.
+        # A timestamp stored in a TTL-enabled field will be used to determine the
+        # expiration time of the document. The expiration time is the sum of the
+        # timestamp value and the `expiration_offset`. For Enterprise edition databases,
+        # the timestamp value may alternatively be stored in an array value in the TTL-
+        # enabled field. An expiration time in the past indicates that the document is
+        # eligible for immediate expiration. Using any other data type or leaving the
+        # field absent will disable expiration for the individual document.
         # Corresponds to the JSON property `ttlConfig`
         # @return [Google::Apis::FirestoreV1::GoogleFirestoreAdminV1TtlConfig]
         attr_accessor :ttl_config
@@ -2467,6 +2468,11 @@ module Google
         # @return [String]
         attr_accessor :query_scope
       
+        # Options for search indexes at the definition level.
+        # Corresponds to the JSON property `searchIndexOptions`
+        # @return [Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchIndexOptions]
+        attr_accessor :search_index_options
+      
         # Optional. The number of shards for the index.
         # Corresponds to the JSON property `shardCount`
         # @return [Fixnum]
@@ -2496,6 +2502,7 @@ module Google
           @multikey = args[:multikey] if args.key?(:multikey)
           @name = args[:name] if args.key?(:name)
           @query_scope = args[:query_scope] if args.key?(:query_scope)
+          @search_index_options = args[:search_index_options] if args.key?(:search_index_options)
           @shard_count = args[:shard_count] if args.key?(:shard_count)
           @state = args[:state] if args.key?(:state)
           @unique = args[:unique] if args.key?(:unique)
@@ -2597,6 +2604,11 @@ module Google
         # @return [String]
         attr_accessor :order
       
+        # The configuration for how to index a field for search.
+        # Corresponds to the JSON property `searchConfig`
+        # @return [Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchConfig]
+        attr_accessor :search_config
+      
         # The index configuration to support vector search operations
         # Corresponds to the JSON property `vectorConfig`
         # @return [Google::Apis::FirestoreV1::GoogleFirestoreAdminV1VectorConfig]
@@ -2611,6 +2623,7 @@ module Google
           @array_config = args[:array_config] if args.key?(:array_config)
           @field_path = args[:field_path] if args.key?(:field_path)
           @order = args[:order] if args.key?(:order)
+          @search_config = args[:search_config] if args.key?(:search_config)
           @vector_config = args[:vector_config] if args.key?(:vector_config)
         end
       end
@@ -3028,6 +3041,130 @@ module Google
         end
       end
       
+      # The configuration for how to index a field for search.
+      class GoogleFirestoreAdminV1SearchConfig
+        include Google::Apis::Core::Hashable
+      
+        # The specification for how to build a geo search index for a field.
+        # Corresponds to the JSON property `geoSpec`
+        # @return [Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchGeoSpec]
+        attr_accessor :geo_spec
+      
+        # The specification for how to build a text search index for a field.
+        # Corresponds to the JSON property `textSpec`
+        # @return [Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchTextSpec]
+        attr_accessor :text_spec
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @geo_spec = args[:geo_spec] if args.key?(:geo_spec)
+          @text_spec = args[:text_spec] if args.key?(:text_spec)
+        end
+      end
+      
+      # The specification for how to build a geo search index for a field.
+      class GoogleFirestoreAdminV1SearchGeoSpec
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Disables geoJSON indexing for the field. By default, geoJSON points
+        # are indexed.
+        # Corresponds to the JSON property `geoJsonIndexingDisabled`
+        # @return [Boolean]
+        attr_accessor :geo_json_indexing_disabled
+        alias_method :geo_json_indexing_disabled?, :geo_json_indexing_disabled
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @geo_json_indexing_disabled = args[:geo_json_indexing_disabled] if args.key?(:geo_json_indexing_disabled)
+        end
+      end
+      
+      # Options for search indexes at the definition level.
+      class GoogleFirestoreAdminV1SearchIndexOptions
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The language to use for text search indexes. Used as the default
+        # language if not overridden at the document level by specifying the `
+        # text_language_override_field`. The language is specified as a BCP 47 language
+        # code. For indexes with MONGODB_COMPATIBLE_API ApiScope: If unspecified, the
+        # default language is English. For indexes with `ANY_API` ApiScope: If
+        # unspecified, the default behavior is autodetect.
+        # Corresponds to the JSON property `textLanguage`
+        # @return [String]
+        attr_accessor :text_language
+      
+        # Optional. The field in the document that specifies which language to use for
+        # that specific document. For indexes with MONGODB_COMPATIBLE_API ApiScope: if
+        # unspecified, the language is taken from the "language" field if it exists or
+        # from `text_language` if it does not.
+        # Corresponds to the JSON property `textLanguageOverrideFieldPath`
+        # @return [String]
+        attr_accessor :text_language_override_field_path
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @text_language = args[:text_language] if args.key?(:text_language)
+          @text_language_override_field_path = args[:text_language_override_field_path] if args.key?(:text_language_override_field_path)
+        end
+      end
+      
+      # Specification of how the field should be indexed for search text indexes.
+      class GoogleFirestoreAdminV1SearchTextIndexSpec
+        include Google::Apis::Core::Hashable
+      
+        # Required. How to index the text field value.
+        # Corresponds to the JSON property `indexType`
+        # @return [String]
+        attr_accessor :index_type
+      
+        # Required. How to match the text field value.
+        # Corresponds to the JSON property `matchType`
+        # @return [String]
+        attr_accessor :match_type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @index_type = args[:index_type] if args.key?(:index_type)
+          @match_type = args[:match_type] if args.key?(:match_type)
+        end
+      end
+      
+      # The specification for how to build a text search index for a field.
+      class GoogleFirestoreAdminV1SearchTextSpec
+        include Google::Apis::Core::Hashable
+      
+        # Required. Specifications for how the field should be indexed. Repeated so that
+        # the field can be indexed in multiple ways.
+        # Corresponds to the JSON property `indexSpecs`
+        # @return [Array<Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchTextIndexSpec>]
+        attr_accessor :index_specs
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @index_specs = args[:index_specs] if args.key?(:index_specs)
+        end
+      end
+      
       # The configuration options for using the same encryption method as the source.
       class GoogleFirestoreAdminV1SourceEncryptionOptions
         include Google::Apis::Core::Hashable
@@ -3101,14 +3238,24 @@ module Google
       end
       
       # The TTL (time-to-live) configuration for documents that have this `Field` set.
-      # Storing a timestamp value into a TTL-enabled field will be treated as the
-      # document's absolute expiration time. For Enterprise edition databases, the
-      # timestamp value may also be stored in an array value in the TTL-enabled field.
-      # Timestamp values in the past indicate that the document is eligible for
-      # immediate expiration. Using any other data type or leaving the field absent
-      # will disable expiration for the individual document.
+      # A timestamp stored in a TTL-enabled field will be used to determine the
+      # expiration time of the document. The expiration time is the sum of the
+      # timestamp value and the `expiration_offset`. For Enterprise edition databases,
+      # the timestamp value may alternatively be stored in an array value in the TTL-
+      # enabled field. An expiration time in the past indicates that the document is
+      # eligible for immediate expiration. Using any other data type or leaving the
+      # field absent will disable expiration for the individual document.
       class GoogleFirestoreAdminV1TtlConfig
         include Google::Apis::Core::Hashable
+      
+        # Optional. The offset, relative to the timestamp value from the TTL-enabled
+        # field, used to determine the document's expiration time. `expiration_offset.
+        # seconds` must be between 0 and 2,147,483,647 inclusive. Values more precise
+        # than seconds are rejected. If unset, defaults to 0, in which case the
+        # expiration time is the same as the timestamp value from the TTL-enabled field.
+        # Corresponds to the JSON property `expirationOffset`
+        # @return [String]
+        attr_accessor :expiration_offset
       
         # Output only. The state of the TTL configuration.
         # Corresponds to the JSON property `state`
@@ -3121,6 +3268,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @expiration_offset = args[:expiration_offset] if args.key?(:expiration_offset)
           @state = args[:state] if args.key?(:state)
         end
       end
@@ -3134,6 +3282,12 @@ module Google
         # @return [String]
         attr_accessor :change_type
       
+        # The offset, relative to the timestamp value in the TTL-enabled field, used
+        # determine the document's expiration time.
+        # Corresponds to the JSON property `expirationOffset`
+        # @return [String]
+        attr_accessor :expiration_offset
+      
         def initialize(**args)
            update!(**args)
         end
@@ -3141,6 +3295,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @change_type = args[:change_type] if args.key?(:change_type)
+          @expiration_offset = args[:expiration_offset] if args.key?(:expiration_offset)
         end
       end
       

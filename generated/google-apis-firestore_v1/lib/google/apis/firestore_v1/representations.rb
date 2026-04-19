@@ -514,6 +514,36 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleFirestoreAdminV1SearchConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleFirestoreAdminV1SearchGeoSpec
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleFirestoreAdminV1SearchIndexOptions
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleFirestoreAdminV1SearchTextIndexSpec
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleFirestoreAdminV1SearchTextSpec
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleFirestoreAdminV1SourceEncryptionOptions
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1476,6 +1506,8 @@ module Google
           property :multikey, as: 'multikey'
           property :name, as: 'name'
           property :query_scope, as: 'queryScope'
+          property :search_index_options, as: 'searchIndexOptions', class: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchIndexOptions, decorator: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchIndexOptions::Representation
+      
           property :shard_count, as: 'shardCount'
           property :state, as: 'state'
           property :unique, as: 'unique'
@@ -1508,6 +1540,8 @@ module Google
           property :array_config, as: 'arrayConfig'
           property :field_path, as: 'fieldPath'
           property :order, as: 'order'
+          property :search_config, as: 'searchConfig', class: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchConfig, decorator: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchConfig::Representation
+      
           property :vector_config, as: 'vectorConfig', class: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1VectorConfig, decorator: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1VectorConfig::Representation
       
         end
@@ -1639,6 +1673,47 @@ module Google
         end
       end
       
+      class GoogleFirestoreAdminV1SearchConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :geo_spec, as: 'geoSpec', class: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchGeoSpec, decorator: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchGeoSpec::Representation
+      
+          property :text_spec, as: 'textSpec', class: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchTextSpec, decorator: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchTextSpec::Representation
+      
+        end
+      end
+      
+      class GoogleFirestoreAdminV1SearchGeoSpec
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :geo_json_indexing_disabled, as: 'geoJsonIndexingDisabled'
+        end
+      end
+      
+      class GoogleFirestoreAdminV1SearchIndexOptions
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :text_language, as: 'textLanguage'
+          property :text_language_override_field_path, as: 'textLanguageOverrideFieldPath'
+        end
+      end
+      
+      class GoogleFirestoreAdminV1SearchTextIndexSpec
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :index_type, as: 'indexType'
+          property :match_type, as: 'matchType'
+        end
+      end
+      
+      class GoogleFirestoreAdminV1SearchTextSpec
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :index_specs, as: 'indexSpecs', class: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchTextIndexSpec, decorator: Google::Apis::FirestoreV1::GoogleFirestoreAdminV1SearchTextIndexSpec::Representation
+      
+        end
+      end
+      
       class GoogleFirestoreAdminV1SourceEncryptionOptions
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1666,6 +1741,7 @@ module Google
       class GoogleFirestoreAdminV1TtlConfig
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :expiration_offset, as: 'expirationOffset'
           property :state, as: 'state'
         end
       end
@@ -1674,6 +1750,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :change_type, as: 'changeType'
+          property :expiration_offset, as: 'expirationOffset'
         end
       end
       
