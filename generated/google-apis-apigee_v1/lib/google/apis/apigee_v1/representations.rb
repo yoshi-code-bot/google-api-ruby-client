@@ -22,18 +22,6 @@ module Google
   module Apis
     module ApigeeV1
       
-      class ApiservingMcpMcpToolDataHandlingProfile
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class ApiservingMcpMcpToolLifecycleProfile
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
       class EdgeConfigstoreBundleBadBundle
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -2084,21 +2072,6 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class ApiservingMcpMcpToolDataHandlingProfile
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :input_data_access_level, as: 'inputDataAccessLevel'
-          property :output_data_access_level, as: 'outputDataAccessLevel'
-        end
-      end
-      
-      class ApiservingMcpMcpToolLifecycleProfile
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :launch_state, as: 'launchState'
-        end
       end
       
       class EdgeConfigstoreBundleBadBundle
@@ -4850,6 +4823,7 @@ module Google
           property :revision_id, as: 'revisionId'
           property :sampling_config, as: 'samplingConfig', class: Google::Apis::ApigeeV1::GoogleCloudApigeeV1RuntimeTraceSamplingConfig, decorator: Google::Apis::ApigeeV1::GoogleCloudApigeeV1RuntimeTraceSamplingConfig::Representation
       
+          property :trace_protocol, as: 'traceProtocol'
         end
       end
       
@@ -4863,6 +4837,7 @@ module Google
           property :revision_id, as: 'revisionId'
           property :sampling_config, as: 'samplingConfig', class: Google::Apis::ApigeeV1::GoogleCloudApigeeV1RuntimeTraceSamplingConfig, decorator: Google::Apis::ApigeeV1::GoogleCloudApigeeV1RuntimeTraceSamplingConfig::Representation
       
+          property :trace_protocol, as: 'traceProtocol'
           property :uid, as: 'uid'
         end
       end
