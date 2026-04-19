@@ -22,6 +22,12 @@ module Google
   module Apis
     module OndemandscanningV1beta1
       
+      class AiSkillAnalysisOccurrence
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class AliasContext
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -221,6 +227,12 @@ module Google
       end
       
       class FileLocation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Finding
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -652,6 +664,15 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class AiSkillAnalysisOccurrence
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :findings, as: 'findings', class: Google::Apis::OndemandscanningV1beta1::Finding, decorator: Google::Apis::OndemandscanningV1beta1::Finding::Representation
+      
+          property :skill_name, as: 'skillName'
+        end
+      end
+      
       class AliasContext
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -997,6 +1018,19 @@ module Google
         end
       end
       
+      class Finding
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :category, as: 'category'
+          property :description, as: 'description'
+          property :file_path, as: 'filePath'
+          property :rule_id, as: 'ruleId'
+          property :severity, as: 'severity'
+          property :snippet, as: 'snippet'
+          property :title, as: 'title'
+        end
+      end
+      
       class Fingerprint
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1303,6 +1337,9 @@ module Google
       class Occurrence
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :advisory_publish_time, as: 'advisoryPublishTime'
+          property :ai_skill_analysis, as: 'aiSkillAnalysis', class: Google::Apis::OndemandscanningV1beta1::AiSkillAnalysisOccurrence, decorator: Google::Apis::OndemandscanningV1beta1::AiSkillAnalysisOccurrence::Representation
+      
           property :attestation, as: 'attestation', class: Google::Apis::OndemandscanningV1beta1::AttestationOccurrence, decorator: Google::Apis::OndemandscanningV1beta1::AttestationOccurrence::Representation
       
           property :build, as: 'build', class: Google::Apis::OndemandscanningV1beta1::BuildOccurrence, decorator: Google::Apis::OndemandscanningV1beta1::BuildOccurrence::Representation
