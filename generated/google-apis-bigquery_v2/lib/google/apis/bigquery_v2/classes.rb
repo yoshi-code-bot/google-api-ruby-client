@@ -1850,6 +1850,13 @@ module Google
         # @return [Array<Google::Apis::BigqueryV2::Dataset::Access>]
         attr_accessor :access
       
+        # Output only. The origin of the dataset, one of: * (Unset) - Native BigQuery
+        # Dataset * BIGLAKE - Dataset is backed by a namespace stored natively in
+        # Biglake
+        # Corresponds to the JSON property `catalogSource`
+        # @return [String]
+        attr_accessor :catalog_source
+      
         # Output only. The time when this dataset was created, in milliseconds since the
         # epoch.
         # Corresponds to the JSON property `creationTime`
@@ -2053,7 +2060,9 @@ module Google
         # Output only. Same as `type` in `ListFormatDataset`. The type of the dataset,
         # one of: * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC
         # - accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset with
-        # definition in external metadata catalog.
+        # definition in external metadata catalog, * BIGLAKE_ICEBERG - a Biglake dataset
+        # accessible through the Iceberg API, * BIGLAKE_HIVE - a Biglake dataset
+        # accessible through the Hive API.
         # Corresponds to the JSON property `type`
         # @return [String]
         attr_accessor :type
@@ -2065,6 +2074,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @access = args[:access] if args.key?(:access)
+          @catalog_source = args[:catalog_source] if args.key?(:catalog_source)
           @creation_time = args[:creation_time] if args.key?(:creation_time)
           @dataset_reference = args[:dataset_reference] if args.key?(:dataset_reference)
           @default_collation = args[:default_collation] if args.key?(:default_collation)
@@ -2318,6 +2328,13 @@ module Google
         class Dataset
           include Google::Apis::Core::Hashable
         
+          # Output only. The origin of the dataset, one of: * (Unset) - Native BigQuery
+          # Dataset. * BIGLAKE - Dataset is backed by a namespace stored natively in
+          # Biglake.
+          # Corresponds to the JSON property `catalogSource`
+          # @return [String]
+          attr_accessor :catalog_source
+        
           # Identifier for a dataset.
           # Corresponds to the JSON property `datasetReference`
           # @return [Google::Apis::BigqueryV2::DatasetReference]
@@ -2355,12 +2372,23 @@ module Google
           # @return [String]
           attr_accessor :location
         
+          # Output only. Same as `type` in `Dataset`. The type of the dataset, one of: *
+          # DEFAULT - only accessible by owner and authorized accounts, * PUBLIC -
+          # accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset with
+          # definition in external metadata catalog, * BIGLAKE_ICEBERG - a Biglake dataset
+          # accessible through the Iceberg API, * BIGLAKE_HIVE - a Biglake dataset
+          # accessible through the Hive API.
+          # Corresponds to the JSON property `type`
+          # @return [String]
+          attr_accessor :type
+        
           def initialize(**args)
              update!(**args)
           end
         
           # Update properties of this object
           def update!(**args)
+            @catalog_source = args[:catalog_source] if args.key?(:catalog_source)
             @dataset_reference = args[:dataset_reference] if args.key?(:dataset_reference)
             @external_dataset_reference = args[:external_dataset_reference] if args.key?(:external_dataset_reference)
             @friendly_name = args[:friendly_name] if args.key?(:friendly_name)
@@ -2368,6 +2396,7 @@ module Google
             @kind = args[:kind] if args.key?(:kind)
             @labels = args[:labels] if args.key?(:labels)
             @location = args[:location] if args.key?(:location)
+            @type = args[:type] if args.key?(:type)
           end
         end
       end
@@ -3422,7 +3451,7 @@ module Google
       
         # Precisions (maximum number of total digits in base 10) for seconds of
         # TIMESTAMP types that are allowed to the destination table for autodetection
-        # mode. Available for the formats: CSV. For the CSV Format, Possible values
+        # mode. Available for the formats: CSV, PARQUET, and AVRO. Possible values
         # include: Not Specified, [], or [6]: timestamp(6) for all auto detected
         # TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP
         # columns that have less than 6 digits of subseconds. timestamp(12) for all auto
@@ -3685,6 +3714,205 @@ module Google
         def update!(**args)
           @dialect = args[:dialect] if args.key?(:dialect)
           @query = args[:query] if args.key?(:query)
+        end
+      end
+      
+      # Provides error statistics for the query job across all AI function calls.
+      class GenAiErrorStats
+        include Google::Apis::Core::Hashable
+      
+        # A list of unique errors at query level (up to 5, truncated to 100 chars)
+        # Corresponds to the JSON property `errors`
+        # @return [Array<String>]
+        attr_accessor :errors
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @errors = args[:errors] if args.key?(:errors)
+        end
+      end
+      
+      # Provides cost optimization statistics for a GenAi function call.
+      class GenAiFunctionCostOptimizationStats
+        include Google::Apis::Core::Hashable
+      
+        # System generated message to provide insights into cost optimization state.
+        # Corresponds to the JSON property `message`
+        # @return [String]
+        attr_accessor :message
+      
+        # Number of rows inferred via cost optimized workflow.
+        # Corresponds to the JSON property `numCostOptimizedRows`
+        # @return [Fixnum]
+        attr_accessor :num_cost_optimized_rows
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @message = args[:message] if args.key?(:message)
+          @num_cost_optimized_rows = args[:num_cost_optimized_rows] if args.key?(:num_cost_optimized_rows)
+        end
+      end
+      
+      # Provides error statistics for a GenAi function call.
+      class GenAiFunctionErrorStats
+        include Google::Apis::Core::Hashable
+      
+        # A list of unique errors at function level (up to 5, truncated to 100 chars).
+        # Corresponds to the JSON property `errors`
+        # @return [Array<String>]
+        attr_accessor :errors
+      
+        # Number of failed rows processed by the function
+        # Corresponds to the JSON property `numFailedRows`
+        # @return [Fixnum]
+        attr_accessor :num_failed_rows
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @errors = args[:errors] if args.key?(:errors)
+          @num_failed_rows = args[:num_failed_rows] if args.key?(:num_failed_rows)
+        end
+      end
+      
+      # Provides statistics for each Ai function call within a query.
+      class GenAiFunctionStats
+        include Google::Apis::Core::Hashable
+      
+        # Provides cost optimization statistics for a GenAi function call.
+        # Corresponds to the JSON property `costOptimizationStats`
+        # @return [Google::Apis::BigqueryV2::GenAiFunctionCostOptimizationStats]
+        attr_accessor :cost_optimization_stats
+      
+        # Provides error statistics for a GenAi function call.
+        # Corresponds to the JSON property `errorStats`
+        # @return [Google::Apis::BigqueryV2::GenAiFunctionErrorStats]
+        attr_accessor :error_stats
+      
+        # Name of the function.
+        # Corresponds to the JSON property `functionName`
+        # @return [String]
+        attr_accessor :function_name
+      
+        # Number of rows processed by this GenAi function. This includes all
+        # cost_optimized, llm_inferred and failed_rows.
+        # Corresponds to the JSON property `numProcessedRows`
+        # @return [Fixnum]
+        attr_accessor :num_processed_rows
+      
+        # User input prompt of the function (truncated to 20 chars).
+        # Corresponds to the JSON property `prompt`
+        # @return [String]
+        attr_accessor :prompt
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @cost_optimization_stats = args[:cost_optimization_stats] if args.key?(:cost_optimization_stats)
+          @error_stats = args[:error_stats] if args.key?(:error_stats)
+          @function_name = args[:function_name] if args.key?(:function_name)
+          @num_processed_rows = args[:num_processed_rows] if args.key?(:num_processed_rows)
+          @prompt = args[:prompt] if args.key?(:prompt)
+        end
+      end
+      
+      # GenAi stats for the query job.
+      class GenAiStats
+        include Google::Apis::Core::Hashable
+      
+        # Provides error statistics for the query job across all AI function calls.
+        # Corresponds to the JSON property `errorStats`
+        # @return [Google::Apis::BigqueryV2::GenAiErrorStats]
+        attr_accessor :error_stats
+      
+        # Function level stats for GenAi Functions. See https://docs.cloud.google.com/
+        # bigquery/docs/generative-ai-overview
+        # Corresponds to the JSON property `functionStats`
+        # @return [Array<Google::Apis::BigqueryV2::GenAiFunctionStats>]
+        attr_accessor :function_stats
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @error_stats = args[:error_stats] if args.key?(:error_stats)
+          @function_stats = args[:function_stats] if args.key?(:function_stats)
+        end
+      end
+      
+      # Optional. Definition of how values are generated for the field. Only valid for
+      # top-level schema fields (not nested fields).
+      class GeneratedColumn
+        include Google::Apis::Core::Hashable
+      
+        # Definition of the expression used to generate the field.
+        # Corresponds to the JSON property `generatedExpressionInfo`
+        # @return [Google::Apis::BigqueryV2::GeneratedExpressionInfo]
+        attr_accessor :generated_expression_info
+      
+        # Optional. Dictates when system generated values are used to populate the field.
+        # Corresponds to the JSON property `generatedMode`
+        # @return [String]
+        attr_accessor :generated_mode
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @generated_expression_info = args[:generated_expression_info] if args.key?(:generated_expression_info)
+          @generated_mode = args[:generated_mode] if args.key?(:generated_mode)
+        end
+      end
+      
+      # Definition of the expression used to generate the field.
+      class GeneratedExpressionInfo
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Whether the column generation is done asynchronously.
+        # Corresponds to the JSON property `asynchronous`
+        # @return [Boolean]
+        attr_accessor :asynchronous
+        alias_method :asynchronous?, :asynchronous
+      
+        # Optional. The generation expression (e.g. AI.EMBED(...)) used to generated the
+        # field.
+        # Corresponds to the JSON property `generationExpression`
+        # @return [String]
+        attr_accessor :generation_expression
+      
+        # Optional. Whether the generated column is stored in the table.
+        # Corresponds to the JSON property `stored`
+        # @return [Boolean]
+        attr_accessor :stored
+        alias_method :stored?, :stored
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @asynchronous = args[:asynchronous] if args.key?(:asynchronous)
+          @generation_expression = args[:generation_expression] if args.key?(:generation_expression)
+          @stored = args[:stored] if args.key?(:stored)
         end
       end
       
@@ -5241,7 +5469,7 @@ module Google
       
         # Precisions (maximum number of total digits in base 10) for seconds of
         # TIMESTAMP types that are allowed to the destination table for autodetection
-        # mode. Available for the formats: CSV. For the CSV Format, Possible values
+        # mode. Available for the formats: CSV, PARQUET, and AVRO. Possible values
         # include: Not Specified, [], or [6]: timestamp(6) for all auto detected
         # TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP
         # columns that have less than 6 digits of subseconds. timestamp(12) for all auto
@@ -6136,6 +6364,11 @@ module Google
         # @return [Array<Google::Apis::BigqueryV2::ExternalServiceCost>]
         attr_accessor :external_service_costs
       
+        # GenAi stats for the query job.
+        # Corresponds to the JSON property `genAiStats`
+        # @return [Google::Apis::BigqueryV2::GenAiStats]
+        attr_accessor :gen_ai_stats
+      
         # Statistics related to Incremental Query Results. Populated as part of
         # JobStatistics2. This feature is not yet available.
         # Corresponds to the JSON property `incrementalResultStats`
@@ -6414,6 +6647,7 @@ module Google
           @estimated_bytes_processed = args[:estimated_bytes_processed] if args.key?(:estimated_bytes_processed)
           @export_data_statistics = args[:export_data_statistics] if args.key?(:export_data_statistics)
           @external_service_costs = args[:external_service_costs] if args.key?(:external_service_costs)
+          @gen_ai_stats = args[:gen_ai_stats] if args.key?(:gen_ai_stats)
           @incremental_result_stats = args[:incremental_result_stats] if args.key?(:incremental_result_stats)
           @load_query_statistics = args[:load_query_statistics] if args.key?(:load_query_statistics)
           @materialized_view_statistics = args[:materialized_view_statistics] if args.key?(:materialized_view_statistics)
@@ -7716,7 +7950,8 @@ module Google
         # @return [String]
         attr_accessor :next_page_token
       
-        # Projects to which the user has at least READ access.
+        # Projects to which the user has at least READ access. This field can be omitted
+        # if `totalItems` is 0.
         # Corresponds to the JSON property `projects`
         # @return [Array<Google::Apis::BigqueryV2::ProjectList::Project>]
         attr_accessor :projects
@@ -8830,6 +9065,11 @@ module Google
         # @return [Array<Google::Apis::BigqueryV2::Argument>]
         attr_accessor :arguments
       
+        # The status of a routine build.
+        # Corresponds to the JSON property `buildStatus`
+        # @return [Google::Apis::BigqueryV2::RoutineBuildStatus]
+        attr_accessor :build_status
+      
         # Output only. The time when this routine was created, in milliseconds since the
         # epoch.
         # Corresponds to the JSON property `creationTime`
@@ -8965,6 +9205,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @arguments = args[:arguments] if args.key?(:arguments)
+          @build_status = args[:build_status] if args.key?(:build_status)
           @creation_time = args[:creation_time] if args.key?(:creation_time)
           @data_governance_type = args[:data_governance_type] if args.key?(:data_governance_type)
           @definition_body = args[:definition_body] if args.key?(:definition_body)
@@ -8984,6 +9225,51 @@ module Google
           @security_mode = args[:security_mode] if args.key?(:security_mode)
           @spark_options = args[:spark_options] if args.key?(:spark_options)
           @strict_mode = args[:strict_mode] if args.key?(:strict_mode)
+        end
+      end
+      
+      # The status of a routine build.
+      class RoutineBuildStatus
+        include Google::Apis::Core::Hashable
+      
+        # Output only. The time taken for the image build. Populated only after the
+        # build succeeds or fails.
+        # Corresponds to the JSON property `buildDuration`
+        # @return [String]
+        attr_accessor :build_duration
+      
+        # Output only. The current build state of the routine.
+        # Corresponds to the JSON property `buildState`
+        # @return [String]
+        attr_accessor :build_state
+      
+        # Output only. The time when the build state was updated last.
+        # Corresponds to the JSON property `buildStateUpdateTime`
+        # @return [String]
+        attr_accessor :build_state_update_time
+      
+        # Error details.
+        # Corresponds to the JSON property `errorResult`
+        # @return [Google::Apis::BigqueryV2::ErrorProto]
+        attr_accessor :error_result
+      
+        # Output only. The size of the image in bytes. Populated only after the build
+        # succeeds.
+        # Corresponds to the JSON property `imageSizeBytes`
+        # @return [Fixnum]
+        attr_accessor :image_size_bytes
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @build_duration = args[:build_duration] if args.key?(:build_duration)
+          @build_state = args[:build_state] if args.key?(:build_state)
+          @build_state_update_time = args[:build_state_update_time] if args.key?(:build_state_update_time)
+          @error_result = args[:error_result] if args.key?(:error_result)
+          @image_size_bytes = args[:image_size_bytes] if args.key?(:image_size_bytes)
         end
       end
       
@@ -10826,6 +11112,12 @@ module Google
         # @return [String]
         attr_accessor :foreign_type_definition
       
+        # Optional. Definition of how values are generated for the field. Only valid for
+        # top-level schema fields (not nested fields).
+        # Corresponds to the JSON property `generatedColumn`
+        # @return [Google::Apis::BigqueryV2::GeneratedColumn]
+        attr_accessor :generated_column
+      
         # Optional. Maximum length of values of this field for STRINGS or BYTES. If
         # max_length is not specified, no maximum length constraint is imposed on this
         # field. If type = "STRING", then max_length represents the maximum UTF-8 length
@@ -10920,6 +11212,7 @@ module Google
           @description = args[:description] if args.key?(:description)
           @fields = args[:fields] if args.key?(:fields)
           @foreign_type_definition = args[:foreign_type_definition] if args.key?(:foreign_type_definition)
+          @generated_column = args[:generated_column] if args.key?(:generated_column)
           @max_length = args[:max_length] if args.key?(:max_length)
           @mode = args[:mode] if args.key?(:mode)
           @name = args[:name] if args.key?(:name)
