@@ -70,6 +70,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GatewaySipAccess
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class ListConferenceRecordsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -125,6 +131,12 @@ module Google
       end
       
       class ParticipantSession
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class PhoneAccess
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -261,6 +273,14 @@ module Google
         end
       end
       
+      class GatewaySipAccess
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :sip_access_code, as: 'sipAccessCode'
+          property :uri, as: 'uri'
+        end
+      end
+      
       class ListConferenceRecordsResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -359,6 +379,16 @@ module Google
         end
       end
       
+      class PhoneAccess
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :language_code, as: 'languageCode'
+          property :phone_number, as: 'phoneNumber'
+          property :pin, as: 'pin'
+          property :region_code, as: 'regionCode'
+        end
+      end
+      
       class PhoneUser
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -419,9 +449,13 @@ module Google
       
           property :config, as: 'config', class: Google::Apis::MeetV2::SpaceConfig, decorator: Google::Apis::MeetV2::SpaceConfig::Representation
       
+          collection :gateway_sip_access, as: 'gatewaySipAccess', class: Google::Apis::MeetV2::GatewaySipAccess, decorator: Google::Apis::MeetV2::GatewaySipAccess::Representation
+      
           property :meeting_code, as: 'meetingCode'
           property :meeting_uri, as: 'meetingUri'
           property :name, as: 'name'
+          collection :phone_access, as: 'phoneAccess', class: Google::Apis::MeetV2::PhoneAccess, decorator: Google::Apis::MeetV2::PhoneAccess::Representation
+      
         end
       end
       
