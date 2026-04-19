@@ -1319,6 +1319,13 @@ module Google
         # @return [String]
         attr_accessor :product_type_l5
       
+        # Store type to which metrics apply. Can be `ONLINE_STORE` or `LOCAL_STORES`.
+        # Segment. For `LOCAL_STORES` store type, further segmentation by a specific
+        # store is not available.
+        # Corresponds to the JSON property `storeType`
+        # @return [String]
+        attr_accessor :store_type
+      
         # Title of the product. Segment.
         # Corresponds to the JSON property `title`
         # @return [String]
@@ -1368,6 +1375,7 @@ module Google
           @product_type_l3 = args[:product_type_l3] if args.key?(:product_type_l3)
           @product_type_l4 = args[:product_type_l4] if args.key?(:product_type_l4)
           @product_type_l5 = args[:product_type_l5] if args.key?(:product_type_l5)
+          @store_type = args[:store_type] if args.key?(:store_type)
           @title = args[:title] if args.key?(:title)
           @week = args[:week] if args.key?(:week)
         end
