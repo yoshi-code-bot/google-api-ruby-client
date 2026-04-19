@@ -9232,6 +9232,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :create_time, as: 'createTime'
           hash :input_parameters, as: 'inputParameters'
           property :state, as: 'state'
@@ -9246,6 +9249,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :content, as: 'content'
           property :create_time, as: 'createTime'
           property :error, as: 'error', class: Google::Apis::DialogflowV3::GoogleCloudDialogflowV2ToolCallResultError, decorator: Google::Apis::DialogflowV3::GoogleCloudDialogflowV2ToolCallResultError::Representation
@@ -10593,6 +10599,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :create_time, as: 'createTime'
           hash :input_parameters, as: 'inputParameters'
           property :state, as: 'state'
@@ -10607,6 +10616,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :content, as: 'content'
           property :create_time, as: 'createTime'
           property :error, as: 'error', class: Google::Apis::DialogflowV3::GoogleCloudDialogflowV2beta1ToolCallResultError, decorator: Google::Apis::DialogflowV3::GoogleCloudDialogflowV2beta1ToolCallResultError::Representation
