@@ -665,6 +665,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :admin_password, as: 'adminPassword'
+          property :admin_password_secret_version, as: 'adminPasswordSecretVersion'
           property :cidr, as: 'cidr'
           property :create_time, as: 'createTime'
           property :database, as: 'database'
@@ -808,6 +809,8 @@ module Google
           property :license_type, as: 'licenseType'
           property :lifecycle_details, as: 'lifecycleDetails'
           property :local_adg_auto_failover_max_data_loss_limit, as: 'localAdgAutoFailoverMaxDataLossLimit'
+          property :local_adg_auto_failover_max_data_loss_limit_duration, as: 'localAdgAutoFailoverMaxDataLossLimitDuration'
+          property :local_data_guard_enabled, as: 'localDataGuardEnabled'
           property :local_disaster_recovery_type, as: 'localDisasterRecoveryType'
           property :local_standby_db, as: 'localStandbyDb', class: Google::Apis::OracledatabaseV1::AutonomousDatabaseStandbySummary, decorator: Google::Apis::OracledatabaseV1::AutonomousDatabaseStandbySummary::Representation
       
@@ -1040,6 +1043,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :admin_password, as: 'adminPassword'
+          property :admin_password_secret_version, as: 'adminPasswordSecretVersion'
           property :character_set, as: 'characterSet'
           property :create_time, as: 'createTime'
           property :database_id, as: 'databaseId'
@@ -1056,6 +1060,7 @@ module Google
           property :properties, as: 'properties', class: Google::Apis::OracledatabaseV1::DatabaseProperties, decorator: Google::Apis::OracledatabaseV1::DatabaseProperties::Representation
       
           property :tde_wallet_password, as: 'tdeWalletPassword'
+          property :tde_wallet_password_secret_version, as: 'tdeWalletPasswordSecretVersion'
         end
       end
       

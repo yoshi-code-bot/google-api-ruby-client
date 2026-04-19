@@ -62,10 +62,19 @@ module Google
       class AutonomousDatabase
         include Google::Apis::Core::Hashable
       
-        # Optional. Immutable. The password for the default ADMIN user.
+        # Optional. Immutable. The password for the default ADMIN user. Note: Only one
+        # of `admin_password_secret_version` or `admin_password` can be populated.
         # Corresponds to the JSON property `adminPassword`
         # @return [String]
         attr_accessor :admin_password
+      
+        # Optional. Immutable. The resource name of a secret version in Secret Manager
+        # which contains the database admin user's password. Format: projects/`project`/
+        # secrets/`secret`/versions/`version`. Note: Only one of `
+        # admin_password_secret_version` or `admin_password` can be populated.
+        # Corresponds to the JSON property `adminPasswordSecretVersion`
+        # @return [String]
+        attr_accessor :admin_password_secret_version
       
         # Optional. Immutable. The subnet CIDR range for the Autonomous Database.
         # Corresponds to the JSON property `cidr`
@@ -158,6 +167,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @admin_password = args[:admin_password] if args.key?(:admin_password)
+          @admin_password_secret_version = args[:admin_password_secret_version] if args.key?(:admin_password_secret_version)
           @cidr = args[:cidr] if args.key?(:cidr)
           @create_time = args[:create_time] if args.key?(:create_time)
           @database = args[:database] if args.key?(:database)
@@ -720,8 +730,9 @@ module Google
         attr_accessor :is_auto_scaling_enabled
         alias_method :is_auto_scaling_enabled?, :is_auto_scaling_enabled
       
-        # Output only. This field indicates whether the Autonomous Database has local (
-        # in-region) Data Guard enabled.
+        # Output only. Deprecated: Please use `local_data_guard_enabled` instead. This
+        # field indicates whether the Autonomous Database has local (in-region) Data
+        # Guard enabled.
         # Corresponds to the JSON property `isLocalDataGuardEnabled`
         # @return [Boolean]
         attr_accessor :is_local_data_guard_enabled
@@ -745,11 +756,26 @@ module Google
         # @return [String]
         attr_accessor :lifecycle_details
       
-        # Output only. This field indicates the maximum data loss limit for an
-        # Autonomous Database, in seconds.
+        # Output only. Deprecated: Please use `
+        # local_adg_auto_failover_max_data_loss_limit_duration` instead. This field
+        # indicates the maximum data loss limit for an Autonomous Database, in seconds.
         # Corresponds to the JSON property `localAdgAutoFailoverMaxDataLossLimit`
         # @return [Fixnum]
         attr_accessor :local_adg_auto_failover_max_data_loss_limit
+      
+        # Optional. This field indicates the maximum data loss limit for an Autonomous
+        # Database, in seconds.
+        # Corresponds to the JSON property `localAdgAutoFailoverMaxDataLossLimitDuration`
+        # @return [Fixnum]
+        attr_accessor :local_adg_auto_failover_max_data_loss_limit_duration
+      
+        # Optional. Indicates whether the Autonomous Database has a local (in-region)
+        # standby database. Not applicable to cross-region Data Guard or dedicated
+        # Exadata infrastructure.
+        # Corresponds to the JSON property `localDataGuardEnabled`
+        # @return [Boolean]
+        attr_accessor :local_data_guard_enabled
+        alias_method :local_data_guard_enabled?, :local_data_guard_enabled
       
         # Output only. This field indicates the local disaster recovery (DR) type of an
         # Autonomous Database.
@@ -957,6 +983,8 @@ module Google
           @license_type = args[:license_type] if args.key?(:license_type)
           @lifecycle_details = args[:lifecycle_details] if args.key?(:lifecycle_details)
           @local_adg_auto_failover_max_data_loss_limit = args[:local_adg_auto_failover_max_data_loss_limit] if args.key?(:local_adg_auto_failover_max_data_loss_limit)
+          @local_adg_auto_failover_max_data_loss_limit_duration = args[:local_adg_auto_failover_max_data_loss_limit_duration] if args.key?(:local_adg_auto_failover_max_data_loss_limit_duration)
+          @local_data_guard_enabled = args[:local_data_guard_enabled] if args.key?(:local_data_guard_enabled)
           @local_disaster_recovery_type = args[:local_disaster_recovery_type] if args.key?(:local_disaster_recovery_type)
           @local_standby_db = args[:local_standby_db] if args.key?(:local_standby_db)
           @maintenance_begin_time = args[:maintenance_begin_time] if args.key?(:maintenance_begin_time)
@@ -1868,10 +1896,19 @@ module Google
       class Database
         include Google::Apis::Core::Hashable
       
-        # Required. The password for the default ADMIN user.
+        # Optional. The password for the default ADMIN user. Note: Only one of `
+        # admin_password_secret_version` or `admin_password` can be populated.
         # Corresponds to the JSON property `adminPassword`
         # @return [String]
         attr_accessor :admin_password
+      
+        # Optional. The resource name of a secret version in Secret Manager which
+        # contains the database admin user's password. Format: projects/`project`/
+        # secrets/`secret`/versions/`version`. Note: Only one of `
+        # admin_password_secret_version` or `admin_password` can be populated.
+        # Corresponds to the JSON property `adminPasswordSecretVersion`
+        # @return [String]
+        attr_accessor :admin_password_secret_version
       
         # Optional. The character set for the database. The default is AL32UTF8.
         # Corresponds to the JSON property `characterSet`
@@ -1950,10 +1987,19 @@ module Google
         # @return [Google::Apis::OracledatabaseV1::DatabaseProperties]
         attr_accessor :properties
       
-        # Optional. The TDE wallet password for the database.
+        # Optional. The TDE wallet password for the database. Note: Only one of `
+        # tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.
         # Corresponds to the JSON property `tdeWalletPassword`
         # @return [String]
         attr_accessor :tde_wallet_password
+      
+        # Optional. The resource name of a secret version in Secret Manager which
+        # contains the TDE wallet password for the database. Format: projects/`project`/
+        # secrets/`secret`/versions/`version`. Note: Only one of `
+        # tde_wallet_password_secret_version` or `tde_wallet_password` can be populated.
+        # Corresponds to the JSON property `tdeWalletPasswordSecretVersion`
+        # @return [String]
+        attr_accessor :tde_wallet_password_secret_version
       
         def initialize(**args)
            update!(**args)
@@ -1962,6 +2008,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @admin_password = args[:admin_password] if args.key?(:admin_password)
+          @admin_password_secret_version = args[:admin_password_secret_version] if args.key?(:admin_password_secret_version)
           @character_set = args[:character_set] if args.key?(:character_set)
           @create_time = args[:create_time] if args.key?(:create_time)
           @database_id = args[:database_id] if args.key?(:database_id)
@@ -1977,6 +2024,7 @@ module Google
           @pluggable_database_name = args[:pluggable_database_name] if args.key?(:pluggable_database_name)
           @properties = args[:properties] if args.key?(:properties)
           @tde_wallet_password = args[:tde_wallet_password] if args.key?(:tde_wallet_password)
+          @tde_wallet_password_secret_version = args[:tde_wallet_password_secret_version] if args.key?(:tde_wallet_password_secret_version)
         end
       end
       
