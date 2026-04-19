@@ -5390,11 +5390,11 @@ module Google
         attr_accessor :create_windows_disabled
         alias_method :create_windows_disabled?, :create_windows_disabled
       
-        # Controls which apps are allowed to act as credential providers on Android 14
-        # and above. These apps store credentials, see this (https://developer.android.
-        # com/training/sign-in/passkeys) and this (https://developer.android.com/
-        # reference/androidx/credentials/CredentialManager) for details. See also
-        # credentialProviderPolicy.
+        # Optional. Controls which apps are allowed to act as credential providers on
+        # Android 14 and above. These apps store credentials, see this (https://
+        # developer.android.com/training/sign-in/passkeys) and this (https://developer.
+        # android.com/reference/androidx/credentials/CredentialManager) for details. See
+        # also credentialProviderPolicy.
         # Corresponds to the JSON property `credentialProviderPolicyDefault`
         # @return [String]
         attr_accessor :credential_provider_policy_default
