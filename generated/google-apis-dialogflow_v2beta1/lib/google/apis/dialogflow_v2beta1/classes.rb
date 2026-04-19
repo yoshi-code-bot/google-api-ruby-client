@@ -10451,6 +10451,21 @@ module Google
         attr_accessor :answer_record
       
         # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
+      
+        # 
         # Corresponds to the JSON property `createTime`
         # @return [String]
         attr_accessor :create_time
@@ -10488,6 +10503,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @create_time = args[:create_time] if args.key?(:create_time)
           @input_parameters = args[:input_parameters] if args.key?(:input_parameters)
           @state = args[:state] if args.key?(:state)
@@ -10510,6 +10528,21 @@ module Google
         # Corresponds to the JSON property `answerRecord`
         # @return [String]
         attr_accessor :answer_record
+      
+        # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
       
         # 
         # Corresponds to the JSON property `content`
@@ -10545,6 +10578,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @content = args[:content] if args.key?(:content)
           @create_time = args[:create_time] if args.key?(:create_time)
           @error = args[:error] if args.key?(:error)
@@ -12010,6 +12046,56 @@ module Google
         # Update properties of this object
         def update!(**args)
           @intents = args[:intents] if args.key?(:intents)
+        end
+      end
+      
+      # 
+      class GoogleCloudDialogflowV2beta1CesAppSpec
+        include Google::Apis::Core::Hashable
+      
+        # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `confirmationRequirement`
+        # @return [String]
+        attr_accessor :confirmation_requirement
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @confirmation_requirement = args[:confirmation_requirement] if args.key?(:confirmation_requirement)
+        end
+      end
+      
+      # 
+      class GoogleCloudDialogflowV2beta1CesToolSpec
+        include Google::Apis::Core::Hashable
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `confirmationRequirement`
+        # @return [String]
+        attr_accessor :confirmation_requirement
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @confirmation_requirement = args[:confirmation_requirement] if args.key?(:confirmation_requirement)
         end
       end
       
@@ -13929,6 +14015,16 @@ module Google
         attr_accessor :agent_coaching_context
       
         # 
+        # Corresponds to the JSON property `cesAppSpecs`
+        # @return [Array<Google::Apis::DialogflowV2beta1::GoogleCloudDialogflowV2beta1CesAppSpec>]
+        attr_accessor :ces_app_specs
+      
+        # 
+        # Corresponds to the JSON property `cesToolSpecs`
+        # @return [Array<Google::Apis::DialogflowV2beta1::GoogleCloudDialogflowV2beta1CesToolSpec>]
+        attr_accessor :ces_tool_specs
+      
+        # 
         # Corresponds to the JSON property `createTime`
         # @return [String]
         attr_accessor :create_time
@@ -13974,6 +14070,11 @@ module Google
         attr_accessor :tools
       
         # 
+        # Corresponds to the JSON property `toolsetTools`
+        # @return [Array<Google::Apis::DialogflowV2beta1::GoogleCloudDialogflowV2beta1ToolsetTool>]
+        attr_accessor :toolset_tools
+      
+        # 
         # Corresponds to the JSON property `triggerEvent`
         # @return [String]
         attr_accessor :trigger_event
@@ -13990,6 +14091,8 @@ module Google
         # Update properties of this object
         def update!(**args)
           @agent_coaching_context = args[:agent_coaching_context] if args.key?(:agent_coaching_context)
+          @ces_app_specs = args[:ces_app_specs] if args.key?(:ces_app_specs)
+          @ces_tool_specs = args[:ces_tool_specs] if args.key?(:ces_tool_specs)
           @create_time = args[:create_time] if args.key?(:create_time)
           @description = args[:description] if args.key?(:description)
           @free_form_context = args[:free_form_context] if args.key?(:free_form_context)
@@ -13999,6 +14102,7 @@ module Google
           @suggestion_deduping_config = args[:suggestion_deduping_config] if args.key?(:suggestion_deduping_config)
           @summarization_context = args[:summarization_context] if args.key?(:summarization_context)
           @tools = args[:tools] if args.key?(:tools)
+          @toolset_tools = args[:toolset_tools] if args.key?(:toolset_tools)
           @trigger_event = args[:trigger_event] if args.key?(:trigger_event)
           @update_time = args[:update_time] if args.key?(:update_time)
         end
@@ -18213,6 +18317,11 @@ module Google
         include Google::Apis::Core::Hashable
       
         # 
+        # Corresponds to the JSON property `allowedSipTrunks`
+        # @return [Google::Apis::DialogflowV2beta1::GoogleCloudDialogflowV2beta1PhoneNumberAllowedSipTrunks]
+        attr_accessor :allowed_sip_trunks
+      
+        # 
         # Corresponds to the JSON property `conversationProfile`
         # @return [String]
         attr_accessor :conversation_profile
@@ -18232,16 +18341,48 @@ module Google
         # @return [String]
         attr_accessor :phone_number
       
+        # 
+        # Corresponds to the JSON property `purgeTime`
+        # @return [String]
+        attr_accessor :purge_time
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @allowed_sip_trunks = args[:allowed_sip_trunks] if args.key?(:allowed_sip_trunks)
           @conversation_profile = args[:conversation_profile] if args.key?(:conversation_profile)
           @lifecycle_state = args[:lifecycle_state] if args.key?(:lifecycle_state)
           @name = args[:name] if args.key?(:name)
           @phone_number = args[:phone_number] if args.key?(:phone_number)
+          @purge_time = args[:purge_time] if args.key?(:purge_time)
+        end
+      end
+      
+      # 
+      class GoogleCloudDialogflowV2beta1PhoneNumberAllowedSipTrunks
+        include Google::Apis::Core::Hashable
+      
+        # 
+        # Corresponds to the JSON property `carrierIds`
+        # @return [Array<String>]
+        attr_accessor :carrier_ids
+      
+        # 
+        # Corresponds to the JSON property `sipTrunks`
+        # @return [Array<String>]
+        attr_accessor :sip_trunks
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @carrier_ids = args[:carrier_ids] if args.key?(:carrier_ids)
+          @sip_trunks = args[:sip_trunks] if args.key?(:sip_trunks)
         end
       end
       
@@ -21374,6 +21515,21 @@ module Google
         attr_accessor :answer_record
       
         # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
+      
+        # 
         # Corresponds to the JSON property `createTime`
         # @return [String]
         attr_accessor :create_time
@@ -21411,6 +21567,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @create_time = args[:create_time] if args.key?(:create_time)
           @input_parameters = args[:input_parameters] if args.key?(:input_parameters)
           @state = args[:state] if args.key?(:state)
@@ -21433,6 +21592,21 @@ module Google
         # Corresponds to the JSON property `answerRecord`
         # @return [String]
         attr_accessor :answer_record
+      
+        # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
       
         # 
         # Corresponds to the JSON property `content`
@@ -21468,6 +21642,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @content = args[:content] if args.key?(:content)
           @create_time = args[:create_time] if args.key?(:create_time)
           @error = args[:error] if args.key?(:error)
@@ -21730,6 +21907,37 @@ module Google
         def update!(**args)
           @cert = args[:cert] if args.key?(:cert)
           @display_name = args[:display_name] if args.key?(:display_name)
+        end
+      end
+      
+      # 
+      class GoogleCloudDialogflowV2beta1ToolsetTool
+        include Google::Apis::Core::Hashable
+      
+        # 
+        # Corresponds to the JSON property `confirmationRequirement`
+        # @return [String]
+        attr_accessor :confirmation_requirement
+      
+        # 
+        # Corresponds to the JSON property `operationId`
+        # @return [String]
+        attr_accessor :operation_id
+      
+        # 
+        # Corresponds to the JSON property `toolset`
+        # @return [String]
+        attr_accessor :toolset
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @confirmation_requirement = args[:confirmation_requirement] if args.key?(:confirmation_requirement)
+          @operation_id = args[:operation_id] if args.key?(:operation_id)
+          @toolset = args[:toolset] if args.key?(:toolset)
         end
       end
       
