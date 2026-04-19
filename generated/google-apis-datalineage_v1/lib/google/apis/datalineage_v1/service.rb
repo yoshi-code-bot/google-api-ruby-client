@@ -571,8 +571,8 @@ module Google
         # @param [String] name
         #   Required. The name of the process to delete.
         # @param [Boolean] allow_missing
-        #   If set to true and the process is not found, the request succeeds but the
-        #   server doesn't perform any actions.
+        #   Optional. If set to true and the process is not found, the request succeeds
+        #   but the server doesn't perform any actions.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -637,13 +637,14 @@ module Google
         #   Required. The name of the project and its location that owns this collection
         #   of processes.
         # @param [Fixnum] page_size
-        #   The maximum number of processes to return. The service may return fewer than
-        #   this value. If unspecified, at most 50 processes are returned. The maximum
-        #   value is 100; values greater than 100 are cut to 100.
+        #   Optional. The maximum number of processes to return. The service may return
+        #   fewer than this value. If unspecified, at most 50 processes are returned. The
+        #   maximum value is 100; values greater than 100 are cut to 100.
         # @param [String] page_token
-        #   The page token received from a previous `ListProcesses` call. Specify it to
-        #   get the next page. When paginating, all other parameters specified in this
-        #   call must match the parameters of the call that provided the page token.
+        #   Optional. The page token received from a previous `ListProcesses` call.
+        #   Specify it to get the next page. When paginating, all other parameters
+        #   specified in this call must match the parameters of the call that provided the
+        #   page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -681,13 +682,14 @@ module Google
         #   characters in a set: `a-zA-Z0-9_-:.`
         # @param [Google::Apis::DatalineageV1::GoogleCloudDatacatalogLineageV1Process] google_cloud_datacatalog_lineage_v1_process_object
         # @param [Boolean] allow_missing
-        #   If set to true and the process is not found, the request inserts it.
+        #   Optional. If set to true and the process is not found, the request inserts it.
         # @param [String] request_id
         #   Optional. A unique identifier for this request. Restricted to 36 ASCII
         #   characters. A random UUID is recommended. This request is idempotent only if a
         #   `request_id` is provided.
         # @param [String] update_mask
-        #   The list of fields to update. Currently not used. The whole message is updated.
+        #   Optional. The list of fields to update. Currently not used. The whole message
+        #   is updated.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -762,8 +764,8 @@ module Google
         # @param [String] name
         #   Required. The name of the run to delete.
         # @param [Boolean] allow_missing
-        #   If set to true and the run is not found, the request succeeds but the server
-        #   doesn't perform any actions.
+        #   Optional. If set to true and the run is not found, the request succeeds but
+        #   the server doesn't perform any actions.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -827,13 +829,13 @@ module Google
         # @param [String] parent
         #   Required. The name of process that owns this collection of runs.
         # @param [Fixnum] page_size
-        #   The maximum number of runs to return. The service may return fewer than this
-        #   value. If unspecified, at most 50 runs are returned. The maximum value is 100;
-        #   values greater than 100 are cut to 100.
+        #   Optional. The maximum number of runs to return. The service may return fewer
+        #   than this value. If unspecified, at most 50 runs are returned. The maximum
+        #   value is 100; values greater than 100 are cut to 100.
         # @param [String] page_token
-        #   The page token received from a previous `ListRuns` call. Specify it to get the
-        #   next page. When paginating, all other parameters specified in this call must
-        #   match the parameters of the call that provided the page token.
+        #   Optional. The page token received from a previous `ListRuns` call. Specify it
+        #   to get the next page. When paginating, all other parameters specified in this
+        #   call must match the parameters of the call that provided the page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -871,9 +873,10 @@ module Google
         #   set: `a-zA-Z0-9_-:.`
         # @param [Google::Apis::DatalineageV1::GoogleCloudDatacatalogLineageV1Run] google_cloud_datacatalog_lineage_v1_run_object
         # @param [Boolean] allow_missing
-        #   If set to true and the run is not found, the request creates it.
+        #   Optional. If set to true and the run is not found, the request creates it.
         # @param [String] update_mask
-        #   The list of fields to update. Currently not used. The whole message is updated.
+        #   Optional. The list of fields to update. Currently not used. The whole message
+        #   is updated.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -947,8 +950,8 @@ module Google
         # @param [String] name
         #   Required. The name of the lineage event to delete.
         # @param [Boolean] allow_missing
-        #   If set to true and the lineage event is not found, the request succeeds but
-        #   the server doesn't perform any actions.
+        #   Optional. If set to true and the lineage event is not found, the request
+        #   succeeds but the server doesn't perform any actions.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -1013,13 +1016,14 @@ module Google
         #   Required. The name of the run that owns the collection of lineage events to
         #   get.
         # @param [Fixnum] page_size
-        #   The maximum number of lineage events to return. The service may return fewer
-        #   events than this value. If unspecified, at most 50 events are returned. The
-        #   maximum value is 100; values greater than 100 are cut to 100.
+        #   Optional. The maximum number of lineage events to return. The service may
+        #   return fewer events than this value. If unspecified, at most 50 events are
+        #   returned. The maximum value is 100; values greater than 100 are cut to 100.
         # @param [String] page_token
-        #   The page token received from a previous `ListLineageEvents` call. Specify it
-        #   to get the next page. When paginating, all other parameters specified in this
-        #   call must match the parameters of the call that provided the page token.
+        #   Optional. The page token received from a previous `ListLineageEvents` call.
+        #   Specify it to get the next page. When paginating, all other parameters
+        #   specified in this call must match the parameters of the call that provided the
+        #   page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
