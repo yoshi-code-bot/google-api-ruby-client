@@ -406,6 +406,7 @@ module Google
           property :product_type_l3, as: 'productTypeL3'
           property :product_type_l4, as: 'productTypeL4'
           property :product_type_l5, as: 'productTypeL5'
+          property :store_type, as: 'storeType'
           property :title, as: 'title'
           property :week, as: 'week', class: Google::Apis::MerchantapiReportsV1beta::Date, decorator: Google::Apis::MerchantapiReportsV1beta::Date::Representation
       
