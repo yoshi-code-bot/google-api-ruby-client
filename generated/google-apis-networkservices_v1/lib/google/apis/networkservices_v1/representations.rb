@@ -787,6 +787,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :addresses, as: 'addresses'
+          property :all_ports, as: 'allPorts'
           property :allow_global_access, as: 'allowGlobalAccess'
           collection :certificate_urls, as: 'certificateUrls'
           property :create_time, as: 'createTime'
