@@ -358,6 +358,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GooglePrivacyDlpV2ContentMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GooglePrivacyDlpV2CreateConnectionRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1205,6 +1211,12 @@ module Google
       end
       
       class GooglePrivacyDlpV2KeyValueMetadataLabel
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GooglePrivacyDlpV2KeyValueMetadataProperty
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -2693,6 +2705,8 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :byte_item, as: 'byteItem', class: Google::Apis::DlpV2::GooglePrivacyDlpV2ByteContentItem, decorator: Google::Apis::DlpV2::GooglePrivacyDlpV2ByteContentItem::Representation
       
+          property :content_metadata, as: 'contentMetadata', class: Google::Apis::DlpV2::GooglePrivacyDlpV2ContentMetadata, decorator: Google::Apis::DlpV2::GooglePrivacyDlpV2ContentMetadata::Representation
+      
           property :table, as: 'table', class: Google::Apis::DlpV2::GooglePrivacyDlpV2Table, decorator: Google::Apis::DlpV2::GooglePrivacyDlpV2Table::Representation
       
           property :value, as: 'value'
@@ -2712,6 +2726,14 @@ module Google
           property :metadata_location, as: 'metadataLocation', class: Google::Apis::DlpV2::GooglePrivacyDlpV2MetadataLocation, decorator: Google::Apis::DlpV2::GooglePrivacyDlpV2MetadataLocation::Representation
       
           property :record_location, as: 'recordLocation', class: Google::Apis::DlpV2::GooglePrivacyDlpV2RecordLocation, decorator: Google::Apis::DlpV2::GooglePrivacyDlpV2RecordLocation::Representation
+      
+        end
+      end
+      
+      class GooglePrivacyDlpV2ContentMetadata
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :properties, as: 'properties', class: Google::Apis::DlpV2::GooglePrivacyDlpV2KeyValueMetadataProperty, decorator: Google::Apis::DlpV2::GooglePrivacyDlpV2KeyValueMetadataProperty::Representation
       
         end
       end
@@ -4257,6 +4279,14 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :key, as: 'key'
+        end
+      end
+      
+      class GooglePrivacyDlpV2KeyValueMetadataProperty
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :key, as: 'key'
+          property :value, as: 'value'
         end
       end
       
