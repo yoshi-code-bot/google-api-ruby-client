@@ -5424,6 +5424,11 @@ module Google
       class Occurrence
         include Google::Apis::Core::Hashable
       
+        # The time this advisory was published by the source.
+        # Corresponds to the JSON property `advisoryPublishTime`
+        # @return [String]
+        attr_accessor :advisory_publish_time
+      
         # Occurrence that represents a single "attestation". The authenticity of an
         # attestation can be verified using the attached signature. If the verifier
         # trusts the public key of the signer, then verifying the signature is
@@ -5552,6 +5557,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @advisory_publish_time = args[:advisory_publish_time] if args.key?(:advisory_publish_time)
           @attestation = args[:attestation] if args.key?(:attestation)
           @build = args[:build] if args.key?(:build)
           @compliance = args[:compliance] if args.key?(:compliance)
