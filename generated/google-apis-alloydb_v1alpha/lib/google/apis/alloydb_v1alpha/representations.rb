@@ -160,6 +160,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class DnsConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class DataplexConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -185,6 +191,12 @@ module Google
       end
       
       class EncryptionInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Endpoint
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -293,6 +305,12 @@ module Google
       end
       
       class ListClustersResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ListEndpointsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1094,6 +1112,14 @@ module Google
         end
       end
       
+      class DnsConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :dns_name, as: 'dnsName'
+          property :dns_record_type, as: 'dnsRecordType'
+        end
+      end
+      
       class DataplexConfig
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1131,6 +1157,27 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :encryption_type, as: 'encryptionType'
           collection :kms_key_versions, as: 'kmsKeyVersions'
+        end
+      end
+      
+      class Endpoint
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          hash :annotations, as: 'annotations'
+          property :create_time, as: 'createTime'
+          property :delete_time, as: 'deleteTime'
+          property :display_name, as: 'displayName'
+          property :dns_config, as: 'dnsConfig', class: Google::Apis::AlloydbV1alpha::DnsConfig, decorator: Google::Apis::AlloydbV1alpha::DnsConfig::Representation
+      
+          collection :effective_target_instances, as: 'effectiveTargetInstances'
+          property :endpoint_type, as: 'endpointType'
+          property :etag, as: 'etag'
+          property :name, as: 'name'
+          property :reconciling, as: 'reconciling'
+          property :state, as: 'state'
+          collection :target_instances, as: 'targetInstances'
+          property :uid, as: 'uid'
+          property :update_time, as: 'updateTime'
         end
       end
       
@@ -1348,6 +1395,16 @@ module Google
         end
       end
       
+      class ListEndpointsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :endpoints, as: 'endpoints', class: Google::Apis::AlloydbV1alpha::Endpoint, decorator: Google::Apis::AlloydbV1alpha::Endpoint::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+          collection :unreachable, as: 'unreachable'
+        end
+      end
+      
       class ListInstancesResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1443,6 +1500,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :id, as: 'id'
           property :ip, as: 'ip'
+          property :is_hot_standby, as: 'isHotStandby'
           property :state, as: 'state'
           property :zone_id, as: 'zoneId'
         end
@@ -1514,6 +1572,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :etag, as: 'etag'
+          property :failover, as: 'failover'
           property :request_id, as: 'requestId'
           property :validate_only, as: 'validateOnly'
         end
@@ -1891,6 +1950,7 @@ module Google
       
           property :maintenance_info, as: 'maintenanceInfo', class: Google::Apis::AlloydbV1alpha::StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo, decorator: Google::Apis::AlloydbV1alpha::StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo::Representation
       
+          collection :modes, as: 'modes'
           property :primary_resource_id, as: 'primaryResourceId', class: Google::Apis::AlloydbV1alpha::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId, decorator: Google::Apis::AlloydbV1alpha::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId::Representation
       
           property :primary_resource_location, as: 'primaryResourceLocation'
@@ -1931,6 +1991,7 @@ module Google
       
           property :full_resource_name, as: 'fullResourceName'
           property :last_refresh_time, as: 'lastRefreshTime'
+          property :location, as: 'location'
           property :resource_id, as: 'resourceId', class: Google::Apis::AlloydbV1alpha::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId, decorator: Google::Apis::AlloydbV1alpha::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId::Representation
       
           property :signal_bool_value, as: 'signalBoolValue'
