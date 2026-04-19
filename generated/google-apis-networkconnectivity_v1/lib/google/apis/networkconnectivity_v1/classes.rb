@@ -2409,6 +2409,37 @@ module Google
         end
       end
       
+      # Message for response to listing RemoteTransportProfiles
+      class ListRemoteTransportProfilesResponse
+        include Google::Apis::Core::Hashable
+      
+        # A token identifying a page of results the server should return.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # The list of RemoteTransportProfiles.
+        # Corresponds to the JSON property `remoteTransportProfiles`
+        # @return [Array<Google::Apis::NetworkconnectivityV1::RemoteTransportProfile>]
+        attr_accessor :remote_transport_profiles
+      
+        # Unordered list. Locations that could not be reached.
+        # Corresponds to the JSON property `unreachable`
+        # @return [Array<String>]
+        attr_accessor :unreachable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @remote_transport_profiles = args[:remote_transport_profiles] if args.key?(:remote_transport_profiles)
+          @unreachable = args[:unreachable] if args.key?(:unreachable)
+        end
+      end
+      
       # Response for HubService.ListRouteTables method.
       class ListRouteTablesResponse
         include Google::Apis::Core::Hashable
@@ -2632,6 +2663,37 @@ module Google
         def update!(**args)
           @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
           @spokes = args[:spokes] if args.key?(:spokes)
+          @unreachable = args[:unreachable] if args.key?(:unreachable)
+        end
+      end
+      
+      # Message for response to listing Transports.
+      class ListTransportsResponse
+        include Google::Apis::Core::Hashable
+      
+        # A token identifying a page of results the server should return.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # The list of Transport.
+        # Corresponds to the JSON property `transports`
+        # @return [Array<Google::Apis::NetworkconnectivityV1::Transport>]
+        attr_accessor :transports
+      
+        # Unordered list. Locations that could not be reached.
+        # Corresponds to the JSON property `unreachable`
+        # @return [Array<String>]
+        attr_accessor :unreachable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @transports = args[:transports] if args.key?(:transports)
           @unreachable = args[:unreachable] if args.key?(:unreachable)
         end
       end
@@ -3759,6 +3821,85 @@ module Google
         end
       end
       
+      # Message describing RemoteTransportProfile object.
+      class RemoteTransportProfile
+        include Google::Apis::Core::Hashable
+      
+        # Output only. Description of the profile.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
+      
+        # Output only. Human readable name of this profile, used to identify this
+        # profile in the UI.
+        # Corresponds to the JSON property `displayName`
+        # @return [String]
+        attr_accessor :display_name
+      
+        # Output only. Type of provisioning flows supported by this profile.
+        # Corresponds to the JSON property `flow`
+        # @return [String]
+        attr_accessor :flow
+      
+        # Output only. Labels as key value pairs.
+        # Corresponds to the JSON property `labels`
+        # @return [Hash<String,String>]
+        attr_accessor :labels
+      
+        # Identifier. Name of the resource in the format of $provider-$site.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Output only. Order state for this profile.
+        # Corresponds to the JSON property `orderState`
+        # @return [String]
+        attr_accessor :order_state
+      
+        # Output only. Name of the provider on the other end of this profile. E.g. “
+        # Amazon Web Services” or “Microsoft Azure”.
+        # Corresponds to the JSON property `provider`
+        # @return [String]
+        attr_accessor :provider
+      
+        # Output only. If the profile is a Cloud Service Provider with compute resources,
+        # this is populated with the region where connectivity is being established. If
+        # the profile provides facility-level selection, this is an identity of the
+        # facility any connections on this profile are going through.
+        # Corresponds to the JSON property `providerSite`
+        # @return [String]
+        attr_accessor :provider_site
+      
+        # Output only. Availability class that will be configured for this particular
+        # RemoteTransportProfile.
+        # Corresponds to the JSON property `sla`
+        # @return [String]
+        attr_accessor :sla
+      
+        # Output only. List of bandwidth enum values that are supported by this profile.
+        # Corresponds to the JSON property `supportedBandwidths`
+        # @return [Array<String>]
+        attr_accessor :supported_bandwidths
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @description = args[:description] if args.key?(:description)
+          @display_name = args[:display_name] if args.key?(:display_name)
+          @flow = args[:flow] if args.key?(:flow)
+          @labels = args[:labels] if args.key?(:labels)
+          @name = args[:name] if args.key?(:name)
+          @order_state = args[:order_state] if args.key?(:order_state)
+          @provider = args[:provider] if args.key?(:provider)
+          @provider_site = args[:provider_site] if args.key?(:provider_site)
+          @sla = args[:sla] if args.key?(:sla)
+          @supported_bandwidths = args[:supported_bandwidths] if args.key?(:supported_bandwidths)
+        end
+      end
+      
       # A route defines a path from VM instances within a spoke to a specific
       # destination resource. Only VPC spokes have routes.
       class Route
@@ -4785,6 +4926,130 @@ module Google
         # Update properties of this object
         def update!(**args)
           @permissions = args[:permissions] if args.key?(:permissions)
+        end
+      end
+      
+      # Message describing Transport object.
+      class Transport
+        include Google::Apis::Core::Hashable
+      
+        # Optional. List of IP Prefixes that will be advertised to the remote provider.
+        # Both IPv4 and IPv6 addresses are supported.
+        # Corresponds to the JSON property `advertisedRoutes`
+        # @return [Array<String>]
+        attr_accessor :advertised_routes
+      
+        # Optional. Bandwidth of the Transport. This must be one of the supported
+        # bandwidths for the remote profile, and must be set when no activation key is
+        # being provided.
+        # Corresponds to the JSON property `bandwidth`
+        # @return [String]
+        attr_accessor :bandwidth
+      
+        # Output only. Create time stamp.
+        # Corresponds to the JSON property `createTime`
+        # @return [String]
+        attr_accessor :create_time
+      
+        # Optional. Description of the Transport.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
+      
+        # Output only. Google-generated activation key. This is only output if the
+        # selected profile supports an OUTPUT key flow. Inputting this to the provider
+        # is only valid while the resource is in a PENDING_KEY state. Once the provider
+        # has accepted the key, the resource will move to the CONFIGURING state.
+        # Corresponds to the JSON property `generatedActivationKey`
+        # @return [String]
+        attr_accessor :generated_activation_key
+      
+        # Optional. Labels as key value pairs.
+        # Corresponds to the JSON property `labels`
+        # @return [Hash<String,String>]
+        attr_accessor :labels
+      
+        # Output only. The maximum transmission unit (MTU) of a packet that can be sent
+        # over this transport.
+        # Corresponds to the JSON property `mtuLimit`
+        # @return [Fixnum]
+        attr_accessor :mtu_limit
+      
+        # Identifier. Name of the resource.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Optional. Immutable. Resource URI of the Network that will be peered with this
+        # Transport. This field must be provided during resource creation and cannot be
+        # changed.
+        # Corresponds to the JSON property `network`
+        # @return [String]
+        attr_accessor :network
+      
+        # Output only. VPC Network URI that was created for the VPC Peering connection
+        # to the provided `network`. If VPC Peering is disconnected, this can be used to
+        # re-establish.
+        # Corresponds to the JSON property `peeringNetwork`
+        # @return [String]
+        attr_accessor :peering_network
+      
+        # Optional. Immutable. Key used for establishing a connection with the remote
+        # transport. This key can only be provided if the profile supports an INPUT key
+        # flow and the resource is in the PENDING_KEY state.
+        # Corresponds to the JSON property `providedActivationKey`
+        # @return [String]
+        attr_accessor :provided_activation_key
+      
+        # Optional. Immutable. The user supplied account id for the CSP associated with
+        # the remote profile.
+        # Corresponds to the JSON property `remoteAccountId`
+        # @return [String]
+        attr_accessor :remote_account_id
+      
+        # Optional. Immutable. Name of the remoteTransportProfile that this Transport is
+        # connecting to.
+        # Corresponds to the JSON property `remoteProfile`
+        # @return [String]
+        attr_accessor :remote_profile
+      
+        # Optional. IP version stack for the established connectivity.
+        # Corresponds to the JSON property `stackType`
+        # @return [String]
+        attr_accessor :stack_type
+      
+        # Output only. State of the underlying connectivity.
+        # Corresponds to the JSON property `state`
+        # @return [String]
+        attr_accessor :state
+      
+        # Output only. Update time stamp.
+        # Corresponds to the JSON property `updateTime`
+        # @return [String]
+        attr_accessor :update_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @advertised_routes = args[:advertised_routes] if args.key?(:advertised_routes)
+          @bandwidth = args[:bandwidth] if args.key?(:bandwidth)
+          @create_time = args[:create_time] if args.key?(:create_time)
+          @description = args[:description] if args.key?(:description)
+          @generated_activation_key = args[:generated_activation_key] if args.key?(:generated_activation_key)
+          @labels = args[:labels] if args.key?(:labels)
+          @mtu_limit = args[:mtu_limit] if args.key?(:mtu_limit)
+          @name = args[:name] if args.key?(:name)
+          @network = args[:network] if args.key?(:network)
+          @peering_network = args[:peering_network] if args.key?(:peering_network)
+          @provided_activation_key = args[:provided_activation_key] if args.key?(:provided_activation_key)
+          @remote_account_id = args[:remote_account_id] if args.key?(:remote_account_id)
+          @remote_profile = args[:remote_profile] if args.key?(:remote_profile)
+          @stack_type = args[:stack_type] if args.key?(:stack_type)
+          @state = args[:state] if args.key?(:state)
+          @update_time = args[:update_time] if args.key?(:update_time)
         end
       end
       
