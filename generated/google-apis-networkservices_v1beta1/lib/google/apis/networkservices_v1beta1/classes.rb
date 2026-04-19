@@ -22,6 +22,250 @@ module Google
   module Apis
     module NetworkservicesV1beta1
       
+      # AgentGateway represents the agent gateway resource.
+      class AgentGateway
+        include Google::Apis::Core::Hashable
+      
+        # AgentGatewayOutputCard contains informational output-only fields
+        # Corresponds to the JSON property `agentGatewayCard`
+        # @return [Google::Apis::NetworkservicesV1beta1::AgentGatewayAgentGatewayOutputCard]
+        attr_accessor :agent_gateway_card
+      
+        # Output only. The timestamp when the resource was created.
+        # Corresponds to the JSON property `createTime`
+        # @return [String]
+        attr_accessor :create_time
+      
+        # Optional. A free-text description of the resource. Max length 1024 characters.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
+      
+        # Optional. Etag of the resource. If this is provided, it must match the server'
+        # s etag. If the provided etag does not match the server's etag, the request
+        # will fail with a 409 ABORTED error.
+        # Corresponds to the JSON property `etag`
+        # @return [String]
+        attr_accessor :etag
+      
+        # Configuration for Google Managed deployment mode. Proxy is orchestrated and
+        # managed by GoogleCloud in a tenant project.
+        # Corresponds to the JSON property `googleManaged`
+        # @return [Google::Apis::NetworkservicesV1beta1::AgentGatewayGoogleManaged]
+        attr_accessor :google_managed
+      
+        # Optional. Set of label tags associated with the AgentGateway resource.
+        # Corresponds to the JSON property `labels`
+        # @return [Hash<String,String>]
+        attr_accessor :labels
+      
+        # Identifier. Name of the AgentGateway resource. It matches pattern `projects/*/
+        # locations/*/agentGateways/`.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # NetworkConfig contains network configurations for the AgentGateway.
+        # Corresponds to the JSON property `networkConfig`
+        # @return [Google::Apis::NetworkservicesV1beta1::AgentGatewayNetworkConfig]
+        attr_accessor :network_config
+      
+        # Required. List of protocols supported by an Agent Gateway
+        # Corresponds to the JSON property `protocols`
+        # @return [Array<String>]
+        attr_accessor :protocols
+      
+        # Optional. A list of Agent registries containing the agents, MCP servers and
+        # tools governed by the Agent Gateway. Note: Currently limited to project-scoped
+        # registries Must be of format `//agentregistry.googleapis.com/projects/`project`
+        # /locations/`location`/
+        # Corresponds to the JSON property `registries`
+        # @return [Array<String>]
+        attr_accessor :registries
+      
+        # Configuration for Self Managed deployment mode. Attach to existing Application
+        # Load Balancers or Secure Web Proxies.
+        # Corresponds to the JSON property `selfManaged`
+        # @return [Google::Apis::NetworkservicesV1beta1::AgentGatewaySelfManaged]
+        attr_accessor :self_managed
+      
+        # Output only. The timestamp when the resource was updated.
+        # Corresponds to the JSON property `updateTime`
+        # @return [String]
+        attr_accessor :update_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @agent_gateway_card = args[:agent_gateway_card] if args.key?(:agent_gateway_card)
+          @create_time = args[:create_time] if args.key?(:create_time)
+          @description = args[:description] if args.key?(:description)
+          @etag = args[:etag] if args.key?(:etag)
+          @google_managed = args[:google_managed] if args.key?(:google_managed)
+          @labels = args[:labels] if args.key?(:labels)
+          @name = args[:name] if args.key?(:name)
+          @network_config = args[:network_config] if args.key?(:network_config)
+          @protocols = args[:protocols] if args.key?(:protocols)
+          @registries = args[:registries] if args.key?(:registries)
+          @self_managed = args[:self_managed] if args.key?(:self_managed)
+          @update_time = args[:update_time] if args.key?(:update_time)
+        end
+      end
+      
+      # AgentGatewayOutputCard contains informational output-only fields
+      class AgentGatewayAgentGatewayOutputCard
+        include Google::Apis::Core::Hashable
+      
+        # Output only. mTLS Endpoint associated with this AgentGateway
+        # Corresponds to the JSON property `mtlsEndpoint`
+        # @return [String]
+        attr_accessor :mtls_endpoint
+      
+        # Output only. Root Certificates for Agents to validate this AgentGateway
+        # Corresponds to the JSON property `rootCertificates`
+        # @return [Array<String>]
+        attr_accessor :root_certificates
+      
+        # Output only. Service Account used by Service Extensions to operate.
+        # Corresponds to the JSON property `serviceExtensionsServiceAccount`
+        # @return [String]
+        attr_accessor :service_extensions_service_account
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @mtls_endpoint = args[:mtls_endpoint] if args.key?(:mtls_endpoint)
+          @root_certificates = args[:root_certificates] if args.key?(:root_certificates)
+          @service_extensions_service_account = args[:service_extensions_service_account] if args.key?(:service_extensions_service_account)
+        end
+      end
+      
+      # Configuration for Google Managed deployment mode. Proxy is orchestrated and
+      # managed by GoogleCloud in a tenant project.
+      class AgentGatewayGoogleManaged
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Operating Mode of Agent Gateway.
+        # Corresponds to the JSON property `governedAccessPath`
+        # @return [String]
+        attr_accessor :governed_access_path
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @governed_access_path = args[:governed_access_path] if args.key?(:governed_access_path)
+        end
+      end
+      
+      # NetworkConfig contains network configurations for the AgentGateway.
+      class AgentGatewayNetworkConfig
+        include Google::Apis::Core::Hashable
+      
+        # DNS peering config for the user VPC network.
+        # Corresponds to the JSON property `dnsPeeringConfig`
+        # @return [Google::Apis::NetworkservicesV1beta1::AgentGatewayNetworkConfigDnsPeeringConfig]
+        attr_accessor :dns_peering_config
+      
+        # Configuration for Egress
+        # Corresponds to the JSON property `egress`
+        # @return [Google::Apis::NetworkservicesV1beta1::AgentGatewayNetworkConfigEgress]
+        attr_accessor :egress
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @dns_peering_config = args[:dns_peering_config] if args.key?(:dns_peering_config)
+          @egress = args[:egress] if args.key?(:egress)
+        end
+      end
+      
+      # DNS peering config for the user VPC network.
+      class AgentGatewayNetworkConfigDnsPeeringConfig
+        include Google::Apis::Core::Hashable
+      
+        # Required. Domain names for which DNS queries should be forwarded to the target
+        # network.
+        # Corresponds to the JSON property `domains`
+        # @return [Array<String>]
+        attr_accessor :domains
+      
+        # Required. Target network in 'target project' to which DNS queries should be
+        # forwarded to. Must be in format of `projects/`project`/global/networks/`
+        # network``.
+        # Corresponds to the JSON property `targetNetwork`
+        # @return [String]
+        attr_accessor :target_network
+      
+        # Required. Target project ID to which DNS queries should be forwarded to. This
+        # can be the same project that contains the AgentGateway or a different project.
+        # Corresponds to the JSON property `targetProject`
+        # @return [String]
+        attr_accessor :target_project
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @domains = args[:domains] if args.key?(:domains)
+          @target_network = args[:target_network] if args.key?(:target_network)
+          @target_project = args[:target_project] if args.key?(:target_project)
+        end
+      end
+      
+      # Configuration for Egress
+      class AgentGatewayNetworkConfigEgress
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The URI of the Network Attachment resource.
+        # Corresponds to the JSON property `networkAttachment`
+        # @return [String]
+        attr_accessor :network_attachment
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @network_attachment = args[:network_attachment] if args.key?(:network_attachment)
+        end
+      end
+      
+      # Configuration for Self Managed deployment mode. Attach to existing Application
+      # Load Balancers or Secure Web Proxies.
+      class AgentGatewaySelfManaged
+        include Google::Apis::Core::Hashable
+      
+        # Optional. A supported Google Cloud networking proxy in the Project and
+        # Location
+        # Corresponds to the JSON property `resourceUri`
+        # @return [String]
+        attr_accessor :resource_uri
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @resource_uri = args[:resource_uri] if args.key?(:resource_uri)
+        end
+      end
+      
       # `AuthzExtension` is a resource that allows traffic forwarding to a callout
       # backend service to make an authorization decision.
       class AuthzExtension
@@ -571,6 +815,14 @@ module Google
         # @return [Array<String>]
         attr_accessor :addresses
       
+        # Optional. If true, the Gateway will listen on all ports. This is mutually
+        # exclusive with the `ports` field. This field only applies to gateways of type '
+        # SECURE_WEB_GATEWAY'.
+        # Corresponds to the JSON property `allPorts`
+        # @return [Boolean]
+        attr_accessor :all_ports
+        alias_method :all_ports?, :all_ports
+      
         # Optional. If true, the gateway will allow traffic from clients outside of the
         # region where the gateway is located. This field is configurable only for
         # gateways of type SECURE_WEB_GATEWAY.
@@ -696,6 +948,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @addresses = args[:addresses] if args.key?(:addresses)
+          @all_ports = args[:all_ports] if args.key?(:all_ports)
           @allow_global_access = args[:allow_global_access] if args.key?(:allow_global_access)
           @certificate_urls = args[:certificate_urls] if args.key?(:certificate_urls)
           @create_time = args[:create_time] if args.key?(:create_time)
@@ -2482,6 +2735,41 @@ module Google
           @metadata = args[:metadata] if args.key?(:metadata)
           @name = args[:name] if args.key?(:name)
           @update_time = args[:update_time] if args.key?(:update_time)
+        end
+      end
+      
+      # Response returned by the ListAgentGateways method.
+      class ListAgentGatewaysResponse
+        include Google::Apis::Core::Hashable
+      
+        # List of AgentGateway resources.
+        # Corresponds to the JSON property `agentGateways`
+        # @return [Array<Google::Apis::NetworkservicesV1beta1::AgentGateway>]
+        attr_accessor :agent_gateways
+      
+        # If there might be more results than those appearing in this response, then `
+        # next_page_token` is included. To get the next set of results, call this method
+        # again using the value of `next_page_token` as `page_token`.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # Unreachable resources. Populated when the request attempts to list all
+        # resources across all supported locations, while some locations are temporarily
+        # unavailable.
+        # Corresponds to the JSON property `unreachable`
+        # @return [Array<String>]
+        attr_accessor :unreachable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @agent_gateways = args[:agent_gateways] if args.key?(:agent_gateways)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @unreachable = args[:unreachable] if args.key?(:unreachable)
         end
       end
       
