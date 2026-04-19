@@ -9161,6 +9161,1903 @@ module Google
           @total_results_count = args[:total_results_count] if args.key?(:total_results_count)
         end
       end
+      
+      # Indicates that a resource's ability to serve in a particular country is
+      # constrained.
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraint
+        include Google::Apis::Core::Hashable
+      
+        # Geo target constant resource name of the country in which serving is
+        # constrained.
+        # Corresponds to the JSON property `countryCriterion`
+        # @return [String]
+        attr_accessor :country_criterion
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @country_criterion = args[:country_criterion] if args.key?(:country_criterion)
+        end
+      end
+      
+      # A list of countries where a resource's serving is constrained.
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList
+        include Google::Apis::Core::Hashable
+      
+        # Countries in which serving is restricted.
+        # Corresponds to the JSON property `countries`
+        # @return [Array<Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraint>]
+        attr_accessor :countries
+      
+        # Total number of countries targeted by the resource.
+        # Corresponds to the JSON property `totalTargetedCountries`
+        # @return [Fixnum]
+        attr_accessor :total_targeted_countries
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @countries = args[:countries] if args.key?(:countries)
+          @total_targeted_countries = args[:total_targeted_countries] if args.key?(:total_targeted_countries)
+        end
+      end
+      
+      # Indicates that a policy topic was constrained due to disapproval of the
+      # website for reseller purposes.
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintResellerConstraint
+        include Google::Apis::Core::Hashable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+        end
+      end
+      
+      # Evidence of mismatches between the URLs of a resource.
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationMismatch
+        include Google::Apis::Core::Hashable
+      
+        # The set of URLs that did not match each other.
+        # Corresponds to the JSON property `urlTypes`
+        # @return [Array<String>]
+        attr_accessor :url_types
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @url_types = args[:url_types] if args.key?(:url_types)
+        end
+      end
+      
+      # Evidence details when the destination is returning an HTTP error code or isn't
+      # functional in all locations for commonly used devices.
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationNotWorking
+        include Google::Apis::Core::Hashable
+      
+        # The type of device that failed to load the URL.
+        # Corresponds to the JSON property `device`
+        # @return [String]
+        attr_accessor :device
+      
+        # The type of DNS error.
+        # Corresponds to the JSON property `dnsErrorType`
+        # @return [String]
+        attr_accessor :dns_error_type
+      
+        # The full URL that didn't work.
+        # Corresponds to the JSON property `expandedUrl`
+        # @return [String]
+        attr_accessor :expanded_url
+      
+        # The HTTP error code.
+        # Corresponds to the JSON property `httpErrorCode`
+        # @return [Fixnum]
+        attr_accessor :http_error_code
+      
+        # The time the URL was last checked. The format is "YYYY-MM-DD HH:MM:SS".
+        # Examples: "2018-03-05 09:15:00" or "2018-02-01 14:34:30"
+        # Corresponds to the JSON property `lastCheckedDateTime`
+        # @return [String]
+        attr_accessor :last_checked_date_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @device = args[:device] if args.key?(:device)
+          @dns_error_type = args[:dns_error_type] if args.key?(:dns_error_type)
+          @expanded_url = args[:expanded_url] if args.key?(:expanded_url)
+          @http_error_code = args[:http_error_code] if args.key?(:http_error_code)
+          @last_checked_date_time = args[:last_checked_date_time] if args.key?(:last_checked_date_time)
+        end
+      end
+      
+      # A list of strings found in a destination page that caused a policy finding.
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationTextList
+        include Google::Apis::Core::Hashable
+      
+        # List of text found in the resource's destination page.
+        # Corresponds to the JSON property `destinationTexts`
+        # @return [Array<String>]
+        attr_accessor :destination_texts
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @destination_texts = args[:destination_texts] if args.key?(:destination_texts)
+        end
+      end
+      
+      # A list of fragments of text that violated a policy.
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceTextList
+        include Google::Apis::Core::Hashable
+      
+        # The fragments of text from the resource that caused the policy finding.
+        # Corresponds to the JSON property `texts`
+        # @return [Array<String>]
+        attr_accessor :texts
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @texts = args[:texts] if args.key?(:texts)
+        end
+      end
+      
+      # A list of websites that caused a policy finding. Used for
+      # ONE_WEBSITE_PER_AD_GROUP policy topic, for example. In case there are more
+      # than five websites, only the top five (those that appear in resources the most)
+      # will be listed here.
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceWebsiteList
+        include Google::Apis::Core::Hashable
+      
+        # Websites that caused the policy finding.
+        # Corresponds to the JSON property `websites`
+        # @return [Array<String>]
+        attr_accessor :websites
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @websites = args[:websites] if args.key?(:websites)
+        end
+      end
+      
+      # Describes the effect on serving that a policy topic entry will have.
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraint
+        include Google::Apis::Core::Hashable
+      
+        # A list of countries where a resource's serving is constrained.
+        # Corresponds to the JSON property `certificateDomainMismatchInCountryList`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList]
+        attr_accessor :certificate_domain_mismatch_in_country_list
+      
+        # A list of countries where a resource's serving is constrained.
+        # Corresponds to the JSON property `certificateMissingInCountryList`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList]
+        attr_accessor :certificate_missing_in_country_list
+      
+        # A list of countries where a resource's serving is constrained.
+        # Corresponds to the JSON property `countryConstraintList`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList]
+        attr_accessor :country_constraint_list
+      
+        # Indicates that a policy topic was constrained due to disapproval of the
+        # website for reseller purposes.
+        # Corresponds to the JSON property `resellerConstraint`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintResellerConstraint]
+        attr_accessor :reseller_constraint
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @certificate_domain_mismatch_in_country_list = args[:certificate_domain_mismatch_in_country_list] if args.key?(:certificate_domain_mismatch_in_country_list)
+          @certificate_missing_in_country_list = args[:certificate_missing_in_country_list] if args.key?(:certificate_missing_in_country_list)
+          @country_constraint_list = args[:country_constraint_list] if args.key?(:country_constraint_list)
+          @reseller_constraint = args[:reseller_constraint] if args.key?(:reseller_constraint)
+        end
+      end
+      
+      # Policy finding attached to a resource (for example, alcohol policy associated
+      # with a site that sells alcohol). Each PolicyTopicEntry has a topic that
+      # indicates the specific ads policy the entry is about and a type to indicate
+      # the effect that the entry will have on serving. It may optionally have one or
+      # more evidences that indicate the reason for the finding. It may also
+      # optionally have one or more constraints that provide details about how serving
+      # may be restricted.
+      class GoogleAdsSearchads360V23CommonPolicyTopicEntry
+        include Google::Apis::Core::Hashable
+      
+        # Indicates how serving of this resource may be affected (for example, not
+        # serving in a country).
+        # Corresponds to the JSON property `constraints`
+        # @return [Array<Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraint>]
+        attr_accessor :constraints
+      
+        # Additional information that explains policy finding (for example, the brand
+        # name for a trademark finding).
+        # Corresponds to the JSON property `evidences`
+        # @return [Array<Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidence>]
+        attr_accessor :evidences
+      
+        # Policy topic this finding refers to. For example, "ALCOHOL", "
+        # TRADEMARKS_IN_AD_TEXT", or "DESTINATION_NOT_WORKING". The set of possible
+        # policy topics is not fixed for a particular API version and may change at any
+        # time.
+        # Corresponds to the JSON property `topic`
+        # @return [String]
+        attr_accessor :topic
+      
+        # Describes the negative or positive effect this policy will have on serving.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @constraints = args[:constraints] if args.key?(:constraints)
+          @evidences = args[:evidences] if args.key?(:evidences)
+          @topic = args[:topic] if args.key?(:topic)
+          @type = args[:type] if args.key?(:type)
+        end
+      end
+      
+      # Additional information that explains a policy finding.
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidence
+        include Google::Apis::Core::Hashable
+      
+        # Evidence of mismatches between the URLs of a resource.
+        # Corresponds to the JSON property `destinationMismatch`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationMismatch]
+        attr_accessor :destination_mismatch
+      
+        # Evidence details when the destination is returning an HTTP error code or isn't
+        # functional in all locations for commonly used devices.
+        # Corresponds to the JSON property `destinationNotWorking`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationNotWorking]
+        attr_accessor :destination_not_working
+      
+        # A list of strings found in a destination page that caused a policy finding.
+        # Corresponds to the JSON property `destinationTextList`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationTextList]
+        attr_accessor :destination_text_list
+      
+        # The language the resource was detected to be written in. This is an IETF
+        # language tag such as "en-US".
+        # Corresponds to the JSON property `languageCode`
+        # @return [String]
+        attr_accessor :language_code
+      
+        # A list of fragments of text that violated a policy.
+        # Corresponds to the JSON property `textList`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceTextList]
+        attr_accessor :text_list
+      
+        # A list of websites that caused a policy finding. Used for
+        # ONE_WEBSITE_PER_AD_GROUP policy topic, for example. In case there are more
+        # than five websites, only the top five (those that appear in resources the most)
+        # will be listed here.
+        # Corresponds to the JSON property `websiteList`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceWebsiteList]
+        attr_accessor :website_list
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @destination_mismatch = args[:destination_mismatch] if args.key?(:destination_mismatch)
+          @destination_not_working = args[:destination_not_working] if args.key?(:destination_not_working)
+          @destination_text_list = args[:destination_text_list] if args.key?(:destination_text_list)
+          @language_code = args[:language_code] if args.key?(:language_code)
+          @text_list = args[:text_list] if args.key?(:text_list)
+          @website_list = args[:website_list] if args.key?(:website_list)
+        end
+      end
+      
+      # Key of the violation. The key is used for referring to a violation when filing
+      # an exemption request.
+      class GoogleAdsSearchads360V23CommonPolicyViolationKey
+        include Google::Apis::Core::Hashable
+      
+        # Unique ID of the violated policy.
+        # Corresponds to the JSON property `policyName`
+        # @return [String]
+        attr_accessor :policy_name
+      
+        # The text that violates the policy if specified. Otherwise, refers to the
+        # policy in general (for example, when requesting to be exempt from the whole
+        # policy). If not specified for criterion exemptions, the whole policy is
+        # implied. Must be specified for ad exemptions.
+        # Corresponds to the JSON property `violatingText`
+        # @return [String]
+        attr_accessor :violating_text
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @policy_name = args[:policy_name] if args.key?(:policy_name)
+          @violating_text = args[:violating_text] if args.key?(:violating_text)
+        end
+      end
+      
+      # A generic data container.
+      class GoogleAdsSearchads360V23CommonValue
+        include Google::Apis::Core::Hashable
+      
+        # A boolean.
+        # Corresponds to the JSON property `booleanValue`
+        # @return [Boolean]
+        attr_accessor :boolean_value
+        alias_method :boolean_value?, :boolean_value
+      
+        # A double.
+        # Corresponds to the JSON property `doubleValue`
+        # @return [Float]
+        attr_accessor :double_value
+      
+        # A float.
+        # Corresponds to the JSON property `floatValue`
+        # @return [Float]
+        attr_accessor :float_value
+      
+        # An int64.
+        # Corresponds to the JSON property `int64Value`
+        # @return [Fixnum]
+        attr_accessor :int64_value
+      
+        # A string.
+        # Corresponds to the JSON property `stringValue`
+        # @return [String]
+        attr_accessor :string_value
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @boolean_value = args[:boolean_value] if args.key?(:boolean_value)
+          @double_value = args[:double_value] if args.key?(:double_value)
+          @float_value = args[:float_value] if args.key?(:float_value)
+          @int64_value = args[:int64_value] if args.key?(:int64_value)
+          @string_value = args[:string_value] if args.key?(:string_value)
+        end
+      end
+      
+      # A part of a field path.
+      class GoogleAdsSearchads360V23ErrorsErrorLocationFieldPathElement
+        include Google::Apis::Core::Hashable
+      
+        # The name of a field or a oneof
+        # Corresponds to the JSON property `fieldName`
+        # @return [String]
+        attr_accessor :field_name
+      
+        # If field_name is a repeated field, this is the element that failed
+        # Corresponds to the JSON property `index`
+        # @return [Fixnum]
+        attr_accessor :index
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @field_name = args[:field_name] if args.key?(:field_name)
+          @index = args[:index] if args.key?(:index)
+        end
+      end
+      
+      # Error details for a budget below per-day minimum error.
+      class GoogleAdsSearchads360V23ErrorsBudgetPerDayMinimumErrorDetails
+        include Google::Apis::Core::Hashable
+      
+        # The minimum budget required by the campaign per day, in micros of the
+        # advertiser currency. Applies to both daily and custom budgets.
+        # Corresponds to the JSON property `budgetPerDayMinimumMicros`
+        # @return [Fixnum]
+        attr_accessor :budget_per_day_minimum_micros
+      
+        # The advertiser's currency, represented as a three-letter ISO 4217 currency
+        # code (such as "USD").
+        # Corresponds to the JSON property `currencyCode`
+        # @return [String]
+        attr_accessor :currency_code
+      
+        # The budget amount value that was rejected as too low, in micros of the
+        # advertiser currency. Only set if this error is caused by the amount field
+        # value.
+        # Corresponds to the JSON property `failedBudgetAmountMicros`
+        # @return [Fixnum]
+        attr_accessor :failed_budget_amount_micros
+      
+        # The budget total_amount value that was rejected as too low, in micros of the
+        # advertiser currency. Only set if this error is caused by the total_amount
+        # field value.
+        # Corresponds to the JSON property `failedBudgetTotalAmountMicros`
+        # @return [Fixnum]
+        attr_accessor :failed_budget_total_amount_micros
+      
+        # The minimum value for the budget's amount field required by the campaign, in
+        # micros of the advertiser currency. Only set if this error is caused by the
+        # amount field value.
+        # Corresponds to the JSON property `minimumBudgetAmountMicros`
+        # @return [Fixnum]
+        attr_accessor :minimum_budget_amount_micros
+      
+        # The minimum value for the budget's total_amount field required by the campaign
+        # given its configured start and end time, in micros of the advertiser currency.
+        # Only set if this error is caused by the total_amount field value.
+        # Corresponds to the JSON property `minimumBudgetTotalAmountMicros`
+        # @return [Fixnum]
+        attr_accessor :minimum_budget_total_amount_micros
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @budget_per_day_minimum_micros = args[:budget_per_day_minimum_micros] if args.key?(:budget_per_day_minimum_micros)
+          @currency_code = args[:currency_code] if args.key?(:currency_code)
+          @failed_budget_amount_micros = args[:failed_budget_amount_micros] if args.key?(:failed_budget_amount_micros)
+          @failed_budget_total_amount_micros = args[:failed_budget_total_amount_micros] if args.key?(:failed_budget_total_amount_micros)
+          @minimum_budget_amount_micros = args[:minimum_budget_amount_micros] if args.key?(:minimum_budget_amount_micros)
+          @minimum_budget_total_amount_micros = args[:minimum_budget_total_amount_micros] if args.key?(:minimum_budget_total_amount_micros)
+        end
+      end
+      
+      # The error reason represented by type and enum.
+      class GoogleAdsSearchads360V23ErrorsErrorCode
+        include Google::Apis::Core::Hashable
+      
+        # The reasons for the access invitation error
+        # Corresponds to the JSON property `accessInvitationError`
+        # @return [String]
+        attr_accessor :access_invitation_error
+      
+        # The reasons for account budget proposal errors.
+        # Corresponds to the JSON property `accountBudgetProposalError`
+        # @return [String]
+        attr_accessor :account_budget_proposal_error
+      
+        # The reasons for the account link status change error
+        # Corresponds to the JSON property `accountLinkError`
+        # @return [String]
+        attr_accessor :account_link_error
+      
+        # The reasons for the ad customizer error
+        # Corresponds to the JSON property `adCustomizerError`
+        # @return [String]
+        attr_accessor :ad_customizer_error
+      
+        # An error with an Ad Group Ad mutate.
+        # Corresponds to the JSON property `adError`
+        # @return [String]
+        attr_accessor :ad_error
+      
+        # The reasons for the ad group ad error
+        # Corresponds to the JSON property `adGroupAdError`
+        # @return [String]
+        attr_accessor :ad_group_ad_error
+      
+        # The reasons for the ad group bid modifier error
+        # Corresponds to the JSON property `adGroupBidModifierError`
+        # @return [String]
+        attr_accessor :ad_group_bid_modifier_error
+      
+        # The reasons for the ad group criterion customizer error.
+        # Corresponds to the JSON property `adGroupCriterionCustomizerError`
+        # @return [String]
+        attr_accessor :ad_group_criterion_customizer_error
+      
+        # Indicates failure to properly authenticate user.
+        # Corresponds to the JSON property `adGroupCriterionError`
+        # @return [String]
+        attr_accessor :ad_group_criterion_error
+      
+        # The reasons for the ad group customizer error.
+        # Corresponds to the JSON property `adGroupCustomizerError`
+        # @return [String]
+        attr_accessor :ad_group_customizer_error
+      
+        # An error with an Ad Group mutate.
+        # Corresponds to the JSON property `adGroupError`
+        # @return [String]
+        attr_accessor :ad_group_error
+      
+        # The reasons for the ad group feed error
+        # Corresponds to the JSON property `adGroupFeedError`
+        # @return [String]
+        attr_accessor :ad_group_feed_error
+      
+        # The reasons for the ad parameter error
+        # Corresponds to the JSON property `adParameterError`
+        # @return [String]
+        attr_accessor :ad_parameter_error
+      
+        # The reasons for the ad sharing error
+        # Corresponds to the JSON property `adSharingError`
+        # @return [String]
+        attr_accessor :ad_sharing_error
+      
+        # The reasons for the adx error
+        # Corresponds to the JSON property `adxError`
+        # @return [String]
+        attr_accessor :adx_error
+      
+        # The reasons for the asset error
+        # Corresponds to the JSON property `assetError`
+        # @return [String]
+        attr_accessor :asset_error
+      
+        # The reasons for the GenAI asset generation error.
+        # Corresponds to the JSON property `assetGenerationError`
+        # @return [String]
+        attr_accessor :asset_generation_error
+      
+        # The reasons for the asset group asset error
+        # Corresponds to the JSON property `assetGroupAssetError`
+        # @return [String]
+        attr_accessor :asset_group_asset_error
+      
+        # The reasons for the asset group error
+        # Corresponds to the JSON property `assetGroupError`
+        # @return [String]
+        attr_accessor :asset_group_error
+      
+        # The reasons for the asset group listing group filter error
+        # Corresponds to the JSON property `assetGroupListingGroupFilterError`
+        # @return [String]
+        attr_accessor :asset_group_listing_group_filter_error
+      
+        # The reasons for the asset group hint error
+        # Corresponds to the JSON property `assetGroupSignalError`
+        # @return [String]
+        attr_accessor :asset_group_signal_error
+      
+        # The reasons for the asset link error
+        # Corresponds to the JSON property `assetLinkError`
+        # @return [String]
+        attr_accessor :asset_link_error
+      
+        # The reasons for the asset set asset error
+        # Corresponds to the JSON property `assetSetAssetError`
+        # @return [String]
+        attr_accessor :asset_set_asset_error
+      
+        # The reasons for the asset set error
+        # Corresponds to the JSON property `assetSetError`
+        # @return [String]
+        attr_accessor :asset_set_error
+      
+        # The reasons for the asset set link error
+        # Corresponds to the JSON property `assetSetLinkError`
+        # @return [String]
+        attr_accessor :asset_set_link_error
+      
+        # The reasons for the audience error
+        # Corresponds to the JSON property `audienceError`
+        # @return [String]
+        attr_accessor :audience_error
+      
+        # The reasons for the Audience Insights error
+        # Corresponds to the JSON property `audienceInsightsError`
+        # @return [String]
+        attr_accessor :audience_insights_error
+      
+        # Indicates failure to properly authenticate user.
+        # Corresponds to the JSON property `authenticationError`
+        # @return [String]
+        attr_accessor :authentication_error
+      
+        # An error encountered when trying to authorize a user.
+        # Corresponds to the JSON property `authorizationError`
+        # @return [String]
+        attr_accessor :authorization_error
+      
+        # The reasons for error in automatically created asset removal action.
+        # Corresponds to the JSON property `automaticallyCreatedAssetRemovalError`
+        # @return [String]
+        attr_accessor :automatically_created_asset_removal_error
+      
+        # The reasons for the batch job error
+        # Corresponds to the JSON property `batchJobError`
+        # @return [String]
+        attr_accessor :batch_job_error
+      
+        # The reasons for the Benchmarks error.
+        # Corresponds to the JSON property `benchmarksError`
+        # @return [String]
+        attr_accessor :benchmarks_error
+      
+        # The reasons for the bidding errors
+        # Corresponds to the JSON property `biddingError`
+        # @return [String]
+        attr_accessor :bidding_error
+      
+        # An error with a Bidding Strategy mutate.
+        # Corresponds to the JSON property `biddingStrategyError`
+        # @return [String]
+        attr_accessor :bidding_strategy_error
+      
+        # The reasons for the billing setup error
+        # Corresponds to the JSON property `billingSetupError`
+        # @return [String]
+        attr_accessor :billing_setup_error
+      
+        # The reasons for the brand guidelines migration error.
+        # Corresponds to the JSON property `brandGuidelinesMigrationError`
+        # @return [String]
+        attr_accessor :brand_guidelines_migration_error
+      
+        # An error with a Campaign Budget mutate.
+        # Corresponds to the JSON property `campaignBudgetError`
+        # @return [String]
+        attr_accessor :campaign_budget_error
+      
+        # The reasons for the campaign conversion goal error
+        # Corresponds to the JSON property `campaignConversionGoalError`
+        # @return [String]
+        attr_accessor :campaign_conversion_goal_error
+      
+        # The reasons for the campaign criterion error
+        # Corresponds to the JSON property `campaignCriterionError`
+        # @return [String]
+        attr_accessor :campaign_criterion_error
+      
+        # The reasons for the campaign customizer error.
+        # Corresponds to the JSON property `campaignCustomizerError`
+        # @return [String]
+        attr_accessor :campaign_customizer_error
+      
+        # The reasons for the campaign draft error
+        # Corresponds to the JSON property `campaignDraftError`
+        # @return [String]
+        attr_accessor :campaign_draft_error
+      
+        # An error with a Campaign mutate.
+        # Corresponds to the JSON property `campaignError`
+        # @return [String]
+        attr_accessor :campaign_error
+      
+        # The reasons for the campaign experiment error
+        # Corresponds to the JSON property `campaignExperimentError`
+        # @return [String]
+        attr_accessor :campaign_experiment_error
+      
+        # The reasons for the campaign feed error
+        # Corresponds to the JSON property `campaignFeedError`
+        # @return [String]
+        attr_accessor :campaign_feed_error
+      
+        # The reasons for the campaign goal config error.
+        # Corresponds to the JSON property `campaignGoalConfigError`
+        # @return [String]
+        attr_accessor :campaign_goal_config_error
+      
+        # The reasons for the campaign lifecycle goal error
+        # Corresponds to the JSON property `campaignLifecycleGoalError`
+        # @return [String]
+        attr_accessor :campaign_lifecycle_goal_error
+      
+        # The reasons for the campaign shared set error
+        # Corresponds to the JSON property `campaignSharedSetError`
+        # @return [String]
+        attr_accessor :campaign_shared_set_error
+      
+        # The reasons for the change event error
+        # Corresponds to the JSON property `changeEventError`
+        # @return [String]
+        attr_accessor :change_event_error
+      
+        # The reasons for the change status error
+        # Corresponds to the JSON property `changeStatusError`
+        # @return [String]
+        attr_accessor :change_status_error
+      
+        # The reasons for the click view error
+        # Corresponds to the JSON property `clickViewError`
+        # @return [String]
+        attr_accessor :click_view_error
+      
+        # The reasons for the collection size error
+        # Corresponds to the JSON property `collectionSizeError`
+        # @return [String]
+        attr_accessor :collection_size_error
+      
+        # The reasons for the context error
+        # Corresponds to the JSON property `contextError`
+        # @return [String]
+        attr_accessor :context_error
+      
+        # The reasons for the conversion action error
+        # Corresponds to the JSON property `conversionActionError`
+        # @return [String]
+        attr_accessor :conversion_action_error
+      
+        # The reasons for the conversion adjustment upload error
+        # Corresponds to the JSON property `conversionAdjustmentUploadError`
+        # @return [String]
+        attr_accessor :conversion_adjustment_upload_error
+      
+        # The reasons for the conversion custom variable error
+        # Corresponds to the JSON property `conversionCustomVariableError`
+        # @return [String]
+        attr_accessor :conversion_custom_variable_error
+      
+        # The reasons for the conversion goal campaign config error
+        # Corresponds to the JSON property `conversionGoalCampaignConfigError`
+        # @return [String]
+        attr_accessor :conversion_goal_campaign_config_error
+      
+        # The reasons for the conversion upload error
+        # Corresponds to the JSON property `conversionUploadError`
+        # @return [String]
+        attr_accessor :conversion_upload_error
+      
+        # The reasons for the conversion value rule error
+        # Corresponds to the JSON property `conversionValueRuleError`
+        # @return [String]
+        attr_accessor :conversion_value_rule_error
+      
+        # The reasons for the conversion value rule set error
+        # Corresponds to the JSON property `conversionValueRuleSetError`
+        # @return [String]
+        attr_accessor :conversion_value_rule_set_error
+      
+        # The reasons for the country code error
+        # Corresponds to the JSON property `countryCodeError`
+        # @return [String]
+        attr_accessor :country_code_error
+      
+        # The reasons for the criterion error
+        # Corresponds to the JSON property `criterionError`
+        # @return [String]
+        attr_accessor :criterion_error
+      
+        # The reasons for the currency code error
+        # Corresponds to the JSON property `currencyCodeError`
+        # @return [String]
+        attr_accessor :currency_code_error
+      
+        # The reasons for the currency errors.
+        # Corresponds to the JSON property `currencyError`
+        # @return [String]
+        attr_accessor :currency_error
+      
+        # The reasons for the custom audience error
+        # Corresponds to the JSON property `customAudienceError`
+        # @return [String]
+        attr_accessor :custom_audience_error
+      
+        # The reasons for the custom column error
+        # Corresponds to the JSON property `customColumnError`
+        # @return [String]
+        attr_accessor :custom_column_error
+      
+        # The reasons for the custom conversion goal error
+        # Corresponds to the JSON property `customConversionGoalError`
+        # @return [String]
+        attr_accessor :custom_conversion_goal_error
+      
+        # The reasons for the custom interest error
+        # Corresponds to the JSON property `customInterestError`
+        # @return [String]
+        attr_accessor :custom_interest_error
+      
+        # The reasons for the customer client link error
+        # Corresponds to the JSON property `customerClientLinkError`
+        # @return [String]
+        attr_accessor :customer_client_link_error
+      
+        # The reasons for the customer customizer error.
+        # Corresponds to the JSON property `customerCustomizerError`
+        # @return [String]
+        attr_accessor :customer_customizer_error
+      
+        # The reasons for the customer error
+        # Corresponds to the JSON property `customerError`
+        # @return [String]
+        attr_accessor :customer_error
+      
+        # The reasons for the customer feed error
+        # Corresponds to the JSON property `customerFeedError`
+        # @return [String]
+        attr_accessor :customer_feed_error
+      
+        # The reasons for the customer lifecycle goal error
+        # Corresponds to the JSON property `customerLifecycleGoalError`
+        # @return [String]
+        attr_accessor :customer_lifecycle_goal_error
+      
+        # The reasons for the customer manager link error
+        # Corresponds to the JSON property `customerManagerLinkError`
+        # @return [String]
+        attr_accessor :customer_manager_link_error
+      
+        # The reasons for the customer SK Ad network conversion value schema error
+        # Corresponds to the JSON property `customerSkAdNetworkConversionValueSchemaError`
+        # @return [String]
+        attr_accessor :customer_sk_ad_network_conversion_value_schema_error
+      
+        # The reasons for the customer user access mutate error
+        # Corresponds to the JSON property `customerUserAccessError`
+        # @return [String]
+        attr_accessor :customer_user_access_error
+      
+        # The reasons for the customizer attribute error.
+        # Corresponds to the JSON property `customizerAttributeError`
+        # @return [String]
+        attr_accessor :customizer_attribute_error
+      
+        # The reasons for the data link error
+        # Corresponds to the JSON property `dataLinkError`
+        # @return [String]
+        attr_accessor :data_link_error
+      
+        # The reasons for the database error.
+        # Corresponds to the JSON property `databaseError`
+        # @return [String]
+        attr_accessor :database_error
+      
+        # The reasons for the date error
+        # Corresponds to the JSON property `dateError`
+        # @return [String]
+        attr_accessor :date_error
+      
+        # The reasons for the date range error
+        # Corresponds to the JSON property `dateRangeError`
+        # @return [String]
+        attr_accessor :date_range_error
+      
+        # The reasons for the distinct error
+        # Corresponds to the JSON property `distinctError`
+        # @return [String]
+        attr_accessor :distinct_error
+      
+        # The reason for enum error.
+        # Corresponds to the JSON property `enumError`
+        # @return [String]
+        attr_accessor :enum_error
+      
+        # The reasons for the experiment arm error
+        # Corresponds to the JSON property `experimentArmError`
+        # @return [String]
+        attr_accessor :experiment_arm_error
+      
+        # The reasons for the experiment error
+        # Corresponds to the JSON property `experimentError`
+        # @return [String]
+        attr_accessor :experiment_error
+      
+        # The reasons for the extension feed item error
+        # Corresponds to the JSON property `extensionFeedItemError`
+        # @return [String]
+        attr_accessor :extension_feed_item_error
+      
+        # The reasons for the extension setting error
+        # Corresponds to the JSON property `extensionSettingError`
+        # @return [String]
+        attr_accessor :extension_setting_error
+      
+        # The reasons for the feed attribute reference error
+        # Corresponds to the JSON property `feedAttributeReferenceError`
+        # @return [String]
+        attr_accessor :feed_attribute_reference_error
+      
+        # The reasons for the feed error
+        # Corresponds to the JSON property `feedError`
+        # @return [String]
+        attr_accessor :feed_error
+      
+        # The reasons for the feed item error
+        # Corresponds to the JSON property `feedItemError`
+        # @return [String]
+        attr_accessor :feed_item_error
+      
+        # The reasons for the feed item set error
+        # Corresponds to the JSON property `feedItemSetError`
+        # @return [String]
+        attr_accessor :feed_item_set_error
+      
+        # The reasons for the feed item set link error
+        # Corresponds to the JSON property `feedItemSetLinkError`
+        # @return [String]
+        attr_accessor :feed_item_set_link_error
+      
+        # The reasons for the feed item target error
+        # Corresponds to the JSON property `feedItemTargetError`
+        # @return [String]
+        attr_accessor :feed_item_target_error
+      
+        # The reasons for the feed item validation error
+        # Corresponds to the JSON property `feedItemValidationError`
+        # @return [String]
+        attr_accessor :feed_item_validation_error
+      
+        # The reasons for the feed mapping error
+        # Corresponds to the JSON property `feedMappingError`
+        # @return [String]
+        attr_accessor :feed_mapping_error
+      
+        # The reasons for the field error
+        # Corresponds to the JSON property `fieldError`
+        # @return [String]
+        attr_accessor :field_error
+      
+        # An error with a field mask
+        # Corresponds to the JSON property `fieldMaskError`
+        # @return [String]
+        attr_accessor :field_mask_error
+      
+        # The reasons for the final url expansion asset view error
+        # Corresponds to the JSON property `finalUrlExpansionAssetViewError`
+        # @return [String]
+        attr_accessor :final_url_expansion_asset_view_error
+      
+        # The reasons for the function error
+        # Corresponds to the JSON property `functionError`
+        # @return [String]
+        attr_accessor :function_error
+      
+        # The reasons for the function parsing error
+        # Corresponds to the JSON property `functionParsingError`
+        # @return [String]
+        attr_accessor :function_parsing_error
+      
+        # The reasons for the geo target constant suggestion error.
+        # Corresponds to the JSON property `geoTargetConstantSuggestionError`
+        # @return [String]
+        attr_accessor :geo_target_constant_suggestion_error
+      
+        # The reasons for the goal error.
+        # Corresponds to the JSON property `goalError`
+        # @return [String]
+        attr_accessor :goal_error
+      
+        # The reasons for the header error.
+        # Corresponds to the JSON property `headerError`
+        # @return [String]
+        attr_accessor :header_error
+      
+        # The reasons for the id error
+        # Corresponds to the JSON property `idError`
+        # @return [String]
+        attr_accessor :id_error
+      
+        # The reasons for an identity verification error.
+        # Corresponds to the JSON property `identityVerificationError`
+        # @return [String]
+        attr_accessor :identity_verification_error
+      
+        # The reasons for the image error
+        # Corresponds to the JSON property `imageError`
+        # @return [String]
+        attr_accessor :image_error
+      
+        # The reasons for the incentive error
+        # Corresponds to the JSON property `incentiveError`
+        # @return [String]
+        attr_accessor :incentive_error
+      
+        # An unexpected server-side error.
+        # Corresponds to the JSON property `internalError`
+        # @return [String]
+        attr_accessor :internal_error
+      
+        # The reasons for invalid parameter errors.
+        # Corresponds to the JSON property `invalidParameterError`
+        # @return [String]
+        attr_accessor :invalid_parameter_error
+      
+        # The reasons for the invoice error
+        # Corresponds to the JSON property `invoiceError`
+        # @return [String]
+        attr_accessor :invoice_error
+      
+        # The reason for keyword plan ad group error.
+        # Corresponds to the JSON property `keywordPlanAdGroupError`
+        # @return [String]
+        attr_accessor :keyword_plan_ad_group_error
+      
+        # The reason for keyword plan ad group keyword error.
+        # Corresponds to the JSON property `keywordPlanAdGroupKeywordError`
+        # @return [String]
+        attr_accessor :keyword_plan_ad_group_keyword_error
+      
+        # The reason for keyword plan campaign error.
+        # Corresponds to the JSON property `keywordPlanCampaignError`
+        # @return [String]
+        attr_accessor :keyword_plan_campaign_error
+      
+        # The reason for keyword plan campaign keyword error.
+        # Corresponds to the JSON property `keywordPlanCampaignKeywordError`
+        # @return [String]
+        attr_accessor :keyword_plan_campaign_keyword_error
+      
+        # The reason for keyword plan error.
+        # Corresponds to the JSON property `keywordPlanError`
+        # @return [String]
+        attr_accessor :keyword_plan_error
+      
+        # The reason for keyword idea error.
+        # Corresponds to the JSON property `keywordPlanIdeaError`
+        # @return [String]
+        attr_accessor :keyword_plan_idea_error
+      
+        # The reason for the label error.
+        # Corresponds to the JSON property `labelError`
+        # @return [String]
+        attr_accessor :label_error
+      
+        # The reasons for the language code error
+        # Corresponds to the JSON property `languageCodeError`
+        # @return [String]
+        attr_accessor :language_code_error
+      
+        # An error with a list operation.
+        # Corresponds to the JSON property `listOperationError`
+        # @return [String]
+        attr_accessor :list_operation_error
+      
+        # The reasons for the manager link error
+        # Corresponds to the JSON property `managerLinkError`
+        # @return [String]
+        attr_accessor :manager_link_error
+      
+        # The reasons for the media bundle error
+        # Corresponds to the JSON property `mediaBundleError`
+        # @return [String]
+        attr_accessor :media_bundle_error
+      
+        # The reasons for the media file error
+        # Corresponds to the JSON property `mediaFileError`
+        # @return [String]
+        attr_accessor :media_file_error
+      
+        # The reasons for media uploading errors.
+        # Corresponds to the JSON property `mediaUploadError`
+        # @return [String]
+        attr_accessor :media_upload_error
+      
+        # Container for enum describing possible merchant center errors.
+        # Corresponds to the JSON property `merchantCenterError`
+        # @return [String]
+        attr_accessor :merchant_center_error
+      
+        # The reasons for the multiplier error
+        # Corresponds to the JSON property `multiplierError`
+        # @return [String]
+        attr_accessor :multiplier_error
+      
+        # An error with a mutate
+        # Corresponds to the JSON property `mutateError`
+        # @return [String]
+        attr_accessor :mutate_error
+      
+        # The reasons for the new resource creation error
+        # Corresponds to the JSON property `newResourceCreationError`
+        # @return [String]
+        attr_accessor :new_resource_creation_error
+      
+        # The reasons for the not allowlisted error
+        # Corresponds to the JSON property `notAllowlistedError`
+        # @return [String]
+        attr_accessor :not_allowlisted_error
+      
+        # The reasons for the not empty error
+        # Corresponds to the JSON property `notEmptyError`
+        # @return [String]
+        attr_accessor :not_empty_error
+      
+        # The reasons for the null error
+        # Corresponds to the JSON property `nullError`
+        # @return [String]
+        attr_accessor :null_error
+      
+        # The reasons for the offline user data job error.
+        # Corresponds to the JSON property `offlineUserDataJobError`
+        # @return [String]
+        attr_accessor :offline_user_data_job_error
+      
+        # The reasons for the operation access denied error
+        # Corresponds to the JSON property `operationAccessDeniedError`
+        # @return [String]
+        attr_accessor :operation_access_denied_error
+      
+        # The reasons for the operator error
+        # Corresponds to the JSON property `operatorError`
+        # @return [String]
+        attr_accessor :operator_error
+      
+        # The reasons for the mutate job error
+        # Corresponds to the JSON property `partialFailureError`
+        # @return [String]
+        attr_accessor :partial_failure_error
+      
+        # The reasons for errors in payments accounts service
+        # Corresponds to the JSON property `paymentsAccountError`
+        # @return [String]
+        attr_accessor :payments_account_error
+      
+        # The reasons for the policy finding error.
+        # Corresponds to the JSON property `policyFindingError`
+        # @return [String]
+        attr_accessor :policy_finding_error
+      
+        # The reasons for the policy validation parameter error
+        # Corresponds to the JSON property `policyValidationParameterError`
+        # @return [String]
+        attr_accessor :policy_validation_parameter_error
+      
+        # The reasons for the policy violation error
+        # Corresponds to the JSON property `policyViolationError`
+        # @return [String]
+        attr_accessor :policy_violation_error
+      
+        # The reasons for the product link error
+        # Corresponds to the JSON property `productLinkError`
+        # @return [String]
+        attr_accessor :product_link_error
+      
+        # The reasons for the product link invitation error
+        # Corresponds to the JSON property `productLinkInvitationError`
+        # @return [String]
+        attr_accessor :product_link_invitation_error
+      
+        # An error with the query
+        # Corresponds to the JSON property `queryError`
+        # @return [String]
+        attr_accessor :query_error
+      
+        # An error with the amount of quota remaining.
+        # Corresponds to the JSON property `quotaError`
+        # @return [String]
+        attr_accessor :quota_error
+      
+        # The reasons for the range error
+        # Corresponds to the JSON property `rangeError`
+        # @return [String]
+        attr_accessor :range_error
+      
+        # The reasons for the reach plan error
+        # Corresponds to the JSON property `reachPlanError`
+        # @return [String]
+        attr_accessor :reach_plan_error
+      
+        # The reasons for error in applying a recommendation
+        # Corresponds to the JSON property `recommendationError`
+        # @return [String]
+        attr_accessor :recommendation_error
+      
+        # The reasons for the recommendation subscription error.
+        # Corresponds to the JSON property `recommendationSubscriptionError`
+        # @return [String]
+        attr_accessor :recommendation_subscription_error
+      
+        # The reasons for the region code error
+        # Corresponds to the JSON property `regionCodeError`
+        # @return [String]
+        attr_accessor :region_code_error
+      
+        # An error caused by the request
+        # Corresponds to the JSON property `requestError`
+        # @return [String]
+        attr_accessor :request_error
+      
+        # The reasons for the resource access denied error
+        # Corresponds to the JSON property `resourceAccessDeniedError`
+        # @return [String]
+        attr_accessor :resource_access_denied_error
+      
+        # The reasons for the resource count limit exceeded error
+        # Corresponds to the JSON property `resourceCountLimitExceededError`
+        # @return [String]
+        attr_accessor :resource_count_limit_exceeded_error
+      
+        # The reasons for the Search term insight error
+        # Corresponds to the JSON property `searchTermInsightError`
+        # @return [String]
+        attr_accessor :search_term_insight_error
+      
+        # The reasons for the setting error
+        # Corresponds to the JSON property `settingError`
+        # @return [String]
+        attr_accessor :setting_error
+      
+        # The reasons for the shareable preview error.
+        # Corresponds to the JSON property `shareablePreviewError`
+        # @return [String]
+        attr_accessor :shareable_preview_error
+      
+        # The reasons for the shared criterion error
+        # Corresponds to the JSON property `sharedCriterionError`
+        # @return [String]
+        attr_accessor :shared_criterion_error
+      
+        # The reasons for the shared set error
+        # Corresponds to the JSON property `sharedSetError`
+        # @return [String]
+        attr_accessor :shared_set_error
+      
+        # The reasons for error in querying shopping product.
+        # Corresponds to the JSON property `shoppingProductError`
+        # @return [String]
+        attr_accessor :shopping_product_error
+      
+        # The reasons for the size limit error
+        # Corresponds to the JSON property `sizeLimitError`
+        # @return [String]
+        attr_accessor :size_limit_error
+      
+        # The reasons for the Smart campaign error
+        # Corresponds to the JSON property `smartCampaignError`
+        # @return [String]
+        attr_accessor :smart_campaign_error
+      
+        # The reasons for the string format error
+        # Corresponds to the JSON property `stringFormatError`
+        # @return [String]
+        attr_accessor :string_format_error
+      
+        # The reasons for the string length error
+        # Corresponds to the JSON property `stringLengthError`
+        # @return [String]
+        attr_accessor :string_length_error
+      
+        # The reasons for the third party app analytics link mutate error
+        # Corresponds to the JSON property `thirdPartyAppAnalyticsLinkError`
+        # @return [String]
+        attr_accessor :third_party_app_analytics_link_error
+      
+        # The reasons for the time zone error
+        # Corresponds to the JSON property `timeZoneError`
+        # @return [String]
+        attr_accessor :time_zone_error
+      
+        # An error with a URL field mutate.
+        # Corresponds to the JSON property `urlFieldError`
+        # @return [String]
+        attr_accessor :url_field_error
+      
+        # The reasons for the user data error.
+        # Corresponds to the JSON property `userDataError`
+        # @return [String]
+        attr_accessor :user_data_error
+      
+        # The reasons for a user list customer type error.
+        # Corresponds to the JSON property `userListCustomerTypeError`
+        # @return [String]
+        attr_accessor :user_list_customer_type_error
+      
+        # The reasons for the user list error
+        # Corresponds to the JSON property `userListError`
+        # @return [String]
+        attr_accessor :user_list_error
+      
+        # An error with a Video Campaign mutate.
+        # Corresponds to the JSON property `videoCampaignError`
+        # @return [String]
+        attr_accessor :video_campaign_error
+      
+        # The reasons for YouTube video registration errors.
+        # Corresponds to the JSON property `youtubeVideoRegistrationError`
+        # @return [String]
+        attr_accessor :youtube_video_registration_error
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @access_invitation_error = args[:access_invitation_error] if args.key?(:access_invitation_error)
+          @account_budget_proposal_error = args[:account_budget_proposal_error] if args.key?(:account_budget_proposal_error)
+          @account_link_error = args[:account_link_error] if args.key?(:account_link_error)
+          @ad_customizer_error = args[:ad_customizer_error] if args.key?(:ad_customizer_error)
+          @ad_error = args[:ad_error] if args.key?(:ad_error)
+          @ad_group_ad_error = args[:ad_group_ad_error] if args.key?(:ad_group_ad_error)
+          @ad_group_bid_modifier_error = args[:ad_group_bid_modifier_error] if args.key?(:ad_group_bid_modifier_error)
+          @ad_group_criterion_customizer_error = args[:ad_group_criterion_customizer_error] if args.key?(:ad_group_criterion_customizer_error)
+          @ad_group_criterion_error = args[:ad_group_criterion_error] if args.key?(:ad_group_criterion_error)
+          @ad_group_customizer_error = args[:ad_group_customizer_error] if args.key?(:ad_group_customizer_error)
+          @ad_group_error = args[:ad_group_error] if args.key?(:ad_group_error)
+          @ad_group_feed_error = args[:ad_group_feed_error] if args.key?(:ad_group_feed_error)
+          @ad_parameter_error = args[:ad_parameter_error] if args.key?(:ad_parameter_error)
+          @ad_sharing_error = args[:ad_sharing_error] if args.key?(:ad_sharing_error)
+          @adx_error = args[:adx_error] if args.key?(:adx_error)
+          @asset_error = args[:asset_error] if args.key?(:asset_error)
+          @asset_generation_error = args[:asset_generation_error] if args.key?(:asset_generation_error)
+          @asset_group_asset_error = args[:asset_group_asset_error] if args.key?(:asset_group_asset_error)
+          @asset_group_error = args[:asset_group_error] if args.key?(:asset_group_error)
+          @asset_group_listing_group_filter_error = args[:asset_group_listing_group_filter_error] if args.key?(:asset_group_listing_group_filter_error)
+          @asset_group_signal_error = args[:asset_group_signal_error] if args.key?(:asset_group_signal_error)
+          @asset_link_error = args[:asset_link_error] if args.key?(:asset_link_error)
+          @asset_set_asset_error = args[:asset_set_asset_error] if args.key?(:asset_set_asset_error)
+          @asset_set_error = args[:asset_set_error] if args.key?(:asset_set_error)
+          @asset_set_link_error = args[:asset_set_link_error] if args.key?(:asset_set_link_error)
+          @audience_error = args[:audience_error] if args.key?(:audience_error)
+          @audience_insights_error = args[:audience_insights_error] if args.key?(:audience_insights_error)
+          @authentication_error = args[:authentication_error] if args.key?(:authentication_error)
+          @authorization_error = args[:authorization_error] if args.key?(:authorization_error)
+          @automatically_created_asset_removal_error = args[:automatically_created_asset_removal_error] if args.key?(:automatically_created_asset_removal_error)
+          @batch_job_error = args[:batch_job_error] if args.key?(:batch_job_error)
+          @benchmarks_error = args[:benchmarks_error] if args.key?(:benchmarks_error)
+          @bidding_error = args[:bidding_error] if args.key?(:bidding_error)
+          @bidding_strategy_error = args[:bidding_strategy_error] if args.key?(:bidding_strategy_error)
+          @billing_setup_error = args[:billing_setup_error] if args.key?(:billing_setup_error)
+          @brand_guidelines_migration_error = args[:brand_guidelines_migration_error] if args.key?(:brand_guidelines_migration_error)
+          @campaign_budget_error = args[:campaign_budget_error] if args.key?(:campaign_budget_error)
+          @campaign_conversion_goal_error = args[:campaign_conversion_goal_error] if args.key?(:campaign_conversion_goal_error)
+          @campaign_criterion_error = args[:campaign_criterion_error] if args.key?(:campaign_criterion_error)
+          @campaign_customizer_error = args[:campaign_customizer_error] if args.key?(:campaign_customizer_error)
+          @campaign_draft_error = args[:campaign_draft_error] if args.key?(:campaign_draft_error)
+          @campaign_error = args[:campaign_error] if args.key?(:campaign_error)
+          @campaign_experiment_error = args[:campaign_experiment_error] if args.key?(:campaign_experiment_error)
+          @campaign_feed_error = args[:campaign_feed_error] if args.key?(:campaign_feed_error)
+          @campaign_goal_config_error = args[:campaign_goal_config_error] if args.key?(:campaign_goal_config_error)
+          @campaign_lifecycle_goal_error = args[:campaign_lifecycle_goal_error] if args.key?(:campaign_lifecycle_goal_error)
+          @campaign_shared_set_error = args[:campaign_shared_set_error] if args.key?(:campaign_shared_set_error)
+          @change_event_error = args[:change_event_error] if args.key?(:change_event_error)
+          @change_status_error = args[:change_status_error] if args.key?(:change_status_error)
+          @click_view_error = args[:click_view_error] if args.key?(:click_view_error)
+          @collection_size_error = args[:collection_size_error] if args.key?(:collection_size_error)
+          @context_error = args[:context_error] if args.key?(:context_error)
+          @conversion_action_error = args[:conversion_action_error] if args.key?(:conversion_action_error)
+          @conversion_adjustment_upload_error = args[:conversion_adjustment_upload_error] if args.key?(:conversion_adjustment_upload_error)
+          @conversion_custom_variable_error = args[:conversion_custom_variable_error] if args.key?(:conversion_custom_variable_error)
+          @conversion_goal_campaign_config_error = args[:conversion_goal_campaign_config_error] if args.key?(:conversion_goal_campaign_config_error)
+          @conversion_upload_error = args[:conversion_upload_error] if args.key?(:conversion_upload_error)
+          @conversion_value_rule_error = args[:conversion_value_rule_error] if args.key?(:conversion_value_rule_error)
+          @conversion_value_rule_set_error = args[:conversion_value_rule_set_error] if args.key?(:conversion_value_rule_set_error)
+          @country_code_error = args[:country_code_error] if args.key?(:country_code_error)
+          @criterion_error = args[:criterion_error] if args.key?(:criterion_error)
+          @currency_code_error = args[:currency_code_error] if args.key?(:currency_code_error)
+          @currency_error = args[:currency_error] if args.key?(:currency_error)
+          @custom_audience_error = args[:custom_audience_error] if args.key?(:custom_audience_error)
+          @custom_column_error = args[:custom_column_error] if args.key?(:custom_column_error)
+          @custom_conversion_goal_error = args[:custom_conversion_goal_error] if args.key?(:custom_conversion_goal_error)
+          @custom_interest_error = args[:custom_interest_error] if args.key?(:custom_interest_error)
+          @customer_client_link_error = args[:customer_client_link_error] if args.key?(:customer_client_link_error)
+          @customer_customizer_error = args[:customer_customizer_error] if args.key?(:customer_customizer_error)
+          @customer_error = args[:customer_error] if args.key?(:customer_error)
+          @customer_feed_error = args[:customer_feed_error] if args.key?(:customer_feed_error)
+          @customer_lifecycle_goal_error = args[:customer_lifecycle_goal_error] if args.key?(:customer_lifecycle_goal_error)
+          @customer_manager_link_error = args[:customer_manager_link_error] if args.key?(:customer_manager_link_error)
+          @customer_sk_ad_network_conversion_value_schema_error = args[:customer_sk_ad_network_conversion_value_schema_error] if args.key?(:customer_sk_ad_network_conversion_value_schema_error)
+          @customer_user_access_error = args[:customer_user_access_error] if args.key?(:customer_user_access_error)
+          @customizer_attribute_error = args[:customizer_attribute_error] if args.key?(:customizer_attribute_error)
+          @data_link_error = args[:data_link_error] if args.key?(:data_link_error)
+          @database_error = args[:database_error] if args.key?(:database_error)
+          @date_error = args[:date_error] if args.key?(:date_error)
+          @date_range_error = args[:date_range_error] if args.key?(:date_range_error)
+          @distinct_error = args[:distinct_error] if args.key?(:distinct_error)
+          @enum_error = args[:enum_error] if args.key?(:enum_error)
+          @experiment_arm_error = args[:experiment_arm_error] if args.key?(:experiment_arm_error)
+          @experiment_error = args[:experiment_error] if args.key?(:experiment_error)
+          @extension_feed_item_error = args[:extension_feed_item_error] if args.key?(:extension_feed_item_error)
+          @extension_setting_error = args[:extension_setting_error] if args.key?(:extension_setting_error)
+          @feed_attribute_reference_error = args[:feed_attribute_reference_error] if args.key?(:feed_attribute_reference_error)
+          @feed_error = args[:feed_error] if args.key?(:feed_error)
+          @feed_item_error = args[:feed_item_error] if args.key?(:feed_item_error)
+          @feed_item_set_error = args[:feed_item_set_error] if args.key?(:feed_item_set_error)
+          @feed_item_set_link_error = args[:feed_item_set_link_error] if args.key?(:feed_item_set_link_error)
+          @feed_item_target_error = args[:feed_item_target_error] if args.key?(:feed_item_target_error)
+          @feed_item_validation_error = args[:feed_item_validation_error] if args.key?(:feed_item_validation_error)
+          @feed_mapping_error = args[:feed_mapping_error] if args.key?(:feed_mapping_error)
+          @field_error = args[:field_error] if args.key?(:field_error)
+          @field_mask_error = args[:field_mask_error] if args.key?(:field_mask_error)
+          @final_url_expansion_asset_view_error = args[:final_url_expansion_asset_view_error] if args.key?(:final_url_expansion_asset_view_error)
+          @function_error = args[:function_error] if args.key?(:function_error)
+          @function_parsing_error = args[:function_parsing_error] if args.key?(:function_parsing_error)
+          @geo_target_constant_suggestion_error = args[:geo_target_constant_suggestion_error] if args.key?(:geo_target_constant_suggestion_error)
+          @goal_error = args[:goal_error] if args.key?(:goal_error)
+          @header_error = args[:header_error] if args.key?(:header_error)
+          @id_error = args[:id_error] if args.key?(:id_error)
+          @identity_verification_error = args[:identity_verification_error] if args.key?(:identity_verification_error)
+          @image_error = args[:image_error] if args.key?(:image_error)
+          @incentive_error = args[:incentive_error] if args.key?(:incentive_error)
+          @internal_error = args[:internal_error] if args.key?(:internal_error)
+          @invalid_parameter_error = args[:invalid_parameter_error] if args.key?(:invalid_parameter_error)
+          @invoice_error = args[:invoice_error] if args.key?(:invoice_error)
+          @keyword_plan_ad_group_error = args[:keyword_plan_ad_group_error] if args.key?(:keyword_plan_ad_group_error)
+          @keyword_plan_ad_group_keyword_error = args[:keyword_plan_ad_group_keyword_error] if args.key?(:keyword_plan_ad_group_keyword_error)
+          @keyword_plan_campaign_error = args[:keyword_plan_campaign_error] if args.key?(:keyword_plan_campaign_error)
+          @keyword_plan_campaign_keyword_error = args[:keyword_plan_campaign_keyword_error] if args.key?(:keyword_plan_campaign_keyword_error)
+          @keyword_plan_error = args[:keyword_plan_error] if args.key?(:keyword_plan_error)
+          @keyword_plan_idea_error = args[:keyword_plan_idea_error] if args.key?(:keyword_plan_idea_error)
+          @label_error = args[:label_error] if args.key?(:label_error)
+          @language_code_error = args[:language_code_error] if args.key?(:language_code_error)
+          @list_operation_error = args[:list_operation_error] if args.key?(:list_operation_error)
+          @manager_link_error = args[:manager_link_error] if args.key?(:manager_link_error)
+          @media_bundle_error = args[:media_bundle_error] if args.key?(:media_bundle_error)
+          @media_file_error = args[:media_file_error] if args.key?(:media_file_error)
+          @media_upload_error = args[:media_upload_error] if args.key?(:media_upload_error)
+          @merchant_center_error = args[:merchant_center_error] if args.key?(:merchant_center_error)
+          @multiplier_error = args[:multiplier_error] if args.key?(:multiplier_error)
+          @mutate_error = args[:mutate_error] if args.key?(:mutate_error)
+          @new_resource_creation_error = args[:new_resource_creation_error] if args.key?(:new_resource_creation_error)
+          @not_allowlisted_error = args[:not_allowlisted_error] if args.key?(:not_allowlisted_error)
+          @not_empty_error = args[:not_empty_error] if args.key?(:not_empty_error)
+          @null_error = args[:null_error] if args.key?(:null_error)
+          @offline_user_data_job_error = args[:offline_user_data_job_error] if args.key?(:offline_user_data_job_error)
+          @operation_access_denied_error = args[:operation_access_denied_error] if args.key?(:operation_access_denied_error)
+          @operator_error = args[:operator_error] if args.key?(:operator_error)
+          @partial_failure_error = args[:partial_failure_error] if args.key?(:partial_failure_error)
+          @payments_account_error = args[:payments_account_error] if args.key?(:payments_account_error)
+          @policy_finding_error = args[:policy_finding_error] if args.key?(:policy_finding_error)
+          @policy_validation_parameter_error = args[:policy_validation_parameter_error] if args.key?(:policy_validation_parameter_error)
+          @policy_violation_error = args[:policy_violation_error] if args.key?(:policy_violation_error)
+          @product_link_error = args[:product_link_error] if args.key?(:product_link_error)
+          @product_link_invitation_error = args[:product_link_invitation_error] if args.key?(:product_link_invitation_error)
+          @query_error = args[:query_error] if args.key?(:query_error)
+          @quota_error = args[:quota_error] if args.key?(:quota_error)
+          @range_error = args[:range_error] if args.key?(:range_error)
+          @reach_plan_error = args[:reach_plan_error] if args.key?(:reach_plan_error)
+          @recommendation_error = args[:recommendation_error] if args.key?(:recommendation_error)
+          @recommendation_subscription_error = args[:recommendation_subscription_error] if args.key?(:recommendation_subscription_error)
+          @region_code_error = args[:region_code_error] if args.key?(:region_code_error)
+          @request_error = args[:request_error] if args.key?(:request_error)
+          @resource_access_denied_error = args[:resource_access_denied_error] if args.key?(:resource_access_denied_error)
+          @resource_count_limit_exceeded_error = args[:resource_count_limit_exceeded_error] if args.key?(:resource_count_limit_exceeded_error)
+          @search_term_insight_error = args[:search_term_insight_error] if args.key?(:search_term_insight_error)
+          @setting_error = args[:setting_error] if args.key?(:setting_error)
+          @shareable_preview_error = args[:shareable_preview_error] if args.key?(:shareable_preview_error)
+          @shared_criterion_error = args[:shared_criterion_error] if args.key?(:shared_criterion_error)
+          @shared_set_error = args[:shared_set_error] if args.key?(:shared_set_error)
+          @shopping_product_error = args[:shopping_product_error] if args.key?(:shopping_product_error)
+          @size_limit_error = args[:size_limit_error] if args.key?(:size_limit_error)
+          @smart_campaign_error = args[:smart_campaign_error] if args.key?(:smart_campaign_error)
+          @string_format_error = args[:string_format_error] if args.key?(:string_format_error)
+          @string_length_error = args[:string_length_error] if args.key?(:string_length_error)
+          @third_party_app_analytics_link_error = args[:third_party_app_analytics_link_error] if args.key?(:third_party_app_analytics_link_error)
+          @time_zone_error = args[:time_zone_error] if args.key?(:time_zone_error)
+          @url_field_error = args[:url_field_error] if args.key?(:url_field_error)
+          @user_data_error = args[:user_data_error] if args.key?(:user_data_error)
+          @user_list_customer_type_error = args[:user_list_customer_type_error] if args.key?(:user_list_customer_type_error)
+          @user_list_error = args[:user_list_error] if args.key?(:user_list_error)
+          @video_campaign_error = args[:video_campaign_error] if args.key?(:video_campaign_error)
+          @youtube_video_registration_error = args[:youtube_video_registration_error] if args.key?(:youtube_video_registration_error)
+        end
+      end
+      
+      # Additional error details.
+      class GoogleAdsSearchads360V23ErrorsErrorDetails
+        include Google::Apis::Core::Hashable
+      
+        # Error details for a budget below per-day minimum error.
+        # Corresponds to the JSON property `budgetPerDayMinimumErrorDetails`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsBudgetPerDayMinimumErrorDetails]
+        attr_accessor :budget_per_day_minimum_error_details
+      
+        # Error returned as part of a mutate response. This error indicates one or more
+        # policy findings in the fields of a resource.
+        # Corresponds to the JSON property `policyFindingDetails`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsPolicyFindingDetails]
+        attr_accessor :policy_finding_details
+      
+        # Error returned as part of a mutate response. This error indicates single
+        # policy violation by some text in one of the fields.
+        # Corresponds to the JSON property `policyViolationDetails`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsPolicyViolationDetails]
+        attr_accessor :policy_violation_details
+      
+        # Additional quota error details when there is QuotaError.
+        # Corresponds to the JSON property `quotaErrorDetails`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsQuotaErrorDetails]
+        attr_accessor :quota_error_details
+      
+        # Error details returned when an resource count limit was exceeded.
+        # Corresponds to the JSON property `resourceCountDetails`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsResourceCountDetails]
+        attr_accessor :resource_count_details
+      
+        # The error code that should have been returned, but wasn't. This is used when
+        # the error code is not published in the client specified version.
+        # Corresponds to the JSON property `unpublishedErrorCode`
+        # @return [String]
+        attr_accessor :unpublished_error_code
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @budget_per_day_minimum_error_details = args[:budget_per_day_minimum_error_details] if args.key?(:budget_per_day_minimum_error_details)
+          @policy_finding_details = args[:policy_finding_details] if args.key?(:policy_finding_details)
+          @policy_violation_details = args[:policy_violation_details] if args.key?(:policy_violation_details)
+          @quota_error_details = args[:quota_error_details] if args.key?(:quota_error_details)
+          @resource_count_details = args[:resource_count_details] if args.key?(:resource_count_details)
+          @unpublished_error_code = args[:unpublished_error_code] if args.key?(:unpublished_error_code)
+        end
+      end
+      
+      # Describes the part of the request proto that caused the error.
+      class GoogleAdsSearchads360V23ErrorsErrorLocation
+        include Google::Apis::Core::Hashable
+      
+        # A field path that indicates which field was invalid in the request.
+        # Corresponds to the JSON property `fieldPathElements`
+        # @return [Array<Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorLocationFieldPathElement>]
+        attr_accessor :field_path_elements
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @field_path_elements = args[:field_path_elements] if args.key?(:field_path_elements)
+        end
+      end
+      
+      # Error returned as part of a mutate response. This error indicates one or more
+      # policy findings in the fields of a resource.
+      class GoogleAdsSearchads360V23ErrorsPolicyFindingDetails
+        include Google::Apis::Core::Hashable
+      
+        # The list of policy topics for the resource. Contains the PROHIBITED or
+        # FULLY_LIMITED policy topic entries that prevented the resource from being
+        # saved (among any other entries the resource may also have).
+        # Corresponds to the JSON property `policyTopicEntries`
+        # @return [Array<Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEntry>]
+        attr_accessor :policy_topic_entries
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @policy_topic_entries = args[:policy_topic_entries] if args.key?(:policy_topic_entries)
+        end
+      end
+      
+      # Error returned as part of a mutate response. This error indicates single
+      # policy violation by some text in one of the fields.
+      class GoogleAdsSearchads360V23ErrorsPolicyViolationDetails
+        include Google::Apis::Core::Hashable
+      
+        # Human readable description of policy violation.
+        # Corresponds to the JSON property `externalPolicyDescription`
+        # @return [String]
+        attr_accessor :external_policy_description
+      
+        # Human readable name of the policy.
+        # Corresponds to the JSON property `externalPolicyName`
+        # @return [String]
+        attr_accessor :external_policy_name
+      
+        # Whether user can file an exemption request for this violation.
+        # Corresponds to the JSON property `isExemptible`
+        # @return [Boolean]
+        attr_accessor :is_exemptible
+        alias_method :is_exemptible?, :is_exemptible
+      
+        # Key of the violation. The key is used for referring to a violation when filing
+        # an exemption request.
+        # Corresponds to the JSON property `key`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyViolationKey]
+        attr_accessor :key
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @external_policy_description = args[:external_policy_description] if args.key?(:external_policy_description)
+          @external_policy_name = args[:external_policy_name] if args.key?(:external_policy_name)
+          @is_exemptible = args[:is_exemptible] if args.key?(:is_exemptible)
+          @key = args[:key] if args.key?(:key)
+        end
+      end
+      
+      # Additional quota error details when there is QuotaError.
+      class GoogleAdsSearchads360V23ErrorsQuotaErrorDetails
+        include Google::Apis::Core::Hashable
+      
+        # The high level description of the quota bucket. Examples are "Get requests for
+        # standard access" or "Requests per account".
+        # Corresponds to the JSON property `rateName`
+        # @return [String]
+        attr_accessor :rate_name
+      
+        # The rate scope of the quota limit.
+        # Corresponds to the JSON property `rateScope`
+        # @return [String]
+        attr_accessor :rate_scope
+      
+        # Backoff period that customers should wait before sending next request.
+        # Corresponds to the JSON property `retryDelay`
+        # @return [String]
+        attr_accessor :retry_delay
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @rate_name = args[:rate_name] if args.key?(:rate_name)
+          @rate_scope = args[:rate_scope] if args.key?(:rate_scope)
+          @retry_delay = args[:retry_delay] if args.key?(:retry_delay)
+        end
+      end
+      
+      # Error details returned when an resource count limit was exceeded.
+      class GoogleAdsSearchads360V23ErrorsResourceCountDetails
+        include Google::Apis::Core::Hashable
+      
+        # The ID of the resource whose limit was exceeded. External customer ID if the
+        # limit is for a customer.
+        # Corresponds to the JSON property `enclosingId`
+        # @return [String]
+        attr_accessor :enclosing_id
+      
+        # The name of the resource ( etc.) whose limit was exceeded.
+        # Corresponds to the JSON property `enclosingResource`
+        # @return [String]
+        attr_accessor :enclosing_resource
+      
+        # The count of existing entities.
+        # Corresponds to the JSON property `existingCount`
+        # @return [Fixnum]
+        attr_accessor :existing_count
+      
+        # The limit which was exceeded.
+        # Corresponds to the JSON property `limit`
+        # @return [Fixnum]
+        attr_accessor :limit
+      
+        # The resource limit type which was exceeded.
+        # Corresponds to the JSON property `limitType`
+        # @return [String]
+        attr_accessor :limit_type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @enclosing_id = args[:enclosing_id] if args.key?(:enclosing_id)
+          @enclosing_resource = args[:enclosing_resource] if args.key?(:enclosing_resource)
+          @existing_count = args[:existing_count] if args.key?(:existing_count)
+          @limit = args[:limit] if args.key?(:limit)
+          @limit_type = args[:limit_type] if args.key?(:limit_type)
+        end
+      end
+      
+      # Search Ads 360-specific error.
+      class GoogleAdsSearchads360V23ErrorsSearchAds360Error
+        include Google::Apis::Core::Hashable
+      
+        # Additional error details.
+        # Corresponds to the JSON property `details`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorDetails]
+        attr_accessor :details
+      
+        # The error reason represented by type and enum.
+        # Corresponds to the JSON property `errorCode`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorCode]
+        attr_accessor :error_code
+      
+        # Describes the part of the request proto that caused the error.
+        # Corresponds to the JSON property `location`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorLocation]
+        attr_accessor :location
+      
+        # A human-readable description of the error.
+        # Corresponds to the JSON property `message`
+        # @return [String]
+        attr_accessor :message
+      
+        # A generic data container.
+        # Corresponds to the JSON property `trigger`
+        # @return [Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonValue]
+        attr_accessor :trigger
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @details = args[:details] if args.key?(:details)
+          @error_code = args[:error_code] if args.key?(:error_code)
+          @location = args[:location] if args.key?(:location)
+          @message = args[:message] if args.key?(:message)
+          @trigger = args[:trigger] if args.key?(:trigger)
+        end
+      end
+      
+      # Describes how a Search Ads 360 API call failed. It's returned inside google.
+      # rpc.Status.details when a call fails.
+      class GoogleAdsSearchads360V23ErrorsSearchAds360Failure
+        include Google::Apis::Core::Hashable
+      
+        # The list of errors that occurred.
+        # Corresponds to the JSON property `errors`
+        # @return [Array<Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsSearchAds360Error>]
+        attr_accessor :errors
+      
+        # The unique ID of the request that is used for debugging purposes.
+        # Corresponds to the JSON property `requestId`
+        # @return [String]
+        attr_accessor :request_id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @errors = args[:errors] if args.key?(:errors)
+          @request_id = args[:request_id] if args.key?(:request_id)
+        end
+      end
+      
+      # Additional information about the batch job. This message is also used as
+      # metadata returned in batch job Long Running Operations.
+      class GoogleAdsSearchads360V23ResourcesBatchJobBatchJobMetadata
+        include Google::Apis::Core::Hashable
+      
+        # Output only. The time when this batch job was completed. Formatted as yyyy-MM-
+        # dd HH:mm:ss. Example: "2018-03-05 09:16:00"
+        # Corresponds to the JSON property `completionDateTime`
+        # @return [String]
+        attr_accessor :completion_date_time
+      
+        # Output only. The time when this batch job was created. Formatted as yyyy-mm-dd
+        # hh:mm:ss. Example: "2018-03-05 09:15:00"
+        # Corresponds to the JSON property `creationDateTime`
+        # @return [String]
+        attr_accessor :creation_date_time
+      
+        # Output only. The fraction (between 0.0 and 1.0) of mutates that have been
+        # processed. This is empty if the job hasn't started running yet.
+        # Corresponds to the JSON property `estimatedCompletionRatio`
+        # @return [Float]
+        attr_accessor :estimated_completion_ratio
+      
+        # Output only. The number of mutate operations executed by the batch job.
+        # Present only if the job has started running.
+        # Corresponds to the JSON property `executedOperationCount`
+        # @return [Fixnum]
+        attr_accessor :executed_operation_count
+      
+        # Immutable. The approximate upper bound for how long a batch job can be
+        # executed, in seconds. If the job runs more than the given upper bound, the job
+        # will be canceled.
+        # Corresponds to the JSON property `executionLimitSeconds`
+        # @return [Fixnum]
+        attr_accessor :execution_limit_seconds
+      
+        # Output only. The number of mutate operations in the batch job.
+        # Corresponds to the JSON property `operationCount`
+        # @return [Fixnum]
+        attr_accessor :operation_count
+      
+        # Output only. The time when this batch job started running. Formatted as yyyy-
+        # mm-dd hh:mm:ss. Example: "2018-03-05 09:15:30"
+        # Corresponds to the JSON property `startDateTime`
+        # @return [String]
+        attr_accessor :start_date_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @completion_date_time = args[:completion_date_time] if args.key?(:completion_date_time)
+          @creation_date_time = args[:creation_date_time] if args.key?(:creation_date_time)
+          @estimated_completion_ratio = args[:estimated_completion_ratio] if args.key?(:estimated_completion_ratio)
+          @executed_operation_count = args[:executed_operation_count] if args.key?(:executed_operation_count)
+          @execution_limit_seconds = args[:execution_limit_seconds] if args.key?(:execution_limit_seconds)
+          @operation_count = args[:operation_count] if args.key?(:operation_count)
+          @start_date_time = args[:start_date_time] if args.key?(:start_date_time)
+        end
+      end
+      
+      # Metadata of offline user data job.
+      class GoogleAdsSearchads360V23ResourcesOfflineUserDataJobMetadata
+        include Google::Apis::Core::Hashable
+      
+        # Output only. Match rate of the Customer Match user list upload. Describes the
+        # estimated match rate when the status of the job is "RUNNING" and final match
+        # rate when the final match rate is available after the status of the job is "
+        # SUCCESS/FAILED".
+        # Corresponds to the JSON property `matchRateRange`
+        # @return [String]
+        attr_accessor :match_rate_range
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @match_rate_range = args[:match_rate_range] if args.key?(:match_rate_range)
+        end
+      end
+      
+      # The metadata of the promoted experiment.
+      class GoogleAdsSearchads360V23ServicesPromoteExperimentMetadata
+        include Google::Apis::Core::Hashable
+      
+        # Required. The promoted experiment.
+        # Corresponds to the JSON property `experiment`
+        # @return [String]
+        attr_accessor :experiment
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @experiment = args[:experiment] if args.key?(:experiment)
+        end
+      end
+      
+      # The metadata of the scheduled experiment.
+      class GoogleAdsSearchads360V23ServicesScheduleExperimentMetadata
+        include Google::Apis::Core::Hashable
+      
+        # Required. The scheduled experiment.
+        # Corresponds to the JSON property `experiment`
+        # @return [String]
+        attr_accessor :experiment
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @experiment = args[:experiment] if args.key?(:experiment)
+        end
+      end
     end
   end
 end

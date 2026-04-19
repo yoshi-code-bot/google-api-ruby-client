@@ -1018,6 +1018,174 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraint
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintResellerConstraint
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationMismatch
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationNotWorking
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationTextList
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceTextList
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceWebsiteList
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraint
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEntry
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidence
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyViolationKey
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23CommonValue
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorLocationFieldPathElement
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsBudgetPerDayMinimumErrorDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorCode
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorLocation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsPolicyFindingDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsPolicyViolationDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsQuotaErrorDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsResourceCountDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsSearchAds360Error
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsSearchAds360Failure
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ResourcesBatchJobBatchJobMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ResourcesOfflineUserDataJobMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ServicesPromoteExperimentMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleAdsSearchads360V23ServicesScheduleExperimentMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleAdsSearchads360V0CommonAdScheduleInfo
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -3158,6 +3326,444 @@ module Google
           property :summary_row, as: 'summaryRow', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V0ServicesSearchAds360Row, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V0ServicesSearchAds360Row::Representation
       
           property :total_results_count, :numeric_string => true, as: 'totalResultsCount'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraint
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :country_criterion, as: 'countryCriterion'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :countries, as: 'countries', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraint, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraint::Representation
+      
+          property :total_targeted_countries, as: 'totalTargetedCountries'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraintResellerConstraint
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationMismatch
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :url_types, as: 'urlTypes'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationNotWorking
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :device, as: 'device'
+          property :dns_error_type, as: 'dnsErrorType'
+          property :expanded_url, as: 'expandedUrl'
+          property :http_error_code, :numeric_string => true, as: 'httpErrorCode'
+          property :last_checked_date_time, as: 'lastCheckedDateTime'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationTextList
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :destination_texts, as: 'destinationTexts'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceTextList
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :texts, as: 'texts'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidenceWebsiteList
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :websites, as: 'websites'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicConstraint
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :certificate_domain_mismatch_in_country_list, as: 'certificateDomainMismatchInCountryList', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList::Representation
+      
+          property :certificate_missing_in_country_list, as: 'certificateMissingInCountryList', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList::Representation
+      
+          property :country_constraint_list, as: 'countryConstraintList', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintCountryConstraintList::Representation
+      
+          property :reseller_constraint, as: 'resellerConstraint', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintResellerConstraint, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraintResellerConstraint::Representation
+      
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEntry
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :constraints, as: 'constraints', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraint, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicConstraint::Representation
+      
+          collection :evidences, as: 'evidences', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidence, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidence::Representation
+      
+          property :topic, as: 'topic'
+          property :type, as: 'type'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyTopicEvidence
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :destination_mismatch, as: 'destinationMismatch', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationMismatch, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationMismatch::Representation
+      
+          property :destination_not_working, as: 'destinationNotWorking', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationNotWorking, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationNotWorking::Representation
+      
+          property :destination_text_list, as: 'destinationTextList', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationTextList, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceDestinationTextList::Representation
+      
+          property :language_code, as: 'languageCode'
+          property :text_list, as: 'textList', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceTextList, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceTextList::Representation
+      
+          property :website_list, as: 'websiteList', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceWebsiteList, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEvidenceWebsiteList::Representation
+      
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonPolicyViolationKey
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :policy_name, as: 'policyName'
+          property :violating_text, as: 'violatingText'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23CommonValue
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :boolean_value, as: 'booleanValue'
+          property :double_value, as: 'doubleValue'
+          property :float_value, as: 'floatValue'
+          property :int64_value, :numeric_string => true, as: 'int64Value'
+          property :string_value, as: 'stringValue'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorLocationFieldPathElement
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :field_name, as: 'fieldName'
+          property :index, as: 'index'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsBudgetPerDayMinimumErrorDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :budget_per_day_minimum_micros, :numeric_string => true, as: 'budgetPerDayMinimumMicros'
+          property :currency_code, as: 'currencyCode'
+          property :failed_budget_amount_micros, :numeric_string => true, as: 'failedBudgetAmountMicros'
+          property :failed_budget_total_amount_micros, :numeric_string => true, as: 'failedBudgetTotalAmountMicros'
+          property :minimum_budget_amount_micros, :numeric_string => true, as: 'minimumBudgetAmountMicros'
+          property :minimum_budget_total_amount_micros, :numeric_string => true, as: 'minimumBudgetTotalAmountMicros'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorCode
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :access_invitation_error, as: 'accessInvitationError'
+          property :account_budget_proposal_error, as: 'accountBudgetProposalError'
+          property :account_link_error, as: 'accountLinkError'
+          property :ad_customizer_error, as: 'adCustomizerError'
+          property :ad_error, as: 'adError'
+          property :ad_group_ad_error, as: 'adGroupAdError'
+          property :ad_group_bid_modifier_error, as: 'adGroupBidModifierError'
+          property :ad_group_criterion_customizer_error, as: 'adGroupCriterionCustomizerError'
+          property :ad_group_criterion_error, as: 'adGroupCriterionError'
+          property :ad_group_customizer_error, as: 'adGroupCustomizerError'
+          property :ad_group_error, as: 'adGroupError'
+          property :ad_group_feed_error, as: 'adGroupFeedError'
+          property :ad_parameter_error, as: 'adParameterError'
+          property :ad_sharing_error, as: 'adSharingError'
+          property :adx_error, as: 'adxError'
+          property :asset_error, as: 'assetError'
+          property :asset_generation_error, as: 'assetGenerationError'
+          property :asset_group_asset_error, as: 'assetGroupAssetError'
+          property :asset_group_error, as: 'assetGroupError'
+          property :asset_group_listing_group_filter_error, as: 'assetGroupListingGroupFilterError'
+          property :asset_group_signal_error, as: 'assetGroupSignalError'
+          property :asset_link_error, as: 'assetLinkError'
+          property :asset_set_asset_error, as: 'assetSetAssetError'
+          property :asset_set_error, as: 'assetSetError'
+          property :asset_set_link_error, as: 'assetSetLinkError'
+          property :audience_error, as: 'audienceError'
+          property :audience_insights_error, as: 'audienceInsightsError'
+          property :authentication_error, as: 'authenticationError'
+          property :authorization_error, as: 'authorizationError'
+          property :automatically_created_asset_removal_error, as: 'automaticallyCreatedAssetRemovalError'
+          property :batch_job_error, as: 'batchJobError'
+          property :benchmarks_error, as: 'benchmarksError'
+          property :bidding_error, as: 'biddingError'
+          property :bidding_strategy_error, as: 'biddingStrategyError'
+          property :billing_setup_error, as: 'billingSetupError'
+          property :brand_guidelines_migration_error, as: 'brandGuidelinesMigrationError'
+          property :campaign_budget_error, as: 'campaignBudgetError'
+          property :campaign_conversion_goal_error, as: 'campaignConversionGoalError'
+          property :campaign_criterion_error, as: 'campaignCriterionError'
+          property :campaign_customizer_error, as: 'campaignCustomizerError'
+          property :campaign_draft_error, as: 'campaignDraftError'
+          property :campaign_error, as: 'campaignError'
+          property :campaign_experiment_error, as: 'campaignExperimentError'
+          property :campaign_feed_error, as: 'campaignFeedError'
+          property :campaign_goal_config_error, as: 'campaignGoalConfigError'
+          property :campaign_lifecycle_goal_error, as: 'campaignLifecycleGoalError'
+          property :campaign_shared_set_error, as: 'campaignSharedSetError'
+          property :change_event_error, as: 'changeEventError'
+          property :change_status_error, as: 'changeStatusError'
+          property :click_view_error, as: 'clickViewError'
+          property :collection_size_error, as: 'collectionSizeError'
+          property :context_error, as: 'contextError'
+          property :conversion_action_error, as: 'conversionActionError'
+          property :conversion_adjustment_upload_error, as: 'conversionAdjustmentUploadError'
+          property :conversion_custom_variable_error, as: 'conversionCustomVariableError'
+          property :conversion_goal_campaign_config_error, as: 'conversionGoalCampaignConfigError'
+          property :conversion_upload_error, as: 'conversionUploadError'
+          property :conversion_value_rule_error, as: 'conversionValueRuleError'
+          property :conversion_value_rule_set_error, as: 'conversionValueRuleSetError'
+          property :country_code_error, as: 'countryCodeError'
+          property :criterion_error, as: 'criterionError'
+          property :currency_code_error, as: 'currencyCodeError'
+          property :currency_error, as: 'currencyError'
+          property :custom_audience_error, as: 'customAudienceError'
+          property :custom_column_error, as: 'customColumnError'
+          property :custom_conversion_goal_error, as: 'customConversionGoalError'
+          property :custom_interest_error, as: 'customInterestError'
+          property :customer_client_link_error, as: 'customerClientLinkError'
+          property :customer_customizer_error, as: 'customerCustomizerError'
+          property :customer_error, as: 'customerError'
+          property :customer_feed_error, as: 'customerFeedError'
+          property :customer_lifecycle_goal_error, as: 'customerLifecycleGoalError'
+          property :customer_manager_link_error, as: 'customerManagerLinkError'
+          property :customer_sk_ad_network_conversion_value_schema_error, as: 'customerSkAdNetworkConversionValueSchemaError'
+          property :customer_user_access_error, as: 'customerUserAccessError'
+          property :customizer_attribute_error, as: 'customizerAttributeError'
+          property :data_link_error, as: 'dataLinkError'
+          property :database_error, as: 'databaseError'
+          property :date_error, as: 'dateError'
+          property :date_range_error, as: 'dateRangeError'
+          property :distinct_error, as: 'distinctError'
+          property :enum_error, as: 'enumError'
+          property :experiment_arm_error, as: 'experimentArmError'
+          property :experiment_error, as: 'experimentError'
+          property :extension_feed_item_error, as: 'extensionFeedItemError'
+          property :extension_setting_error, as: 'extensionSettingError'
+          property :feed_attribute_reference_error, as: 'feedAttributeReferenceError'
+          property :feed_error, as: 'feedError'
+          property :feed_item_error, as: 'feedItemError'
+          property :feed_item_set_error, as: 'feedItemSetError'
+          property :feed_item_set_link_error, as: 'feedItemSetLinkError'
+          property :feed_item_target_error, as: 'feedItemTargetError'
+          property :feed_item_validation_error, as: 'feedItemValidationError'
+          property :feed_mapping_error, as: 'feedMappingError'
+          property :field_error, as: 'fieldError'
+          property :field_mask_error, as: 'fieldMaskError'
+          property :final_url_expansion_asset_view_error, as: 'finalUrlExpansionAssetViewError'
+          property :function_error, as: 'functionError'
+          property :function_parsing_error, as: 'functionParsingError'
+          property :geo_target_constant_suggestion_error, as: 'geoTargetConstantSuggestionError'
+          property :goal_error, as: 'goalError'
+          property :header_error, as: 'headerError'
+          property :id_error, as: 'idError'
+          property :identity_verification_error, as: 'identityVerificationError'
+          property :image_error, as: 'imageError'
+          property :incentive_error, as: 'incentiveError'
+          property :internal_error, as: 'internalError'
+          property :invalid_parameter_error, as: 'invalidParameterError'
+          property :invoice_error, as: 'invoiceError'
+          property :keyword_plan_ad_group_error, as: 'keywordPlanAdGroupError'
+          property :keyword_plan_ad_group_keyword_error, as: 'keywordPlanAdGroupKeywordError'
+          property :keyword_plan_campaign_error, as: 'keywordPlanCampaignError'
+          property :keyword_plan_campaign_keyword_error, as: 'keywordPlanCampaignKeywordError'
+          property :keyword_plan_error, as: 'keywordPlanError'
+          property :keyword_plan_idea_error, as: 'keywordPlanIdeaError'
+          property :label_error, as: 'labelError'
+          property :language_code_error, as: 'languageCodeError'
+          property :list_operation_error, as: 'listOperationError'
+          property :manager_link_error, as: 'managerLinkError'
+          property :media_bundle_error, as: 'mediaBundleError'
+          property :media_file_error, as: 'mediaFileError'
+          property :media_upload_error, as: 'mediaUploadError'
+          property :merchant_center_error, as: 'merchantCenterError'
+          property :multiplier_error, as: 'multiplierError'
+          property :mutate_error, as: 'mutateError'
+          property :new_resource_creation_error, as: 'newResourceCreationError'
+          property :not_allowlisted_error, as: 'notAllowlistedError'
+          property :not_empty_error, as: 'notEmptyError'
+          property :null_error, as: 'nullError'
+          property :offline_user_data_job_error, as: 'offlineUserDataJobError'
+          property :operation_access_denied_error, as: 'operationAccessDeniedError'
+          property :operator_error, as: 'operatorError'
+          property :partial_failure_error, as: 'partialFailureError'
+          property :payments_account_error, as: 'paymentsAccountError'
+          property :policy_finding_error, as: 'policyFindingError'
+          property :policy_validation_parameter_error, as: 'policyValidationParameterError'
+          property :policy_violation_error, as: 'policyViolationError'
+          property :product_link_error, as: 'productLinkError'
+          property :product_link_invitation_error, as: 'productLinkInvitationError'
+          property :query_error, as: 'queryError'
+          property :quota_error, as: 'quotaError'
+          property :range_error, as: 'rangeError'
+          property :reach_plan_error, as: 'reachPlanError'
+          property :recommendation_error, as: 'recommendationError'
+          property :recommendation_subscription_error, as: 'recommendationSubscriptionError'
+          property :region_code_error, as: 'regionCodeError'
+          property :request_error, as: 'requestError'
+          property :resource_access_denied_error, as: 'resourceAccessDeniedError'
+          property :resource_count_limit_exceeded_error, as: 'resourceCountLimitExceededError'
+          property :search_term_insight_error, as: 'searchTermInsightError'
+          property :setting_error, as: 'settingError'
+          property :shareable_preview_error, as: 'shareablePreviewError'
+          property :shared_criterion_error, as: 'sharedCriterionError'
+          property :shared_set_error, as: 'sharedSetError'
+          property :shopping_product_error, as: 'shoppingProductError'
+          property :size_limit_error, as: 'sizeLimitError'
+          property :smart_campaign_error, as: 'smartCampaignError'
+          property :string_format_error, as: 'stringFormatError'
+          property :string_length_error, as: 'stringLengthError'
+          property :third_party_app_analytics_link_error, as: 'thirdPartyAppAnalyticsLinkError'
+          property :time_zone_error, as: 'timeZoneError'
+          property :url_field_error, as: 'urlFieldError'
+          property :user_data_error, as: 'userDataError'
+          property :user_list_customer_type_error, as: 'userListCustomerTypeError'
+          property :user_list_error, as: 'userListError'
+          property :video_campaign_error, as: 'videoCampaignError'
+          property :youtube_video_registration_error, as: 'youtubeVideoRegistrationError'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :budget_per_day_minimum_error_details, as: 'budgetPerDayMinimumErrorDetails', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsBudgetPerDayMinimumErrorDetails, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsBudgetPerDayMinimumErrorDetails::Representation
+      
+          property :policy_finding_details, as: 'policyFindingDetails', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsPolicyFindingDetails, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsPolicyFindingDetails::Representation
+      
+          property :policy_violation_details, as: 'policyViolationDetails', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsPolicyViolationDetails, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsPolicyViolationDetails::Representation
+      
+          property :quota_error_details, as: 'quotaErrorDetails', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsQuotaErrorDetails, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsQuotaErrorDetails::Representation
+      
+          property :resource_count_details, as: 'resourceCountDetails', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsResourceCountDetails, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsResourceCountDetails::Representation
+      
+          property :unpublished_error_code, as: 'unpublishedErrorCode'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsErrorLocation
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :field_path_elements, as: 'fieldPathElements', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorLocationFieldPathElement, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorLocationFieldPathElement::Representation
+      
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsPolicyFindingDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :policy_topic_entries, as: 'policyTopicEntries', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEntry, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyTopicEntry::Representation
+      
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsPolicyViolationDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :external_policy_description, as: 'externalPolicyDescription'
+          property :external_policy_name, as: 'externalPolicyName'
+          property :is_exemptible, as: 'isExemptible'
+          property :key, as: 'key', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyViolationKey, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonPolicyViolationKey::Representation
+      
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsQuotaErrorDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :rate_name, as: 'rateName'
+          property :rate_scope, as: 'rateScope'
+          property :retry_delay, as: 'retryDelay'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsResourceCountDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :enclosing_id, as: 'enclosingId'
+          property :enclosing_resource, as: 'enclosingResource'
+          property :existing_count, as: 'existingCount'
+          property :limit, as: 'limit'
+          property :limit_type, as: 'limitType'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsSearchAds360Error
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :details, as: 'details', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorDetails, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorDetails::Representation
+      
+          property :error_code, as: 'errorCode', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorCode, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorCode::Representation
+      
+          property :location, as: 'location', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorLocation, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsErrorLocation::Representation
+      
+          property :message, as: 'message'
+          property :trigger, as: 'trigger', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonValue, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23CommonValue::Representation
+      
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ErrorsSearchAds360Failure
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :errors, as: 'errors', class: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsSearchAds360Error, decorator: Google::Apis::Searchads360V0::GoogleAdsSearchads360V23ErrorsSearchAds360Error::Representation
+      
+          property :request_id, as: 'requestId'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ResourcesBatchJobBatchJobMetadata
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :completion_date_time, as: 'completionDateTime'
+          property :creation_date_time, as: 'creationDateTime'
+          property :estimated_completion_ratio, as: 'estimatedCompletionRatio'
+          property :executed_operation_count, :numeric_string => true, as: 'executedOperationCount'
+          property :execution_limit_seconds, as: 'executionLimitSeconds'
+          property :operation_count, :numeric_string => true, as: 'operationCount'
+          property :start_date_time, as: 'startDateTime'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ResourcesOfflineUserDataJobMetadata
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :match_rate_range, as: 'matchRateRange'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ServicesPromoteExperimentMetadata
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :experiment, as: 'experiment'
+        end
+      end
+      
+      class GoogleAdsSearchads360V23ServicesScheduleExperimentMetadata
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :experiment, as: 'experiment'
         end
       end
     end
