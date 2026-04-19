@@ -94,6 +94,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class SafetySetting
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SafetySettings
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Status
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -166,6 +178,8 @@ module Google
           property :enable_textnorm, as: 'enableTextnorm'
           property :low_latency_journey_synthesis, as: 'lowLatencyJourneySynthesis'
           property :relax_safety_filters, as: 'relaxSafetyFilters'
+          property :safety_settings, as: 'safetySettings', class: Google::Apis::TexttospeechV1beta1::SafetySettings, decorator: Google::Apis::TexttospeechV1beta1::SafetySettings::Representation
+      
         end
       end
       
@@ -266,6 +280,22 @@ module Google
           hash :metadata, as: 'metadata'
           property :name, as: 'name'
           hash :response, as: 'response'
+        end
+      end
+      
+      class SafetySetting
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :category, as: 'category'
+          property :threshold, as: 'threshold'
+        end
+      end
+      
+      class SafetySettings
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :settings, as: 'settings', class: Google::Apis::TexttospeechV1beta1::SafetySetting, decorator: Google::Apis::TexttospeechV1beta1::SafetySetting::Representation
+      
         end
       end
       
