@@ -292,6 +292,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class CohortInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class ConfidentialInstanceConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -863,6 +869,12 @@ module Google
       end
       
       class PySparkJob
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class PySparkNotebookBatch
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1917,6 +1929,8 @@ module Google
           property :operation, as: 'operation'
           property :pyspark_batch, as: 'pysparkBatch', class: Google::Apis::DataprocV1::PySparkBatch, decorator: Google::Apis::DataprocV1::PySparkBatch::Representation
       
+          property :pyspark_notebook_batch, as: 'pysparkNotebookBatch', class: Google::Apis::DataprocV1::PySparkNotebookBatch, decorator: Google::Apis::DataprocV1::PySparkNotebookBatch::Representation
+      
           property :runtime_config, as: 'runtimeConfig', class: Google::Apis::DataprocV1::RuntimeConfig, decorator: Google::Apis::DataprocV1::RuntimeConfig::Representation
       
           property :runtime_info, as: 'runtimeInfo', class: Google::Apis::DataprocV1::RuntimeInfo, decorator: Google::Apis::DataprocV1::RuntimeInfo::Representation
@@ -2011,6 +2025,7 @@ module Google
       
           property :endpoint_config, as: 'endpointConfig', class: Google::Apis::DataprocV1::EndpointConfig, decorator: Google::Apis::DataprocV1::EndpointConfig::Representation
       
+          property :engine, as: 'engine'
           property :gce_cluster_config, as: 'gceClusterConfig', class: Google::Apis::DataprocV1::GceClusterConfig, decorator: Google::Apis::DataprocV1::GceClusterConfig::Representation
       
           property :gke_cluster_config, as: 'gkeClusterConfig', class: Google::Apis::DataprocV1::GkeClusterConfig, decorator: Google::Apis::DataprocV1::GkeClusterConfig::Representation
@@ -2101,6 +2116,14 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :cluster_repair_action, as: 'clusterRepairAction'
+        end
+      end
+      
+      class CohortInfo
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :cohort, as: 'cohort'
+          property :cohort_source, as: 'cohortSource'
         end
       end
       
@@ -2553,6 +2576,7 @@ module Google
       class InstanceFlexibilityPolicy
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          hash :instance_machine_types, as: 'instanceMachineTypes'
           collection :instance_selection_list, as: 'instanceSelectionList', class: Google::Apis::DataprocV1::InstanceSelection, decorator: Google::Apis::DataprocV1::InstanceSelection::Representation
       
           collection :instance_selection_results, as: 'instanceSelectionResults', class: Google::Apis::DataprocV1::InstanceSelectionResult, decorator: Google::Apis::DataprocV1::InstanceSelectionResult::Representation
@@ -3232,6 +3256,18 @@ module Google
         end
       end
       
+      class PySparkNotebookBatch
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :archive_uris, as: 'archiveUris'
+          collection :file_uris, as: 'fileUris'
+          collection :jar_file_uris, as: 'jarFileUris'
+          property :notebook_file_uri, as: 'notebookFileUri'
+          hash :params, as: 'params'
+          collection :python_file_uris, as: 'pythonFileUris'
+        end
+      end
+      
       class Quantiles
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -3436,6 +3472,8 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :approximate_usage, as: 'approximateUsage', class: Google::Apis::DataprocV1::UsageMetrics, decorator: Google::Apis::DataprocV1::UsageMetrics::Representation
+      
+          property :cohort_info, as: 'cohortInfo', class: Google::Apis::DataprocV1::CohortInfo, decorator: Google::Apis::DataprocV1::CohortInfo::Representation
       
           property :current_usage, as: 'currentUsage', class: Google::Apis::DataprocV1::UsageSnapshot, decorator: Google::Apis::DataprocV1::UsageSnapshot::Representation
       
@@ -3918,6 +3956,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :desc, as: 'desc'
+          hash :metadata, as: 'metadata'
           collection :metrics, as: 'metrics', class: Google::Apis::DataprocV1::SqlPlanMetric, decorator: Google::Apis::DataprocV1::SqlPlanMetric::Representation
       
           property :name, as: 'name'
@@ -3939,6 +3978,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :desc, as: 'desc'
+          hash :metadata, as: 'metadata'
           collection :metrics, as: 'metrics', class: Google::Apis::DataprocV1::SqlPlanMetric, decorator: Google::Apis::DataprocV1::SqlPlanMetric::Representation
       
           property :name, as: 'name'

@@ -1044,6 +1044,11 @@ module Google
         # @return [Google::Apis::DataprocV1::PySparkBatch]
         attr_accessor :pyspark_batch
       
+        # A configuration for running a PySpark Notebook batch workload.
+        # Corresponds to the JSON property `pysparkNotebookBatch`
+        # @return [Google::Apis::DataprocV1::PySparkNotebookBatch]
+        attr_accessor :pyspark_notebook_batch
+      
         # Runtime configuration for a workload.
         # Corresponds to the JSON property `runtimeConfig`
         # @return [Google::Apis::DataprocV1::RuntimeConfig]
@@ -1112,6 +1117,7 @@ module Google
           @name = args[:name] if args.key?(:name)
           @operation = args[:operation] if args.key?(:operation)
           @pyspark_batch = args[:pyspark_batch] if args.key?(:pyspark_batch)
+          @pyspark_notebook_batch = args[:pyspark_notebook_batch] if args.key?(:pyspark_notebook_batch)
           @runtime_config = args[:runtime_config] if args.key?(:runtime_config)
           @runtime_info = args[:runtime_info] if args.key?(:runtime_info)
           @spark_batch = args[:spark_batch] if args.key?(:spark_batch)
@@ -1466,6 +1472,11 @@ module Google
         # @return [Google::Apis::DataprocV1::EndpointConfig]
         attr_accessor :endpoint_config
       
+        # Optional. The cluster engine.
+        # Corresponds to the JSON property `engine`
+        # @return [String]
+        attr_accessor :engine
+      
         # Common config settings for resources of Compute Engine cluster instances,
         # applicable to all instances in the cluster.
         # Corresponds to the JSON property `gceClusterConfig`
@@ -1555,6 +1566,7 @@ module Google
           @diagnostic_bucket = args[:diagnostic_bucket] if args.key?(:diagnostic_bucket)
           @encryption_config = args[:encryption_config] if args.key?(:encryption_config)
           @endpoint_config = args[:endpoint_config] if args.key?(:endpoint_config)
+          @engine = args[:engine] if args.key?(:engine)
           @gce_cluster_config = args[:gce_cluster_config] if args.key?(:gce_cluster_config)
           @gke_cluster_config = args[:gke_cluster_config] if args.key?(:gke_cluster_config)
           @initialization_actions = args[:initialization_actions] if args.key?(:initialization_actions)
@@ -1814,6 +1826,31 @@ module Google
         # Update properties of this object
         def update!(**args)
           @cluster_repair_action = args[:cluster_repair_action] if args.key?(:cluster_repair_action)
+        end
+      end
+      
+      # Information about the cohort that the workload belongs to.
+      class CohortInfo
+        include Google::Apis::Core::Hashable
+      
+        # Output only. Final cohort that was used to tune the workload.
+        # Corresponds to the JSON property `cohort`
+        # @return [String]
+        attr_accessor :cohort
+      
+        # Output only. Source of the cohort.
+        # Corresponds to the JSON property `cohortSource`
+        # @return [String]
+        attr_accessor :cohort_source
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @cohort = args[:cohort] if args.key?(:cohort)
+          @cohort_source = args[:cohort_source] if args.key?(:cohort_source)
         end
       end
       
@@ -3747,6 +3784,14 @@ module Google
       class InstanceFlexibilityPolicy
         include Google::Apis::Core::Hashable
       
+        # Output only. A map of instance short name to machine type. The key is the
+        # short name of the Compute Engine instance, and the value is the full machine-
+        # type name (e.g., 'n1-standard-16'). See Machine types for more information on
+        # valid machine type strings.
+        # Corresponds to the JSON property `instanceMachineTypes`
+        # @return [Hash<String,String>]
+        attr_accessor :instance_machine_types
+      
         # Optional. List of instance selection options that the group will use when
         # creating new VMs.
         # Corresponds to the JSON property `instanceSelectionList`
@@ -3769,6 +3814,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @instance_machine_types = args[:instance_machine_types] if args.key?(:instance_machine_types)
           @instance_selection_list = args[:instance_selection_list] if args.key?(:instance_selection_list)
           @instance_selection_results = args[:instance_selection_results] if args.key?(:instance_selection_results)
           @provisioning_model_mix = args[:provisioning_model_mix] if args.key?(:provisioning_model_mix)
@@ -6461,6 +6507,57 @@ module Google
         end
       end
       
+      # A configuration for running a PySpark Notebook batch workload.
+      class PySparkNotebookBatch
+        include Google::Apis::Core::Hashable
+      
+        # Optional. HCFS URIs of archives to be extracted into the working directory of
+        # each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+        # Corresponds to the JSON property `archiveUris`
+        # @return [Array<String>]
+        attr_accessor :archive_uris
+      
+        # Optional. HCFS URIs of files to be placed in the working directory of each
+        # executor
+        # Corresponds to the JSON property `fileUris`
+        # @return [Array<String>]
+        attr_accessor :file_uris
+      
+        # Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        # Corresponds to the JSON property `jarFileUris`
+        # @return [Array<String>]
+        attr_accessor :jar_file_uris
+      
+        # Required. The HCFS URI of the notebook file to execute.
+        # Corresponds to the JSON property `notebookFileUri`
+        # @return [String]
+        attr_accessor :notebook_file_uri
+      
+        # Optional. The parameters to pass to the notebook.
+        # Corresponds to the JSON property `params`
+        # @return [Hash<String,String>]
+        attr_accessor :params
+      
+        # Optional. HCFS URIs of Python files to pass to the PySpark framework.
+        # Corresponds to the JSON property `pythonFileUris`
+        # @return [Array<String>]
+        attr_accessor :python_file_uris
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @archive_uris = args[:archive_uris] if args.key?(:archive_uris)
+          @file_uris = args[:file_uris] if args.key?(:file_uris)
+          @jar_file_uris = args[:jar_file_uris] if args.key?(:jar_file_uris)
+          @notebook_file_uri = args[:notebook_file_uri] if args.key?(:notebook_file_uri)
+          @params = args[:params] if args.key?(:params)
+          @python_file_uris = args[:python_file_uris] if args.key?(:python_file_uris)
+        end
+      end
+      
       # Quantile metrics data related to Tasks. Units can be seconds, bytes,
       # milliseconds, etc depending on the message type.
       class Quantiles
@@ -7223,6 +7320,11 @@ module Google
         # @return [Google::Apis::DataprocV1::UsageMetrics]
         attr_accessor :approximate_usage
       
+        # Information about the cohort that the workload belongs to.
+        # Corresponds to the JSON property `cohortInfo`
+        # @return [Google::Apis::DataprocV1::CohortInfo]
+        attr_accessor :cohort_info
+      
         # The usage snapshot represents the resources consumed by a workload at a
         # specified time.
         # Corresponds to the JSON property `currentUsage`
@@ -7258,6 +7360,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @approximate_usage = args[:approximate_usage] if args.key?(:approximate_usage)
+          @cohort_info = args[:cohort_info] if args.key?(:cohort_info)
           @current_usage = args[:current_usage] if args.key?(:current_usage)
           @diagnostic_output_uri = args[:diagnostic_output_uri] if args.key?(:diagnostic_output_uri)
           @endpoints = args[:endpoints] if args.key?(:endpoints)
@@ -8952,6 +9055,11 @@ module Google
         # @return [String]
         attr_accessor :desc
       
+        # Optional. Additional metadata for the spark plan graph cluster.
+        # Corresponds to the JSON property `metadata`
+        # @return [Hash<String,String>]
+        attr_accessor :metadata
+      
         # 
         # Corresponds to the JSON property `metrics`
         # @return [Array<Google::Apis::DataprocV1::SqlPlanMetric>]
@@ -8979,6 +9087,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @desc = args[:desc] if args.key?(:desc)
+          @metadata = args[:metadata] if args.key?(:metadata)
           @metrics = args[:metrics] if args.key?(:metrics)
           @name = args[:name] if args.key?(:name)
           @nodes = args[:nodes] if args.key?(:nodes)
@@ -9020,6 +9129,11 @@ module Google
         # @return [String]
         attr_accessor :desc
       
+        # Optional. Additional metadata for the spark plan graph cluster.
+        # Corresponds to the JSON property `metadata`
+        # @return [Hash<String,String>]
+        attr_accessor :metadata
+      
         # 
         # Corresponds to the JSON property `metrics`
         # @return [Array<Google::Apis::DataprocV1::SqlPlanMetric>]
@@ -9042,6 +9156,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @desc = args[:desc] if args.key?(:desc)
+          @metadata = args[:metadata] if args.key?(:metadata)
           @metrics = args[:metrics] if args.key?(:metrics)
           @name = args[:name] if args.key?(:name)
           @spark_plan_graph_node_id = args[:spark_plan_graph_node_id] if args.key?(:spark_plan_graph_node_id)

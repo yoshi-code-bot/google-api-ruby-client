@@ -3876,9 +3876,12 @@ module Google
         #   an implicit AND operator.Example filter:status.state = ACTIVE AND clusterName =
         #   mycluster AND labels.env = staging AND labels.starred = *
         # @param [Fixnum] page_size
-        #   Optional. The standard List page size.
+        #   Optional. The maximum number of clusters to return in each response. The
+        #   service may return fewer than this value. If unspecified, the default value is
+        #   200. The maximum value is 1000.
         # @param [String] page_token
-        #   Optional. The standard List page token.
+        #   Optional. A page token received from a previous ListClusters call. Provide
+        #   this token to retrieve the subsequent page.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
