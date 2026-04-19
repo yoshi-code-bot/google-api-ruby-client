@@ -940,6 +940,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class CommitmentParams
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class CommitmentResourceStatus
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -988,6 +994,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class CompositeHealthCheckHealth
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class CompositeHealthCheckList
         class Representation < Google::Apis::Core::JsonRepresentation; end
         
@@ -1002,6 +1014,12 @@ module Google
         
           include Google::Apis::Core::JsonObjectSupport
         end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class CompositeHealthChecksGetHealthResponseHealthSourceHealth
+        class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
@@ -1272,6 +1290,12 @@ module Google
         
           include Google::Apis::Core::JsonObjectSupport
         end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class DiskUpdateKmsKeyRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
@@ -1643,6 +1667,12 @@ module Google
       end
       
       class FutureReservationCommitmentInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class FutureReservationParams
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -2200,6 +2230,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class HealthSourceHealth
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class HealthSourceList
         class Representation < Google::Apis::Core::JsonRepresentation; end
         
@@ -2214,6 +2250,18 @@ module Google
         
           include Google::Apis::Core::JsonObjectSupport
         end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class HealthSourcesGetHealthResponseSourceInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class HealthSourcesGetHealthResponseSourceInfoBackendInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
@@ -5836,6 +5884,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class RegionDiskUpdateKmsKeyRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class RegionDisksAddResourcePoliciesRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -6125,6 +6179,12 @@ module Google
       end
       
       class RegionSetPolicyRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class RegionSnapshotUpdateKmsKeyRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -6707,6 +6767,12 @@ module Google
       end
       
       class RolloutWaveDetailsOrchestratedWaveDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -7613,6 +7679,12 @@ module Google
       end
       
       class SnapshotSettingsStorageLocationSettingsStorageLocationPreference
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SnapshotUpdateKmsKeyRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -8710,7 +8782,19 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class UrlMapQuotaUsage
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class UrlMapReference
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class UrlMapStatus
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -9999,6 +10083,7 @@ module Google
           property :orchestration_info, as: 'orchestrationInfo', class: Google::Apis::ComputeBeta::BackendBackendOrchestrationInfo, decorator: Google::Apis::ComputeBeta::BackendBackendOrchestrationInfo::Representation
       
           property :preference, as: 'preference'
+          property :service, as: 'service'
           property :traffic_duration, as: 'trafficDuration'
         end
       end
@@ -10965,6 +11050,8 @@ module Google
       
           collection :merge_source_commitments, as: 'mergeSourceCommitments'
           property :name, as: 'name'
+          property :params, as: 'params', class: Google::Apis::ComputeBeta::CommitmentParams, decorator: Google::Apis::ComputeBeta::CommitmentParams::Representation
+      
           property :plan, as: 'plan'
           property :region, as: 'region'
           collection :reservations, as: 'reservations', class: Google::Apis::ComputeBeta::Reservation, decorator: Google::Apis::ComputeBeta::Reservation::Representation
@@ -11044,6 +11131,13 @@ module Google
               property :value, as: 'value'
             end
           end
+        end
+      end
+      
+      class CommitmentParams
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          hash :resource_manager_tags, as: 'resourceManagerTags'
         end
       end
       
@@ -11132,6 +11226,16 @@ module Google
         end
       end
       
+      class CompositeHealthCheckHealth
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :health_sources, as: 'healthSources', class: Google::Apis::ComputeBeta::CompositeHealthChecksGetHealthResponseHealthSourceHealth, decorator: Google::Apis::ComputeBeta::CompositeHealthChecksGetHealthResponseHealthSourceHealth::Representation
+      
+          property :health_state, as: 'healthState'
+          property :kind, as: 'kind'
+        end
+      end
+      
       class CompositeHealthCheckList
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -11161,6 +11265,14 @@ module Google
               property :value, as: 'value'
             end
           end
+        end
+      end
+      
+      class CompositeHealthChecksGetHealthResponseHealthSourceHealth
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :health_state, as: 'healthState'
+          property :source, as: 'source'
         end
       end
       
@@ -11673,6 +11785,13 @@ module Google
               property :value, as: 'value'
             end
           end
+        end
+      end
+      
+      class DiskUpdateKmsKeyRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :kms_key_name, as: 'kmsKeyName'
         end
       end
       
@@ -12375,6 +12494,8 @@ module Google
           property :kind, as: 'kind'
           property :name, as: 'name'
           property :name_prefix, as: 'namePrefix'
+          property :params, as: 'params', class: Google::Apis::ComputeBeta::FutureReservationParams, decorator: Google::Apis::ComputeBeta::FutureReservationParams::Representation
+      
           property :planning_status, as: 'planningStatus'
           property :protection_tier, as: 'protectionTier'
           property :reservation_mode, as: 'reservationMode'
@@ -12401,6 +12522,13 @@ module Google
           property :commitment_name, as: 'commitmentName'
           property :commitment_plan, as: 'commitmentPlan'
           property :previous_commitment_terms, as: 'previousCommitmentTerms'
+        end
+      end
+      
+      class FutureReservationParams
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          hash :resource_manager_tags, as: 'resourceManagerTags'
         end
       end
       
@@ -13394,6 +13522,16 @@ module Google
         end
       end
       
+      class HealthSourceHealth
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :health_state, as: 'healthState'
+          property :kind, as: 'kind'
+          collection :sources, as: 'sources', class: Google::Apis::ComputeBeta::HealthSourcesGetHealthResponseSourceInfo, decorator: Google::Apis::ComputeBeta::HealthSourcesGetHealthResponseSourceInfo::Representation
+      
+        end
+      end
+      
       class HealthSourceList
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -13423,6 +13561,25 @@ module Google
               property :value, as: 'value'
             end
           end
+        end
+      end
+      
+      class HealthSourcesGetHealthResponseSourceInfo
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :backends, as: 'backends', class: Google::Apis::ComputeBeta::HealthSourcesGetHealthResponseSourceInfoBackendInfo, decorator: Google::Apis::ComputeBeta::HealthSourcesGetHealthResponseSourceInfoBackendInfo::Representation
+      
+          property :forwarding_rule, as: 'forwardingRule'
+          property :source, as: 'source'
+        end
+      end
+      
+      class HealthSourcesGetHealthResponseSourceInfoBackendInfo
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :endpoint_count, as: 'endpointCount'
+          property :group, as: 'group'
+          property :healthy_endpoint_count, as: 'healthyEndpointCount'
         end
       end
       
@@ -17676,6 +17833,7 @@ module Google
           property :ipv6_address, as: 'ipv6Address'
           property :project_id_or_num, as: 'projectIdOrNum'
           collection :secondary_ip_cidr_ranges, as: 'secondaryIpCidrRanges'
+          property :service_class_id, as: 'serviceClassId'
           property :status, as: 'status'
           property :subnetwork, as: 'subnetwork'
           property :subnetwork_cidr_range, as: 'subnetworkCidrRange'
@@ -18146,6 +18304,7 @@ module Google
           property :nic_type, as: 'nicType'
           property :parent_nic_name, as: 'parentNicName'
           property :queue_count, as: 'queueCount'
+          property :service_class_id, as: 'serviceClassId'
           property :stack_type, as: 'stackType'
           property :subnetwork, as: 'subnetwork'
           property :vlan, as: 'vlan'
@@ -20247,6 +20406,13 @@ module Google
         end
       end
       
+      class RegionDiskUpdateKmsKeyRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :kms_key_name, as: 'kmsKeyName'
+        end
+      end
+      
       class RegionDisksAddResourcePoliciesRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -20689,6 +20855,13 @@ module Google
           property :etag, :base64 => true, as: 'etag'
           property :policy, as: 'policy', class: Google::Apis::ComputeBeta::Policy, decorator: Google::Apis::ComputeBeta::Policy::Representation
       
+        end
+      end
+      
+      class RegionSnapshotUpdateKmsKeyRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :kms_key_name, as: 'kmsKeyName'
         end
       end
       
@@ -21734,6 +21907,15 @@ module Google
           property :estimated_total_resources_count, :numeric_string => true, as: 'estimatedTotalResourcesCount'
           collection :failed_locations, as: 'failedLocations'
           property :failed_resources_count, :numeric_string => true, as: 'failedResourcesCount'
+          hash :location_status, as: 'locationStatus', class: Google::Apis::ComputeBeta::RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus, decorator: Google::Apis::ComputeBeta::RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus::Representation
+      
+        end
+      end
+      
+      class RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :state, as: 'state'
         end
       end
       
@@ -23496,6 +23678,13 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :name, as: 'name'
+        end
+      end
+      
+      class SnapshotUpdateKmsKeyRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :kms_key_name, as: 'kmsKeyName'
         end
       end
       
@@ -25464,6 +25653,8 @@ module Google
       
           property :region, as: 'region'
           property :self_link, as: 'selfLink'
+          property :status, as: 'status', class: Google::Apis::ComputeBeta::UrlMapStatus, decorator: Google::Apis::ComputeBeta::UrlMapStatus::Representation
+      
           collection :tests, as: 'tests', class: Google::Apis::ComputeBeta::UrlMapTest, decorator: Google::Apis::ComputeBeta::UrlMapTest::Representation
       
         end
@@ -25501,10 +25692,26 @@ module Google
         end
       end
       
+      class UrlMapQuotaUsage
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :forwarding_rules, as: 'forwardingRules'
+          property :units, :numeric_string => true, as: 'units'
+        end
+      end
+      
       class UrlMapReference
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :url_map, as: 'urlMap'
+        end
+      end
+      
+      class UrlMapStatus
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :quota_usage, as: 'quotaUsage', class: Google::Apis::ComputeBeta::UrlMapQuotaUsage, decorator: Google::Apis::ComputeBeta::UrlMapQuotaUsage::Representation
+      
         end
       end
       
@@ -25535,6 +25742,8 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :load_errors, as: 'loadErrors'
           property :load_succeeded, as: 'loadSucceeded'
+          property :quota_usage, as: 'quotaUsage', class: Google::Apis::ComputeBeta::UrlMapQuotaUsage, decorator: Google::Apis::ComputeBeta::UrlMapQuotaUsage::Representation
+      
           collection :test_failures, as: 'testFailures', class: Google::Apis::ComputeBeta::TestFailure, decorator: Google::Apis::ComputeBeta::TestFailure::Representation
       
           property :test_passed, as: 'testPassed'
