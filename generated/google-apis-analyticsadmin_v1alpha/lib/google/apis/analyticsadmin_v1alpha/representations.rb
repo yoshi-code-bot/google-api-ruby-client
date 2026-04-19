@@ -988,6 +988,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleAnalyticsAdminV1alphaUserProvidedDataSettings
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleProtobufEmpty
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1596,6 +1602,8 @@ module Google
           property :skadnetwork_conversion_value_schema, as: 'skadnetworkConversionValueSchema', class: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaSkAdNetworkConversionValueSchema, decorator: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaSkAdNetworkConversionValueSchema::Representation
       
           property :subproperty_sync_config, as: 'subpropertySyncConfig', class: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaSubpropertySyncConfig, decorator: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaSubpropertySyncConfig::Representation
+      
+          property :user_provided_data_settings, as: 'userProvidedDataSettings', class: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaUserProvidedDataSettings, decorator: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaUserProvidedDataSettings::Representation
       
         end
       end
@@ -2652,6 +2660,15 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :access_binding, as: 'accessBinding', class: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaAccessBinding, decorator: Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaAccessBinding::Representation
       
+        end
+      end
+      
+      class GoogleAnalyticsAdminV1alphaUserProvidedDataSettings
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :automatically_detected_data_collection_enabled, as: 'automaticallyDetectedDataCollectionEnabled'
+          property :name, as: 'name'
+          property :user_provided_data_collection_enabled, as: 'userProvidedDataCollectionEnabled'
         end
       end
       
