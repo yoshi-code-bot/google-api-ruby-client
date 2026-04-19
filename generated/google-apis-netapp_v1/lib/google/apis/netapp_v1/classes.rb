@@ -1473,7 +1473,7 @@ module Google
       end
       
       # Configuration for a Large Capacity Volume. A Large Capacity Volume supports
-      # sizes ranging from 12 TiB to 20 PiB, it is composed of multiple internal
+      # sizes ranging from 4.8 TiB to 20 PiB, it is composed of multiple internal
       # constituents, and must be created in a large capacity pool.
       class LargeCapacityConfig
         include Google::Apis::Core::Hashable
@@ -2931,11 +2931,11 @@ module Google
         attr_accessor :satisfies_pzs
         alias_method :satisfies_pzs?, :satisfies_pzs
       
-        # Optional. The effective scale tier of the storage pool. If `scale_tier` is not
-        # specified during creation, this defaults to `SCALE_TIER_STANDARD`.
-        # Corresponds to the JSON property `scaleTier`
+        # Optional. The scale type of the storage pool. Defaults to `SCALE_TYPE_DEFAULT`
+        # if not specified.
+        # Corresponds to the JSON property `scaleType`
         # @return [String]
-        attr_accessor :scale_tier
+        attr_accessor :scale_type
       
         # Required. Service level of the storage pool
         # Corresponds to the JSON property `serviceLevel`
@@ -3015,7 +3015,7 @@ module Google
           @replica_zone = args[:replica_zone] if args.key?(:replica_zone)
           @satisfies_pzi = args[:satisfies_pzi] if args.key?(:satisfies_pzi)
           @satisfies_pzs = args[:satisfies_pzs] if args.key?(:satisfies_pzs)
-          @scale_tier = args[:scale_tier] if args.key?(:scale_tier)
+          @scale_type = args[:scale_type] if args.key?(:scale_type)
           @service_level = args[:service_level] if args.key?(:service_level)
           @state = args[:state] if args.key?(:state)
           @state_details = args[:state_details] if args.key?(:state_details)
@@ -3334,14 +3334,16 @@ module Google
         attr_accessor :labels
       
         # Optional. Flag indicating if the volume will be a large capacity volume or a
-        # regular volume.
+        # regular volume. This field is used for legacy FILE pools. For Unified pools,
+        # use the `large_capacity_config` field instead. This field and `
+        # large_capacity_config` are mutually exclusive.
         # Corresponds to the JSON property `largeCapacity`
         # @return [Boolean]
         attr_accessor :large_capacity
         alias_method :large_capacity?, :large_capacity
       
         # Configuration for a Large Capacity Volume. A Large Capacity Volume supports
-        # sizes ranging from 12 TiB to 20 PiB, it is composed of multiple internal
+        # sizes ranging from 4.8 TiB to 20 PiB, it is composed of multiple internal
         # constituents, and must be created in a large capacity pool.
         # Corresponds to the JSON property `largeCapacityConfig`
         # @return [Google::Apis::NetappV1::LargeCapacityConfig]

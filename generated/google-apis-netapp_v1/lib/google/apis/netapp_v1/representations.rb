@@ -1173,7 +1173,7 @@ module Google
           property :replica_zone, as: 'replicaZone'
           property :satisfies_pzi, as: 'satisfiesPzi'
           property :satisfies_pzs, as: 'satisfiesPzs'
-          property :scale_tier, as: 'scaleTier'
+          property :scale_type, as: 'scaleType'
           property :service_level, as: 'serviceLevel'
           property :state, as: 'state'
           property :state_details, as: 'stateDetails'
