@@ -1945,6 +1945,11 @@ module Google
         # @return [Google::Apis::DlpV2::GooglePrivacyDlpV2ByteContentItem]
         attr_accessor :byte_item
       
+        # Metadata on content to be scanned.
+        # Corresponds to the JSON property `contentMetadata`
+        # @return [Google::Apis::DlpV2::GooglePrivacyDlpV2ContentMetadata]
+        attr_accessor :content_metadata
+      
         # Structured content to inspect. Up to 50,000 `Value`s per request allowed. See
         # https://cloud.google.com/sensitive-data-protection/docs/inspecting-structured-
         # text#inspecting_a_table to learn more.
@@ -1964,6 +1969,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @byte_item = args[:byte_item] if args.key?(:byte_item)
+          @content_metadata = args[:content_metadata] if args.key?(:content_metadata)
           @table = args[:table] if args.key?(:table)
           @value = args[:value] if args.key?(:value)
         end
@@ -2030,6 +2036,25 @@ module Google
           @image_location = args[:image_location] if args.key?(:image_location)
           @metadata_location = args[:metadata_location] if args.key?(:metadata_location)
           @record_location = args[:record_location] if args.key?(:record_location)
+        end
+      end
+      
+      # Metadata on content to be scanned.
+      class GooglePrivacyDlpV2ContentMetadata
+        include Google::Apis::Core::Hashable
+      
+        # User provided key-value pairs of content metadata.
+        # Corresponds to the JSON property `properties`
+        # @return [Array<Google::Apis::DlpV2::GooglePrivacyDlpV2KeyValueMetadataProperty>]
+        attr_accessor :properties
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @properties = args[:properties] if args.key?(:properties)
         end
       end
       
@@ -7254,6 +7279,31 @@ module Google
         # Update properties of this object
         def update!(**args)
           @key = args[:key] if args.key?(:key)
+        end
+      end
+      
+      # A key-value pair in the Metadata.
+      class GooglePrivacyDlpV2KeyValueMetadataProperty
+        include Google::Apis::Core::Hashable
+      
+        # The key of the property.
+        # Corresponds to the JSON property `key`
+        # @return [String]
+        attr_accessor :key
+      
+        # The value of the property.
+        # Corresponds to the JSON property `value`
+        # @return [String]
+        attr_accessor :value
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @key = args[:key] if args.key?(:key)
+          @value = args[:value] if args.key?(:value)
         end
       end
       
