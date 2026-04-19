@@ -961,9 +961,8 @@ module Google
         # @return [Array<String>]
         attr_accessor :discovery_document_ids
       
-        # Required. Data Leak specific severity This will be the string representation
-        # of the DataLeakFindingDetail.Severityenum. (e.g., "LOW", "MEDIUM", "HIGH", "
-        # CRITICAL")
+        # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `
+        # MEDIUM` * `HIGH` * `CRITICAL`
         # Corresponds to the JSON property `severity`
         # @return [String]
         attr_accessor :severity
@@ -1307,7 +1306,8 @@ module Google
         # @return [Array<String>]
         attr_accessor :discovery_document_ids
       
-        # Required. IAB specific severity
+        # Required. The severity of the Initial Access Broker (IAB) alert. Allowed
+        # values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
         # Corresponds to the JSON property `severity`
         # @return [String]
         attr_accessor :severity
@@ -1368,9 +1368,8 @@ module Google
         # @return [Array<String>]
         attr_accessor :discovery_document_ids
       
-        # Required. InsiderThreat specific severity This will be the string
-        # representation of the InsiderThreatFindingDetail.Severityenum. (e.g., "LOW", "
-        # MEDIUM", "HIGH", "CRITICAL")
+        # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW`
+        # * `MEDIUM` * `HIGH` * `CRITICAL`
         # Corresponds to the JSON property `severity`
         # @return [String]
         attr_accessor :severity
