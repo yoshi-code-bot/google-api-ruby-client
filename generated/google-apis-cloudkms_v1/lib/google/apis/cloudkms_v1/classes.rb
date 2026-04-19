@@ -1970,6 +1970,15 @@ module Google
         # @return [Google::Apis::CloudkmsV1::KeyAccessJustificationsPolicy]
         attr_accessor :default_key_access_justification_policy
       
+        # Output only. Indicates whether this parent resource is available to default
+        # policy feature. Please consult [the prerequisite of default policy feature](
+        # https://cloud.google.com/assured-workloads/key-access-justifications/docs/set-
+        # default-policy#before) for more details.
+        # Corresponds to the JSON property `defaultPolicyAvailable`
+        # @return [Boolean]
+        attr_accessor :default_policy_available
+        alias_method :default_policy_available?, :default_policy_available
+      
         # Identifier. Represents the resource name for this
         # KeyAccessJustificationsPolicyConfig in the format of "`organizations|folders|
         # projects`/*/kajPolicyConfig".
@@ -1984,6 +1993,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @default_key_access_justification_policy = args[:default_key_access_justification_policy] if args.key?(:default_key_access_justification_policy)
+          @default_policy_available = args[:default_policy_available] if args.key?(:default_policy_available)
           @name = args[:name] if args.key?(:name)
         end
       end
@@ -3815,6 +3825,14 @@ module Google
         # @return [String]
         attr_accessor :disable_time
       
+        # Optional. Immutable. Indicates whether key portability is enabled for the
+        # SingleTenantHsmInstance. This can only be set at creation time. Key
+        # portability features are disabled by default and not yet available in GA.
+        # Corresponds to the JSON property `keyPortabilityEnabled`
+        # @return [Boolean]
+        attr_accessor :key_portability_enabled
+        alias_method :key_portability_enabled?, :key_portability_enabled
+      
         # Identifier. The resource name for this SingleTenantHsmInstance in the format `
         # projects/*/locations/*/singleTenantHsmInstances/*`.
         # Corresponds to the JSON property `name`
@@ -3847,6 +3865,7 @@ module Google
           @create_time = args[:create_time] if args.key?(:create_time)
           @delete_time = args[:delete_time] if args.key?(:delete_time)
           @disable_time = args[:disable_time] if args.key?(:disable_time)
+          @key_portability_enabled = args[:key_portability_enabled] if args.key?(:key_portability_enabled)
           @name = args[:name] if args.key?(:name)
           @quorum_auth = args[:quorum_auth] if args.key?(:quorum_auth)
           @state = args[:state] if args.key?(:state)
