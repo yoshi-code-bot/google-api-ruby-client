@@ -113,10 +113,15 @@ module Google
         end
         
         # Lists information about the supported locations for this service. This method
-        # can be called in two ways: * **List all public locations:** Use the path `GET /
-        # v1/locations`. * **List project-visible locations:** Use the path `GET /v1/
-        # projects/`project_id`/locations`. This may include public locations as well as
-        # private or other locations specifically visible to the project.
+        # lists locations based on the resource scope provided in the [
+        # ListLocationsRequest.name] field: * **Global locations**: If `name` is empty,
+        # the method lists the public locations available to all projects. * **Project-
+        # specific locations**: If `name` follows the format `projects/`project``, the
+        # method lists locations visible to that specific project. This includes public,
+        # private, or other project-specific locations enabled for the project. For gRPC
+        # and client library implementations, the resource name is passed as the `name`
+        # field. For direct service calls, the resource name is incorporated into the
+        # request path based on the specific service implementation and version.
         # @param [String] name
         #   The resource that owns the locations collection, if applicable.
         # @param [Array<String>, String] extra_location_types
@@ -196,6 +201,402 @@ module Google
           command.response_class = Google::Apis::ConfigV1::Operation
           command.params['name'] = name unless name.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Creates a DeploymentGroup The newly created DeploymentGroup will be in the `
+        # CREATING` state and can be retrieved via Get and List calls.
+        # @param [String] parent
+        #   Required. The parent in whose context the Deployment Group is created. The
+        #   parent value is in the format: 'projects/`project_id`/locations/`location`'
+        # @param [Google::Apis::ConfigV1::DeploymentGroup] deployment_group_object
+        # @param [String] deployment_group_id
+        #   Required. The deployment group ID.
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes since the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project_location_deployment_group(parent, deployment_group_object = nil, deployment_group_id: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+parent}/deploymentGroups', options)
+          command.request_representation = Google::Apis::ConfigV1::DeploymentGroup::Representation
+          command.request_object = deployment_group_object
+          command.response_representation = Google::Apis::ConfigV1::Operation::Representation
+          command.response_class = Google::Apis::ConfigV1::Operation
+          command.params['parent'] = parent unless parent.nil?
+          command.query['deploymentGroupId'] = deployment_group_id unless deployment_group_id.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a DeploymentGroup
+        # @param [String] name
+        #   Required. The name of DeploymentGroup in the format projects/`project_id`/
+        #   locations/`location_id`/deploymentGroups/`deploymentGroup`
+        # @param [String] deployment_reference_policy
+        #   Optional. Policy on how to handle referenced deployments when deleting the
+        #   DeploymentGroup. If unspecified, the default behavior is to fail the deletion
+        #   if any deployments currently referenced in the `deployment_units` of the
+        #   DeploymentGroup or in the latest revision are not deleted.
+        # @param [Boolean] force
+        #   Optional. If set to true, any revisions for this deployment group will also be
+        #   deleted. (Otherwise, the request will only work if the deployment group has no
+        #   revisions.)
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes after the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_deployment_group(name, deployment_reference_policy: nil, force: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:delete, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::ConfigV1::Operation::Representation
+          command.response_class = Google::Apis::ConfigV1::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['deploymentReferencePolicy'] = deployment_reference_policy unless deployment_reference_policy.nil?
+          command.query['force'] = force unless force.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deprovisions a deployment group. NOTE: As a first step of this operation,
+        # Infra Manager will automatically delete any Deployments that were part of the *
+        # last successful* DeploymentGroupRevision but are *no longer* included in the *
+        # current* DeploymentGroup definition (e.g., following an `UpdateDeploymentGroup`
+        # call), along with their actuated resources.
+        # @param [String] name
+        #   Required. The name of the deployment group to deprovision. Format: 'projects/`
+        #   project_id`/locations/`location`/deploymentGroups/`deployment_group`'.
+        # @param [Google::Apis::ConfigV1::DeprovisionDeploymentGroupRequest] deprovision_deployment_group_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def deprovision_deployment_group(name, deprovision_deployment_group_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+name}:deprovision', options)
+          command.request_representation = Google::Apis::ConfigV1::DeprovisionDeploymentGroupRequest::Representation
+          command.request_object = deprovision_deployment_group_request_object
+          command.response_representation = Google::Apis::ConfigV1::Operation::Representation
+          command.response_class = Google::Apis::ConfigV1::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Get a DeploymentGroup for a given project and location.
+        # @param [String] name
+        #   Required. The name of the deployment group to retrieve. Format: 'projects/`
+        #   project_id`/locations/`location`/deploymentGroups/`deployment_group`'.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::DeploymentGroup] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::DeploymentGroup]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_deployment_group(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::ConfigV1::DeploymentGroup::Representation
+          command.response_class = Google::Apis::ConfigV1::DeploymentGroup
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # List DeploymentGroups for a given project and location.
+        # @param [String] parent
+        #   Required. The parent, which owns this collection of deployment groups. Format:
+        #   'projects/`project_id`/locations/`location`'.
+        # @param [String] filter
+        #   Optional. Lists the DeploymentGroups that match the filter expression. A
+        #   filter expression filters the deployment groups listed in the response. The
+        #   expression must be of the form '`field` `operator` `value`' where operators: '<
+        #   ', '>', '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
+        #   operator which is roughly synonymous with equality). `field` can refer to a
+        #   proto or JSON field, or a synthetic field. Field names can be camelCase or
+        #   snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-
+        #   central1/deploymentGroups/bar" - Filter by labels: - Resources that have a key
+        #   called 'foo' labels.foo:* - Resources that have a key called 'foo' whose value
+        #   is 'bar' labels.foo = bar - Filter by state: - DeploymentGroups in CREATING
+        #   state. state=CREATING
+        # @param [String] order_by
+        #   Optional. Field to use to sort the list.
+        # @param [Fixnum] page_size
+        #   Optional. When requesting a page of resources, 'page_size' specifies number of
+        #   resources to return. If unspecified, at most 500 will be returned. The maximum
+        #   value is 1000.
+        # @param [String] page_token
+        #   Optional. Token returned by previous call to 'ListDeploymentGroups' which
+        #   specifies the position in the list from where to continue listing the
+        #   deployment groups.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::ListDeploymentGroupsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::ListDeploymentGroupsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_project_location_deployment_groups(parent, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+parent}/deploymentGroups', options)
+          command.response_representation = Google::Apis::ConfigV1::ListDeploymentGroupsResponse::Representation
+          command.response_class = Google::Apis::ConfigV1::ListDeploymentGroupsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Updates a DeploymentGroup
+        # @param [String] name
+        #   Identifier. The name of the deployment group. Format: 'projects/`project_id`/
+        #   locations/`location`/deploymentGroups/`deployment_group`'.
+        # @param [Google::Apis::ConfigV1::DeploymentGroup] deployment_group_object
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes since the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] update_mask
+        #   Optional. Field mask used to specify the fields to be overwritten in the
+        #   Deployment Group resource by the update. The fields specified in the
+        #   update_mask are relative to the resource, not the full request. A field will
+        #   be overwritten if it is in the mask. If the user does not provide a mask then
+        #   all fields will be overwritten.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def patch_project_location_deployment_group(name, deployment_group_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:patch, 'v1/{+name}', options)
+          command.request_representation = Google::Apis::ConfigV1::DeploymentGroup::Representation
+          command.request_object = deployment_group_object
+          command.response_representation = Google::Apis::ConfigV1::Operation::Representation
+          command.response_class = Google::Apis::ConfigV1::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Provisions a deployment group. NOTE: As a first step of this operation, Infra
+        # Manager will automatically delete any Deployments that were part of the *last
+        # successful* DeploymentGroupRevision but are *no longer* included in the *
+        # current* DeploymentGroup definition (e.g., following an `UpdateDeploymentGroup`
+        # call), along with their actuated resources.
+        # @param [String] name
+        #   Required. The name of the deployment group to provision. Format: 'projects/`
+        #   project_id`/locations/`location`/deploymentGroups/`deployment_group`'.
+        # @param [Google::Apis::ConfigV1::ProvisionDeploymentGroupRequest] provision_deployment_group_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def provision_deployment_group(name, provision_deployment_group_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+name}:provision', options)
+          command.request_representation = Google::Apis::ConfigV1::ProvisionDeploymentGroupRequest::Representation
+          command.request_object = provision_deployment_group_request_object
+          command.response_representation = Google::Apis::ConfigV1::Operation::Representation
+          command.response_class = Google::Apis::ConfigV1::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Gets details about a DeploymentGroupRevision.
+        # @param [String] name
+        #   Required. The name of the deployment group revision to retrieve. Format: '
+        #   projects/`project_id`/locations/`location`/deploymentGroups/`deployment_group`/
+        #   revisions/`revision`'.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::DeploymentGroupRevision] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::DeploymentGroupRevision]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_deployment_group_revision(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::ConfigV1::DeploymentGroupRevision::Representation
+          command.response_class = Google::Apis::ConfigV1::DeploymentGroupRevision
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists DeploymentGroupRevisions in a given DeploymentGroup.
+        # @param [String] parent
+        #   Required. The parent, which owns this collection of deployment group revisions.
+        #   Format: 'projects/`project_id`/locations/`location`/deploymentGroups/`
+        #   deployment_group`'.
+        # @param [Fixnum] page_size
+        #   Optional. When requesting a page of resources, 'page_size' specifies number of
+        #   resources to return. If unspecified, a sensible default will be used by the
+        #   server. The maximum value is 1000; values above 1000 will be coerced to 1000.
+        # @param [String] page_token
+        #   Optional. Token returned by previous call to 'ListDeploymentGroupRevisions'
+        #   which specifies the position in the list from where to continue listing the
+        #   deployment group revisions. All other parameters provided to `
+        #   ListDeploymentGroupRevisions` must match the call that provided the page token.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ConfigV1::ListDeploymentGroupRevisionsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ConfigV1::ListDeploymentGroupRevisionsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_project_location_deployment_group_revisions(parent, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+parent}/revisions', options)
+          command.response_representation = Google::Apis::ConfigV1::ListDeploymentGroupRevisionsResponse::Representation
+          command.response_class = Google::Apis::ConfigV1::ListDeploymentGroupRevisionsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)

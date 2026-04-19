@@ -479,6 +479,139 @@ module Google
         end
       end
       
+      # A DeploymentGroup is a collection of DeploymentUnits that in a DAG-like
+      # structure.
+      class DeploymentGroup
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Arbitrary key-value metadata storage e.g. to help client tools
+        # identify deployment group during automation. See https://google.aip.dev/148#
+        # annotations for details on format and size limitations.
+        # Corresponds to the JSON property `annotations`
+        # @return [Hash<String,String>]
+        attr_accessor :annotations
+      
+        # Output only. Time when the deployment group was created.
+        # Corresponds to the JSON property `createTime`
+        # @return [String]
+        attr_accessor :create_time
+      
+        # The deployment units of the deployment group in a DAG like structure. When a
+        # deployment group is being provisioned, the deployment units are deployed in a
+        # DAG order. The provided units must be in a DAG order, otherwise an error will
+        # be returned.
+        # Corresponds to the JSON property `deploymentUnits`
+        # @return [Array<Google::Apis::ConfigV1::DeploymentUnit>]
+        attr_accessor :deployment_units
+      
+        # Optional. User-defined metadata for the deployment group.
+        # Corresponds to the JSON property `labels`
+        # @return [Hash<String,String>]
+        attr_accessor :labels
+      
+        # Identifier. The name of the deployment group. Format: 'projects/`project_id`/
+        # locations/`location`/deploymentGroups/`deployment_group`'.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # The `Status` type defines a logical error model that is suitable for different
+        # programming environments, including REST APIs and RPC APIs. It is used by [
+        # gRPC](https://github.com/grpc). Each `Status` message contains three pieces of
+        # data: error code, error message, and error details. You can find out more
+        # about this error model and how to work with it in the [API Design Guide](https:
+        # //cloud.google.com/apis/design/errors).
+        # Corresponds to the JSON property `provisioningError`
+        # @return [Google::Apis::ConfigV1::Status]
+        attr_accessor :provisioning_error
+      
+        # Output only. The provisioning state of the deployment group.
+        # Corresponds to the JSON property `provisioningState`
+        # @return [String]
+        attr_accessor :provisioning_state
+      
+        # Output only. Additional information regarding the current provisioning state.
+        # Corresponds to the JSON property `provisioningStateDescription`
+        # @return [String]
+        attr_accessor :provisioning_state_description
+      
+        # Output only. Current state of the deployment group.
+        # Corresponds to the JSON property `state`
+        # @return [String]
+        attr_accessor :state
+      
+        # Output only. Additional information regarding the current state.
+        # Corresponds to the JSON property `stateDescription`
+        # @return [String]
+        attr_accessor :state_description
+      
+        # Output only. Time when the deployment group was last updated.
+        # Corresponds to the JSON property `updateTime`
+        # @return [String]
+        attr_accessor :update_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @annotations = args[:annotations] if args.key?(:annotations)
+          @create_time = args[:create_time] if args.key?(:create_time)
+          @deployment_units = args[:deployment_units] if args.key?(:deployment_units)
+          @labels = args[:labels] if args.key?(:labels)
+          @name = args[:name] if args.key?(:name)
+          @provisioning_error = args[:provisioning_error] if args.key?(:provisioning_error)
+          @provisioning_state = args[:provisioning_state] if args.key?(:provisioning_state)
+          @provisioning_state_description = args[:provisioning_state_description] if args.key?(:provisioning_state_description)
+          @state = args[:state] if args.key?(:state)
+          @state_description = args[:state_description] if args.key?(:state_description)
+          @update_time = args[:update_time] if args.key?(:update_time)
+        end
+      end
+      
+      # A DeploymentGroupRevision represents a snapshot of a DeploymentGroup at a
+      # given point in time, created when a DeploymentGroup is provisioned or
+      # deprovisioned.
+      class DeploymentGroupRevision
+        include Google::Apis::Core::Hashable
+      
+        # Output only. The alternative IDs of the deployment group revision.
+        # Corresponds to the JSON property `alternativeIds`
+        # @return [Array<String>]
+        attr_accessor :alternative_ids
+      
+        # Output only. Time when the deployment group revision was created.
+        # Corresponds to the JSON property `createTime`
+        # @return [String]
+        attr_accessor :create_time
+      
+        # Identifier. The name of the deployment group revision. Format: 'projects/`
+        # project_id`/locations/`location`/deploymentGroups/`deployment_group`/revisions/
+        # `revision`'.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # A DeploymentGroup is a collection of DeploymentUnits that in a DAG-like
+        # structure.
+        # Corresponds to the JSON property `snapshot`
+        # @return [Google::Apis::ConfigV1::DeploymentGroup]
+        attr_accessor :snapshot
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @alternative_ids = args[:alternative_ids] if args.key?(:alternative_ids)
+          @create_time = args[:create_time] if args.key?(:create_time)
+          @name = args[:name] if args.key?(:name)
+          @snapshot = args[:snapshot] if args.key?(:snapshot)
+        end
+      end
+      
       # Ephemeral metadata content describing the state of a deployment operation.
       class DeploymentOperationMetadata
         include Google::Apis::Core::Hashable
@@ -514,6 +647,235 @@ module Google
           @build = args[:build] if args.key?(:build)
           @logs = args[:logs] if args.key?(:logs)
           @step = args[:step] if args.key?(:step)
+        end
+      end
+      
+      # The summary of the deployment operation.
+      class DeploymentOperationSummary
+        include Google::Apis::Core::Hashable
+      
+        # Output only. Location of Deployment operations artifacts in `gs://`bucket`/`
+        # object`` format.
+        # Corresponds to the JSON property `artifacts`
+        # @return [String]
+        attr_accessor :artifacts
+      
+        # Output only. Cloud Build instance UUID associated with this operation.
+        # Corresponds to the JSON property `build`
+        # @return [String]
+        attr_accessor :build
+      
+        # Output only. Location of Deployment operations content in `gs://`bucket`/`
+        # object`` format.
+        # Corresponds to the JSON property `content`
+        # @return [String]
+        attr_accessor :content
+      
+        # Output only. The current step the deployment operation is running.
+        # Corresponds to the JSON property `deploymentStep`
+        # @return [String]
+        attr_accessor :deployment_step
+      
+        # Output only. Location of Deployment operations logs in `gs://`bucket`/`object``
+        # format.
+        # Corresponds to the JSON property `logs`
+        # @return [String]
+        attr_accessor :logs
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @artifacts = args[:artifacts] if args.key?(:artifacts)
+          @build = args[:build] if args.key?(:build)
+          @content = args[:content] if args.key?(:content)
+          @deployment_step = args[:deployment_step] if args.key?(:deployment_step)
+          @logs = args[:logs] if args.key?(:logs)
+        end
+      end
+      
+      # Configuration for a value sourced from a Deployment.
+      class DeploymentSource
+        include Google::Apis::Core::Hashable
+      
+        # Required. The resource name of the source Deployment to import the output from.
+        # Format: projects/`project`/locations/`location`/deployments/`deployment` The
+        # source deployment must be in the same project and location.
+        # Corresponds to the JSON property `deployment`
+        # @return [String]
+        attr_accessor :deployment
+      
+        # Required. The name of the output variable in the source deployment's latest
+        # successfully applied revision.
+        # Corresponds to the JSON property `outputName`
+        # @return [String]
+        attr_accessor :output_name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment = args[:deployment] if args.key?(:deployment)
+          @output_name = args[:output_name] if args.key?(:output_name)
+        end
+      end
+      
+      # Spec for a deployment to be created.
+      class DeploymentSpec
+        include Google::Apis::Core::Hashable
+      
+        # A Deployment is a group of resources and configs managed and provisioned by
+        # Infra Manager.
+        # Corresponds to the JSON property `deployment`
+        # @return [Google::Apis::ConfigV1::Deployment]
+        attr_accessor :deployment
+      
+        # Required. The id of the deployment to be created which doesn't include the
+        # project id and location.
+        # Corresponds to the JSON property `deploymentId`
+        # @return [String]
+        attr_accessor :deployment_id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment = args[:deployment] if args.key?(:deployment)
+          @deployment_id = args[:deployment_id] if args.key?(:deployment_id)
+        end
+      end
+      
+      # A DeploymentUnit is a container for a deployment and its dependencies. An
+      # existing deployment can be provided directly in the unit, or the unit can act
+      # as a placeholder to define the DAG, with the deployment specs supplied in a `
+      # provisionDeploymentRequest`.
+      class DeploymentUnit
+        include Google::Apis::Core::Hashable
+      
+        # Required. The IDs of the deployment units within the deployment group that
+        # this unit depends on.
+        # Corresponds to the JSON property `dependencies`
+        # @return [Array<String>]
+        attr_accessor :dependencies
+      
+        # Optional. The name of the deployment to be provisioned. Format: 'projects/`
+        # project_id`/locations/`location`/deployments/`deployment`'.
+        # Corresponds to the JSON property `deployment`
+        # @return [String]
+        attr_accessor :deployment
+      
+        # The id of the deployment unit. Must be unique within the deployment group.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @dependencies = args[:dependencies] if args.key?(:dependencies)
+          @deployment = args[:deployment] if args.key?(:deployment)
+          @id = args[:id] if args.key?(:id)
+        end
+      end
+      
+      # The progress of a deployment unit provisioning or deprovisioning.
+      class DeploymentUnitProgress
+        include Google::Apis::Core::Hashable
+      
+        # Output only. The name of the deployment to be provisioned. Format: 'projects/`
+        # project`/locations/`location`/deployments/`deployment`'.
+        # Corresponds to the JSON property `deployment`
+        # @return [String]
+        attr_accessor :deployment
+      
+        # The summary of the deployment operation.
+        # Corresponds to the JSON property `deploymentOperationSummary`
+        # @return [Google::Apis::ConfigV1::DeploymentOperationSummary]
+        attr_accessor :deployment_operation_summary
+      
+        # The `Status` type defines a logical error model that is suitable for different
+        # programming environments, including REST APIs and RPC APIs. It is used by [
+        # gRPC](https://github.com/grpc). Each `Status` message contains three pieces of
+        # data: error code, error message, and error details. You can find out more
+        # about this error model and how to work with it in the [API Design Guide](https:
+        # //cloud.google.com/apis/design/errors).
+        # Corresponds to the JSON property `error`
+        # @return [Google::Apis::ConfigV1::Status]
+        attr_accessor :error
+      
+        # Output only. The intent of the deployment unit.
+        # Corresponds to the JSON property `intent`
+        # @return [String]
+        attr_accessor :intent
+      
+        # Output only. The current step of the deployment unit provisioning.
+        # Corresponds to the JSON property `state`
+        # @return [String]
+        attr_accessor :state
+      
+        # Output only. Additional information regarding the current state.
+        # Corresponds to the JSON property `stateDescription`
+        # @return [String]
+        attr_accessor :state_description
+      
+        # Output only. The unit id of the deployment unit to be provisioned.
+        # Corresponds to the JSON property `unitId`
+        # @return [String]
+        attr_accessor :unit_id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment = args[:deployment] if args.key?(:deployment)
+          @deployment_operation_summary = args[:deployment_operation_summary] if args.key?(:deployment_operation_summary)
+          @error = args[:error] if args.key?(:error)
+          @intent = args[:intent] if args.key?(:intent)
+          @state = args[:state] if args.key?(:state)
+          @state_description = args[:state_description] if args.key?(:state_description)
+          @unit_id = args[:unit_id] if args.key?(:unit_id)
+        end
+      end
+      
+      # The request message for the DeprovisionDeploymentGroup method.
+      class DeprovisionDeploymentGroupRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Policy on how resources within each deployment should be handled
+        # during deletion. This policy is applied globally to the deletion of all
+        # deployments in this group. This corresponds to the 'delete_policy' field in
+        # DeleteDeploymentRequest.
+        # Corresponds to the JSON property `deletePolicy`
+        # @return [String]
+        attr_accessor :delete_policy
+      
+        # Optional. If set to true, this option is propagated to the deletion of each
+        # deployment in the group. This corresponds to the 'force' field in
+        # DeleteDeploymentRequest.
+        # Corresponds to the JSON property `force`
+        # @return [Boolean]
+        attr_accessor :force
+        alias_method :force?, :force
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @delete_policy = args[:delete_policy] if args.key?(:delete_policy)
+          @force = args[:force] if args.key?(:force)
         end
       end
       
@@ -654,6 +1016,25 @@ module Google
         end
       end
       
+      # Configuration for a source of an external value.
+      class ExternalValueSource
+        include Google::Apis::Core::Hashable
+      
+        # Configuration for a value sourced from a Deployment.
+        # Corresponds to the JSON property `deploymentSource`
+        # @return [Google::Apis::ConfigV1::DeploymentSource]
+        attr_accessor :deployment_source
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment_source = args[:deployment_source] if args.key?(:deployment_source)
+        end
+      end
+      
       # A set of files in a Git repository.
       class GitSource
         include Google::Apis::Core::Hashable
@@ -702,6 +1083,70 @@ module Google
         # Update properties of this object
         def update!(**args)
           @lock_id = args[:lock_id] if args.key?(:lock_id)
+        end
+      end
+      
+      # The response message for the ListDeploymentGroupRevisions method.
+      class ListDeploymentGroupRevisionsResponse
+        include Google::Apis::Core::Hashable
+      
+        # The deployment group revisions from the specified collection.
+        # Corresponds to the JSON property `deploymentGroupRevisions`
+        # @return [Array<Google::Apis::ConfigV1::DeploymentGroupRevision>]
+        attr_accessor :deployment_group_revisions
+      
+        # Token to be supplied to the next ListDeploymentGroupRevisions request via `
+        # page_token` to obtain the next set of results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # Unordered list. Locations that could not be reached.
+        # Corresponds to the JSON property `unreachable`
+        # @return [Array<String>]
+        attr_accessor :unreachable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment_group_revisions = args[:deployment_group_revisions] if args.key?(:deployment_group_revisions)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @unreachable = args[:unreachable] if args.key?(:unreachable)
+        end
+      end
+      
+      # The response message for the ListDeploymentGroups method.
+      class ListDeploymentGroupsResponse
+        include Google::Apis::Core::Hashable
+      
+        # The deployment groups from the specified collection.
+        # Corresponds to the JSON property `deploymentGroups`
+        # @return [Array<Google::Apis::ConfigV1::DeploymentGroup>]
+        attr_accessor :deployment_groups
+      
+        # Token to be supplied to the next ListDeploymentGroups request via `page_token`
+        # to obtain the next set of results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # Locations that could not be reached.
+        # Corresponds to the JSON property `unreachable`
+        # @return [Array<String>]
+        attr_accessor :unreachable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment_groups = args[:deployment_groups] if args.key?(:deployment_groups)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @unreachable = args[:unreachable] if args.key?(:unreachable)
         end
       end
       
@@ -1190,6 +1635,12 @@ module Google
         # @return [Google::Apis::ConfigV1::PreviewOperationMetadata]
         attr_accessor :preview_metadata
       
+        # Operation metadata for `ProvisionDeploymentGroup` and `
+        # DeprovisionDeploymentGroup` long-running operations.
+        # Corresponds to the JSON property `provisionDeploymentGroupMetadata`
+        # @return [Google::Apis::ConfigV1::ProvisionDeploymentGroupOperationMetadata]
+        attr_accessor :provision_deployment_group_metadata
+      
         # Output only. Identifies whether the user has requested cancellation of the
         # operation. Operations that have successfully been cancelled have google.
         # longrunning.Operation.error value with a google.rpc.Status.code of `1`,
@@ -1225,6 +1676,7 @@ module Google
           @deployment_metadata = args[:deployment_metadata] if args.key?(:deployment_metadata)
           @end_time = args[:end_time] if args.key?(:end_time)
           @preview_metadata = args[:preview_metadata] if args.key?(:preview_metadata)
+          @provision_deployment_group_metadata = args[:provision_deployment_group_metadata] if args.key?(:provision_deployment_group_metadata)
           @requested_cancellation = args[:requested_cancellation] if args.key?(:requested_cancellation)
           @status_message = args[:status_message] if args.key?(:status_message)
           @target = args[:target] if args.key?(:target)
@@ -1691,6 +2143,58 @@ module Google
         # Update properties of this object
         def update!(**args)
           @source_type = args[:source_type] if args.key?(:source_type)
+        end
+      end
+      
+      # Operation metadata for `ProvisionDeploymentGroup` and `
+      # DeprovisionDeploymentGroup` long-running operations.
+      class ProvisionDeploymentGroupOperationMetadata
+        include Google::Apis::Core::Hashable
+      
+        # Output only. Progress information for each deployment unit within the
+        # operation.
+        # Corresponds to the JSON property `deploymentUnitProgresses`
+        # @return [Array<Google::Apis::ConfigV1::DeploymentUnitProgress>]
+        attr_accessor :deployment_unit_progresses
+      
+        # Output only. The current step of the deployment group operation.
+        # Corresponds to the JSON property `step`
+        # @return [String]
+        attr_accessor :step
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment_unit_progresses = args[:deployment_unit_progresses] if args.key?(:deployment_unit_progresses)
+          @step = args[:step] if args.key?(:step)
+        end
+      end
+      
+      # The request message for the ProvisionDeploymentGroup method.
+      class ProvisionDeploymentGroupRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The deployment specs of the deployment units to be created within
+        # the same project and location of the deployment group. The key is the unit ID,
+        # and the value is the `DeploymentSpec`. Provisioning will fail if a `
+        # deployment_spec` has a `deployment_id` that matches an existing deployment in
+        # the same project and location. If an existing deployment was part of the last
+        # successful revision but is no longer in the current DeploymentGroup's `
+        # deployment_units`, it will be recreated if included in `deployment_specs`.
+        # Corresponds to the JSON property `deploymentSpecs`
+        # @return [Hash<String,Google::Apis::ConfigV1::DeploymentSpec>]
+        attr_accessor :deployment_specs
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @deployment_specs = args[:deployment_specs] if args.key?(:deployment_specs)
         end
       end
       
@@ -2223,6 +2727,12 @@ module Google
       class TerraformBlueprint
         include Google::Apis::Core::Hashable
       
+        # Optional. Map of input variable names in this blueprint to configurations for
+        # importing values from external sources.
+        # Corresponds to the JSON property `externalValues`
+        # @return [Hash<String,Google::Apis::ConfigV1::ExternalValueSource>]
+        attr_accessor :external_values
+      
         # URI of an object in Google Cloud Storage. Format: `gs://`bucket`/`object`` URI
         # may also specify an object version for zipped objects. Format: `gs://`bucket`/`
         # object`#`version``
@@ -2246,6 +2756,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @external_values = args[:external_values] if args.key?(:external_values)
           @gcs_source = args[:gcs_source] if args.key?(:gcs_source)
           @git_source = args[:git_source] if args.key?(:git_source)
           @input_values = args[:input_values] if args.key?(:input_values)
