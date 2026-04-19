@@ -8472,7 +8472,7 @@ module Google
         attr_accessor :benefits
       
         # The description of this subscription in the language of this listing. Maximum
-        # length - 80 characters. Plain text.
+        # length - 200 characters. Plain text.
         # Corresponds to the JSON property `description`
         # @return [String]
         attr_accessor :description
