@@ -298,6 +298,44 @@ module Google
         end
       end
       
+      # Details about a data access attempt made by an agent principal not authorized
+      # under applicable data security policy.
+      class AgentDataAccessEvent
+        include Google::Apis::Core::Hashable
+      
+        # Unique identifier for data access event.
+        # Corresponds to the JSON property `eventId`
+        # @return [String]
+        attr_accessor :event_id
+      
+        # Timestamp of data access event.
+        # Corresponds to the JSON property `eventTime`
+        # @return [String]
+        attr_accessor :event_time
+      
+        # The operation performed by the principal to access the data.
+        # Corresponds to the JSON property `operation`
+        # @return [String]
+        attr_accessor :operation
+      
+        # The agent principal that accessed the data.
+        # Corresponds to the JSON property `principalSubject`
+        # @return [String]
+        attr_accessor :principal_subject
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @event_id = args[:event_id] if args.key?(:event_id)
+          @event_time = args[:event_time] if args.key?(:event_time)
+          @operation = args[:operation] if args.key?(:operation)
+          @principal_subject = args[:principal_subject] if args.key?(:principal_subject)
+        end
+      end
+      
       # Contains information about the AI model associated with the finding.
       class AiModel
         include Google::Apis::Core::Hashable
@@ -2134,6 +2172,56 @@ module Google
         end
       end
       
+      # Represents discovered, customer managed workload that is not registered with
+      # the respective GCP service.
+      class DiscoveredWorkload
+        include Google::Apis::Core::Hashable
+      
+        # The confidence in detection of this workload.
+        # Corresponds to the JSON property `confidence`
+        # @return [String]
+        attr_accessor :confidence
+      
+        # A boolean flag set to true if associated hardware strongly predicts the
+        # workload type.
+        # Corresponds to the JSON property `detectedRelevantHardware`
+        # @return [Boolean]
+        attr_accessor :detected_relevant_hardware
+        alias_method :detected_relevant_hardware?, :detected_relevant_hardware
+      
+        # A boolean flag set to true if associated keywords strongly predict the
+        # workload type.
+        # Corresponds to the JSON property `detectedRelevantKeywords`
+        # @return [Boolean]
+        attr_accessor :detected_relevant_keywords
+        alias_method :detected_relevant_keywords?, :detected_relevant_keywords
+      
+        # A boolean flag set to true if installed packages strongly predict the workload
+        # type.
+        # Corresponds to the JSON property `detectedRelevantPackages`
+        # @return [Boolean]
+        attr_accessor :detected_relevant_packages
+        alias_method :detected_relevant_packages?, :detected_relevant_packages
+      
+        # The type of workload.
+        # Corresponds to the JSON property `workloadType`
+        # @return [String]
+        attr_accessor :workload_type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @confidence = args[:confidence] if args.key?(:confidence)
+          @detected_relevant_hardware = args[:detected_relevant_hardware] if args.key?(:detected_relevant_hardware)
+          @detected_relevant_keywords = args[:detected_relevant_keywords] if args.key?(:detected_relevant_keywords)
+          @detected_relevant_packages = args[:detected_relevant_packages] if args.key?(:detected_relevant_packages)
+          @workload_type = args[:workload_type] if args.key?(:workload_type)
+        end
+      end
+      
       # Contains information about the disk associated with the finding.
       class Disk
         include Google::Apis::Core::Hashable
@@ -2611,6 +2699,11 @@ module Google
         # @return [Google::Apis::SecuritycenterV1beta1::AffectedResources]
         attr_accessor :affected_resources
       
+        # Agent data access events associated with the finding.
+        # Corresponds to the JSON property `agentDataAccessEvents`
+        # @return [Array<Google::Apis::SecuritycenterV1beta1::AgentDataAccessEvent>]
+        attr_accessor :agent_data_access_events
+      
         # Contains information about the AI model associated with the finding.
         # Corresponds to the JSON property `aiModel`
         # @return [Google::Apis::SecuritycenterV1beta1::AiModel]
@@ -2744,6 +2837,12 @@ module Google
         # Corresponds to the JSON property `description`
         # @return [String]
         attr_accessor :description
+      
+        # Represents discovered, customer managed workload that is not registered with
+        # the respective GCP service.
+        # Corresponds to the JSON property `discoveredWorkload`
+        # @return [Google::Apis::SecuritycenterV1beta1::DiscoveredWorkload]
+        attr_accessor :discovered_workload
       
         # Contains information about the disk associated with the finding.
         # Corresponds to the JSON property `disk`
@@ -2929,6 +3028,16 @@ module Google
         # @return [String]
         attr_accessor :parent_display_name
       
+        # Metadata summarizing policy violations of child resources of the affected
+        # resource. `finding_category` and `resource` determine the exact semantics of
+        # the counts. For example, when category=
+        # DATA_SECURITY_POSTURE_OBJECT_PUBLIC_ACCESS_VIOLATION and resource='storage.
+        # googleapis.com/buckets/my-bucket-name' then this counts the number of Cloud
+        # Storage objects in my-bucket-name which violate a Public Access control.
+        # Corresponds to the JSON property `policyViolationSummary`
+        # @return [Google::Apis::SecuritycenterV1beta1::PolicyViolationSummary]
+        attr_accessor :policy_violation_summary
+      
         # Represents operating system processes associated with the Finding.
         # Corresponds to the JSON property `processes`
         # @return [Array<Google::Apis::SecuritycenterV1beta1::Process>]
@@ -3008,6 +3117,7 @@ module Google
         def update!(**args)
           @access = args[:access] if args.key?(:access)
           @affected_resources = args[:affected_resources] if args.key?(:affected_resources)
+          @agent_data_access_events = args[:agent_data_access_events] if args.key?(:agent_data_access_events)
           @ai_model = args[:ai_model] if args.key?(:ai_model)
           @application = args[:application] if args.key?(:application)
           @artifact_guard_policies = args[:artifact_guard_policies] if args.key?(:artifact_guard_policies)
@@ -3030,6 +3140,7 @@ module Google
           @data_retention_deletion_events = args[:data_retention_deletion_events] if args.key?(:data_retention_deletion_events)
           @database = args[:database] if args.key?(:database)
           @description = args[:description] if args.key?(:description)
+          @discovered_workload = args[:discovered_workload] if args.key?(:discovered_workload)
           @disk = args[:disk] if args.key?(:disk)
           @event_time = args[:event_time] if args.key?(:event_time)
           @exfiltration = args[:exfiltration] if args.key?(:exfiltration)
@@ -3060,6 +3171,7 @@ module Google
           @org_policies = args[:org_policies] if args.key?(:org_policies)
           @parent = args[:parent] if args.key?(:parent)
           @parent_display_name = args[:parent_display_name] if args.key?(:parent_display_name)
+          @policy_violation_summary = args[:policy_violation_summary] if args.key?(:policy_violation_summary)
           @processes = args[:processes] if args.key?(:processes)
           @resource_name = args[:resource_name] if args.key?(:resource_name)
           @secret = args[:secret] if args.key?(:secret)
@@ -5060,6 +5172,44 @@ module Google
         end
       end
       
+      # Details about a data access attempt made by an agent principal not authorized
+      # under applicable data security policy.
+      class GoogleCloudSecuritycenterV2AgentDataAccessEvent
+        include Google::Apis::Core::Hashable
+      
+        # Unique identifier for data access event.
+        # Corresponds to the JSON property `eventId`
+        # @return [String]
+        attr_accessor :event_id
+      
+        # Timestamp of data access event.
+        # Corresponds to the JSON property `eventTime`
+        # @return [String]
+        attr_accessor :event_time
+      
+        # The operation performed by the principal to access the data.
+        # Corresponds to the JSON property `operation`
+        # @return [String]
+        attr_accessor :operation
+      
+        # The agent principal that accessed the data.
+        # Corresponds to the JSON property `principalSubject`
+        # @return [String]
+        attr_accessor :principal_subject
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @event_id = args[:event_id] if args.key?(:event_id)
+          @event_time = args[:event_time] if args.key?(:event_time)
+          @operation = args[:operation] if args.key?(:operation)
+          @principal_subject = args[:principal_subject] if args.key?(:principal_subject)
+        end
+      end
+      
       # Contains information about the AI model associated with the finding.
       class GoogleCloudSecuritycenterV2AiModel
         include Google::Apis::Core::Hashable
@@ -6748,6 +6898,56 @@ module Google
         end
       end
       
+      # Represents discovered, customer managed workload that is not registered with
+      # the respective GCP service.
+      class GoogleCloudSecuritycenterV2DiscoveredWorkload
+        include Google::Apis::Core::Hashable
+      
+        # The confidence in detection of this workload.
+        # Corresponds to the JSON property `confidence`
+        # @return [String]
+        attr_accessor :confidence
+      
+        # A boolean flag set to true if associated hardware strongly predicts the
+        # workload type.
+        # Corresponds to the JSON property `detectedRelevantHardware`
+        # @return [Boolean]
+        attr_accessor :detected_relevant_hardware
+        alias_method :detected_relevant_hardware?, :detected_relevant_hardware
+      
+        # A boolean flag set to true if associated keywords strongly predict the
+        # workload type.
+        # Corresponds to the JSON property `detectedRelevantKeywords`
+        # @return [Boolean]
+        attr_accessor :detected_relevant_keywords
+        alias_method :detected_relevant_keywords?, :detected_relevant_keywords
+      
+        # A boolean flag set to true if installed packages strongly predict the workload
+        # type.
+        # Corresponds to the JSON property `detectedRelevantPackages`
+        # @return [Boolean]
+        attr_accessor :detected_relevant_packages
+        alias_method :detected_relevant_packages?, :detected_relevant_packages
+      
+        # The type of workload.
+        # Corresponds to the JSON property `workloadType`
+        # @return [String]
+        attr_accessor :workload_type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @confidence = args[:confidence] if args.key?(:confidence)
+          @detected_relevant_hardware = args[:detected_relevant_hardware] if args.key?(:detected_relevant_hardware)
+          @detected_relevant_keywords = args[:detected_relevant_keywords] if args.key?(:detected_relevant_keywords)
+          @detected_relevant_packages = args[:detected_relevant_packages] if args.key?(:detected_relevant_packages)
+          @workload_type = args[:workload_type] if args.key?(:workload_type)
+        end
+      end
+      
       # Contains information about the disk associated with the finding.
       class GoogleCloudSecuritycenterV2Disk
         include Google::Apis::Core::Hashable
@@ -7206,6 +7406,11 @@ module Google
         # @return [Google::Apis::SecuritycenterV1beta1::GoogleCloudSecuritycenterV2AffectedResources]
         attr_accessor :affected_resources
       
+        # Agent data access events associated with the finding.
+        # Corresponds to the JSON property `agentDataAccessEvents`
+        # @return [Array<Google::Apis::SecuritycenterV1beta1::GoogleCloudSecuritycenterV2AgentDataAccessEvent>]
+        attr_accessor :agent_data_access_events
+      
         # Contains information about the AI model associated with the finding.
         # Corresponds to the JSON property `aiModel`
         # @return [Google::Apis::SecuritycenterV1beta1::GoogleCloudSecuritycenterV2AiModel]
@@ -7347,6 +7552,12 @@ module Google
         # Corresponds to the JSON property `description`
         # @return [String]
         attr_accessor :description
+      
+        # Represents discovered, customer managed workload that is not registered with
+        # the respective GCP service.
+        # Corresponds to the JSON property `discoveredWorkload`
+        # @return [Google::Apis::SecuritycenterV1beta1::GoogleCloudSecuritycenterV2DiscoveredWorkload]
+        attr_accessor :discovered_workload
       
         # Contains information about the disk associated with the finding.
         # Corresponds to the JSON property `disk`
@@ -7541,6 +7752,16 @@ module Google
         # @return [String]
         attr_accessor :parent_display_name
       
+        # Metadata summarizing policy violations of child resources of the affected
+        # resource. `finding_category` and `resource` determine the exact semantics of
+        # the counts. For example, when category=
+        # DATA_SECURITY_POSTURE_OBJECT_PUBLIC_ACCESS_VIOLATION and resource='storage.
+        # googleapis.com/buckets/my-bucket-name' then this counts the number of Cloud
+        # Storage objects in my-bucket-name which violate a Public Access control.
+        # Corresponds to the JSON property `policyViolationSummary`
+        # @return [Google::Apis::SecuritycenterV1beta1::GoogleCloudSecuritycenterV2PolicyViolationSummary]
+        attr_accessor :policy_violation_summary
+      
         # Represents operating system processes associated with the Finding.
         # Corresponds to the JSON property `processes`
         # @return [Array<Google::Apis::SecuritycenterV1beta1::GoogleCloudSecuritycenterV2Process>]
@@ -7620,6 +7841,7 @@ module Google
         def update!(**args)
           @access = args[:access] if args.key?(:access)
           @affected_resources = args[:affected_resources] if args.key?(:affected_resources)
+          @agent_data_access_events = args[:agent_data_access_events] if args.key?(:agent_data_access_events)
           @ai_model = args[:ai_model] if args.key?(:ai_model)
           @application = args[:application] if args.key?(:application)
           @artifact_guard_policies = args[:artifact_guard_policies] if args.key?(:artifact_guard_policies)
@@ -7643,6 +7865,7 @@ module Google
           @data_retention_deletion_events = args[:data_retention_deletion_events] if args.key?(:data_retention_deletion_events)
           @database = args[:database] if args.key?(:database)
           @description = args[:description] if args.key?(:description)
+          @discovered_workload = args[:discovered_workload] if args.key?(:discovered_workload)
           @disk = args[:disk] if args.key?(:disk)
           @event_time = args[:event_time] if args.key?(:event_time)
           @exfiltration = args[:exfiltration] if args.key?(:exfiltration)
@@ -7673,6 +7896,7 @@ module Google
           @org_policies = args[:org_policies] if args.key?(:org_policies)
           @parent = args[:parent] if args.key?(:parent)
           @parent_display_name = args[:parent_display_name] if args.key?(:parent_display_name)
+          @policy_violation_summary = args[:policy_violation_summary] if args.key?(:policy_violation_summary)
           @processes = args[:processes] if args.key?(:processes)
           @resource_name = args[:resource_name] if args.key?(:resource_name)
           @secret = args[:secret] if args.key?(:secret)
@@ -9483,6 +9707,49 @@ module Google
           @detected_value = args[:detected_value] if args.key?(:detected_value)
           @expected_value = args[:expected_value] if args.key?(:expected_value)
           @field = args[:field] if args.key?(:field)
+        end
+      end
+      
+      # Metadata summarizing policy violations of child resources of the affected
+      # resource. `finding_category` and `resource` determine the exact semantics of
+      # the counts. For example, when category=
+      # DATA_SECURITY_POSTURE_OBJECT_PUBLIC_ACCESS_VIOLATION and resource='storage.
+      # googleapis.com/buckets/my-bucket-name' then this counts the number of Cloud
+      # Storage objects in my-bucket-name which violate a Public Access control.
+      class GoogleCloudSecuritycenterV2PolicyViolationSummary
+        include Google::Apis::Core::Hashable
+      
+        # Total number of child resources that conform to the policy.
+        # Corresponds to the JSON property `conformantResourcesCount`
+        # @return [Fixnum]
+        attr_accessor :conformant_resources_count
+      
+        # Number of child resources for which errors during evaluation occurred. The
+        # evaluation result for these child resources is effectively "unknown".
+        # Corresponds to the JSON property `evaluationErrorsCount`
+        # @return [Fixnum]
+        attr_accessor :evaluation_errors_count
+      
+        # Total count of child resources which were not in scope for evaluation.
+        # Corresponds to the JSON property `outOfScopeResourcesCount`
+        # @return [Fixnum]
+        attr_accessor :out_of_scope_resources_count
+      
+        # Count of child resources in violation of the policy.
+        # Corresponds to the JSON property `policyViolationsCount`
+        # @return [Fixnum]
+        attr_accessor :policy_violations_count
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @conformant_resources_count = args[:conformant_resources_count] if args.key?(:conformant_resources_count)
+          @evaluation_errors_count = args[:evaluation_errors_count] if args.key?(:evaluation_errors_count)
+          @out_of_scope_resources_count = args[:out_of_scope_resources_count] if args.key?(:out_of_scope_resources_count)
+          @policy_violations_count = args[:policy_violations_count] if args.key?(:policy_violations_count)
         end
       end
       
@@ -12207,6 +12474,49 @@ module Google
           @detected_value = args[:detected_value] if args.key?(:detected_value)
           @expected_value = args[:expected_value] if args.key?(:expected_value)
           @field = args[:field] if args.key?(:field)
+        end
+      end
+      
+      # Metadata summarizing policy violations of child resources of the affected
+      # resource. `finding_category` and `resource` determine the exact semantics of
+      # the counts. For example, when category=
+      # DATA_SECURITY_POSTURE_OBJECT_PUBLIC_ACCESS_VIOLATION and resource='storage.
+      # googleapis.com/buckets/my-bucket-name' then this counts the number of Cloud
+      # Storage objects in my-bucket-name which violate a Public Access control.
+      class PolicyViolationSummary
+        include Google::Apis::Core::Hashable
+      
+        # Total number of child resources that conform to the policy.
+        # Corresponds to the JSON property `conformantResourcesCount`
+        # @return [Fixnum]
+        attr_accessor :conformant_resources_count
+      
+        # Number of child resources for which errors during evaluation occurred. The
+        # evaluation result for these child resources is effectively "unknown".
+        # Corresponds to the JSON property `evaluationErrorsCount`
+        # @return [Fixnum]
+        attr_accessor :evaluation_errors_count
+      
+        # Total count of child resources which were not in scope for evaluation.
+        # Corresponds to the JSON property `outOfScopeResourcesCount`
+        # @return [Fixnum]
+        attr_accessor :out_of_scope_resources_count
+      
+        # Count of child resources in violation of the policy.
+        # Corresponds to the JSON property `policyViolationsCount`
+        # @return [Fixnum]
+        attr_accessor :policy_violations_count
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @conformant_resources_count = args[:conformant_resources_count] if args.key?(:conformant_resources_count)
+          @evaluation_errors_count = args[:evaluation_errors_count] if args.key?(:evaluation_errors_count)
+          @out_of_scope_resources_count = args[:out_of_scope_resources_count] if args.key?(:out_of_scope_resources_count)
+          @policy_violations_count = args[:policy_violations_count] if args.key?(:policy_violations_count)
         end
       end
       
