@@ -1061,6 +1061,54 @@ module Google
         end
       end
       
+      # `DeleteFolderTree` request message.
+      class DeleteFolderTreeRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. If `false` (default): The operation will fail if any Repository
+        # within the folder hierarchy has associated Release Configs or Workflow Configs.
+        # If `true`: The operation will attempt to delete everything, including any
+        # Release Configs and Workflow Configs linked to Repositories within the folder
+        # hierarchy. This permanently removes schedules and resources.
+        # Corresponds to the JSON property `force`
+        # @return [Boolean]
+        attr_accessor :force
+        alias_method :force?, :force
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @force = args[:force] if args.key?(:force)
+        end
+      end
+      
+      # `DeleteTeamFolderTree` request message.
+      class DeleteTeamFolderTreeRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. If `false` (default): The operation will fail if any Repository
+        # within the folder hierarchy has associated Release Configs or Workflow Configs.
+        # If `true`: The operation will attempt to delete everything, including any
+        # Release Configs and Workflow Configs linked to Repositories within the folder
+        # hierarchy. This permanently removes schedules and resources.
+        # Corresponds to the JSON property `force`
+        # @return [Boolean]
+        attr_accessor :force
+        alias_method :force?, :force
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @force = args[:force] if args.key?(:force)
+        end
+      end
+      
       # Represents a single entry in a directory.
       class DirectoryEntry
         include Google::Apis::Core::Hashable
@@ -1393,9 +1441,8 @@ module Google
       
         # Optional. The containing Folder resource name. This should take the format:
         # projects/`project`/locations/`location`/folders/`folder`, projects/`project`/
-        # locations/`location`/teamFolders/`teamFolder`, or just projects/`project`/
-        # locations/`location` if this is a root Folder. This field can only be updated
-        # through MoveFolder.
+        # locations/`location`/teamFolders/`teamFolder`, or just "" if this is a root
+        # Folder. This field can only be updated through MoveFolder.
         # Corresponds to the JSON property `containingFolder`
         # @return [String]
         attr_accessor :containing_folder
@@ -1494,7 +1541,8 @@ module Google
         # @return [String]
         attr_accessor :authentication_token_secret_version
       
-        # Required. The Git remote's default branch name.
+        # Required. The Git remote's default branch name. If not set, `main` will be
+        # used and stored for the repository.
         # Corresponds to the JSON property `defaultBranch`
         # @return [String]
         attr_accessor :default_branch

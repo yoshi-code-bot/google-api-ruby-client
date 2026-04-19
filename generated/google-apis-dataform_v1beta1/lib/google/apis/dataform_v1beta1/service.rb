@@ -113,10 +113,15 @@ module Google
         end
         
         # Lists information about the supported locations for this service. This method
-        # can be called in two ways: * **List all public locations:** Use the path `GET /
-        # v1/locations`. * **List project-visible locations:** Use the path `GET /v1/
-        # projects/`project_id`/locations`. This may include public locations as well as
-        # private or other locations specifically visible to the project.
+        # lists locations based on the resource scope provided in the [
+        # ListLocationsRequest.name] field: * **Global locations**: If `name` is empty,
+        # the method lists the public locations available to all projects. * **Project-
+        # specific locations**: If `name` follows the format `projects/`project``, the
+        # method lists locations visible to that specific project. This includes public,
+        # private, or other project-specific locations enabled for the project. For gRPC
+        # and client library implementations, the resource name is passed as the `name`
+        # field. For direct service calls, the resource name is incorporated into the
+        # request path based on the specific service implementation and version.
         # @param [String] name
         #   The resource that owns the locations collection, if applicable.
         # @param [Array<String>, String] extra_location_types
@@ -167,17 +172,17 @@ module Google
         # folder contains all resources that are created by the user and not contained
         # in any other folder.
         # @param [String] location
-        #   Required. Location of the user root folder whose contents to list. Format:
+        #   Required. Location of the user root folder to list contents for. Format:
         #   projects/*/locations/*
         # @param [String] filter
         #   Optional. Optional filtering for the returned list. Filtering is currently
-        #   only supported on the `display_name` field. Example: - `filter="display_name="
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
         #   MyFolder""`
         # @param [String] order_by
         #   Optional. Field to additionally sort results by. Will order Folders before
         #   Repositories, and then by `order_by` in ascending order. Supported keywords:
-        #   display_name (default), created_at, last_modified_at. Examples: - `orderBy="
-        #   display_name"` - `orderBy="display_name desc"`
+        #   display_name (default), created_at, last_modified_at. Examples: * `orderBy="
+        #   display_name"` * `orderBy="display_name desc"`
         # @param [Fixnum] page_size
         #   Optional. Maximum number of paths to return. The server may return fewer items
         #   than requested. If unspecified, the server will pick an appropriate default.
@@ -262,8 +267,9 @@ module Google
         #   projects/*/locations/*`.
         # @param [Google::Apis::DataformV1beta1::Folder] folder_object
         # @param [String] folder_id
-        #   The ID to use for the Folder, which will become the final component of the
-        #   Folder's resource name.
+        #   Deprecated: This field is not used. The resource name is generated
+        #   automatically. The ID to use for the Folder, which will become the final
+        #   component of the Folder's resource name.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -318,6 +324,41 @@ module Google
           command = make_simple_command(:delete, 'v1beta1/{+name}', options)
           command.response_representation = Google::Apis::DataformV1beta1::Empty::Representation
           command.response_class = Google::Apis::DataformV1beta1::Empty
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a Folder with its contents (Folders, Repositories, Workspaces,
+        # ReleaseConfigs, and WorkflowConfigs).
+        # @param [String] name
+        #   Required. The Folder's name. Format: projects/`project`/locations/`location`/
+        #   folders/`folder`
+        # @param [Google::Apis::DataformV1beta1::DeleteFolderTreeRequest] delete_folder_tree_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1beta1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1beta1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_folder_tree(name, delete_folder_tree_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1beta1/{+name}:deleteTree', options)
+          command.request_representation = Google::Apis::DataformV1beta1::DeleteFolderTreeRequest::Representation
+          command.request_object = delete_folder_tree_request_object
+          command.response_representation = Google::Apis::DataformV1beta1::Operation::Representation
+          command.response_class = Google::Apis::DataformV1beta1::Operation
           command.params['name'] = name unless name.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
@@ -473,17 +514,17 @@ module Google
         
         # Returns the contents of a given Folder.
         # @param [String] folder
-        #   Required. Name of the folder whose contents to list. Format: projects/*/
+        #   Required. Resource name of the Folder to list contents for. Format: projects/*/
         #   locations/*/folders/*
         # @param [String] filter
         #   Optional. Optional filtering for the returned list. Filtering is currently
-        #   only supported on the `display_name` field. Example: - `filter="display_name="
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
         #   MyFolder""`
         # @param [String] order_by
         #   Optional. Field to additionally sort results by. Will order Folders before
         #   Repositories, and then by `order_by` in ascending order. Supported keywords:
-        #   display_name (default), create_time, last_modified_time. Examples: - `orderBy="
-        #   display_name"` - `orderBy="display_name desc"`
+        #   display_name (default), create_time, last_modified_time. Examples: * `orderBy="
+        #   display_name"` * `orderBy="display_name desc"`
         # @param [Fixnum] page_size
         #   Optional. Maximum number of paths to return. The server may return fewer items
         #   than requested. If unspecified, the server will pick an appropriate default.
@@ -2937,8 +2978,9 @@ module Google
         #   format `projects/*/locations/*`.
         # @param [Google::Apis::DataformV1beta1::TeamFolder] team_folder_object
         # @param [String] team_folder_id
-        #   The ID to use for the TeamFolder, which will become the final component of the
-        #   TeamFolder's resource name.
+        #   Deprecated: This field is not used. The resource name is generated
+        #   automatically. The ID to use for the TeamFolder, which will become the final
+        #   component of the TeamFolder's resource name.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2993,6 +3035,41 @@ module Google
           command = make_simple_command(:delete, 'v1beta1/{+name}', options)
           command.response_representation = Google::Apis::DataformV1beta1::Empty::Representation
           command.response_class = Google::Apis::DataformV1beta1::Empty
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+        # ReleaseConfigs, and WorkflowConfigs).
+        # @param [String] name
+        #   Required. The TeamFolder's name. Format: projects/`project`/locations/`
+        #   location`/teamFolders/`team_folder`
+        # @param [Google::Apis::DataformV1beta1::DeleteTeamFolderTreeRequest] delete_team_folder_tree_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1beta1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1beta1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_team_folder_tree(name, delete_team_folder_tree_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1beta1/{+name}:deleteTree', options)
+          command.request_representation = Google::Apis::DataformV1beta1::DeleteTeamFolderTreeRequest::Representation
+          command.request_object = delete_team_folder_tree_request_object
+          command.response_representation = Google::Apis::DataformV1beta1::Operation::Representation
+          command.response_class = Google::Apis::DataformV1beta1::Operation
           command.params['name'] = name unless name.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
@@ -3113,17 +3190,17 @@ module Google
         
         # Returns the contents of a given TeamFolder.
         # @param [String] team_folder
-        #   Required. Name of the team_folder whose contents to list. Format: `projects/*/
-        #   locations/*/teamFolders/*`.
+        #   Required. Resource name of the TeamFolder to list contents for. Format: `
+        #   projects/*/locations/*/teamFolders/*`.
         # @param [String] filter
         #   Optional. Optional filtering for the returned list. Filtering is currently
-        #   only supported on the `display_name` field. Example: - `filter="display_name="
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
         #   MyFolder""`
         # @param [String] order_by
         #   Optional. Field to additionally sort results by. Will order Folders before
         #   Repositories, and then by `order_by` in ascending order. Supported keywords: `
-        #   display_name` (default), `create_time`, last_modified_time. Examples: - `
-        #   orderBy="display_name"` - `orderBy="display_name desc"`
+        #   display_name` (default), `create_time`, last_modified_time. Examples: * `
+        #   orderBy="display_name"` * `orderBy="display_name desc"`
         # @param [Fixnum] page_size
         #   Optional. Maximum number of paths to return. The server may return fewer items
         #   than requested. If unspecified, the server will pick an appropriate default.
@@ -3170,12 +3247,12 @@ module Google
         #   locations/*`.
         # @param [String] filter
         #   Optional. Optional filtering for the returned list. Filtering is currently
-        #   only supported on the `display_name` field. Example: - `filter="display_name="
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
         #   MyFolder""`
         # @param [String] order_by
         #   Optional. Field to additionally sort results by. Supported keywords: `
-        #   display_name` (default), `create_time`, `last_modified_time`. Examples: - `
-        #   orderBy="display_name"` - `orderBy="display_name desc"`
+        #   display_name` (default), `create_time`, `last_modified_time`. Examples: * `
+        #   orderBy="display_name"` * `orderBy="display_name desc"`
         # @param [Fixnum] page_size
         #   Optional. Maximum number of TeamFolders to return. The server may return fewer
         #   items than requested. If unspecified, the server will pick an appropriate
