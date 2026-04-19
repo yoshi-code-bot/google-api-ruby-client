@@ -466,6 +466,48 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GenAiErrorStats
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GenAiFunctionCostOptimizationStats
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GenAiFunctionErrorStats
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GenAiFunctionStats
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GenAiStats
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GeneratedColumn
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GeneratedExpressionInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GetIamPolicyRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1007,6 +1049,12 @@ module Google
       end
       
       class Routine
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class RoutineBuildStatus
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1841,6 +1889,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :access, as: 'access', class: Google::Apis::BigqueryV2::Dataset::Access, decorator: Google::Apis::BigqueryV2::Dataset::Access::Representation
       
+          property :catalog_source, as: 'catalogSource'
           property :creation_time, :numeric_string => true, as: 'creationTime'
           property :dataset_reference, as: 'datasetReference', class: Google::Apis::BigqueryV2::DatasetReference, decorator: Google::Apis::BigqueryV2::DatasetReference::Representation
       
@@ -1932,6 +1981,7 @@ module Google
         class Dataset
           # @private
           class Representation < Google::Apis::Core::JsonRepresentation
+            property :catalog_source, as: 'catalogSource'
             property :dataset_reference, as: 'datasetReference', class: Google::Apis::BigqueryV2::DatasetReference, decorator: Google::Apis::BigqueryV2::DatasetReference::Representation
         
             property :external_dataset_reference, as: 'externalDatasetReference', class: Google::Apis::BigqueryV2::ExternalDatasetReference, decorator: Google::Apis::BigqueryV2::ExternalDatasetReference::Representation
@@ -1941,6 +1991,7 @@ module Google
             property :kind, as: 'kind'
             hash :labels, as: 'labels'
             property :location, as: 'location'
+            property :type, as: 'type'
           end
         end
       end
@@ -2250,6 +2301,70 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :dialect, as: 'dialect'
           property :query, as: 'query'
+        end
+      end
+      
+      class GenAiErrorStats
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :errors, as: 'errors'
+        end
+      end
+      
+      class GenAiFunctionCostOptimizationStats
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :message, as: 'message'
+          property :num_cost_optimized_rows, :numeric_string => true, as: 'numCostOptimizedRows'
+        end
+      end
+      
+      class GenAiFunctionErrorStats
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :errors, as: 'errors'
+          property :num_failed_rows, :numeric_string => true, as: 'numFailedRows'
+        end
+      end
+      
+      class GenAiFunctionStats
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :cost_optimization_stats, as: 'costOptimizationStats', class: Google::Apis::BigqueryV2::GenAiFunctionCostOptimizationStats, decorator: Google::Apis::BigqueryV2::GenAiFunctionCostOptimizationStats::Representation
+      
+          property :error_stats, as: 'errorStats', class: Google::Apis::BigqueryV2::GenAiFunctionErrorStats, decorator: Google::Apis::BigqueryV2::GenAiFunctionErrorStats::Representation
+      
+          property :function_name, as: 'functionName'
+          property :num_processed_rows, :numeric_string => true, as: 'numProcessedRows'
+          property :prompt, as: 'prompt'
+        end
+      end
+      
+      class GenAiStats
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :error_stats, as: 'errorStats', class: Google::Apis::BigqueryV2::GenAiErrorStats, decorator: Google::Apis::BigqueryV2::GenAiErrorStats::Representation
+      
+          collection :function_stats, as: 'functionStats', class: Google::Apis::BigqueryV2::GenAiFunctionStats, decorator: Google::Apis::BigqueryV2::GenAiFunctionStats::Representation
+      
+        end
+      end
+      
+      class GeneratedColumn
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :generated_expression_info, as: 'generatedExpressionInfo', class: Google::Apis::BigqueryV2::GeneratedExpressionInfo, decorator: Google::Apis::BigqueryV2::GeneratedExpressionInfo::Representation
+      
+          property :generated_mode, as: 'generatedMode'
+        end
+      end
+      
+      class GeneratedExpressionInfo
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :asynchronous, as: 'asynchronous'
+          property :generation_expression, as: 'generationExpression'
+          property :stored, as: 'stored'
         end
       end
       
@@ -2825,6 +2940,8 @@ module Google
           property :export_data_statistics, as: 'exportDataStatistics', class: Google::Apis::BigqueryV2::ExportDataStatistics, decorator: Google::Apis::BigqueryV2::ExportDataStatistics::Representation
       
           collection :external_service_costs, as: 'externalServiceCosts', class: Google::Apis::BigqueryV2::ExternalServiceCost, decorator: Google::Apis::BigqueryV2::ExternalServiceCost::Representation
+      
+          property :gen_ai_stats, as: 'genAiStats', class: Google::Apis::BigqueryV2::GenAiStats, decorator: Google::Apis::BigqueryV2::GenAiStats::Representation
       
           property :incremental_result_stats, as: 'incrementalResultStats', class: Google::Apis::BigqueryV2::IncrementalResultStats, decorator: Google::Apis::BigqueryV2::IncrementalResultStats::Representation
       
@@ -3501,6 +3618,8 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :arguments, as: 'arguments', class: Google::Apis::BigqueryV2::Argument, decorator: Google::Apis::BigqueryV2::Argument::Representation
       
+          property :build_status, as: 'buildStatus', class: Google::Apis::BigqueryV2::RoutineBuildStatus, decorator: Google::Apis::BigqueryV2::RoutineBuildStatus::Representation
+      
           property :creation_time, :numeric_string => true, as: 'creationTime'
           property :data_governance_type, as: 'dataGovernanceType'
           property :definition_body, as: 'definitionBody'
@@ -3527,6 +3646,18 @@ module Google
           property :spark_options, as: 'sparkOptions', class: Google::Apis::BigqueryV2::SparkOptions, decorator: Google::Apis::BigqueryV2::SparkOptions::Representation
       
           property :strict_mode, as: 'strictMode'
+        end
+      end
+      
+      class RoutineBuildStatus
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :build_duration, as: 'buildDuration'
+          property :build_state, as: 'buildState'
+          property :build_state_update_time, as: 'buildStateUpdateTime'
+          property :error_result, as: 'errorResult', class: Google::Apis::BigqueryV2::ErrorProto, decorator: Google::Apis::BigqueryV2::ErrorProto::Representation
+      
+          property :image_size_bytes, :numeric_string => true, as: 'imageSizeBytes'
         end
       end
       
@@ -4011,6 +4142,8 @@ module Google
           collection :fields, as: 'fields', class: Google::Apis::BigqueryV2::TableFieldSchema, decorator: Google::Apis::BigqueryV2::TableFieldSchema::Representation
       
           property :foreign_type_definition, as: 'foreignTypeDefinition'
+          property :generated_column, as: 'generatedColumn', class: Google::Apis::BigqueryV2::GeneratedColumn, decorator: Google::Apis::BigqueryV2::GeneratedColumn::Representation
+      
           property :max_length, :numeric_string => true, as: 'maxLength'
           property :mode, as: 'mode'
           property :name, as: 'name'
