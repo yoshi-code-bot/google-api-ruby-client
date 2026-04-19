@@ -51,6 +51,9 @@ module Google
       # On their own behalf, apps in Google Chat can see, add, update, and remove members from conversations and spaces
       AUTH_CHAT_APP_MEMBERSHIPS = 'https://www.googleapis.com/auth/chat.app.memberships'
 
+      # On their own behalf, apps in Google Chat can see members of conversations and spaces
+      AUTH_CHAT_APP_MEMBERSHIPS_READONLY = 'https://www.googleapis.com/auth/chat.app.memberships.readonly'
+
       # On their own behalf, apps in Google Chat can see all messages and their associated reactions and message content
       AUTH_CHAT_APP_MESSAGES_READONLY = 'https://www.googleapis.com/auth/chat.app.messages.readonly'
 
@@ -59,6 +62,9 @@ module Google
 
       # On their own behalf, apps in Google Chat can create conversations and spaces
       AUTH_CHAT_APP_SPACES_CREATE = 'https://www.googleapis.com/auth/chat.app.spaces.create'
+
+      # On their own behalf, apps in Google Chat can see conversations and spaces and their metadata (including history settings and access settings)
+      AUTH_CHAT_APP_SPACES_READONLY = 'https://www.googleapis.com/auth/chat.app.spaces.readonly'
 
       # Private Service: https://www.googleapis.com/auth/chat.bot
       AUTH_CHAT_BOT = 'https://www.googleapis.com/auth/chat.bot'
@@ -116,6 +122,12 @@ module Google
 
       # View last read time for Google Chat conversations
       AUTH_CHAT_USERS_READSTATE_READONLY = 'https://www.googleapis.com/auth/chat.users.readstate.readonly'
+
+      # View, create, update, and delete your sections in Google Chat; move and list your section items in Google Chat
+      AUTH_CHAT_USERS_SECTIONS = 'https://www.googleapis.com/auth/chat.users.sections'
+
+      # View your sections and their section items in Google Chat
+      AUTH_CHAT_USERS_SECTIONS_READONLY = 'https://www.googleapis.com/auth/chat.users.sections.readonly'
 
       # Read and update your space settings
       AUTH_CHAT_USERS_SPACESETTINGS = 'https://www.googleapis.com/auth/chat.users.spacesettings'
