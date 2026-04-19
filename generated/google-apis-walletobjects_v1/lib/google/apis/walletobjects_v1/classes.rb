@@ -879,6 +879,11 @@ module Google
         # @return [String]
         attr_accessor :from_file_name
       
+        # The content type of the file detected by Fusion ID. go/fusionid
+        # Corresponds to the JSON property `fromFusionId`
+        # @return [String]
+        attr_accessor :from_fusion_id
+      
         # The content type of the file as specified in the request headers, multipart
         # headers, or RUPIO start request.
         # Corresponds to the JSON property `fromHeader`
@@ -892,6 +897,13 @@ module Google
         # @return [String]
         attr_accessor :from_url_path
       
+        # Metadata information from Fusion ID detection. Serialized
+        # FusionIdDetectionMetadata proto. Only set if from_fusion_id is set.
+        # Corresponds to the JSON property `fusionIdDetectionMetadata`
+        # NOTE: Values are automatically base64 encoded/decoded in the client library.
+        # @return [String]
+        attr_accessor :fusion_id_detection_metadata
+      
         def initialize(**args)
            update!(**args)
         end
@@ -901,8 +913,10 @@ module Google
           @best_guess = args[:best_guess] if args.key?(:best_guess)
           @from_bytes = args[:from_bytes] if args.key?(:from_bytes)
           @from_file_name = args[:from_file_name] if args.key?(:from_file_name)
+          @from_fusion_id = args[:from_fusion_id] if args.key?(:from_fusion_id)
           @from_header = args[:from_header] if args.key?(:from_header)
           @from_url_path = args[:from_url_path] if args.key?(:from_url_path)
+          @fusion_id_detection_metadata = args[:fusion_id_detection_metadata] if args.key?(:fusion_id_detection_metadata)
         end
       end
       
