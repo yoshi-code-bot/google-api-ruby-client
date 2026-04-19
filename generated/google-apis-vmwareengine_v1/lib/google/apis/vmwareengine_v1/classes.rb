@@ -2291,6 +2291,13 @@ module Google
         # @return [String]
         attr_accessor :request_id
       
+        # Optional. If set to `true`, only validates the request but doesn’t execute the
+        # request. If set to `false`, validates and executes the request.
+        # Corresponds to the JSON property `validateOnly`
+        # @return [Boolean]
+        attr_accessor :validate_only
+        alias_method :validate_only?, :validate_only
+      
         def initialize(**args)
            update!(**args)
         end
@@ -2300,6 +2307,7 @@ module Google
           @datastore_mount_config = args[:datastore_mount_config] if args.key?(:datastore_mount_config)
           @ignore_colocation = args[:ignore_colocation] if args.key?(:ignore_colocation)
           @request_id = args[:request_id] if args.key?(:request_id)
+          @validate_only = args[:validate_only] if args.key?(:validate_only)
         end
       end
       
@@ -3965,6 +3973,13 @@ module Google
         # @return [String]
         attr_accessor :request_id
       
+        # Optional. If set to `true`, only validates the request but doesn’t execute the
+        # request. If set to `false`, validates and executes the request.
+        # Corresponds to the JSON property `validateOnly`
+        # @return [Boolean]
+        attr_accessor :validate_only
+        alias_method :validate_only?, :validate_only
+      
         def initialize(**args)
            update!(**args)
         end
@@ -3973,6 +3988,7 @@ module Google
         def update!(**args)
           @datastore = args[:datastore] if args.key?(:datastore)
           @request_id = args[:request_id] if args.key?(:request_id)
+          @validate_only = args[:validate_only] if args.key?(:validate_only)
         end
       end
       
