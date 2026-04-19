@@ -1,5 +1,9 @@
 # Release history for google-apis-firebaseappcheck_v1beta
 
+### v0.48.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260403
+
 ### v0.47.0 (2026-01-18)
 
 * Regenerated from discovery document revision 20260110
