@@ -1,5 +1,9 @@
 # Release history for google-apis-apihub_v1
 
+### v0.15.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260406
+
 ### v0.14.0 (2026-03-22)
 
 * Regenerated from discovery document revision 20260311
