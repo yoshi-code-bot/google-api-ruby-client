@@ -224,6 +224,14 @@ module Google
         # @return [String]
         attr_accessor :frequency
       
+        # Optional. A list of Cloud Bigtable zones where automated backups are allowed
+        # to be created. If empty, automated backups will be created in all zones of the
+        # instance. Locations are in the format `projects/`project`/locations/`zone``.
+        # This field can only set for tables in Enterprise Plus instances.
+        # Corresponds to the JSON property `locations`
+        # @return [Array<String>]
+        attr_accessor :locations
+      
         # Required. How long the automated backups should be retained. Values must be at
         # least 3 days and at most 90 days.
         # Corresponds to the JSON property `retentionPeriod`
@@ -237,6 +245,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @frequency = args[:frequency] if args.key?(:frequency)
+          @locations = args[:locations] if args.key?(:locations)
           @retention_period = args[:retention_period] if args.key?(:retention_period)
         end
       end
@@ -1822,6 +1831,25 @@ module Google
         end
       end
       
+      # Configuration of a memory layer.
+      class GoogleBigtableAdminV2MemoryLayerMemoryConfig
+        include Google::Apis::Core::Hashable
+      
+        # Output only. Reporting the current size of the memory layer in GiB.
+        # Corresponds to the JSON property `storageSizeGib`
+        # @return [Fixnum]
+        attr_accessor :storage_size_gib
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @storage_size_gib = args[:storage_size_gib] if args.key?(:storage_size_gib)
+        end
+      end
+      
       # A value that combines incremental updates into a summarized value. Data is
       # never directly written or read using type `Aggregate`. Writes provide either
       # the `input_type` or `state_type`, and reads always return the `state_type` .
@@ -2008,6 +2036,25 @@ module Google
       class GoogleBigtableAdminV2TypeBool
         include Google::Apis::Core::Hashable
       
+        # Defines rules used to convert to or from lower level types.
+        # Corresponds to the JSON property `encoding`
+        # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2TypeBoolEncoding]
+        attr_accessor :encoding
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @encoding = args[:encoding] if args.key?(:encoding)
+        end
+      end
+      
+      # Defines rules used to convert to or from lower level types.
+      class GoogleBigtableAdminV2TypeBoolEncoding
+        include Google::Apis::Core::Hashable
+      
         def initialize(**args)
            update!(**args)
         end
@@ -2147,6 +2194,86 @@ module Google
       # A geography type, representing a point or region on Earth. The value is stored
       # in `Value.bytes_value` as Well-Known Binary (WKB) bytes.
       class GoogleBigtableAdminV2TypeGeography
+        include Google::Apis::Core::Hashable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+        end
+      end
+      
+      # Int32 Values of type `Int32` are stored in `Value.int_value`.
+      class GoogleBigtableAdminV2TypeInt32
+        include Google::Apis::Core::Hashable
+      
+        # Rules used to convert to or from lower level types.
+        # Corresponds to the JSON property `encoding`
+        # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2TypeInt32Encoding]
+        attr_accessor :encoding
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @encoding = args[:encoding] if args.key?(:encoding)
+        end
+      end
+      
+      # Rules used to convert to or from lower level types.
+      class GoogleBigtableAdminV2TypeInt32Encoding
+        include Google::Apis::Core::Hashable
+      
+        # Encodes the value as a 4-byte big-endian two's complement value. Sorted mode:
+        # non-negative values are supported. Distinct mode: all values are supported.
+        # Compatible with: - BigQuery `BINARY` encoding - HBase `Bytes.toBytes` - Java `
+        # ByteBuffer.putInt()` with `ByteOrder.BIG_ENDIAN`
+        # Corresponds to the JSON property `bigEndianBytes`
+        # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2TypeInt32EncodingBigEndianBytes]
+        attr_accessor :big_endian_bytes
+      
+        # Encodes the value in a variable length binary format of up to 5 bytes. Values
+        # that are closer to zero use fewer bytes. Sorted mode: all values are supported.
+        # Distinct mode: all values are supported.
+        # Corresponds to the JSON property `orderedCodeBytes`
+        # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2TypeInt32EncodingOrderedCodeBytes]
+        attr_accessor :ordered_code_bytes
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @big_endian_bytes = args[:big_endian_bytes] if args.key?(:big_endian_bytes)
+          @ordered_code_bytes = args[:ordered_code_bytes] if args.key?(:ordered_code_bytes)
+        end
+      end
+      
+      # Encodes the value as a 4-byte big-endian two's complement value. Sorted mode:
+      # non-negative values are supported. Distinct mode: all values are supported.
+      # Compatible with: - BigQuery `BINARY` encoding - HBase `Bytes.toBytes` - Java `
+      # ByteBuffer.putInt()` with `ByteOrder.BIG_ENDIAN`
+      class GoogleBigtableAdminV2TypeInt32EncodingBigEndianBytes
+        include Google::Apis::Core::Hashable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+        end
+      end
+      
+      # Encodes the value in a variable length binary format of up to 5 bytes. Values
+      # that are closer to zero use fewer bytes. Sorted mode: all values are supported.
+      # Distinct mode: all values are supported.
+      class GoogleBigtableAdminV2TypeInt32EncodingOrderedCodeBytes
         include Google::Apis::Core::Hashable
       
         def initialize(**args)
@@ -2749,6 +2876,11 @@ module Google
         # @return [String]
         attr_accessor :display_name
       
+        # Optional. The edition of the instance. See Edition for details.
+        # Corresponds to the JSON property `edition`
+        # @return [String]
+        attr_accessor :edition
+      
         # Labels are a flexible and lightweight mechanism for organizing cloud resources
         # into groups that reflect a customer's organizational needs and deployment
         # strategies. They can be used to filter resources and aggregate metrics. *
@@ -2807,6 +2939,7 @@ module Google
         def update!(**args)
           @create_time = args[:create_time] if args.key?(:create_time)
           @display_name = args[:display_name] if args.key?(:display_name)
+          @edition = args[:edition] if args.key?(:edition)
           @labels = args[:labels] if args.key?(:labels)
           @name = args[:name] if args.key?(:name)
           @satisfies_pzi = args[:satisfies_pzi] if args.key?(:satisfies_pzi)
@@ -3099,6 +3232,41 @@ module Google
         end
       end
       
+      # Response message for BigtableInstanceAdmin.ListMemoryLayers.
+      class ListMemoryLayersResponse
+        include Google::Apis::Core::Hashable
+      
+        # Locations from which MemoryLayer information could not be retrieved, due to an
+        # outage or some other transient condition. MemoryLayers from these locations
+        # may be missing from `memory_layers`, or may only have partial information
+        # returned. Values are of the form `projects//locations/`
+        # Corresponds to the JSON property `failedLocations`
+        # @return [Array<String>]
+        attr_accessor :failed_locations
+      
+        # The list of requested memory layers.
+        # Corresponds to the JSON property `memoryLayers`
+        # @return [Array<Google::Apis::BigtableadminV2::MemoryLayer>]
+        attr_accessor :memory_layers
+      
+        # A token, which can be sent as `page_token` to retrieve the next page. If this
+        # field is omitted, there are no subsequent pages.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @failed_locations = args[:failed_locations] if args.key?(:failed_locations)
+          @memory_layers = args[:memory_layers] if args.key?(:memory_layers)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
       # The response message for Operations.ListOperations.
       class ListOperationsResponse
         include Google::Apis::Core::Hashable
@@ -3325,6 +3493,63 @@ module Google
           @etag = args[:etag] if args.key?(:etag)
           @name = args[:name] if args.key?(:name)
           @query = args[:query] if args.key?(:query)
+        end
+      end
+      
+      # If set, eligible single-row requests (currently limited to ReadRows) using
+      # this app profile will be routed to the memory layer. All eligible writes
+      # populate the memory layer. MemoryConfig can only be set if the AppProfile uses
+      # single cluster routing and the configured cluster has a memory layer enabled.
+      class MemoryConfig
+        include Google::Apis::Core::Hashable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+        end
+      end
+      
+      # The memory layer of a cluster. A memory layer serves reads from memory without
+      # hitting the backing persistent data store.
+      class MemoryLayer
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The etag for this memory layer. This may be sent on update requests
+        # to ensure that the client has an up-to-date value before proceeding. The
+        # server returns an ABORTED error on a mismatched etag.
+        # Corresponds to the JSON property `etag`
+        # @return [String]
+        attr_accessor :etag
+      
+        # Configuration of a memory layer.
+        # Corresponds to the JSON property `memoryConfig`
+        # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2MemoryLayerMemoryConfig]
+        attr_accessor :memory_config
+      
+        # Identifier. Name of the memory layer. This is always: "projects/`project`/
+        # instances/`instance`/clusters/`cluster`/memoryLayer".
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Output only. The current state of the memory layer.
+        # Corresponds to the JSON property `state`
+        # @return [String]
+        attr_accessor :state
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @etag = args[:etag] if args.key?(:etag)
+          @memory_config = args[:memory_config] if args.key?(:memory_config)
+          @name = args[:name] if args.key?(:name)
+          @state = args[:state] if args.key?(:state)
         end
       end
       
@@ -4040,6 +4265,14 @@ module Google
       class StandardIsolation
         include Google::Apis::Core::Hashable
       
+        # If set, eligible single-row requests (currently limited to ReadRows) using
+        # this app profile will be routed to the memory layer. All eligible writes
+        # populate the memory layer. MemoryConfig can only be set if the AppProfile uses
+        # single cluster routing and the configured cluster has a memory layer enabled.
+        # Corresponds to the JSON property `memoryConfig`
+        # @return [Google::Apis::BigtableadminV2::MemoryConfig]
+        attr_accessor :memory_config
+      
         # The priority of requests sent using this app profile.
         # Corresponds to the JSON property `priority`
         # @return [String]
@@ -4051,6 +4284,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @memory_config = args[:memory_config] if args.key?(:memory_config)
           @priority = args[:priority] if args.key?(:priority)
         end
       end
@@ -4443,6 +4677,11 @@ module Google
         # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2TypeGeography]
         attr_accessor :geography_type
       
+        # Int32 Values of type `Int32` are stored in `Value.int_value`.
+        # Corresponds to the JSON property `int32Type`
+        # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2TypeInt32]
+        attr_accessor :int32_type
+      
         # Int64 Values of type `Int64` are stored in `Value.int_value`.
         # Corresponds to the JSON property `int64Type`
         # @return [Google::Apis::BigtableadminV2::GoogleBigtableAdminV2TypeInt64]
@@ -4496,6 +4735,7 @@ module Google
           @float32_type = args[:float32_type] if args.key?(:float32_type)
           @float64_type = args[:float64_type] if args.key?(:float64_type)
           @geography_type = args[:geography_type] if args.key?(:geography_type)
+          @int32_type = args[:int32_type] if args.key?(:int32_type)
           @int64_type = args[:int64_type] if args.key?(:int64_type)
           @map_type = args[:map_type] if args.key?(:map_type)
           @proto_type = args[:proto_type] if args.key?(:proto_type)
@@ -4790,6 +5030,63 @@ module Google
         # Update properties of this object
         def update!(**args)
           @logical_view = args[:logical_view] if args.key?(:logical_view)
+          @update_mask = args[:update_mask] if args.key?(:update_mask)
+        end
+      end
+      
+      # The metadata for the Operation returned by UpdateMemoryLayer.
+      class UpdateMemoryLayerMetadata
+        include Google::Apis::Core::Hashable
+      
+        # The time at which the operation failed or was completed successfully.
+        # Corresponds to the JSON property `finishTime`
+        # @return [String]
+        attr_accessor :finish_time
+      
+        # Request message for BigtableInstanceAdmin.UpdateMemoryLayer.
+        # Corresponds to the JSON property `originalRequest`
+        # @return [Google::Apis::BigtableadminV2::UpdateMemoryLayerRequest]
+        attr_accessor :original_request
+      
+        # The time at which the original request was received.
+        # Corresponds to the JSON property `requestTime`
+        # @return [String]
+        attr_accessor :request_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @finish_time = args[:finish_time] if args.key?(:finish_time)
+          @original_request = args[:original_request] if args.key?(:original_request)
+          @request_time = args[:request_time] if args.key?(:request_time)
+        end
+      end
+      
+      # Request message for BigtableInstanceAdmin.UpdateMemoryLayer.
+      class UpdateMemoryLayerRequest
+        include Google::Apis::Core::Hashable
+      
+        # The memory layer of a cluster. A memory layer serves reads from memory without
+        # hitting the backing persistent data store.
+        # Corresponds to the JSON property `memoryLayer`
+        # @return [Google::Apis::BigtableadminV2::MemoryLayer]
+        attr_accessor :memory_layer
+      
+        # Optional. The list of fields to update.
+        # Corresponds to the JSON property `updateMask`
+        # @return [String]
+        attr_accessor :update_mask
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @memory_layer = args[:memory_layer] if args.key?(:memory_layer)
           @update_mask = args[:update_mask] if args.key?(:update_mask)
         end
       end
