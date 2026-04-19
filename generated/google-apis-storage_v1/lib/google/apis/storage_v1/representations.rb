@@ -478,6 +478,7 @@ module Google
           property :create_time, as: 'createTime', type: DateTime
       
           property :id, as: 'id'
+          property :ingest_on_write, as: 'ingestOnWrite'
           property :kind, as: 'kind'
           property :pending_update, as: 'pendingUpdate'
           property :self_link, as: 'selfLink'
