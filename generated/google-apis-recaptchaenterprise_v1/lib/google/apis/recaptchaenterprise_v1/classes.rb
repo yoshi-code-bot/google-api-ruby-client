@@ -1739,9 +1739,9 @@ module Google
         # @return [String]
         attr_accessor :challenge
       
-        # Output only. Advanced reasons contributing to the risk analysis verdict. These
-        # reasons are available to Enterprise tier projects only. Contact sales for more
-        # information. The set of possible reasons is subject to change.
+        # Output only. Additional reasons contributing to the risk analysis verdict.
+        # These reasons are available to Enterprise tier projects only. Contact sales
+        # for more information. The set of reasons is subject to change.
         # Corresponds to the JSON property `extendedVerdictReasons`
         # @return [Array<String>]
         attr_accessor :extended_verdict_reasons
