@@ -401,6 +401,65 @@ module Google
         end
       end
       
+      # Ingress IP allowlist configuration.
+      class IngressIpAllowlistConfig
+        include Google::Apis::Core::Hashable
+      
+        # Optional. List of IP range rules to allow ingress traffic.
+        # Corresponds to the JSON property `allowlistRules`
+        # @return [Array<Google::Apis::LookerV1::IngressIpAllowlistRule>]
+        attr_accessor :allowlist_rules
+      
+        # Optional. Whether ingress IP allowlist functionality is enabled on the Looker
+        # instance.
+        # Corresponds to the JSON property `enabled`
+        # @return [Boolean]
+        attr_accessor :enabled
+        alias_method :enabled?, :enabled
+      
+        # Optional. Whether google service connections are enabled for the instance.
+        # Corresponds to the JSON property `googleServicesEnabled`
+        # @return [Boolean]
+        attr_accessor :google_services_enabled
+        alias_method :google_services_enabled?, :google_services_enabled
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @allowlist_rules = args[:allowlist_rules] if args.key?(:allowlist_rules)
+          @enabled = args[:enabled] if args.key?(:enabled)
+          @google_services_enabled = args[:google_services_enabled] if args.key?(:google_services_enabled)
+        end
+      end
+      
+      # Ingress IP allowlist rule.
+      class IngressIpAllowlistRule
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Description for the IP range.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
+      
+        # Optional. The IP range to allow ingress traffic from.
+        # Corresponds to the JSON property `ipRange`
+        # @return [String]
+        attr_accessor :ip_range
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @description = args[:description] if args.key?(:description)
+          @ip_range = args[:ip_range] if args.key?(:ip_range)
+        end
+      end
+      
       # A Looker instance.
       class Instance
         include Google::Apis::Core::Hashable
@@ -409,6 +468,13 @@ module Google
         # Corresponds to the JSON property `adminSettings`
         # @return [Google::Apis::LookerV1::AdminSettings]
         attr_accessor :admin_settings
+      
+        # Optional. Indicates whether catalog integration is disabled for the Looker
+        # instance.
+        # Corresponds to the JSON property `catalogIntegrationOptOut`
+        # @return [Boolean]
+        attr_accessor :catalog_integration_opt_out
+        alias_method :catalog_integration_opt_out?, :catalog_integration_opt_out
       
         # Optional. Storage class of the instance.
         # Corresponds to the JSON property `classType`
@@ -470,6 +536,11 @@ module Google
         # @return [Boolean]
         attr_accessor :gemini_enabled
         alias_method :gemini_enabled?, :gemini_enabled
+      
+        # Ingress IP allowlist configuration.
+        # Corresponds to the JSON property `ingressIpAllowlistConfig`
+        # @return [Google::Apis::LookerV1::IngressIpAllowlistConfig]
+        attr_accessor :ingress_ip_allowlist_config
       
         # Output only. Private Ingress IP (IPv4).
         # Corresponds to the JSON property `ingressPrivateIp`
@@ -599,6 +670,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @admin_settings = args[:admin_settings] if args.key?(:admin_settings)
+          @catalog_integration_opt_out = args[:catalog_integration_opt_out] if args.key?(:catalog_integration_opt_out)
           @class_type = args[:class_type] if args.key?(:class_type)
           @consumer_network = args[:consumer_network] if args.key?(:consumer_network)
           @controlled_egress_config = args[:controlled_egress_config] if args.key?(:controlled_egress_config)
@@ -610,6 +682,7 @@ module Google
           @encryption_config = args[:encryption_config] if args.key?(:encryption_config)
           @fips_enabled = args[:fips_enabled] if args.key?(:fips_enabled)
           @gemini_enabled = args[:gemini_enabled] if args.key?(:gemini_enabled)
+          @ingress_ip_allowlist_config = args[:ingress_ip_allowlist_config] if args.key?(:ingress_ip_allowlist_config)
           @ingress_private_ip = args[:ingress_private_ip] if args.key?(:ingress_private_ip)
           @ingress_public_ip = args[:ingress_public_ip] if args.key?(:ingress_public_ip)
           @last_deny_maintenance_period = args[:last_deny_maintenance_period] if args.key?(:last_deny_maintenance_period)
