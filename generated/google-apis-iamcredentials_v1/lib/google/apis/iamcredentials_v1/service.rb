@@ -55,7 +55,8 @@ module Google
         
         # Returns the trust boundary info for a given workforce pool.
         # @param [String] name
-        #   Required. Resource name of workforce pool.
+        #   Required. Resource name of workforce pool. Format: `locations/global/
+        #   workforcePools/`pool_id``
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -85,7 +86,8 @@ module Google
         
         # Returns the trust boundary info for a given workload identity pool.
         # @param [String] name
-        #   Required. Resource name of workload identity pool.
+        #   Required. Resource name of workload identity pool. Format: `projects/`
+        #   project_number`/locations/global/workloadIdentityPools/`pool_id``
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -187,7 +189,8 @@ module Google
         
         # Returns the trust boundary info for a given service account.
         # @param [String] name
-        #   Required. Resource name of service account.
+        #   Required. Resource name of service account. Format: `projects/-/
+        #   serviceAccounts/`service_account_email``
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user

@@ -1,5 +1,9 @@
 # Release history for google-apis-iamcredentials_v1
 
+### v0.27.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260326
+
 ### v0.26.0 (2025-11-09)
 
 * Regenerated from discovery document revision 20251022
