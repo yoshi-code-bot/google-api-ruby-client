@@ -475,7 +475,7 @@ module Google
       
       # Represents a free-form service offered by the merchant. These are services
       # that are not exposed as part of our structure service data. The merchant
-      # manually enters the names for of such services via a geomerchant surface.
+      # manually enters the names for such services using a geomerchant surface.
       class FreeFormServiceItem
         include Google::Apis::Core::Hashable
       
@@ -540,11 +540,14 @@ module Google
         end
       end
       
-      # Represents a location that was modified by Google.
+      # Represents the view of a location as it appears to consumers, which includes
+      # updates that are currently serving on Google Maps and Search.
       class GoogleUpdatedLocation
         include Google::Apis::Core::Hashable
       
-        # The fields that Google updated.
+        # The fields where the values in the view as it appears to consumers are
+        # different than the merchant's information. To accept these changes, patch the
+        # location. To reject, patch with your preferred values.
         # Corresponds to the JSON property `diffMask`
         # @return [String]
         attr_accessor :diff_mask
@@ -557,8 +560,9 @@ module Google
         # @return [Google::Apis::MybusinessbusinessinformationV1::Location]
         attr_accessor :location
       
-        # The fields that have pending edits that haven't yet been pushed to Maps and
-        # Search.
+        # The fields where the merchant has provided an update that is currently in
+        # flight and hasn't yet been published to Maps and Search. This mask only tracks
+        # the status of the merchant's own edits, not external changes.
         # Corresponds to the JSON property `pendingMask`
         # @return [String]
         attr_accessor :pending_mask
@@ -956,7 +960,7 @@ module Google
       
         # Output only. Indicates whether the place ID associated with this location has
         # updates that need to be updated or rejected by the client. If this boolean is
-        # set, you should call the `getGoogleUpdated` method to lookup information that'
+        # set, you should call the `getGoogleUpdated` method to look up information that'
         # s needs to be verified.
         # Corresponds to the JSON property `hasGoogleUpdated`
         # @return [Boolean]
@@ -1612,7 +1616,7 @@ module Google
       
         # Represents a free-form service offered by the merchant. These are services
         # that are not exposed as part of our structure service data. The merchant
-        # manually enters the names for of such services via a geomerchant surface.
+        # manually enters the names for such services using a geomerchant surface.
         # Corresponds to the JSON property `freeFormServiceItem`
         # @return [Google::Apis::MybusinessbusinessinformationV1::FreeFormServiceItem]
         attr_accessor :free_form_service_item

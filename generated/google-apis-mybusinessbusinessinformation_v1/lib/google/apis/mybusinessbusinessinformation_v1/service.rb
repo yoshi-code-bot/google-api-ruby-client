@@ -495,7 +495,9 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Gets the Google-updated version of the specified location.
+        # Gets the version of the specified location, returning a `GoogleUpdatedLocation`
+        # that provides the location view as it appears to consumers and masks
+        # indicating which fields are different than the merchant's information.
         # @param [String] name
         #   Required. The name of the location to fetch.
         # @param [String] read_mask
@@ -614,7 +616,9 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Gets the Google-updated version of the specified location.
+        # Gets the version of the specified location, returning an `Attributes` message
+        # that provides the attributes view as it appears to consumers, which may be
+        # different than the merchant's information.
         # @param [String] name
         #   Required. Google identifier for this location in the form of `locations/`
         #   location_id`/attributes`.
