@@ -511,6 +511,7 @@ module Google
       class GoogleMapsPlacesV1AutocompletePlacesRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :include_future_opening_businesses, as: 'includeFutureOpeningBusinesses'
           property :include_pure_service_area_businesses, as: 'includePureServiceAreaBusinesses'
           property :include_query_predictions, as: 'includeQueryPredictions'
           collection :included_primary_types, as: 'includedPrimaryTypes'
@@ -813,6 +814,8 @@ module Google
           property :name, as: 'name'
           property :national_phone_number, as: 'nationalPhoneNumber'
           property :neighborhood_summary, as: 'neighborhoodSummary', class: Google::Apis::PlacesV1::GoogleMapsPlacesV1PlaceNeighborhoodSummary, decorator: Google::Apis::PlacesV1::GoogleMapsPlacesV1PlaceNeighborhoodSummary::Representation
+      
+          property :opening_date, as: 'openingDate', class: Google::Apis::PlacesV1::GoogleTypeDate, decorator: Google::Apis::PlacesV1::GoogleTypeDate::Representation
       
           property :outdoor_seating, as: 'outdoorSeating'
           property :parking_options, as: 'parkingOptions', class: Google::Apis::PlacesV1::GoogleMapsPlacesV1PlaceParkingOptions, decorator: Google::Apis::PlacesV1::GoogleMapsPlacesV1PlaceParkingOptions::Representation
@@ -1161,6 +1164,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :excluded_primary_types, as: 'excludedPrimaryTypes'
           collection :excluded_types, as: 'excludedTypes'
+          property :include_future_opening_businesses, as: 'includeFutureOpeningBusinesses'
           collection :included_primary_types, as: 'includedPrimaryTypes'
           collection :included_types, as: 'includedTypes'
           property :language_code, as: 'languageCode'
@@ -1197,6 +1201,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :ev_options, as: 'evOptions', class: Google::Apis::PlacesV1::GoogleMapsPlacesV1SearchTextRequestEvOptions, decorator: Google::Apis::PlacesV1::GoogleMapsPlacesV1SearchTextRequestEvOptions::Representation
       
+          property :include_future_opening_businesses, as: 'includeFutureOpeningBusinesses'
           property :include_pure_service_area_businesses, as: 'includePureServiceAreaBusinesses'
           property :included_type, as: 'includedType'
           property :language_code, as: 'languageCode'

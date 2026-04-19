@@ -234,6 +234,13 @@ module Google
       class GoogleMapsPlacesV1AutocompletePlacesRequest
         include Google::Apis::Core::Hashable
       
+        # Optional. If true, include businesses that are not yet open but will open in
+        # the future.
+        # Corresponds to the JSON property `includeFutureOpeningBusinesses`
+        # @return [Boolean]
+        attr_accessor :include_future_opening_businesses
+        alias_method :include_future_opening_businesses?, :include_future_opening_businesses
+      
         # Optional. Include pure service area businesses if the field is set to true.
         # Pure service area business is a business that visits or delivers to customers
         # directly but does not serve customers at their business address. For example,
@@ -346,6 +353,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @include_future_opening_businesses = args[:include_future_opening_businesses] if args.key?(:include_future_opening_businesses)
           @include_pure_service_area_businesses = args[:include_pure_service_area_businesses] if args.key?(:include_pure_service_area_businesses)
           @include_query_predictions = args[:include_query_predictions] if args.key?(:include_query_predictions)
           @included_primary_types = args[:included_primary_types] if args.key?(:included_primary_types)
@@ -1365,6 +1373,18 @@ module Google
         # @return [Google::Apis::PlacesV1::GoogleMapsPlacesV1PlaceNeighborhoodSummary]
         attr_accessor :neighborhood_summary
       
+        # Represents a whole or partial calendar date, such as a birthday. The time of
+        # day and time zone are either specified elsewhere or are insignificant. The
+        # date is relative to the Gregorian Calendar. This can represent one of the
+        # following: * A full date, with non-zero year, month, and day values. * A month
+        # and day, with a zero year (for example, an anniversary). * A year on its own,
+        # with a zero month and a zero day. * A year and month, with a zero day (for
+        # example, a credit card expiration date). Related types: * google.type.
+        # TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+        # Corresponds to the JSON property `openingDate`
+        # @return [Google::Apis::PlacesV1::GoogleTypeDate]
+        attr_accessor :opening_date
+      
         # Place provides outdoor seating.
         # Corresponds to the JSON property `outdoorSeating`
         # @return [Boolean]
@@ -1663,6 +1683,7 @@ module Google
           @name = args[:name] if args.key?(:name)
           @national_phone_number = args[:national_phone_number] if args.key?(:national_phone_number)
           @neighborhood_summary = args[:neighborhood_summary] if args.key?(:neighborhood_summary)
+          @opening_date = args[:opening_date] if args.key?(:opening_date)
           @outdoor_seating = args[:outdoor_seating] if args.key?(:outdoor_seating)
           @parking_options = args[:parking_options] if args.key?(:parking_options)
           @payment_options = args[:payment_options] if args.key?(:payment_options)
@@ -2812,6 +2833,13 @@ module Google
         # @return [Array<String>]
         attr_accessor :excluded_types
       
+        # Optional. If true, include businesses that are not yet open but will open in
+        # the future.
+        # Corresponds to the JSON property `includeFutureOpeningBusinesses`
+        # @return [Boolean]
+        attr_accessor :include_future_opening_businesses
+        alias_method :include_future_opening_businesses?, :include_future_opening_businesses
+      
         # Included primary Place type (e.g. "restaurant" or "gas_station") from https://
         # developers.google.com/maps/documentation/places/web-service/place-types. A
         # place can only have a single primary type from the supported types table
@@ -2895,6 +2923,7 @@ module Google
         def update!(**args)
           @excluded_primary_types = args[:excluded_primary_types] if args.key?(:excluded_primary_types)
           @excluded_types = args[:excluded_types] if args.key?(:excluded_types)
+          @include_future_opening_businesses = args[:include_future_opening_businesses] if args.key?(:include_future_opening_businesses)
           @included_primary_types = args[:included_primary_types] if args.key?(:included_primary_types)
           @included_types = args[:included_types] if args.key?(:included_types)
           @language_code = args[:language_code] if args.key?(:language_code)
@@ -2962,6 +2991,13 @@ module Google
         # Corresponds to the JSON property `evOptions`
         # @return [Google::Apis::PlacesV1::GoogleMapsPlacesV1SearchTextRequestEvOptions]
         attr_accessor :ev_options
+      
+        # Optional. If true, include businesses that are not yet open but will open in
+        # the future.
+        # Corresponds to the JSON property `includeFutureOpeningBusinesses`
+        # @return [Boolean]
+        attr_accessor :include_future_opening_businesses
+        alias_method :include_future_opening_businesses?, :include_future_opening_businesses
       
         # Optional. Include pure service area businesses if the field is set to true.
         # Pure service area business is a business that visits or delivers to customers
@@ -3114,6 +3150,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @ev_options = args[:ev_options] if args.key?(:ev_options)
+          @include_future_opening_businesses = args[:include_future_opening_businesses] if args.key?(:include_future_opening_businesses)
           @include_pure_service_area_businesses = args[:include_pure_service_area_businesses] if args.key?(:include_pure_service_area_businesses)
           @included_type = args[:included_type] if args.key?(:included_type)
           @language_code = args[:language_code] if args.key?(:language_code)
