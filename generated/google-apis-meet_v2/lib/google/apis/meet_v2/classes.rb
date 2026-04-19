@@ -230,6 +230,33 @@ module Google
         end
       end
       
+      # Details how to join the conference via a SIP gateway.
+      class GatewaySipAccess
+        include Google::Apis::Core::Hashable
+      
+        # Permanent numeric code for manual entry on specially configured devices.
+        # Corresponds to the JSON property `sipAccessCode`
+        # @return [String]
+        attr_accessor :sip_access_code
+      
+        # The SIP URI the conference can be reached through. The string is on one of the
+        # formats: "sip:@" "sips:@" where currently is the 13-digit universal pin, and
+        # is a valid address to be resolved using a DNS SRV lookup, or a dotted quad.
+        # Corresponds to the JSON property `uri`
+        # @return [String]
+        attr_accessor :uri
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @sip_access_code = args[:sip_access_code] if args.key?(:sip_access_code)
+          @uri = args[:uri] if args.key?(:uri)
+        end
+      end
+      
       # Response of ListConferenceRecords method.
       class ListConferenceRecordsResponse
         include Google::Apis::Core::Hashable
@@ -547,6 +574,49 @@ module Google
         end
       end
       
+      # Phone access contains information required to dial into a conference using a
+      # regional phone number and a PIN that is specific to that phone number.
+      class PhoneAccess
+        include Google::Apis::Core::Hashable
+      
+        # The BCP 47/LDML language code for the language associated with this phone
+        # access. To be parsed by the i18n LanguageCode utility. Examples: "es-419" for
+        # Latin American Spanish, "fr-CA" for Canadian French.
+        # Corresponds to the JSON property `languageCode`
+        # @return [String]
+        attr_accessor :language_code
+      
+        # The phone number to dial for this meeting space in E.164 format. Full phone
+        # number with a leading '+' character.
+        # Corresponds to the JSON property `phoneNumber`
+        # @return [String]
+        attr_accessor :phone_number
+      
+        # The PIN that users must enter after dialing the given number. The PIN consists
+        # of only decimal digits and the length may vary.
+        # Corresponds to the JSON property `pin`
+        # @return [String]
+        attr_accessor :pin
+      
+        # The CLDR/ISO 3166 region code for the country associated with this phone
+        # access. To be parsed by the i18n RegionCode utility. Example: "SE" for Sweden.
+        # Corresponds to the JSON property `regionCode`
+        # @return [String]
+        attr_accessor :region_code
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @language_code = args[:language_code] if args.key?(:language_code)
+          @phone_number = args[:phone_number] if args.key?(:phone_number)
+          @pin = args[:pin] if args.key?(:pin)
+          @region_code = args[:region_code] if args.key?(:region_code)
+        end
+      end
+      
       # User dialing in from a phone where the user's identity is unknown because they
       # haven't signed in with a Google Account.
       class PhoneUser
@@ -747,6 +817,12 @@ module Google
         # @return [Google::Apis::MeetV2::SpaceConfig]
         attr_accessor :config
       
+        # Output only. The SIP based access methods that can be used to join the
+        # conference. Can be empty.
+        # Corresponds to the JSON property `gatewaySipAccess`
+        # @return [Array<Google::Apis::MeetV2::GatewaySipAccess>]
+        attr_accessor :gateway_sip_access
+      
         # Output only. Type friendly unique string used to join the meeting. Format: `[a-
         # z]+-[a-z]+-[a-z]+`. For example, `abc-mnop-xyz`. The maximum length is 128
         # characters. Can only be used as an alias of the space name to get the space.
@@ -770,6 +846,12 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Output only. All regional phone access methods for this meeting space. Can be
+        # empty.
+        # Corresponds to the JSON property `phoneAccess`
+        # @return [Array<Google::Apis::MeetV2::PhoneAccess>]
+        attr_accessor :phone_access
+      
         def initialize(**args)
            update!(**args)
         end
@@ -778,9 +860,11 @@ module Google
         def update!(**args)
           @active_conference = args[:active_conference] if args.key?(:active_conference)
           @config = args[:config] if args.key?(:config)
+          @gateway_sip_access = args[:gateway_sip_access] if args.key?(:gateway_sip_access)
           @meeting_code = args[:meeting_code] if args.key?(:meeting_code)
           @meeting_uri = args[:meeting_uri] if args.key?(:meeting_uri)
           @name = args[:name] if args.key?(:name)
+          @phone_access = args[:phone_access] if args.key?(:phone_access)
         end
       end
       
