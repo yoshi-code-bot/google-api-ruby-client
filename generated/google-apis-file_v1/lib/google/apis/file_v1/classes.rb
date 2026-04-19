@@ -344,8 +344,7 @@ module Google
       
         # The resource name of the BackupDR backup, in the format `projects/`project_id`/
         # locations/`location_id`/backupVaults/`backupvault_id`/dataSources/`
-        # datasource_id`/backups/`backup_id``, TODO (b/443690479) - Remove visibility
-        # restrictions once the feature is ready
+        # datasource_id`/backups/`backup_id``,
         # Corresponds to the JSON property `sourceBackupdrBackup`
         # @return [String]
         attr_accessor :source_backupdr_backup
