@@ -66,6 +66,31 @@ module Google
         end
       end
       
+      # Contains the set of updates for a component.
+      class ComponentTraitUpdates
+        include Google::Apis::Core::Hashable
+      
+        # Required. ID of the component from the device provider.
+        # Corresponds to the JSON property `componentId`
+        # @return [String]
+        attr_accessor :component_id
+      
+        # Required. The updated trait data for the component.
+        # Corresponds to the JSON property `traitData`
+        # @return [Array<Google::Apis::HomegraphV1::TraitData>]
+        attr_accessor :trait_data
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @component_id = args[:component_id] if args.key?(:component_id)
+          @trait_data = args[:trait_data] if args.key?(:trait_data)
+        end
+      end
+      
       # Third-party device definition.
       class Device
         include Google::Apis::Core::Hashable
@@ -255,6 +280,113 @@ module Google
         end
       end
       
+      # Contains the details for a single event.
+      class EventData
+        include Google::Apis::Core::Hashable
+      
+        # Required. The actual event payload.
+        # Corresponds to the JSON property `event`
+        # @return [Hash<String,Object>]
+        attr_accessor :event
+      
+        # Required. The unique event ID from the device provider.
+        # Corresponds to the JSON property `eventId`
+        # @return [String]
+        attr_accessor :event_id
+      
+        # Required. The timestamp of the event.
+        # Corresponds to the JSON property `eventTime`
+        # @return [String]
+        attr_accessor :event_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @event = args[:event] if args.key?(:event)
+          @event_id = args[:event_id] if args.key?(:event_id)
+          @event_time = args[:event_time] if args.key?(:event_time)
+        end
+      end
+      
+      # Contains a set of events for a specific component.
+      class Events
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The ID of the provider component if the events are associated with a
+        # specific component. Optional for WHDM events, required for UDDM events.
+        # Corresponds to the JSON property `componentId`
+        # @return [String]
+        attr_accessor :component_id
+      
+        # Required. List of events associated with the component.
+        # Corresponds to the JSON property `events`
+        # @return [Array<Google::Apis::HomegraphV1::EventData>]
+        attr_accessor :events
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @component_id = args[:component_id] if args.key?(:component_id)
+          @events = args[:events] if args.key?(:events)
+        end
+      end
+      
+      # Contains the set of events for an item.
+      class HomeEvents
+        include Google::Apis::Core::Hashable
+      
+        # Required. / Unique identifier for the device.
+        # Corresponds to the JSON property `deviceId`
+        # @return [String]
+        attr_accessor :device_id
+      
+        # Required. List of events for the item.
+        # Corresponds to the JSON property `events`
+        # @return [Array<Google::Apis::HomegraphV1::Events>]
+        attr_accessor :events
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @device_id = args[:device_id] if args.key?(:device_id)
+          @events = args[:events] if args.key?(:events)
+        end
+      end
+      
+      # Contains the set of updates for a device.
+      class HomeTraitUpdates
+        include Google::Apis::Core::Hashable
+      
+        # Required. Trait updates for each component.
+        # Corresponds to the JSON property `components`
+        # @return [Array<Google::Apis::HomegraphV1::ComponentTraitUpdates>]
+        attr_accessor :components
+      
+        # Required. Unique identifier for the device.
+        # Corresponds to the JSON property `deviceId`
+        # @return [String]
+        attr_accessor :device_id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @components = args[:components] if args.key?(:components)
+          @device_id = args[:device_id] if args.key?(:device_id)
+        end
+      end
+      
       # Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query)
       # call.
       class QueryRequest
@@ -380,6 +512,16 @@ module Google
       class ReportStateAndNotificationDevice
         include Google::Apis::Core::Hashable
       
+        # Optional. UDDM/WHDM trait events
+        # Corresponds to the JSON property `homeEvents`
+        # @return [Array<Google::Apis::HomegraphV1::HomeEvents>]
+        attr_accessor :home_events
+      
+        # Optional. UDDM/WHDM trait updates.
+        # Corresponds to the JSON property `homeTraits`
+        # @return [Array<Google::Apis::HomegraphV1::HomeTraitUpdates>]
+        attr_accessor :home_traits
+      
         # Notifications metadata for devices. See the **Device NOTIFICATIONS** section
         # of the individual trait [reference guides](https://developers.home.google.com/
         # cloud-to-cloud/traits).
@@ -400,6 +542,8 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @home_events = args[:home_events] if args.key?(:home_events)
+          @home_traits = args[:home_traits] if args.key?(:home_traits)
           @notifications = args[:notifications] if args.key?(:notifications)
           @states = args[:states] if args.key?(:states)
         end
@@ -620,6 +764,25 @@ module Google
         def update!(**args)
           @agent_user_id = args[:agent_user_id] if args.key?(:agent_user_id)
           @devices = args[:devices] if args.key?(:devices)
+        end
+      end
+      
+      # Contains the trait payload for a single trait.
+      class TraitData
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The Home API trait payload.
+        # Corresponds to the JSON property `trait`
+        # @return [Hash<String,Object>]
+        attr_accessor :trait
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @trait = args[:trait] if args.key?(:trait)
         end
       end
     end
