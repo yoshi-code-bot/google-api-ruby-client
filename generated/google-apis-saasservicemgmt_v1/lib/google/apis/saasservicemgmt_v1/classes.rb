@@ -86,19 +86,6 @@ module Google
         end
       end
       
-      # The request message for Operations.CancelOperation.
-      class CancelOperationRequest
-        include Google::Apis::Core::Hashable
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-        end
-      end
-      
       # Dependency represent a single dependency with another unit kind by alias.
       class Dependency
         include Google::Apis::Core::Hashable
@@ -179,6 +166,25 @@ module Google
         def update!(**args)
           @allowed_count = args[:allowed_count] if args.key?(:allowed_count)
           @allowed_percentage = args[:allowed_percentage] if args.key?(:allowed_percentage)
+        end
+      end
+      
+      # FlagUpdate is a UnitOperation that pushes new flag values to Units.
+      class FlagUpdate
+        include Google::Apis::Core::Hashable
+      
+        # Required. Flag release being applied by UnitOperation.
+        # Corresponds to the JSON property `flagRelease`
+        # @return [String]
+        attr_accessor :flag_release
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @flag_release = args[:flag_release] if args.key?(:flag_release)
         end
       end
       
@@ -277,40 +283,6 @@ module Google
         def update!(**args)
           @locations = args[:locations] if args.key?(:locations)
           @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
-        end
-      end
-      
-      # The response message for Operations.ListOperations.
-      class ListOperationsResponse
-        include Google::Apis::Core::Hashable
-      
-        # The standard List next-page token.
-        # Corresponds to the JSON property `nextPageToken`
-        # @return [String]
-        attr_accessor :next_page_token
-      
-        # A list of operations that matches the specified filter in the request.
-        # Corresponds to the JSON property `operations`
-        # @return [Array<Google::Apis::SaasservicemgmtV1::Operation>]
-        attr_accessor :operations
-      
-        # Unordered list. Unreachable resources. Populated when the request sets `
-        # ListOperationsRequest.return_partial_success` and reads across collections.
-        # For example, when attempting to list all resources across all supported
-        # locations.
-        # Corresponds to the JSON property `unreachable`
-        # @return [Array<String>]
-        attr_accessor :unreachable
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
-          @operations = args[:operations] if args.key?(:operations)
-          @unreachable = args[:unreachable] if args.key?(:unreachable)
         end
       end
       
@@ -614,68 +586,6 @@ module Google
         end
       end
       
-      # This resource represents a long-running operation that is the result of a
-      # network API call.
-      class Operation
-        include Google::Apis::Core::Hashable
-      
-        # If the value is `false`, it means the operation is still in progress. If `true`
-        # , the operation is completed, and either `error` or `response` is available.
-        # Corresponds to the JSON property `done`
-        # @return [Boolean]
-        attr_accessor :done
-        alias_method :done?, :done
-      
-        # The `Status` type defines a logical error model that is suitable for different
-        # programming environments, including REST APIs and RPC APIs. It is used by [
-        # gRPC](https://github.com/grpc). Each `Status` message contains three pieces of
-        # data: error code, error message, and error details. You can find out more
-        # about this error model and how to work with it in the [API Design Guide](https:
-        # //cloud.google.com/apis/design/errors).
-        # Corresponds to the JSON property `error`
-        # @return [Google::Apis::SaasservicemgmtV1::Status]
-        attr_accessor :error
-      
-        # Service-specific metadata associated with the operation. It typically contains
-        # progress information and common metadata such as create time. Some services
-        # might not provide such metadata. Any method that returns a long-running
-        # operation should document the metadata type, if any.
-        # Corresponds to the JSON property `metadata`
-        # @return [Hash<String,Object>]
-        attr_accessor :metadata
-      
-        # The server-assigned name, which is only unique within the same service that
-        # originally returns it. If you use the default HTTP mapping, the `name` should
-        # be a resource name ending with `operations/`unique_id``.
-        # Corresponds to the JSON property `name`
-        # @return [String]
-        attr_accessor :name
-      
-        # The normal, successful response of the operation. If the original method
-        # returns no data on success, such as `Delete`, the response is `google.protobuf.
-        # Empty`. If the original method is standard `Get`/`Create`/`Update`, the
-        # response should be the resource. For other methods, the response should have
-        # the type `XxxResponse`, where `Xxx` is the original method name. For example,
-        # if the original method name is `TakeSnapshot()`, the inferred response type is
-        # `TakeSnapshotResponse`.
-        # Corresponds to the JSON property `response`
-        # @return [Hash<String,Object>]
-        attr_accessor :response
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @done = args[:done] if args.key?(:done)
-          @error = args[:error] if args.key?(:error)
-          @metadata = args[:metadata] if args.key?(:metadata)
-          @name = args[:name] if args.key?(:name)
-          @response = args[:response] if args.key?(:response)
-        end
-      end
-      
       # Provision is the unit operation that provision the underlying resources
       # represented by a Unit. Can only execute if the Unit is not currently
       # provisioned.
@@ -892,6 +802,14 @@ module Google
         # @return [String]
         attr_accessor :etag
       
+        # Optional. Immutable. Name of the FlagRelease to be rolled out to the target
+        # Units. Release and FlagRelease are mutually exclusive. Note: `release` comment
+        # needs to be adjusted to mention that "Release and FlagRelease are mutually
+        # exclusive" when visibility restriction will be lifted.
+        # Corresponds to the JSON property `flagRelease`
+        # @return [String]
+        attr_accessor :flag_release
+      
         # Optional. The labels on the resource, which can be used for categorization.
         # similar to Kubernetes resource labels.
         # Corresponds to the JSON property `labels`
@@ -918,7 +836,7 @@ module Google
         # @return [String]
         attr_accessor :release
       
-        # Optional. Immutable. Name of the RolloutKind this rollout is stemming from and
+        # Required. Immutable. Name of the RolloutKind this rollout is stemming from and
         # adhering to.
         # Corresponds to the JSON property `rolloutKind`
         # @return [String]
@@ -1007,6 +925,7 @@ module Google
           @effective_unit_filter = args[:effective_unit_filter] if args.key?(:effective_unit_filter)
           @end_time = args[:end_time] if args.key?(:end_time)
           @etag = args[:etag] if args.key?(:etag)
+          @flag_release = args[:flag_release] if args.key?(:flag_release)
           @labels = args[:labels] if args.key?(:labels)
           @name = args[:name] if args.key?(:name)
           @parent_rollout = args[:parent_rollout] if args.key?(:parent_rollout)
@@ -1169,6 +1088,12 @@ module Google
       class RolloutStats
         include Google::Apis::Core::Hashable
       
+        # Optional. Output only. Estimated number of units based. The estimation is
+        # computed upon creation of the rollout.
+        # Corresponds to the JSON property `estimatedTotalUnitCount`
+        # @return [Fixnum]
+        attr_accessor :estimated_total_unit_count
+      
         # Optional. Output only. Unordered list. A breakdown of the progress of
         # operations triggered by the rollout. Provides a count of Operations by their
         # state. This can be used to determine the number of units which have been
@@ -1185,6 +1110,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @estimated_total_unit_count = args[:estimated_total_unit_count] if args.key?(:estimated_total_unit_count)
           @operations_by_state = args[:operations_by_state] if args.key?(:operations_by_state)
         end
       end
@@ -1224,10 +1150,26 @@ module Google
         # @return [Hash<String,String>]
         attr_accessor :annotations
       
+        # Output only. A set of conditions which indicate the various conditions this
+        # resource can have.
+        # Corresponds to the JSON property `conditions`
+        # @return [Array<Google::Apis::SaasservicemgmtV1::SaasCondition>]
+        attr_accessor :conditions
+      
         # Output only. The timestamp when the resource was created.
         # Corresponds to the JSON property `createTime`
         # @return [String]
         attr_accessor :create_time
+      
+        # The `Status` type defines a logical error model that is suitable for different
+        # programming environments, including REST APIs and RPC APIs. It is used by [
+        # gRPC](https://github.com/grpc). Each `Status` message contains three pieces of
+        # data: error code, error message, and error details. You can find out more
+        # about this error model and how to work with it in the [API Design Guide](https:
+        # //cloud.google.com/apis/design/errors).
+        # Corresponds to the JSON property `error`
+        # @return [Google::Apis::SaasservicemgmtV1::Status]
+        attr_accessor :error
       
         # Output only. An opaque value that uniquely identifies a version or generation
         # of a resource. It can be used to confirm that the client and server agree on
@@ -1254,6 +1196,12 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Output only. State of the Saas. It is always in ACTIVE state if the
+        # application_template is empty.
+        # Corresponds to the JSON property `state`
+        # @return [String]
+        attr_accessor :state
+      
         # Output only. The unique identifier of the resource. UID is unique in the time
         # and space for this resource within the scope of the service. It is typically
         # generated by the server on successful creation of a resource and must not be
@@ -1277,13 +1225,59 @@ module Google
         # Update properties of this object
         def update!(**args)
           @annotations = args[:annotations] if args.key?(:annotations)
+          @conditions = args[:conditions] if args.key?(:conditions)
           @create_time = args[:create_time] if args.key?(:create_time)
+          @error = args[:error] if args.key?(:error)
           @etag = args[:etag] if args.key?(:etag)
           @labels = args[:labels] if args.key?(:labels)
           @locations = args[:locations] if args.key?(:locations)
           @name = args[:name] if args.key?(:name)
+          @state = args[:state] if args.key?(:state)
           @uid = args[:uid] if args.key?(:uid)
           @update_time = args[:update_time] if args.key?(:update_time)
+        end
+      end
+      
+      # SaasCondition describes the status of a Saas.
+      class SaasCondition
+        include Google::Apis::Core::Hashable
+      
+        # Required. Last time the condition transited from one status to another.
+        # Corresponds to the JSON property `lastTransitionTime`
+        # @return [String]
+        attr_accessor :last_transition_time
+      
+        # Required. Human readable message indicating details about the last transition.
+        # Corresponds to the JSON property `message`
+        # @return [String]
+        attr_accessor :message
+      
+        # Required. Brief reason for the condition's last transition.
+        # Corresponds to the JSON property `reason`
+        # @return [String]
+        attr_accessor :reason
+      
+        # Required. Status of the condition.
+        # Corresponds to the JSON property `status`
+        # @return [String]
+        attr_accessor :status
+      
+        # Required. Type of the condition.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @last_transition_time = args[:last_transition_time] if args.key?(:last_transition_time)
+          @message = args[:message] if args.key?(:message)
+          @reason = args[:reason] if args.key?(:reason)
+          @status = args[:status] if args.key?(:status)
+          @type = args[:type] if args.key?(:type)
         end
       end
       
@@ -1363,9 +1357,9 @@ module Google
         attr_accessor :annotations
       
         # Optional. Immutable. A reference to the consumer resource this SaaS Tenant is
-        # representing. The relationship with a consumer resource can be used by SaaS
-        # Runtime for retrieving consumer-defined settings and policies such as
-        # maintenance policies (using Unified Maintenance Policy API).
+        # representing. The relationship with a consumer resource can be used by App
+        # Lifecycle Manager for retrieving consumer-defined settings and policies such
+        # as maintenance policies (using Unified Maintenance Policy API).
         # Corresponds to the JSON property `consumerResource`
         # @return [String]
         attr_accessor :consumer_resource
@@ -1396,8 +1390,8 @@ module Google
         attr_accessor :name
       
         # Required. Immutable. A reference to the Saas that defines the product (managed
-        # service) that the producer wants to manage with SaaS Runtime. Part of the SaaS
-        # Runtime common data model.
+        # service) that the producer wants to manage with App Lifecycle Manager. Part of
+        # the App Lifecycle Manager common data model.
         # Corresponds to the JSON property `saas`
         # @return [String]
         attr_accessor :saas
@@ -1446,8 +1440,8 @@ module Google
         # @return [String]
         attr_accessor :dependency
       
-        # Optional. Tells SaaS Runtime if this mapping should be used during lookup or
-        # not
+        # Optional. Tells App Lifecycle Manager if this mapping should be used during
+        # lookup or not
         # Corresponds to the JSON property `ignoreForLookup`
         # @return [Boolean]
         attr_accessor :ignore_for_lookup
@@ -1514,6 +1508,11 @@ module Google
         # @return [String]
         attr_accessor :etag
       
+        # Optional. Output only. Flag revisions used by this Unit.
+        # Corresponds to the JSON property `flagRevisions`
+        # @return [Array<String>]
+        attr_accessor :flag_revisions
+      
         # Optional. Output only. Indicates the current input variables deployed by the
         # unit
         # Corresponds to the JSON property `inputVariables`
@@ -1571,8 +1570,7 @@ module Google
         # @return [String]
         attr_accessor :release
       
-        # Output only. Indicates whether the resource location satisfies Zone Isolation
-        # constraints. This is false by default.
+        # Output only. Reserved for future use.
         # Corresponds to the JSON property `satisfiesPzi`
         # @return [Boolean]
         attr_accessor :satisfies_pzi
@@ -1647,6 +1645,7 @@ module Google
           @dependencies = args[:dependencies] if args.key?(:dependencies)
           @dependents = args[:dependents] if args.key?(:dependents)
           @etag = args[:etag] if args.key?(:etag)
+          @flag_revisions = args[:flag_revisions] if args.key?(:flag_revisions)
           @input_variables = args[:input_variables] if args.key?(:input_variables)
           @labels = args[:labels] if args.key?(:labels)
           @maintenance = args[:maintenance] if args.key?(:maintenance)
@@ -1757,6 +1756,12 @@ module Google
         # @return [String]
         attr_accessor :create_time
       
+        # Optional. Default revisions of flags for this UnitKind. Newly created units
+        # will use the flag default_flag_revisions present at the time of creation.
+        # Corresponds to the JSON property `defaultFlagRevisions`
+        # @return [Array<String>]
+        attr_accessor :default_flag_revisions
+      
         # Optional. A reference to the Release object to use as default for creating new
         # units of this UnitKind (optional). If not specified, a new unit must
         # explicitly reference which release to use for its creation.
@@ -1804,8 +1809,8 @@ module Google
         attr_accessor :output_variable_mappings
       
         # Required. Immutable. A reference to the Saas that defines the product (managed
-        # service) that the producer wants to manage with SaaS Runtime. Part of the SaaS
-        # Runtime common data model. Immutable once set.
+        # service) that the producer wants to manage with App Lifecycle Manager. Part of
+        # the App Lifecycle Manager common data model. Immutable once set.
         # Corresponds to the JSON property `saas`
         # @return [String]
         attr_accessor :saas
@@ -1834,6 +1839,7 @@ module Google
         def update!(**args)
           @annotations = args[:annotations] if args.key?(:annotations)
           @create_time = args[:create_time] if args.key?(:create_time)
+          @default_flag_revisions = args[:default_flag_revisions] if args.key?(:default_flag_revisions)
           @default_release = args[:default_release] if args.key?(:default_release)
           @dependencies = args[:dependencies] if args.key?(:dependencies)
           @etag = args[:etag] if args.key?(:etag)
@@ -1912,6 +1918,11 @@ module Google
         # Corresponds to the JSON property `etag`
         # @return [String]
         attr_accessor :etag
+      
+        # FlagUpdate is a UnitOperation that pushes new flag values to Units.
+        # Corresponds to the JSON property `flagUpdate`
+        # @return [Google::Apis::SaasservicemgmtV1::FlagUpdate]
+        attr_accessor :flag_update
       
         # Optional. The labels on the resource, which can be used for categorization.
         # similar to Kubernetes resource labels.
@@ -2003,6 +2014,7 @@ module Google
           @engine_state = args[:engine_state] if args.key?(:engine_state)
           @error_category = args[:error_category] if args.key?(:error_category)
           @etag = args[:etag] if args.key?(:etag)
+          @flag_update = args[:flag_update] if args.key?(:flag_update)
           @labels = args[:labels] if args.key?(:labels)
           @name = args[:name] if args.key?(:name)
           @parent_unit_operation = args[:parent_unit_operation] if args.key?(:parent_unit_operation)

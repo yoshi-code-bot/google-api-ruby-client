@@ -34,12 +34,6 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class CancelOperationRequest
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
       class Dependency
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -64,6 +58,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class FlagUpdate
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class FromMapping
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -77,12 +77,6 @@ module Google
       end
       
       class ListLocationsResponse
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
-      class ListOperationsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -148,12 +142,6 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
-      class Operation
-        class Representation < Google::Apis::Core::JsonRepresentation; end
-      
-        include Google::Apis::Core::JsonObjectSupport
-      end
-      
       class Provision
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -203,6 +191,12 @@ module Google
       end
       
       class Saas
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SaasCondition
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -303,12 +297,6 @@ module Google
         end
       end
       
-      class CancelOperationRequest
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-        end
-      end
-      
       class Dependency
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -337,6 +325,13 @@ module Google
         end
       end
       
+      class FlagUpdate
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :flag_release, as: 'flagRelease'
+        end
+      end
+      
       class FromMapping
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -362,16 +357,6 @@ module Google
           collection :locations, as: 'locations', class: Google::Apis::SaasservicemgmtV1::GoogleCloudLocationLocation, decorator: Google::Apis::SaasservicemgmtV1::GoogleCloudLocationLocation::Representation
       
           property :next_page_token, as: 'nextPageToken'
-        end
-      end
-      
-      class ListOperationsResponse
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :next_page_token, as: 'nextPageToken'
-          collection :operations, as: 'operations', class: Google::Apis::SaasservicemgmtV1::Operation, decorator: Google::Apis::SaasservicemgmtV1::Operation::Representation
-      
-          collection :unreachable, as: 'unreachable'
         end
       end
       
@@ -469,18 +454,6 @@ module Google
         end
       end
       
-      class Operation
-        # @private
-        class Representation < Google::Apis::Core::JsonRepresentation
-          property :done, as: 'done'
-          property :error, as: 'error', class: Google::Apis::SaasservicemgmtV1::Status, decorator: Google::Apis::SaasservicemgmtV1::Status::Representation
-      
-          hash :metadata, as: 'metadata'
-          property :name, as: 'name'
-          hash :response, as: 'response'
-        end
-      end
-      
       class Provision
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -532,6 +505,7 @@ module Google
           property :effective_unit_filter, as: 'effectiveUnitFilter'
           property :end_time, as: 'endTime'
           property :etag, as: 'etag'
+          property :flag_release, as: 'flagRelease'
           hash :labels, as: 'labels'
           property :name, as: 'name'
           property :parent_rollout, as: 'parentRollout'
@@ -582,6 +556,7 @@ module Google
       class RolloutStats
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :estimated_total_unit_count, :numeric_string => true, as: 'estimatedTotalUnitCount'
           collection :operations_by_state, as: 'operationsByState', class: Google::Apis::SaasservicemgmtV1::Aggregate, decorator: Google::Apis::SaasservicemgmtV1::Aggregate::Representation
       
         end
@@ -598,14 +573,30 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           hash :annotations, as: 'annotations'
+          collection :conditions, as: 'conditions', class: Google::Apis::SaasservicemgmtV1::SaasCondition, decorator: Google::Apis::SaasservicemgmtV1::SaasCondition::Representation
+      
           property :create_time, as: 'createTime'
+          property :error, as: 'error', class: Google::Apis::SaasservicemgmtV1::Status, decorator: Google::Apis::SaasservicemgmtV1::Status::Representation
+      
           property :etag, as: 'etag'
           hash :labels, as: 'labels'
           collection :locations, as: 'locations', class: Google::Apis::SaasservicemgmtV1::Location, decorator: Google::Apis::SaasservicemgmtV1::Location::Representation
       
           property :name, as: 'name'
+          property :state, as: 'state'
           property :uid, as: 'uid'
           property :update_time, as: 'updateTime'
+        end
+      end
+      
+      class SaasCondition
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :last_transition_time, as: 'lastTransitionTime'
+          property :message, as: 'message'
+          property :reason, as: 'reason'
+          property :status, as: 'status'
+          property :type, as: 'type'
         end
       end
       
@@ -661,6 +652,7 @@ module Google
           collection :dependents, as: 'dependents', class: Google::Apis::SaasservicemgmtV1::UnitDependency, decorator: Google::Apis::SaasservicemgmtV1::UnitDependency::Representation
       
           property :etag, as: 'etag'
+          collection :flag_revisions, as: 'flagRevisions'
           collection :input_variables, as: 'inputVariables', class: Google::Apis::SaasservicemgmtV1::UnitVariable, decorator: Google::Apis::SaasservicemgmtV1::UnitVariable::Representation
       
           hash :labels, as: 'labels'
@@ -710,6 +702,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           hash :annotations, as: 'annotations'
           property :create_time, as: 'createTime'
+          collection :default_flag_revisions, as: 'defaultFlagRevisions'
           property :default_release, as: 'defaultRelease'
           collection :dependencies, as: 'dependencies', class: Google::Apis::SaasservicemgmtV1::Dependency, decorator: Google::Apis::SaasservicemgmtV1::Dependency::Representation
       
@@ -740,6 +733,8 @@ module Google
           property :engine_state, as: 'engineState'
           property :error_category, as: 'errorCategory'
           property :etag, as: 'etag'
+          property :flag_update, as: 'flagUpdate', class: Google::Apis::SaasservicemgmtV1::FlagUpdate, decorator: Google::Apis::SaasservicemgmtV1::FlagUpdate::Representation
+      
           hash :labels, as: 'labels'
           property :name, as: 'name'
           property :parent_unit_operation, as: 'parentUnitOperation'
