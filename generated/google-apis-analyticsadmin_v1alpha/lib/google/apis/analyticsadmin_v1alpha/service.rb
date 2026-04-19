@@ -58,15 +58,15 @@ module Google
         
         # Returns summaries of all accounts accessible by the caller.
         # @param [Fixnum] page_size
-        #   The maximum number of AccountSummary resources to return. The service may
-        #   return fewer than this value, even if there are additional pages. If
-        #   unspecified, at most 50 resources will be returned. The maximum value is 200; (
-        #   higher values will be coerced to the maximum)
+        #   Optional. The maximum number of AccountSummary resources to return. The
+        #   service may return fewer than this value, even if there are additional pages.
+        #   If unspecified, at most 50 resources will be returned. The maximum value is
+        #   200; (higher values will be coerced to the maximum)
         # @param [String] page_token
-        #   A page token, received from a previous `ListAccountSummaries` call. Provide
-        #   this to retrieve the subsequent page. When paginating, all other parameters
-        #   provided to `ListAccountSummaries` must match the call that provided the page
-        #   token.
+        #   Optional. A page token, received from a previous `ListAccountSummaries` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `ListAccountSummaries` must match the call that
+        #   provided the page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -198,14 +198,14 @@ module Google
         # not currently have GA properties. Soft-deleted (ie: "trashed") accounts are
         # excluded by default. Returns an empty list if no relevant accounts are found.
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. The service may return fewer than
-        #   this value, even if there are additional pages. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200; (higher values will be
-        #   coerced to the maximum)
+        #   Optional. The maximum number of resources to return. The service may return
+        #   fewer than this value, even if there are additional pages. If unspecified, at
+        #   most 50 resources will be returned. The maximum value is 200; (higher values
+        #   will be coerced to the maximum)
         # @param [String] page_token
-        #   A page token, received from a previous `ListAccounts` call. Provide this to
-        #   retrieve the subsequent page. When paginating, all other parameters provided
-        #   to `ListAccounts` must match the call that provided the page token.
+        #   Optional. A page token, received from a previous `ListAccounts` call. Provide
+        #   this to retrieve the subsequent page. When paginating, all other parameters
+        #   provided to `ListAccounts` must match the call that provided the page token.
         # @param [Boolean] show_deleted
         #   Whether to include soft-deleted (ie: "trashed") Accounts in the results.
         #   Accounts can be inspected to determine whether they are deleted or not.
@@ -240,7 +240,7 @@ module Google
         
         # Updates an account.
         # @param [String] name
-        #   Output only. Resource name of this account. Format: accounts/`account` Example:
+        #   Identifier. Resource name of this account. Format: accounts/`account` Example:
         #   "accounts/100"
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaAccount] google_analytics_admin_v1alpha_account_object
         # @param [String] update_mask
@@ -1000,6 +1000,37 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Looks up settings related to user-provided data for a property.
+        # @param [String] name
+        #   Required. The name of the user provided data settings to retrieve. Format:
+        #   properties/`property`/userProvidedDataSettings
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaUserProvidedDataSettings] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaUserProvidedDataSettings]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_property_user_provided_data_settings(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1alpha/{+name}', options)
+          command.response_representation = Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaUserProvidedDataSettings::Representation
+          command.response_class = Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaUserProvidedDataSettings
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Returns child Properties under the specified parent Account. Properties will
         # be excluded if the caller does not have access. Soft-deleted (ie: "trashed")
         # properties are excluded by default. Returns an empty list if no relevant
@@ -1016,14 +1047,15 @@ module Google
         #   | | firebase_project:project-id | The firebase project with id: project-id. |
         #   | firebase_project:123 | The firebase project with number: 123. | ```
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. The service may return fewer than
-        #   this value, even if there are additional pages. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200; (higher values will be
-        #   coerced to the maximum)
+        #   Optional. The maximum number of resources to return. The service may return
+        #   fewer than this value, even if there are additional pages. If unspecified, at
+        #   most 50 resources will be returned. The maximum value is 200; (higher values
+        #   will be coerced to the maximum)
         # @param [String] page_token
-        #   A page token, received from a previous `ListProperties` call. Provide this to
-        #   retrieve the subsequent page. When paginating, all other parameters provided
-        #   to `ListProperties` must match the call that provided the page token.
+        #   Optional. A page token, received from a previous `ListProperties` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `ListProperties` must match the call that provided the
+        #   page token.
         # @param [Boolean] show_deleted
         #   Whether to include soft-deleted (ie: "trashed") Properties in the results.
         #   Properties can be inspected to determine whether they are deleted or not.
@@ -1059,7 +1091,7 @@ module Google
         
         # Updates a property.
         # @param [String] name
-        #   Output only. Resource name of this property. Format: properties/`property_id`
+        #   Identifier. Resource name of this property. Format: properties/`property_id`
         #   Example: "properties/1000"
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaProperty] google_analytics_admin_v1alpha_property_object
         # @param [String] update_mask
@@ -1254,7 +1286,7 @@ module Google
         
         # Updates the singleton data retention settings for this property.
         # @param [String] name
-        #   Output only. Resource name for this DataRetentionSetting resource. Format:
+        #   Identifier. Resource name for this DataRetentionSetting resource. Format:
         #   properties/`property`/dataRetentionSettings
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaDataRetentionSettings] google_analytics_admin_v1alpha_data_retention_settings_object
         # @param [String] update_mask
@@ -2291,7 +2323,7 @@ module Google
         
         # Updates a CalculatedMetric on a property.
         # @param [String] name
-        #   Output only. Resource name for this CalculatedMetric. Format: 'properties/`
+        #   Identifier. Resource name for this CalculatedMetric. Format: 'properties/`
         #   property_id`/calculatedMetrics/`calculated_metric_id`'
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaCalculatedMetric] google_analytics_admin_v1alpha_calculated_metric_object
         # @param [String] update_mask
@@ -2611,14 +2643,14 @@ module Google
         # @param [String] parent
         #   Required. The resource name of the parent property. Example: 'properties/123'
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200; (higher values will be
-        #   coerced to the maximum)
+        #   Optional. The maximum number of resources to return. If unspecified, at most
+        #   50 resources will be returned. The maximum value is 200; (higher values will
+        #   be coerced to the maximum)
         # @param [String] page_token
-        #   A page token, received from a previous `ListConversionEvents` call. Provide
-        #   this to retrieve the subsequent page. When paginating, all other parameters
-        #   provided to `ListConversionEvents` must match the call that provided the page
-        #   token.
+        #   Optional. A page token, received from a previous `ListConversionEvents` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `ListConversionEvents` must match the call that
+        #   provided the page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2651,7 +2683,7 @@ module Google
         # Deprecated: Use `UpdateKeyEvent` instead. Updates a conversion event with the
         # specified attributes.
         # @param [String] name
-        #   Output only. Resource name of this conversion event. Format: properties/`
+        #   Identifier. Resource name of this conversion event. Format: properties/`
         #   property`/conversionEvents/`conversion_event`
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaConversionEvent] google_analytics_admin_v1alpha_conversion_event_object
         # @param [String] update_mask
@@ -2790,14 +2822,14 @@ module Google
         # @param [String] parent
         #   Required. Example format: properties/1234
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200 (higher values will be
+        #   Optional. The maximum number of resources to return. If unspecified, at most
+        #   50 resources will be returned. The maximum value is 200 (higher values will be
         #   coerced to the maximum).
         # @param [String] page_token
-        #   A page token, received from a previous `ListCustomDimensions` call. Provide
-        #   this to retrieve the subsequent page. When paginating, all other parameters
-        #   provided to `ListCustomDimensions` must match the call that provided the page
-        #   token.
+        #   Optional. A page token, received from a previous `ListCustomDimensions` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `ListCustomDimensions` must match the call that
+        #   provided the page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2829,7 +2861,7 @@ module Google
         
         # Updates a CustomDimension on a property.
         # @param [String] name
-        #   Output only. Resource name for this CustomDimension resource. Format:
+        #   Identifier. Resource name for this CustomDimension resource. Format:
         #   properties/`property`/customDimensions/`customDimension`
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaCustomDimension] google_analytics_admin_v1alpha_custom_dimension_object
         # @param [String] update_mask
@@ -3007,7 +3039,7 @@ module Google
         
         # Updates a CustomMetric on a property.
         # @param [String] name
-        #   Output only. Resource name for this CustomMetric resource. Format: properties/`
+        #   Identifier. Resource name for this CustomMetric resource. Format: properties/`
         #   property`/customMetrics/`customMetric`
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaCustomMetric] google_analytics_admin_v1alpha_custom_metric_object
         # @param [String] update_mask
@@ -3280,9 +3312,8 @@ module Google
         
         # Updates a DataStream on a property.
         # @param [String] name
-        #   Output only. Resource name of this Data Stream. Format: properties/`
-        #   property_id`/dataStreams/`stream_id` Example: "properties/1000/dataStreams/
-        #   2000"
+        #   Identifier. Resource name of this Data Stream. Format: properties/`property_id`
+        #   /dataStreams/`stream_id` Example: "properties/1000/dataStreams/2000"
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaDataStream] google_analytics_admin_v1alpha_data_stream_object
         # @param [String] update_mask
         #   Required. The list of fields to be updated. Omitted fields will not be updated.
@@ -3884,14 +3915,15 @@ module Google
         #   Required. The resource name of the parent stream. Format: properties/`property`
         #   /dataStreams/`dataStream`/measurementProtocolSecrets
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. If unspecified, at most 10
-        #   resources will be returned. The maximum value is 10. Higher values will be
+        #   Optional. The maximum number of resources to return. If unspecified, at most
+        #   10 resources will be returned. The maximum value is 10. Higher values will be
         #   coerced to the maximum.
         # @param [String] page_token
-        #   A page token, received from a previous `ListMeasurementProtocolSecrets` call.
-        #   Provide this to retrieve the subsequent page. When paginating, all other
-        #   parameters provided to `ListMeasurementProtocolSecrets` must match the call
-        #   that provided the page token.
+        #   Optional. A page token, received from a previous `
+        #   ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent
+        #   page. When paginating, all other parameters provided to `
+        #   ListMeasurementProtocolSecrets` must match the call that provided the page
+        #   token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -3923,7 +3955,7 @@ module Google
         
         # Updates a measurement protocol secret.
         # @param [String] name
-        #   Output only. Resource name of this secret. This secret may be a child of any
+        #   Identifier. Resource name of this secret. This secret may be a child of any
         #   type of stream. Format: properties/`property`/dataStreams/`dataStream`/
         #   measurementProtocolSecrets/`measurementProtocolSecret`
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret] google_analytics_admin_v1alpha_measurement_protocol_secret_object
@@ -4064,15 +4096,16 @@ module Google
         #   property_id`/dataStreams/`dataStream` Example: properties/1234/dataStreams/
         #   5678
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. The service may return fewer than
-        #   this value, even if there are additional pages. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200; (higher values will be
-        #   coerced to the maximum)
+        #   Optional. The maximum number of resources to return. The service may return
+        #   fewer than this value, even if there are additional pages. If unspecified, at
+        #   most 50 resources will be returned. The maximum value is 200; (higher values
+        #   will be coerced to the maximum)
         # @param [String] page_token
-        #   A page token, received from a previous `ListSKAdNetworkConversionValueSchemas`
-        #   call. Provide this to retrieve the subsequent page. When paginating, all other
-        #   parameters provided to `ListSKAdNetworkConversionValueSchema` must match the
-        #   call that provided the page token.
+        #   Optional. A page token, received from a previous `
+        #   ListSKAdNetworkConversionValueSchemas` call. Provide this to retrieve the
+        #   subsequent page. When paginating, all other parameters provided to `
+        #   ListSKAdNetworkConversionValueSchema` must match the call that provided the
+        #   page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -4104,7 +4137,7 @@ module Google
         
         # Updates a SKAdNetworkConversionValueSchema.
         # @param [String] name
-        #   Output only. Resource name of the schema. This will be child of ONLY an iOS
+        #   Identifier. Resource name of the schema. This will be child of ONLY an iOS
         #   stream, and there can be at most one such child under an iOS stream. Format:
         #   properties/`property`/dataStreams/`dataStream`/
         #   sKAdNetworkConversionValueSchema
@@ -4494,7 +4527,7 @@ module Google
         
         # Updates a DisplayVideo360AdvertiserLink on a property.
         # @param [String] name
-        #   Output only. The resource name for this DisplayVideo360AdvertiserLink resource.
+        #   Identifier. The resource name for this DisplayVideo360AdvertiserLink resource.
         #   Format: properties/`propertyId`/displayVideo360AdvertiserLinks/`linkId` Note:
         #   linkId is not the Display & Video 360 Advertiser ID
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink] google_analytics_admin_v1alpha_display_video360_advertiser_link_object
@@ -4775,15 +4808,15 @@ module Google
         # @param [String] parent
         #   Required. Format: properties/`property_id` Example: `properties/1234`
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. The service may return fewer than
-        #   this value, even if there are additional pages. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200; (higher values will be
-        #   coerced to the maximum)
+        #   Optional. The maximum number of resources to return. The service may return
+        #   fewer than this value, even if there are additional pages. If unspecified, at
+        #   most 50 resources will be returned. The maximum value is 200; (higher values
+        #   will be coerced to the maximum)
         # @param [String] page_token
-        #   A page token, received from a previous `ListFirebaseLinks` call. Provide this
-        #   to retrieve the subsequent page. When paginating, all other parameters
-        #   provided to `ListFirebaseLinks` must match the call that provided the page
-        #   token.
+        #   Optional. A page token, received from a previous `ListFirebaseLinks` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `ListFirebaseLinks` must match the call that provided
+        #   the page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -4880,14 +4913,14 @@ module Google
         # @param [String] parent
         #   Required. Example format: properties/1234
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200 (higher values will be
+        #   Optional. The maximum number of resources to return. If unspecified, at most
+        #   50 resources will be returned. The maximum value is 200 (higher values will be
         #   coerced to the maximum).
         # @param [String] page_token
-        #   A page token, received from a previous `ListGoogleAdsLinks` call. Provide this
-        #   to retrieve the subsequent page. When paginating, all other parameters
-        #   provided to `ListGoogleAdsLinks` must match the call that provided the page
-        #   token.
+        #   Optional. A page token, received from a previous `ListGoogleAdsLinks` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `ListGoogleAdsLinks` must match the call that provided
+        #   the page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -4919,7 +4952,7 @@ module Google
         
         # Updates a GoogleAdsLink on a property
         # @param [String] name
-        #   Output only. Format: properties/`propertyId`/googleAdsLinks/`googleAdsLinkId`
+        #   Identifier. Format: properties/`propertyId`/googleAdsLinks/`googleAdsLinkId`
         #   Note: googleAdsLinkId is not the Google Ads customer ID.
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaGoogleAdsLink] google_analytics_admin_v1alpha_google_ads_link_object
         # @param [String] update_mask
@@ -5057,13 +5090,13 @@ module Google
         # @param [String] parent
         #   Required. The resource name of the parent property. Example: 'properties/123'
         # @param [Fixnum] page_size
-        #   The maximum number of resources to return. If unspecified, at most 50
-        #   resources will be returned. The maximum value is 200; (higher values will be
-        #   coerced to the maximum)
+        #   Optional. The maximum number of resources to return. If unspecified, at most
+        #   50 resources will be returned. The maximum value is 200; (higher values will
+        #   be coerced to the maximum)
         # @param [String] page_token
-        #   A page token, received from a previous `ListKeyEvents` call. Provide this to
-        #   retrieve the subsequent page. When paginating, all other parameters provided
-        #   to `ListKeyEvents` must match the call that provided the page token.
+        #   Optional. A page token, received from a previous `ListKeyEvents` call. Provide
+        #   this to retrieve the subsequent page. When paginating, all other parameters
+        #   provided to `ListKeyEvents` must match the call that provided the page token.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -5621,7 +5654,7 @@ module Google
         
         # Updates a SearchAds360Link on a property.
         # @param [String] name
-        #   Output only. The resource name for this SearchAds360Link resource. Format:
+        #   Identifier. The resource name for this SearchAds360Link resource. Format:
         #   properties/`propertyId`/searchAds360Links/`linkId` Note: linkId is not the
         #   Search Ads 360 advertiser ID
         # @param [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaSearchAds360Link] google_analytics_admin_v1alpha_search_ads360_link_object

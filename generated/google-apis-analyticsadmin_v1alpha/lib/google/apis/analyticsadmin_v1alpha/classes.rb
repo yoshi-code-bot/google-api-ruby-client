@@ -634,7 +634,7 @@ module Google
         # @return [String]
         attr_accessor :gmp_organization
       
-        # Output only. Resource name of this account. Format: accounts/`account` Example:
+        # Identifier. Resource name of this account. Format: accounts/`account` Example:
         # "accounts/100"
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -682,8 +682,8 @@ module Google
         # @return [String]
         attr_accessor :display_name
       
-        # Resource name for this account summary. Format: accountSummaries/`account_id`
-        # Example: "accountSummaries/1000"
+        # Identifier. Resource name for this account summary. Format: accountSummaries/`
+        # account_id` Example: "accountSummaries/1000"
         # Corresponds to the JSON property `name`
         # @return [String]
         attr_accessor :name
@@ -1686,7 +1686,7 @@ module Google
         # @return [String]
         attr_accessor :metric_unit
       
-        # Output only. Resource name for this CalculatedMetric. Format: 'properties/`
+        # Identifier. Resource name for this CalculatedMetric. Format: 'properties/`
         # property_id`/calculatedMetrics/`calculated_metric_id`'
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -1931,6 +1931,12 @@ module Google
         # @return [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaSubpropertySyncConfig]
         attr_accessor :subproperty_sync_config
       
+        # Configuration for user-provided data collection. This is a singleton resource
+        # for a Google Analytics property.
+        # Corresponds to the JSON property `userProvidedDataSettings`
+        # @return [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaUserProvidedDataSettings]
+        attr_accessor :user_provided_data_settings
+      
         def initialize(**args)
            update!(**args)
         end
@@ -1966,6 +1972,7 @@ module Google
           @search_ads360_link = args[:search_ads360_link] if args.key?(:search_ads360_link)
           @skadnetwork_conversion_value_schema = args[:skadnetwork_conversion_value_schema] if args.key?(:skadnetwork_conversion_value_schema)
           @subproperty_sync_config = args[:subproperty_sync_config] if args.key?(:subproperty_sync_config)
+          @user_provided_data_settings = args[:user_provided_data_settings] if args.key?(:user_provided_data_settings)
         end
       end
       
@@ -2264,7 +2271,7 @@ module Google
         # @return [String]
         attr_accessor :event_name
       
-        # Output only. Resource name of this conversion event. Format: properties/`
+        # Identifier. Resource name of this conversion event. Format: properties/`
         # property`/conversionEvents/`conversion_event`
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -2471,7 +2478,7 @@ module Google
         # @return [String]
         attr_accessor :display_name
       
-        # Output only. Resource name for this CustomDimension resource. Format:
+        # Identifier. Resource name for this CustomDimension resource. Format:
         # properties/`property`/customDimensions/`customDimension`
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -2530,7 +2537,7 @@ module Google
         # @return [String]
         attr_accessor :measurement_unit
       
-        # Output only. Resource name for this CustomMetric resource. Format: properties/`
+        # Identifier. Resource name for this CustomMetric resource. Format: properties/`
         # property`/customMetrics/`customMetric`
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -2629,7 +2636,7 @@ module Google
         # @return [String]
         attr_accessor :event_data_retention
       
-        # Output only. Resource name for this DataRetentionSetting resource. Format:
+        # Identifier. Resource name for this DataRetentionSetting resource. Format:
         # properties/`property`/dataRetentionSettings
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -2665,7 +2672,7 @@ module Google
       class GoogleAnalyticsAdminV1alphaDataSharingSettings
         include Google::Apis::Core::Hashable
       
-        # Output only. Resource name. Format: accounts/`account`/dataSharingSettings
+        # Identifier. Resource name. Format: accounts/`account`/dataSharingSettings
         # Example: "accounts/1000/dataSharingSettings"
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -2757,9 +2764,8 @@ module Google
         # @return [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaDataStreamIosAppStreamData]
         attr_accessor :ios_app_stream_data
       
-        # Output only. Resource name of this Data Stream. Format: properties/`
-        # property_id`/dataStreams/`stream_id` Example: "properties/1000/dataStreams/
-        # 2000"
+        # Identifier. Resource name of this Data Stream. Format: properties/`property_id`
+        # /dataStreams/`stream_id` Example: "properties/1000/dataStreams/2000"
         # Corresponds to the JSON property `name`
         # @return [String]
         attr_accessor :name
@@ -2944,7 +2950,7 @@ module Google
         attr_accessor :cost_data_sharing_enabled
         alias_method :cost_data_sharing_enabled?, :cost_data_sharing_enabled
       
-        # Output only. The resource name for this DisplayVideo360AdvertiserLink resource.
+        # Identifier. The resource name for this DisplayVideo360AdvertiserLink resource.
         # Format: properties/`propertyId`/displayVideo360AdvertiserLinks/`linkId` Note:
         # linkId is not the Display & Video 360 Advertiser ID
         # Corresponds to the JSON property `name`
@@ -3011,7 +3017,7 @@ module Google
         # @return [Google::Apis::AnalyticsadminV1alpha::GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails]
         attr_accessor :link_proposal_status_details
       
-        # Output only. The resource name for this DisplayVideo360AdvertiserLinkProposal
+        # Identifier. The resource name for this DisplayVideo360AdvertiserLinkProposal
         # resource. Format: properties/`propertyId`/
         # displayVideo360AdvertiserLinkProposals/`proposalId` Note: proposalId is not
         # the Display & Video 360 Advertiser ID
@@ -3520,7 +3526,7 @@ module Google
         # @return [String]
         attr_accessor :create_time
       
-        # Output only. Example format: properties/1234/firebaseLinks/5678
+        # Identifier. Example format: properties/1234/firebaseLinks/5678
         # Corresponds to the JSON property `name`
         # @return [String]
         attr_accessor :name
@@ -3551,8 +3557,8 @@ module Google
       class GoogleAnalyticsAdminV1alphaGlobalSiteTag
         include Google::Apis::Core::Hashable
       
-        # Output only. Resource name for this GlobalSiteTag resource. Format: properties/
-        # `property_id`/dataStreams/`stream_id`/globalSiteTag Example: "properties/123/
+        # Identifier. Resource name for this GlobalSiteTag resource. Format: properties/`
+        # property_id`/dataStreams/`stream_id`/globalSiteTag Example: "properties/123/
         # dataStreams/456/globalSiteTag"
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -3610,7 +3616,7 @@ module Google
         # @return [String]
         attr_accessor :customer_id
       
-        # Output only. Format: properties/`propertyId`/googleAdsLinks/`googleAdsLinkId`
+        # Identifier. Format: properties/`propertyId`/googleAdsLinks/`googleAdsLinkId`
         # Note: googleAdsLinkId is not the Google Ads customer ID.
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -4608,7 +4614,7 @@ module Google
         # @return [String]
         attr_accessor :display_name
       
-        # Output only. Resource name of this secret. This secret may be a child of any
+        # Identifier. Resource name of this secret. This secret may be a child of any
         # type of stream. Format: properties/`property`/dataStreams/`dataStream`/
         # measurementProtocolSecrets/`measurementProtocolSecret`
         # Corresponds to the JSON property `name`
@@ -4770,7 +4776,7 @@ module Google
         # @return [String]
         attr_accessor :industry_category
       
-        # Output only. Resource name of this property. Format: properties/`property_id`
+        # Identifier. Resource name of this property. Format: properties/`property_id`
         # Example: "properties/1000"
         # Corresponds to the JSON property `name`
         # @return [String]
@@ -5346,7 +5352,7 @@ module Google
         attr_accessor :apply_conversion_values
         alias_method :apply_conversion_values?, :apply_conversion_values
       
-        # Output only. Resource name of the schema. This will be child of ONLY an iOS
+        # Identifier. Resource name of the schema. This will be child of ONLY an iOS
         # stream, and there can be at most one such child under an iOS stream. Format:
         # properties/`property`/dataStreams/`dataStream`/
         # sKAdNetworkConversionValueSchema
@@ -5424,7 +5430,7 @@ module Google
         attr_accessor :cost_data_sharing_enabled
         alias_method :cost_data_sharing_enabled?, :cost_data_sharing_enabled
       
-        # Output only. The resource name for this SearchAds360Link resource. Format:
+        # Identifier. The resource name for this SearchAds360Link resource. Format:
         # properties/`propertyId`/searchAds360Links/`linkId` Note: linkId is not the
         # Search Ads 360 advertiser ID
         # Corresponds to the JSON property `name`
@@ -5851,6 +5857,43 @@ module Google
         # Update properties of this object
         def update!(**args)
           @access_binding = args[:access_binding] if args.key?(:access_binding)
+        end
+      end
+      
+      # Configuration for user-provided data collection. This is a singleton resource
+      # for a Google Analytics property.
+      class GoogleAnalyticsAdminV1alphaUserProvidedDataSettings
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Whether this property allows a Google Tag to automatically collect
+        # user-provided data from your website. This setting only takes effect if `
+        # user_provided_data_collection_enabled` is also true.
+        # Corresponds to the JSON property `automaticallyDetectedDataCollectionEnabled`
+        # @return [Boolean]
+        attr_accessor :automatically_detected_data_collection_enabled
+        alias_method :automatically_detected_data_collection_enabled?, :automatically_detected_data_collection_enabled
+      
+        # Identifier. Resource name of this setting. Format: properties/`property`/
+        # userProvidedDataSettings Example: "properties/1000/userProvidedDataSettings"
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Optional. Whether this property accepts user-provided data sent to it.
+        # Corresponds to the JSON property `userProvidedDataCollectionEnabled`
+        # @return [Boolean]
+        attr_accessor :user_provided_data_collection_enabled
+        alias_method :user_provided_data_collection_enabled?, :user_provided_data_collection_enabled
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @automatically_detected_data_collection_enabled = args[:automatically_detected_data_collection_enabled] if args.key?(:automatically_detected_data_collection_enabled)
+          @name = args[:name] if args.key?(:name)
+          @user_provided_data_collection_enabled = args[:user_provided_data_collection_enabled] if args.key?(:user_provided_data_collection_enabled)
         end
       end
       
