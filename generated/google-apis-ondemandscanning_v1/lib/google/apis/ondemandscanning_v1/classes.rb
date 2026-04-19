@@ -22,6 +22,31 @@ module Google
   module Apis
     module OndemandscanningV1
       
+      # AISkillAnalysisOccurrence provides the results of an AI-based skill analysis.
+      class AiSkillAnalysisOccurrence
+        include Google::Apis::Core::Hashable
+      
+        # Findings produced by the analysis.
+        # Corresponds to the JSON property `findings`
+        # @return [Array<Google::Apis::OndemandscanningV1::Finding>]
+        attr_accessor :findings
+      
+        # Name of the skill that produced this analysis.
+        # Corresponds to the JSON property `skillName`
+        # @return [String]
+        attr_accessor :skill_name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @findings = args[:findings] if args.key?(:findings)
+          @skill_name = args[:skill_name] if args.key?(:skill_name)
+        end
+      end
+      
       # An alias to a repo revision.
       class AliasContext
         include Google::Apis::Core::Hashable
@@ -1251,6 +1276,62 @@ module Google
         end
       end
       
+      # Finding provides details for a single finding within an
+      # AISkillAnalysisOccurrence.
+      class Finding
+        include Google::Apis::Core::Hashable
+      
+        # Category of the finding.
+        # Corresponds to the JSON property `category`
+        # @return [String]
+        attr_accessor :category
+      
+        # Detailed description of the finding.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
+      
+        # Path to the file where the finding was detected.
+        # Corresponds to the JSON property `filePath`
+        # @return [String]
+        attr_accessor :file_path
+      
+        # Unique identifier of the rule that produced this finding.
+        # Corresponds to the JSON property `ruleId`
+        # @return [String]
+        attr_accessor :rule_id
+      
+        # Severity of the finding.
+        # Corresponds to the JSON property `severity`
+        # @return [String]
+        attr_accessor :severity
+      
+        # Code snippet relevant to the finding.
+        # Corresponds to the JSON property `snippet`
+        # @return [String]
+        attr_accessor :snippet
+      
+        # Title of the finding.
+        # Corresponds to the JSON property `title`
+        # @return [String]
+        attr_accessor :title
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @category = args[:category] if args.key?(:category)
+          @description = args[:description] if args.key?(:description)
+          @file_path = args[:file_path] if args.key?(:file_path)
+          @rule_id = args[:rule_id] if args.key?(:rule_id)
+          @severity = args[:severity] if args.key?(:severity)
+          @snippet = args[:snippet] if args.key?(:snippet)
+          @title = args[:title] if args.key?(:title)
+        end
+      end
+      
       # A set of properties that uniquely identify a given Docker image.
       class Fingerprint
         include Google::Apis::Core::Hashable
@@ -2291,6 +2372,16 @@ module Google
       class Occurrence
         include Google::Apis::Core::Hashable
       
+        # The time this advisory was published by the source.
+        # Corresponds to the JSON property `advisoryPublishTime`
+        # @return [String]
+        attr_accessor :advisory_publish_time
+      
+        # AISkillAnalysisOccurrence provides the results of an AI-based skill analysis.
+        # Corresponds to the JSON property `aiSkillAnalysis`
+        # @return [Google::Apis::OndemandscanningV1::AiSkillAnalysisOccurrence]
+        attr_accessor :ai_skill_analysis
+      
         # Occurrence that represents a single "attestation". The authenticity of an
         # attestation can be verified using the attached signature. If the verifier
         # trusts the public key of the signer, then verifying the signature is
@@ -2419,6 +2510,8 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @advisory_publish_time = args[:advisory_publish_time] if args.key?(:advisory_publish_time)
+          @ai_skill_analysis = args[:ai_skill_analysis] if args.key?(:ai_skill_analysis)
           @attestation = args[:attestation] if args.key?(:attestation)
           @build = args[:build] if args.key?(:build)
           @compliance = args[:compliance] if args.key?(:compliance)
