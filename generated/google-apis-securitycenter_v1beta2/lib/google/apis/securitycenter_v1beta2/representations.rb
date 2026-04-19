@@ -64,6 +64,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class AgentDataAccessEvent
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class AiModel
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -323,6 +329,12 @@ module Google
       end
       
       class Detection
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class DiscoveredWorkload
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -646,6 +658,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleCloudSecuritycenterV2AgentDataAccessEvent
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleCloudSecuritycenterV2AiModel
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -899,6 +917,12 @@ module Google
       end
       
       class GoogleCloudSecuritycenterV2Detection
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleCloudSecuritycenterV2DiscoveredWorkload
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1288,6 +1312,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleCloudSecuritycenterV2PolicyViolationSummary
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleCloudSecuritycenterV2PortRange
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1636,6 +1666,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class PolicyViolationSummary
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class PortRange
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1900,6 +1936,16 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :count, :numeric_string => true, as: 'count'
+        end
+      end
+      
+      class AgentDataAccessEvent
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :event_id, as: 'eventId'
+          property :event_time, as: 'eventTime'
+          property :operation, as: 'operation'
+          property :principal_subject, as: 'principalSubject'
         end
       end
       
@@ -2348,6 +2394,17 @@ module Google
         end
       end
       
+      class DiscoveredWorkload
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :confidence, as: 'confidence'
+          property :detected_relevant_hardware, as: 'detectedRelevantHardware'
+          property :detected_relevant_keywords, as: 'detectedRelevantKeywords'
+          property :detected_relevant_packages, as: 'detectedRelevantPackages'
+          property :workload_type, as: 'workloadType'
+        end
+      end
+      
       class Disk
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2483,6 +2540,8 @@ module Google
       
           property :affected_resources, as: 'affectedResources', class: Google::Apis::SecuritycenterV1beta2::AffectedResources, decorator: Google::Apis::SecuritycenterV1beta2::AffectedResources::Representation
       
+          collection :agent_data_access_events, as: 'agentDataAccessEvents', class: Google::Apis::SecuritycenterV1beta2::AgentDataAccessEvent, decorator: Google::Apis::SecuritycenterV1beta2::AgentDataAccessEvent::Representation
+      
           property :ai_model, as: 'aiModel', class: Google::Apis::SecuritycenterV1beta2::AiModel, decorator: Google::Apis::SecuritycenterV1beta2::AiModel::Representation
       
           property :application, as: 'application', class: Google::Apis::SecuritycenterV1beta2::Application, decorator: Google::Apis::SecuritycenterV1beta2::Application::Representation
@@ -2523,6 +2582,8 @@ module Google
           property :database, as: 'database', class: Google::Apis::SecuritycenterV1beta2::Database, decorator: Google::Apis::SecuritycenterV1beta2::Database::Representation
       
           property :description, as: 'description'
+          property :discovered_workload, as: 'discoveredWorkload', class: Google::Apis::SecuritycenterV1beta2::DiscoveredWorkload, decorator: Google::Apis::SecuritycenterV1beta2::DiscoveredWorkload::Representation
+      
           property :disk, as: 'disk', class: Google::Apis::SecuritycenterV1beta2::Disk, decorator: Google::Apis::SecuritycenterV1beta2::Disk::Representation
       
           property :event_time, as: 'eventTime'
@@ -2572,6 +2633,8 @@ module Google
       
           property :parent, as: 'parent'
           property :parent_display_name, as: 'parentDisplayName'
+          property :policy_violation_summary, as: 'policyViolationSummary', class: Google::Apis::SecuritycenterV1beta2::PolicyViolationSummary, decorator: Google::Apis::SecuritycenterV1beta2::PolicyViolationSummary::Representation
+      
           collection :processes, as: 'processes', class: Google::Apis::SecuritycenterV1beta2::Process, decorator: Google::Apis::SecuritycenterV1beta2::Process::Representation
       
           property :resource_name, as: 'resourceName'
@@ -3034,6 +3097,16 @@ module Google
         end
       end
       
+      class GoogleCloudSecuritycenterV2AgentDataAccessEvent
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :event_id, as: 'eventId'
+          property :event_time, as: 'eventTime'
+          property :operation, as: 'operation'
+          property :principal_subject, as: 'principalSubject'
+        end
+      end
+      
       class GoogleCloudSecuritycenterV2AiModel
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -3476,6 +3549,17 @@ module Google
         end
       end
       
+      class GoogleCloudSecuritycenterV2DiscoveredWorkload
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :confidence, as: 'confidence'
+          property :detected_relevant_hardware, as: 'detectedRelevantHardware'
+          property :detected_relevant_keywords, as: 'detectedRelevantKeywords'
+          property :detected_relevant_packages, as: 'detectedRelevantPackages'
+          property :workload_type, as: 'workloadType'
+        end
+      end
+      
       class GoogleCloudSecuritycenterV2Disk
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -3593,6 +3677,8 @@ module Google
       
           property :affected_resources, as: 'affectedResources', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2AffectedResources, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2AffectedResources::Representation
       
+          collection :agent_data_access_events, as: 'agentDataAccessEvents', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2AgentDataAccessEvent, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2AgentDataAccessEvent::Representation
+      
           property :ai_model, as: 'aiModel', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2AiModel, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2AiModel::Representation
       
           property :application, as: 'application', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Application, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Application::Representation
@@ -3634,6 +3720,8 @@ module Google
           property :database, as: 'database', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Database, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Database::Representation
       
           property :description, as: 'description'
+          property :discovered_workload, as: 'discoveredWorkload', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2DiscoveredWorkload, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2DiscoveredWorkload::Representation
+      
           property :disk, as: 'disk', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Disk, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Disk::Representation
       
           property :event_time, as: 'eventTime'
@@ -3683,6 +3771,8 @@ module Google
       
           property :parent, as: 'parent'
           property :parent_display_name, as: 'parentDisplayName'
+          property :policy_violation_summary, as: 'policyViolationSummary', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2PolicyViolationSummary, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2PolicyViolationSummary::Representation
+      
           collection :processes, as: 'processes', class: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Process, decorator: Google::Apis::SecuritycenterV1beta2::GoogleCloudSecuritycenterV2Process::Representation
       
           property :resource_name, as: 'resourceName'
@@ -4233,6 +4323,16 @@ module Google
           property :detected_value, as: 'detectedValue'
           property :expected_value, as: 'expectedValue'
           property :field, as: 'field'
+        end
+      end
+      
+      class GoogleCloudSecuritycenterV2PolicyViolationSummary
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :conformant_resources_count, :numeric_string => true, as: 'conformantResourcesCount'
+          property :evaluation_errors_count, :numeric_string => true, as: 'evaluationErrorsCount'
+          property :out_of_scope_resources_count, :numeric_string => true, as: 'outOfScopeResourcesCount'
+          property :policy_violations_count, :numeric_string => true, as: 'policyViolationsCount'
         end
       end
       
@@ -4832,6 +4932,16 @@ module Google
           property :detected_value, as: 'detectedValue'
           property :expected_value, as: 'expectedValue'
           property :field, as: 'field'
+        end
+      end
+      
+      class PolicyViolationSummary
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :conformant_resources_count, :numeric_string => true, as: 'conformantResourcesCount'
+          property :evaluation_errors_count, :numeric_string => true, as: 'evaluationErrorsCount'
+          property :out_of_scope_resources_count, :numeric_string => true, as: 'outOfScopeResourcesCount'
+          property :policy_violations_count, :numeric_string => true, as: 'policyViolationsCount'
         end
       end
       
