@@ -1,5 +1,9 @@
 # Release history for google-apis-cloudkms_v1
 
+### v0.73.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260409
+
 ### v0.72.0 (2026-03-22)
 
 * Regenerated from discovery document revision 20260312

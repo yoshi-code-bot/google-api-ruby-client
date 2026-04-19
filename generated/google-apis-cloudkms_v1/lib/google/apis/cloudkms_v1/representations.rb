@@ -989,6 +989,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :default_key_access_justification_policy, as: 'defaultKeyAccessJustificationPolicy', class: Google::Apis::CloudkmsV1::KeyAccessJustificationsPolicy, decorator: Google::Apis::CloudkmsV1::KeyAccessJustificationsPolicy::Representation
       
+          property :default_policy_available, as: 'defaultPolicyAvailable'
           property :name, as: 'name'
         end
       end
@@ -1409,6 +1410,7 @@ module Google
           property :create_time, as: 'createTime'
           property :delete_time, as: 'deleteTime'
           property :disable_time, as: 'disableTime'
+          property :key_portability_enabled, as: 'keyPortabilityEnabled'
           property :name, as: 'name'
           property :quorum_auth, as: 'quorumAuth', class: Google::Apis::CloudkmsV1::QuorumAuth, decorator: Google::Apis::CloudkmsV1::QuorumAuth::Representation
       
