@@ -326,6 +326,19 @@ module Google
         end
       end
       
+      # The request message for Operations.CancelOperation.
+      class CancelOperationRequest
+        include Google::Apis::Core::Hashable
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+        end
+      end
+      
       # Artifact policy configuration for repository cleanup policies.
       class CleanupPolicy
         include Google::Apis::Core::Hashable
@@ -2330,6 +2343,32 @@ module Google
         end
       end
       
+      # The platform logs config for a project or a repository.
+      class PlatformLogsConfig
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The state of the platform logs: enabled or disabled.
+        # Corresponds to the JSON property `loggingState`
+        # @return [String]
+        attr_accessor :logging_state
+      
+        # Optional. The severity level for the logs. Logs will be generated if their
+        # severity level is >= than the value of the severity level mentioned here.
+        # Corresponds to the JSON property `severityLevel`
+        # @return [String]
+        attr_accessor :severity_level
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @logging_state = args[:logging_state] if args.key?(:logging_state)
+          @severity_level = args[:severity_level] if args.key?(:severity_level)
+        end
+      end
+      
       # An Identity and Access Management (IAM) policy, which specifies access
       # controls for Google Cloud resources. A `Policy` is a collection of `bindings`.
       # A `binding` binds one or more `members`, or principals, to a single `role`.
@@ -2416,6 +2455,32 @@ module Google
           @bindings = args[:bindings] if args.key?(:bindings)
           @etag = args[:etag] if args.key?(:etag)
           @version = args[:version] if args.key?(:version)
+        end
+      end
+      
+      # The Artifact Registry logging configurations that apply to a Project.
+      class ProjectConfig
+        include Google::Apis::Core::Hashable
+      
+        # Identifier. The name of the project's configuration. Always of the form:
+        # projects/`project`/locations/`location`/projectConfig
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # The platform logs config for a project or a repository.
+        # Corresponds to the JSON property `platformLogsConfig`
+        # @return [Google::Apis::ArtifactregistryV1::PlatformLogsConfig]
+        attr_accessor :platform_logs_config
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @name = args[:name] if args.key?(:name)
+          @platform_logs_config = args[:platform_logs_config] if args.key?(:platform_logs_config)
         end
       end
       
@@ -2689,6 +2754,11 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # The platform logs config for a project or a repository.
+        # Corresponds to the JSON property `platformLogsConfig`
+        # @return [Google::Apis::ArtifactregistryV1::PlatformLogsConfig]
+        attr_accessor :platform_logs_config
+      
         # Output only. The repository endpoint, for example: `us-docker.pkg.dev/my-proj/
         # my-repo`.
         # Corresponds to the JSON property `registryUri`
@@ -2753,6 +2823,7 @@ module Google
           @maven_config = args[:maven_config] if args.key?(:maven_config)
           @mode = args[:mode] if args.key?(:mode)
           @name = args[:name] if args.key?(:name)
+          @platform_logs_config = args[:platform_logs_config] if args.key?(:platform_logs_config)
           @registry_uri = args[:registry_uri] if args.key?(:registry_uri)
           @remote_repository_config = args[:remote_repository_config] if args.key?(:remote_repository_config)
           @satisfies_pzi = args[:satisfies_pzi] if args.key?(:satisfies_pzi)

@@ -58,6 +58,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class CancelOperationRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class CleanupPolicy
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -454,7 +460,19 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class PlatformLogsConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Policy
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ProjectConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -771,6 +789,12 @@ module Google
       
           collection :members, as: 'members'
           property :role, as: 'role'
+        end
+      end
+      
+      class CancelOperationRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
         end
       end
       
@@ -1371,6 +1395,14 @@ module Google
         end
       end
       
+      class PlatformLogsConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :logging_state, as: 'loggingState'
+          property :severity_level, as: 'severityLevel'
+        end
+      end
+      
       class Policy
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1378,6 +1410,15 @@ module Google
       
           property :etag, :base64 => true, as: 'etag'
           property :version, as: 'version'
+        end
+      end
+      
+      class ProjectConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :name, as: 'name'
+          property :platform_logs_config, as: 'platformLogsConfig', class: Google::Apis::ArtifactregistryV1::PlatformLogsConfig, decorator: Google::Apis::ArtifactregistryV1::PlatformLogsConfig::Representation
+      
         end
       end
       
@@ -1453,6 +1494,8 @@ module Google
       
           property :mode, as: 'mode'
           property :name, as: 'name'
+          property :platform_logs_config, as: 'platformLogsConfig', class: Google::Apis::ArtifactregistryV1::PlatformLogsConfig, decorator: Google::Apis::ArtifactregistryV1::PlatformLogsConfig::Representation
+      
           property :registry_uri, as: 'registryUri'
           property :remote_repository_config, as: 'remoteRepositoryConfig', class: Google::Apis::ArtifactregistryV1::RemoteRepositoryConfig, decorator: Google::Apis::ArtifactregistryV1::RemoteRepositoryConfig::Representation
       
