@@ -100,6 +100,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class IngressIpAllowlistConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class IngressIpAllowlistRule
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Instance
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -331,11 +343,30 @@ module Google
         end
       end
       
+      class IngressIpAllowlistConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :allowlist_rules, as: 'allowlistRules', class: Google::Apis::LookerV1::IngressIpAllowlistRule, decorator: Google::Apis::LookerV1::IngressIpAllowlistRule::Representation
+      
+          property :enabled, as: 'enabled'
+          property :google_services_enabled, as: 'googleServicesEnabled'
+        end
+      end
+      
+      class IngressIpAllowlistRule
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :description, as: 'description'
+          property :ip_range, as: 'ipRange'
+        end
+      end
+      
       class Instance
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :admin_settings, as: 'adminSettings', class: Google::Apis::LookerV1::AdminSettings, decorator: Google::Apis::LookerV1::AdminSettings::Representation
       
+          property :catalog_integration_opt_out, as: 'catalogIntegrationOptOut'
           property :class_type, as: 'classType'
           property :consumer_network, as: 'consumerNetwork'
           property :controlled_egress_config, as: 'controlledEgressConfig', class: Google::Apis::LookerV1::ControlledEgressConfig, decorator: Google::Apis::LookerV1::ControlledEgressConfig::Representation
@@ -351,6 +382,8 @@ module Google
       
           property :fips_enabled, as: 'fipsEnabled'
           property :gemini_enabled, as: 'geminiEnabled'
+          property :ingress_ip_allowlist_config, as: 'ingressIpAllowlistConfig', class: Google::Apis::LookerV1::IngressIpAllowlistConfig, decorator: Google::Apis::LookerV1::IngressIpAllowlistConfig::Representation
+      
           property :ingress_private_ip, as: 'ingressPrivateIp'
           property :ingress_public_ip, as: 'ingressPublicIp'
           property :last_deny_maintenance_period, as: 'lastDenyMaintenancePeriod', class: Google::Apis::LookerV1::DenyMaintenancePeriod, decorator: Google::Apis::LookerV1::DenyMaintenancePeriod::Representation
