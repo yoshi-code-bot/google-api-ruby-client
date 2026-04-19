@@ -377,6 +377,12 @@ module Google
       class AgentTool
         include Google::Apis::Core::Hashable
       
+        # Optional. The resource name of the agent that is the entry point of the tool.
+        # Format: `projects/`project`/locations/`location`/agents/`agent``
+        # Corresponds to the JSON property `agent`
+        # @return [String]
+        attr_accessor :agent
+      
         # Optional. Description of the tool's purpose.
         # Corresponds to the JSON property `description`
         # @return [String]
@@ -387,8 +393,9 @@ module Google
         # @return [String]
         attr_accessor :name
       
-        # Optional. The resource name of the root agent that is the entry point of the
-        # tool. Format: `projects/`project`/locations/`location`/agents/`agent``
+        # Optional. Deprecated: Use `agent` instead. The resource name of the root agent
+        # that is the entry point of the tool. Format: `projects/`project`/locations/`
+        # location`/agents/`agent``
         # Corresponds to the JSON property `rootAgent`
         # @return [String]
         attr_accessor :root_agent
@@ -399,6 +406,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @agent = args[:agent] if args.key?(:agent)
           @description = args[:description] if args.key?(:description)
           @name = args[:name] if args.key?(:name)
           @root_agent = args[:root_agent] if args.key?(:root_agent)
@@ -1045,7 +1053,7 @@ module Google
       class BigQueryExportSettings
         include Google::Apis::Core::Hashable
       
-        # Optional. The BigQuery dataset to export the data to.
+        # Optional. The BigQuery **dataset ID** to export the data to.
         # Corresponds to the JSON property `dataset`
         # @return [String]
         attr_accessor :dataset
@@ -1056,10 +1064,10 @@ module Google
         attr_accessor :enabled
         alias_method :enabled?, :enabled
       
-        # Optional. The project ID of the BigQuery dataset to export the data to. Note:
-        # If the BigQuery dataset is in a different project from the app, you should
-        # grant `roles/bigquery.admin` role to the CES service agent `service-@gcp-sa-
-        # ces.iam.gserviceaccount.com`.
+        # Optional. The **project ID** of the BigQuery dataset to export the data to.
+        # Note: If the BigQuery dataset is in a different project from the app, you
+        # should grant `roles/bigquery.admin` role to the CES service agent `service-@
+        # gcp-sa-ces.iam.gserviceaccount.com`.
         # Corresponds to the JSON property `project`
         # @return [String]
         attr_accessor :project
@@ -1857,6 +1865,12 @@ module Google
         attr_accessor :disable_conversation_logging
         alias_method :disable_conversation_logging?, :disable_conversation_logging
       
+        # Optional. Controls the retention window for the conversation. If not set, the
+        # conversation will be retained for 365 days.
+        # Corresponds to the JSON property `retentionWindow`
+        # @return [String]
+        attr_accessor :retention_window
+      
         def initialize(**args)
            update!(**args)
         end
@@ -1864,6 +1878,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @disable_conversation_logging = args[:disable_conversation_logging] if args.key?(:disable_conversation_logging)
+          @retention_window = args[:retention_window] if args.key?(:retention_window)
         end
       end
       
@@ -2659,10 +2674,21 @@ module Google
       class ErrorHandlingSettings
         include Google::Apis::Core::Hashable
       
+        # Configuration for ending the session in case of system errors (e.g. LLM errors)
+        # .
+        # Corresponds to the JSON property `endSessionConfig`
+        # @return [Google::Apis::CesV1::ErrorHandlingSettingsEndSessionConfig]
+        attr_accessor :end_session_config
+      
         # Optional. The strategy to use for error handling.
         # Corresponds to the JSON property `errorHandlingStrategy`
         # @return [String]
         attr_accessor :error_handling_strategy
+      
+        # Configuration for handling fallback responses.
+        # Corresponds to the JSON property `fallbackResponseConfig`
+        # @return [Google::Apis::CesV1::ErrorHandlingSettingsFallbackResponseConfig]
+        attr_accessor :fallback_response_config
       
         def initialize(**args)
            update!(**args)
@@ -2670,7 +2696,61 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @end_session_config = args[:end_session_config] if args.key?(:end_session_config)
           @error_handling_strategy = args[:error_handling_strategy] if args.key?(:error_handling_strategy)
+          @fallback_response_config = args[:fallback_response_config] if args.key?(:fallback_response_config)
+        end
+      end
+      
+      # Configuration for ending the session in case of system errors (e.g. LLM errors)
+      # .
+      class ErrorHandlingSettingsEndSessionConfig
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Whether to escalate the session in EndSession. If session is
+        # escalated, metadata in EndSession will contain `session_escalated = true`. See
+        # https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/
+        # deploy/google-telephony-platform#transfer_a_call_to_a_human_agent for details.
+        # Corresponds to the JSON property `escalateSession`
+        # @return [Boolean]
+        attr_accessor :escalate_session
+        alias_method :escalate_session?, :escalate_session
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @escalate_session = args[:escalate_session] if args.key?(:escalate_session)
+        end
+      end
+      
+      # Configuration for handling fallback responses.
+      class ErrorHandlingSettingsFallbackResponseConfig
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The fallback messages in case of system errors (e.g. LLM errors),
+        # mapped by [supported language code](https://docs.cloud.google.com/customer-
+        # engagement-ai/conversational-agents/ps/reference/language).
+        # Corresponds to the JSON property `customFallbackMessages`
+        # @return [Hash<String,String>]
+        attr_accessor :custom_fallback_messages
+      
+        # Optional. The maximum number of fallback attempts to make before the agent
+        # emitting EndSession Signal.
+        # Corresponds to the JSON property `maxFallbackAttempts`
+        # @return [Fixnum]
+        attr_accessor :max_fallback_attempts
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @custom_fallback_messages = args[:custom_fallback_messages] if args.key?(:custom_fallback_messages)
+          @max_fallback_attempts = args[:max_fallback_attempts] if args.key?(:max_fallback_attempts)
         end
       end
       
@@ -2924,6 +3004,11 @@ module Google
         # @return [Hash<String,Object>]
         attr_accessor :context
       
+        # Mock tool calls configuration for the session.
+        # Corresponds to the JSON property `mockConfig`
+        # @return [Google::Apis::CesV1::MockConfig]
+        attr_accessor :mock_config
+      
         # Optional. The name of the tool to execute. Format: projects/`project`/
         # locations/`location`/apps/`app`/tools/`tool`
         # Corresponds to the JSON property `tool`
@@ -2948,6 +3033,7 @@ module Google
         def update!(**args)
           @args = args[:args] if args.key?(:args)
           @context = args[:context] if args.key?(:context)
+          @mock_config = args[:mock_config] if args.key?(:mock_config)
           @tool = args[:tool] if args.key?(:tool)
           @toolset_tool = args[:toolset_tool] if args.key?(:toolset_tool)
           @variables = args[:variables] if args.key?(:variables)
@@ -3820,10 +3906,12 @@ module Google
         attr_accessor :enable_multilingual_support
         alias_method :enable_multilingual_support?, :enable_multilingual_support
       
-        # Optional. The action to perform when an agent receives input in an unsupported
-        # language. This can be a predefined action or a custom tool call. Valid values
-        # are: - A tool's full resource name, which triggers a specific tool execution. -
-        # A predefined system action, such as "escalate" or "exit", which triggers an
+        # Optional. Deprecated: This feature is no longer supported. Use `
+        # enable_multilingual_support` instead to improve handling of multilingual input.
+        # The action to perform when an agent receives input in an unsupported language.
+        # This can be a predefined action or a custom tool call. Valid values are: - A
+        # tool's full resource name, which triggers a specific tool execution. - A
+        # predefined system action, such as "escalate" or "exit", which triggers an
         # EndSession signal with corresponding metadata to terminate the conversation.
         # Corresponds to the JSON property `fallbackAction`
         # @return [String]
@@ -4453,6 +4541,81 @@ module Google
         # Update properties of this object
         def update!(**args)
           @llm_metrics_opted_out = args[:llm_metrics_opted_out] if args.key?(:llm_metrics_opted_out)
+        end
+      end
+      
+      # Mock tool calls configuration for the session.
+      class MockConfig
+        include Google::Apis::Core::Hashable
+      
+        # Optional. All tool calls to mock for the duration of the session.
+        # Corresponds to the JSON property `mockedToolCalls`
+        # @return [Array<Google::Apis::CesV1::MockedToolCall>]
+        attr_accessor :mocked_tool_calls
+      
+        # Required. Beavhior for tool calls that don't match any args patterns in
+        # mocked_tool_calls.
+        # Corresponds to the JSON property `unmatchedToolCallBehavior`
+        # @return [String]
+        attr_accessor :unmatched_tool_call_behavior
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @mocked_tool_calls = args[:mocked_tool_calls] if args.key?(:mocked_tool_calls)
+          @unmatched_tool_call_behavior = args[:unmatched_tool_call_behavior] if args.key?(:unmatched_tool_call_behavior)
+        end
+      end
+      
+      # A mocked tool call. Expresses the target tool + a pattern to match against
+      # that tool's args / inputs. If the pattern matches, then the mock response will
+      # be returned.
+      class MockedToolCall
+        include Google::Apis::Core::Hashable
+      
+        # Required. A pattern to match against the args / inputs of all dispatched tool
+        # calls. If the tool call inputs match this pattern, then mock output will be
+        # returned.
+        # Corresponds to the JSON property `expectedArgsPattern`
+        # @return [Hash<String,Object>]
+        attr_accessor :expected_args_pattern
+      
+        # Optional. The mock response / output to return if the tool call args / inputs
+        # match the pattern.
+        # Corresponds to the JSON property `mockResponse`
+        # @return [Hash<String,Object>]
+        attr_accessor :mock_response
+      
+        # Required. Deprecated. Use tool_identifier instead.
+        # Corresponds to the JSON property `tool`
+        # @return [String]
+        attr_accessor :tool
+      
+        # Optional. The name of the tool to mock. Format: `projects/`project`/locations/`
+        # location`/apps/`app`/tools/`tool``
+        # Corresponds to the JSON property `toolId`
+        # @return [String]
+        attr_accessor :tool_id
+      
+        # A tool that is created from a toolset.
+        # Corresponds to the JSON property `toolset`
+        # @return [Google::Apis::CesV1::ToolsetTool]
+        attr_accessor :toolset
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @expected_args_pattern = args[:expected_args_pattern] if args.key?(:expected_args_pattern)
+          @mock_response = args[:mock_response] if args.key?(:mock_response)
+          @tool = args[:tool] if args.key?(:tool)
+          @tool_id = args[:tool_id] if args.key?(:tool_id)
+          @toolset = args[:toolset] if args.key?(:toolset)
         end
       end
       
@@ -5553,6 +5716,15 @@ module Google
         # @return [String]
         attr_accessor :deployment
       
+        # Optional. Whether to enable streaming text outputs from the model. By default,
+        # text outputs from the model are collected before sending to the client. NOTE:
+        # This is only supported for text (non-voice) sessions via StreamRunSession or
+        # BidiRunSession.
+        # Corresponds to the JSON property `enableTextStreaming`
+        # @return [Boolean]
+        attr_accessor :enable_text_streaming
+        alias_method :enable_text_streaming?, :enable_text_streaming
+      
         # Optional. The entry agent to handle the session. If not specified, the session
         # will be handled by the root agent of the app. Format: `projects/`project`/
         # locations/`location`/apps/`app`/agents/`agent``
@@ -5612,6 +5784,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @deployment = args[:deployment] if args.key?(:deployment)
+          @enable_text_streaming = args[:enable_text_streaming] if args.key?(:enable_text_streaming)
           @entry_agent = args[:entry_agent] if args.key?(:entry_agent)
           @historical_contexts = args[:historical_contexts] if args.key?(:historical_contexts)
           @input_audio_config = args[:input_audio_config] if args.key?(:input_audio_config)
@@ -6777,9 +6950,12 @@ module Google
         # @return [String]
         attr_accessor :mode
       
-        # Optional. A Python script used to transform the source tool's output into the
-        # widget's input format. This is used when the mapping is too complex for simple
-        # field mappings.
+        # A Python function tool.
+        # Corresponds to the JSON property `pythonFunction`
+        # @return [Google::Apis::CesV1::PythonFunction]
+        attr_accessor :python_function
+      
+        # Deprecated: Use `python_function` instead.
         # Corresponds to the JSON property `pythonScript`
         # @return [String]
         attr_accessor :python_script
@@ -6799,6 +6975,7 @@ module Google
         def update!(**args)
           @field_mappings = args[:field_mappings] if args.key?(:field_mappings)
           @mode = args[:mode] if args.key?(:mode)
+          @python_function = args[:python_function] if args.key?(:python_function)
           @python_script = args[:python_script] if args.key?(:python_script)
           @source_tool_name = args[:source_tool_name] if args.key?(:source_tool_name)
         end
