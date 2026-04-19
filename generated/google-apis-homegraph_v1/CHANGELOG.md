@@ -1,5 +1,9 @@
 # Release history for google-apis-homegraph_v1
 
+### v0.27.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260414
+
 ### v0.26.0 (2025-07-27)
 
 * Regenerated from discovery document revision 20250716
