@@ -167,7 +167,7 @@ module Google
       
         # Output only. If true, calling the tool repeatedly with the same arguments will
         # have no additional effect on its environment. NOTE: This property is
-        # meaningful only when `read_only_hint == false. Default: false
+        # meaningful only when `read_only_hint == false` Default: false
         # Corresponds to the JSON property `idempotentHint`
         # @return [Boolean]
         attr_accessor :idempotent_hint
@@ -204,6 +204,103 @@ module Google
           @open_world_hint = args[:open_world_hint] if args.key?(:open_world_hint)
           @read_only_hint = args[:read_only_hint] if args.key?(:read_only_hint)
           @title = args[:title] if args.key?(:title)
+        end
+      end
+      
+      # The AuthProvider of the Binding.
+      class AuthProviderBinding
+        include Google::Apis::Core::Hashable
+      
+        # Required. The resource name of the target AuthProvider. Format: * `projects/`
+        # project`/locations/`location`/authProviders/`auth_provider``
+        # Corresponds to the JSON property `authProvider`
+        # @return [String]
+        attr_accessor :auth_provider
+      
+        # Optional. The continue URI of the AuthProvider. The URI is used to
+        # reauthenticate the user and finalize the managed OAuth flow.
+        # Corresponds to the JSON property `continueUri`
+        # @return [String]
+        attr_accessor :continue_uri
+      
+        # Optional. The list of OAuth2 scopes of the AuthProvider.
+        # Corresponds to the JSON property `scopes`
+        # @return [Array<String>]
+        attr_accessor :scopes
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @auth_provider = args[:auth_provider] if args.key?(:auth_provider)
+          @continue_uri = args[:continue_uri] if args.key?(:continue_uri)
+          @scopes = args[:scopes] if args.key?(:scopes)
+        end
+      end
+      
+      # Represents a user-defined Binding.
+      class Binding
+        include Google::Apis::Core::Hashable
+      
+        # The AuthProvider of the Binding.
+        # Corresponds to the JSON property `authProviderBinding`
+        # @return [Google::Apis::AgentregistryV1alpha::AuthProviderBinding]
+        attr_accessor :auth_provider_binding
+      
+        # Output only. Timestamp when this binding was created.
+        # Corresponds to the JSON property `createTime`
+        # @return [String]
+        attr_accessor :create_time
+      
+        # Optional. User-defined description of a Binding. Can have a maximum length of `
+        # 2048` characters.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
+      
+        # Optional. User-defined display name for the Binding. Can have a maximum length
+        # of `63` characters.
+        # Corresponds to the JSON property `displayName`
+        # @return [String]
+        attr_accessor :display_name
+      
+        # Required. Identifier. The resource name of the Binding. Format: `projects/`
+        # project`/locations/`location`/bindings/`binding``.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # The source of the Binding.
+        # Corresponds to the JSON property `source`
+        # @return [Google::Apis::AgentregistryV1alpha::Source]
+        attr_accessor :source
+      
+        # The target of the Binding.
+        # Corresponds to the JSON property `target`
+        # @return [Google::Apis::AgentregistryV1alpha::Target]
+        attr_accessor :target
+      
+        # Output only. Timestamp when this binding was last updated.
+        # Corresponds to the JSON property `updateTime`
+        # @return [String]
+        attr_accessor :update_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @auth_provider_binding = args[:auth_provider_binding] if args.key?(:auth_provider_binding)
+          @create_time = args[:create_time] if args.key?(:create_time)
+          @description = args[:description] if args.key?(:description)
+          @display_name = args[:display_name] if args.key?(:display_name)
+          @name = args[:name] if args.key?(:name)
+          @source = args[:source] if args.key?(:source)
+          @target = args[:target] if args.key?(:target)
+          @update_time = args[:update_time] if args.key?(:update_time)
         end
       end
       
@@ -350,6 +447,31 @@ module Google
         end
       end
       
+      # Message for response to fetching available Bindings.
+      class FetchAvailableBindingsResponse
+        include Google::Apis::Core::Hashable
+      
+        # The list of Bindings.
+        # Corresponds to the JSON property `bindings`
+        # @return [Array<Google::Apis::AgentregistryV1alpha::Binding>]
+        attr_accessor :bindings
+      
+        # A token identifying a page of results the server should return.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @bindings = args[:bindings] if args.key?(:bindings)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
       # Represents the connection details for an Agent or MCP Server.
       class Interface
         include Google::Apis::Core::Hashable
@@ -396,6 +518,34 @@ module Google
         # Update properties of this object
         def update!(**args)
           @agents = args[:agents] if args.key?(:agents)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
+      # Message for response to listing Bindings
+      class ListBindingsResponse
+        include Google::Apis::Core::Hashable
+      
+        # The list of Binding resources matching the parent and filter criteria in the
+        # request. Each Binding resource follows the format: `projects/`project`/
+        # locations/`location`/bindings/`binding``.
+        # Corresponds to the JSON property `bindings`
+        # @return [Array<Google::Apis::AgentregistryV1alpha::Binding>]
+        attr_accessor :bindings
+      
+        # A token identifying a page of results the server should return. Used in
+        # page_token.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @bindings = args[:bindings] if args.key?(:bindings)
           @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
         end
       end
@@ -839,6 +989,172 @@ module Google
         end
       end
       
+      # Message for searching Agents
+      class SearchAgentsRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The maximum number of search results to return per page. The page
+        # size is capped at `100`, even if a larger value is specified. A negative value
+        # will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a
+        # default value of `20` will be used. The server may return fewer results than
+        # requested.
+        # Corresponds to the JSON property `pageSize`
+        # @return [Fixnum]
+        attr_accessor :page_size
+      
+        # Optional. If present, retrieve the next batch of results from the preceding
+        # call to this method. `page_token` must be the value of `next_page_token` from
+        # the previous response. The values of all other method parameters, must be
+        # identical to those in the previous call.
+        # Corresponds to the JSON property `pageToken`
+        # @return [String]
+        attr_accessor :page_token
+      
+        # Optional. Search criteria used to select the Agents to return. If no search
+        # criteria is specified then all accessible Agents will be returned. Search
+        # expressions can be used to restrict results based upon searchable fields,
+        # where the operators can be used along with the suffix wildcard symbol `*`. See
+        # [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-
+        # tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `
+        # ()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |---------
+        # -----------|-----|-----|-----|----------------| | agentId | Yes | Yes | Yes |
+        # Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes
+        # | Included | | description | No | Yes | No | Included | | skills | No | Yes |
+        # No | Included | | skills.id | No | Yes | No | Included | | skills.name | No |
+        # Yes | No | Included | | skills.description | No | Yes | No | Included | |
+        # skills.tags | No | Yes | No | Included | | skills.examples | No | Yes | No |
+        # Included | Examples: * `agentId=urn:agent:projects-123:projects:123:locations:
+        # us-central1:reasoningEngines:1234` to find the agent with the specified agent
+        # ID. * `name:important` to find agents whose name contains `important` as a
+        # word. * `displayName:works*` to find agents whose display name contains words
+        # that start with `works`. * `skills.tags:test` to find agents whose skills tags
+        # contain `test`. * `planner OR booking` to find agents whose metadata contains
+        # the words `planner` or `booking`.
+        # Corresponds to the JSON property `searchString`
+        # @return [String]
+        attr_accessor :search_string
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @page_size = args[:page_size] if args.key?(:page_size)
+          @page_token = args[:page_token] if args.key?(:page_token)
+          @search_string = args[:search_string] if args.key?(:search_string)
+        end
+      end
+      
+      # Message for response to searching Agents
+      class SearchAgentsResponse
+        include Google::Apis::Core::Hashable
+      
+        # A list of Agents that match the `search_string`.
+        # Corresponds to the JSON property `agents`
+        # @return [Array<Google::Apis::AgentregistryV1alpha::Agent>]
+        attr_accessor :agents
+      
+        # If there are more results than those appearing in this response, then `
+        # next_page_token` is included. To get the next set of results, call this method
+        # again using the value of `next_page_token` as `page_token`.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @agents = args[:agents] if args.key?(:agents)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
+      # Message for searching MCP Servers
+      class SearchMcpServersRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The maximum number of search results to return per page. The page
+        # size is capped at `100`, even if a larger value is specified. A negative value
+        # will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a
+        # default value of `20` will be used. The server may return fewer results than
+        # requested.
+        # Corresponds to the JSON property `pageSize`
+        # @return [Fixnum]
+        attr_accessor :page_size
+      
+        # Optional. If present, retrieve the next batch of results from the preceding
+        # call to this method. `page_token` must be the value of `next_page_token` from
+        # the previous response. The values of all other method parameters, must be
+        # identical to those in the previous call.
+        # Corresponds to the JSON property `pageToken`
+        # @return [String]
+        attr_accessor :page_token
+      
+        # Optional. Search criteria used to select the MCP Servers to return. If no
+        # search criteria is specified then all accessible MCP Servers will be returned.
+        # Search expressions can be used to restrict results based upon searchable
+        # fields, where the operators can be used along with the suffix wildcard symbol `
+        # *`. See [instructions](https://docs.cloud.google.com/agent-registry/search-
+        # agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`,
+        # `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search |
+        # |--------------------|-----|-----|-----|----------------| | mcpServerId | Yes
+        # | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName |
+        # No | Yes | Yes | Included | Examples: * `mcpServerId=urn:mcp:projects-123:
+        # projects:123:locations:us-central1:agentregistry:services:service-id` to find
+        # the MCP Server with the specified MCP Server ID. * `name:important` to find
+        # MCP Servers whose name contains `important` as a word. * `displayName:works*`
+        # to find MCP Servers whose display name contains words that start with `works`.
+        # * `planner OR booking` to find MCP Servers whose metadata contains the words `
+        # planner` or `booking`. * `mcpServerId:service-id AND (displayName:planner OR
+        # displayName:booking)` to find MCP Servers whose MCP Server ID contains `
+        # service-id` and whose display name contains `planner` or `booking`.
+        # Corresponds to the JSON property `searchString`
+        # @return [String]
+        attr_accessor :search_string
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @page_size = args[:page_size] if args.key?(:page_size)
+          @page_token = args[:page_token] if args.key?(:page_token)
+          @search_string = args[:search_string] if args.key?(:search_string)
+        end
+      end
+      
+      # Message for response to searching MCP Servers
+      class SearchMcpServersResponse
+        include Google::Apis::Core::Hashable
+      
+        # A list of McpServers that match the `search_string`.
+        # Corresponds to the JSON property `mcpServers`
+        # @return [Array<Google::Apis::AgentregistryV1alpha::McpServer>]
+        attr_accessor :mcp_servers
+      
+        # If there are more results than those appearing in this response, then `
+        # next_page_token` is included. To get the next set of results, call this method
+        # again using the value of `next_page_token` as `page_token`.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @mcp_servers = args[:mcp_servers] if args.key?(:mcp_servers)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
       # Represents a user-defined Service.
       class Service
         include Google::Apis::Core::Hashable
@@ -886,6 +1202,14 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Output only. The resource name of the resulting Agent, MCP Server, or Endpoint.
+        # Format: * `projects/`project`/locations/`location`/mcpServers/`mcp_server`` *
+        # `projects/`project`/locations/`location`/agents/`agent`` * `projects/`project`/
+        # locations/`location`/endpoints/`endpoint``
+        # Corresponds to the JSON property `registryResource`
+        # @return [String]
+        attr_accessor :registry_resource
+      
         # Output only. Update time.
         # Corresponds to the JSON property `updateTime`
         # @return [String]
@@ -905,6 +1229,7 @@ module Google
           @interfaces = args[:interfaces] if args.key?(:interfaces)
           @mcp_server_spec = args[:mcp_server_spec] if args.key?(:mcp_server_spec)
           @name = args[:name] if args.key?(:name)
+          @registry_resource = args[:registry_resource] if args.key?(:registry_resource)
           @update_time = args[:update_time] if args.key?(:update_time)
         end
       end
@@ -952,6 +1277,26 @@ module Google
         end
       end
       
+      # The source of the Binding.
+      class Source
+        include Google::Apis::Core::Hashable
+      
+        # The identifier of the source Agent. Format: * `urn:agent:`publisher`:`
+        # namespace`:`name``
+        # Corresponds to the JSON property `identifier`
+        # @return [String]
+        attr_accessor :identifier
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @identifier = args[:identifier] if args.key?(:identifier)
+        end
+      end
+      
       # The `Status` type defines a logical error model that is suitable for different
       # programming environments, including REST APIs and RPC APIs. It is used by [
       # gRPC](https://github.com/grpc). Each `Status` message contains three pieces of
@@ -988,6 +1333,27 @@ module Google
           @code = args[:code] if args.key?(:code)
           @details = args[:details] if args.key?(:details)
           @message = args[:message] if args.key?(:message)
+        end
+      end
+      
+      # The target of the Binding.
+      class Target
+        include Google::Apis::Core::Hashable
+      
+        # The identifier of the target Agent, MCP Server, or Endpoint. Format: * `urn:
+        # agent:`publisher`:`namespace`:`name`` * `urn:mcp:`publisher`:`namespace`:`name`
+        # ` * `urn:endpoint:`publisher`:`namespace`:`name``
+        # Corresponds to the JSON property `identifier`
+        # @return [String]
+        attr_accessor :identifier
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @identifier = args[:identifier] if args.key?(:identifier)
         end
       end
       

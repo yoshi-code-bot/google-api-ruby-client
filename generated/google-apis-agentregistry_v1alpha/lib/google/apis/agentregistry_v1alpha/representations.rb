@@ -40,6 +40,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class AuthProviderBinding
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Binding
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class CancelOperationRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -70,6 +82,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class FetchAvailableBindingsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Interface
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -77,6 +95,12 @@ module Google
       end
       
       class ListAgentsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ListBindingsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -148,6 +172,30 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class SearchAgentsRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SearchAgentsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SearchMcpServersRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SearchMcpServersResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Service
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -160,7 +208,19 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class Source
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Status
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Target
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -213,6 +273,32 @@ module Google
         end
       end
       
+      class AuthProviderBinding
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :auth_provider, as: 'authProvider'
+          property :continue_uri, as: 'continueUri'
+          collection :scopes, as: 'scopes'
+        end
+      end
+      
+      class Binding
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :auth_provider_binding, as: 'authProviderBinding', class: Google::Apis::AgentregistryV1alpha::AuthProviderBinding, decorator: Google::Apis::AgentregistryV1alpha::AuthProviderBinding::Representation
+      
+          property :create_time, as: 'createTime'
+          property :description, as: 'description'
+          property :display_name, as: 'displayName'
+          property :name, as: 'name'
+          property :source, as: 'source', class: Google::Apis::AgentregistryV1alpha::Source, decorator: Google::Apis::AgentregistryV1alpha::Source::Representation
+      
+          property :target, as: 'target', class: Google::Apis::AgentregistryV1alpha::Target, decorator: Google::Apis::AgentregistryV1alpha::Target::Representation
+      
+          property :update_time, as: 'updateTime'
+        end
+      end
+      
       class CancelOperationRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -256,6 +342,15 @@ module Google
         end
       end
       
+      class FetchAvailableBindingsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :bindings, as: 'bindings', class: Google::Apis::AgentregistryV1alpha::Binding, decorator: Google::Apis::AgentregistryV1alpha::Binding::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
       class Interface
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -268,6 +363,15 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :agents, as: 'agents', class: Google::Apis::AgentregistryV1alpha::Agent, decorator: Google::Apis::AgentregistryV1alpha::Agent::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
+      class ListBindingsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :bindings, as: 'bindings', class: Google::Apis::AgentregistryV1alpha::Binding, decorator: Google::Apis::AgentregistryV1alpha::Binding::Representation
       
           property :next_page_token, as: 'nextPageToken'
         end
@@ -390,6 +494,42 @@ module Google
         end
       end
       
+      class SearchAgentsRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :page_size, as: 'pageSize'
+          property :page_token, as: 'pageToken'
+          property :search_string, as: 'searchString'
+        end
+      end
+      
+      class SearchAgentsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :agents, as: 'agents', class: Google::Apis::AgentregistryV1alpha::Agent, decorator: Google::Apis::AgentregistryV1alpha::Agent::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
+      class SearchMcpServersRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :page_size, as: 'pageSize'
+          property :page_token, as: 'pageToken'
+          property :search_string, as: 'searchString'
+        end
+      end
+      
+      class SearchMcpServersResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :mcp_servers, as: 'mcpServers', class: Google::Apis::AgentregistryV1alpha::McpServer, decorator: Google::Apis::AgentregistryV1alpha::McpServer::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
       class Service
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -405,6 +545,7 @@ module Google
           property :mcp_server_spec, as: 'mcpServerSpec', class: Google::Apis::AgentregistryV1alpha::McpServerSpec, decorator: Google::Apis::AgentregistryV1alpha::McpServerSpec::Representation
       
           property :name, as: 'name'
+          property :registry_resource, as: 'registryResource'
           property :update_time, as: 'updateTime'
         end
       end
@@ -420,12 +561,26 @@ module Google
         end
       end
       
+      class Source
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :identifier, as: 'identifier'
+        end
+      end
+      
       class Status
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :code, as: 'code'
           collection :details, as: 'details'
           property :message, as: 'message'
+        end
+      end
+      
+      class Target
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :identifier, as: 'identifier'
         end
       end
       

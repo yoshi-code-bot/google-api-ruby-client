@@ -212,6 +212,312 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Searches Agents in a given project and location.
+        # @param [String] parent
+        #   Required. Parent value for SearchAgentsRequest. Format: `projects/`project`/
+        #   locations/`location``.
+        # @param [Google::Apis::AgentregistryV1alpha::SearchAgentsRequest] search_agents_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::SearchAgentsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::SearchAgentsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def search_agents(parent, search_agents_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1alpha/{+parent}/agents:search', options)
+          command.request_representation = Google::Apis::AgentregistryV1alpha::SearchAgentsRequest::Representation
+          command.request_object = search_agents_request_object
+          command.response_representation = Google::Apis::AgentregistryV1alpha::SearchAgentsResponse::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::SearchAgentsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Creates a new Binding in a given project and location.
+        # @param [String] parent
+        #   Required. The project and location to create the Binding in. Expected format: `
+        #   projects/`project`/locations/`location``.
+        # @param [Google::Apis::AgentregistryV1alpha::Binding] binding_object
+        # @param [String] binding_id
+        #   Required. The ID to use for the binding, which will become the final component
+        #   of the binding's resource name. This value should be 4-63 characters, and must
+        #   conform to RFC-1034. Specifically, it must match the regular expression `^[a-z]
+        #   ([a-z0-9-]`0,61`[a-z0-9])?$`.
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes since the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project_location_binding(parent, binding_object = nil, binding_id: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1alpha/{+parent}/bindings', options)
+          command.request_representation = Google::Apis::AgentregistryV1alpha::Binding::Representation
+          command.request_object = binding_object
+          command.response_representation = Google::Apis::AgentregistryV1alpha::Operation::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::Operation
+          command.params['parent'] = parent unless parent.nil?
+          command.query['bindingId'] = binding_id unless binding_id.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a single Binding.
+        # @param [String] name
+        #   Required. The name of the Binding. Format: `projects/`project`/locations/`
+        #   location`/bindings/`binding``.
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes after the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_binding(name, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:delete, 'v1alpha/{+name}', options)
+          command.response_representation = Google::Apis::AgentregistryV1alpha::Operation::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Fetches available Bindings.
+        # @param [String] parent
+        #   Required. The parent, in the format `projects/`project`/locations/`location``.
+        # @param [Fixnum] page_size
+        #   Optional. Requested page size. Server may return fewer items than requested.
+        #   Page size is 500 if unspecified and is capped at `500` even if a larger value
+        #   is given.
+        # @param [String] page_token
+        #   Optional. A token identifying a page of results the server should return.
+        # @param [String] source_identifier
+        #   The identifier of the source Agent. Format: * `urn:agent:`publisher`:`
+        #   namespace`:`name``
+        # @param [String] target_identifier
+        #   Optional. The identifier of the target Agent, MCP Server, or Endpoint. Format:
+        #   * `urn:agent:`publisher`:`namespace`:`name`` * `urn:mcp:`publisher`:`namespace`
+        #   :`name`` * `urn:endpoint:`publisher`:`namespace`:`name``
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::FetchAvailableBindingsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::FetchAvailableBindingsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def fetch_project_location_binding_available(parent, page_size: nil, page_token: nil, source_identifier: nil, target_identifier: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1alpha/{+parent}/bindings:fetchAvailable', options)
+          command.response_representation = Google::Apis::AgentregistryV1alpha::FetchAvailableBindingsResponse::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::FetchAvailableBindingsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['sourceIdentifier'] = source_identifier unless source_identifier.nil?
+          command.query['targetIdentifier'] = target_identifier unless target_identifier.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Gets details of a single Binding.
+        # @param [String] name
+        #   Required. The name of the Binding. Format: `projects/`project`/locations/`
+        #   location`/bindings/`binding``.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::Binding] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::Binding]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_binding(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1alpha/{+name}', options)
+          command.response_representation = Google::Apis::AgentregistryV1alpha::Binding::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::Binding
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists Bindings in a given project and location.
+        # @param [String] parent
+        #   Required. The project and location to list bindings in. Expected format: `
+        #   projects/`project`/locations/`location``.
+        # @param [String] filter
+        #   Optional. A query string used to filter the list of bindings returned. The
+        #   filter expression must follow AIP-160 syntax.
+        # @param [String] order_by
+        #   Optional. Hint for how to order the results
+        # @param [Fixnum] page_size
+        #   Optional. Requested page size. Server may return fewer items than requested.
+        #   Page size is 500 if unspecified and is capped at `500` even if a larger value
+        #   is given.
+        # @param [String] page_token
+        #   Optional. A token identifying a page of results the server should return.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::ListBindingsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::ListBindingsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_project_location_bindings(parent, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1alpha/{+parent}/bindings', options)
+          command.response_representation = Google::Apis::AgentregistryV1alpha::ListBindingsResponse::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::ListBindingsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Updates the parameters of a single Binding.
+        # @param [String] name
+        #   Required. Identifier. The resource name of the Binding. Format: `projects/`
+        #   project`/locations/`location`/bindings/`binding``.
+        # @param [Google::Apis::AgentregistryV1alpha::Binding] binding_object
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes since the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] update_mask
+        #   Optional. Field mask is used to specify the fields to be overwritten in the
+        #   Binding resource by the update. The fields specified in the update_mask are
+        #   relative to the resource, not the full request. A field will be overwritten if
+        #   it is in the mask. If the user does not provide a mask then all fields present
+        #   in the request will be overwritten.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def patch_project_location_binding(name, binding_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:patch, 'v1alpha/{+name}', options)
+          command.request_representation = Google::Apis::AgentregistryV1alpha::Binding::Representation
+          command.request_object = binding_object
+          command.response_representation = Google::Apis::AgentregistryV1alpha::Operation::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Gets details of a single Endpoint.
         # @param [String] name
         #   Required. The name of the endpoint to retrieve. Format: `projects/`project`/
@@ -358,6 +664,40 @@ module Google
           command.query['orderBy'] = order_by unless order_by.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Searches McpServers in a given project and location.
+        # @param [String] parent
+        #   Required. Parent value for SearchMcpServersRequest. Format: `projects/`project`
+        #   /locations/`location``.
+        # @param [Google::Apis::AgentregistryV1alpha::SearchMcpServersRequest] search_mcp_servers_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::AgentregistryV1alpha::SearchMcpServersResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::AgentregistryV1alpha::SearchMcpServersResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def search_mcp_servers(parent, search_mcp_servers_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1alpha/{+parent}/mcpServers:search', options)
+          command.request_representation = Google::Apis::AgentregistryV1alpha::SearchMcpServersRequest::Representation
+          command.request_object = search_mcp_servers_request_object
+          command.response_representation = Google::Apis::AgentregistryV1alpha::SearchMcpServersResponse::Representation
+          command.response_class = Google::Apis::AgentregistryV1alpha::SearchMcpServersResponse
+          command.params['parent'] = parent unless parent.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
