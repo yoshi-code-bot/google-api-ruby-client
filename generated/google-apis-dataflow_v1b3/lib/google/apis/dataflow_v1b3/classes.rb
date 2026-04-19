@@ -1839,7 +1839,8 @@ module Google
         # @return [String]
         attr_accessor :kms_key_name
       
-        # The machine type to use for launching the job. The default is n1-standard-1.
+        # The machine type to use for launching the job. If not set, Dataflow will
+        # select a default machine type.
         # Corresponds to the JSON property `launcherMachineType`
         # @return [String]
         attr_accessor :launcher_machine_type
@@ -4851,17 +4852,24 @@ module Google
       class RuntimeUpdatableParams
         include Google::Apis::Core::Hashable
       
-        # Optional. Deprecated: Use `autoscaling_tier` instead. The backlog threshold
+        # Optional. Deprecated: Use `latency_tier` instead. The backlog threshold
         # duration in seconds for autoscaling. Value must be non-negative.
         # Corresponds to the JSON property `acceptableBacklogDuration`
         # @return [String]
         attr_accessor :acceptable_backlog_duration
       
-        # Optional. The backlog threshold tier for autoscaling. Value must be one of "
-        # low-latency", "medium-latency", or "high-latency".
+        # Optional. Deprecated: Use `latency_tier` instead. The backlog threshold tier
+        # for autoscaling. Value must be one of "low-latency", "medium-latency", or "
+        # high-latency".
         # Corresponds to the JSON property `autoscalingTier`
         # @return [String]
         attr_accessor :autoscaling_tier
+      
+        # Optional. The backlog threshold tier for autoscaling. Value must be one of "
+        # low-latency", "medium-latency", or "high-latency".
+        # Corresponds to the JSON property `latencyTier`
+        # @return [String]
+        attr_accessor :latency_tier
       
         # The maximum number of workers to cap autoscaling at. This field is currently
         # only supported for Streaming Engine jobs.
@@ -4892,6 +4900,7 @@ module Google
         def update!(**args)
           @acceptable_backlog_duration = args[:acceptable_backlog_duration] if args.key?(:acceptable_backlog_duration)
           @autoscaling_tier = args[:autoscaling_tier] if args.key?(:autoscaling_tier)
+          @latency_tier = args[:latency_tier] if args.key?(:latency_tier)
           @max_num_workers = args[:max_num_workers] if args.key?(:max_num_workers)
           @min_num_workers = args[:min_num_workers] if args.key?(:min_num_workers)
           @worker_utilization_hint = args[:worker_utilization_hint] if args.key?(:worker_utilization_hint)
