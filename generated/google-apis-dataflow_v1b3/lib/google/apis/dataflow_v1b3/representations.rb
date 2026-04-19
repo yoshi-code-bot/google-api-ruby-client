@@ -2483,6 +2483,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :acceptable_backlog_duration, as: 'acceptableBacklogDuration'
           property :autoscaling_tier, as: 'autoscalingTier'
+          property :latency_tier, as: 'latencyTier'
           property :max_num_workers, as: 'maxNumWorkers'
           property :min_num_workers, as: 'minNumWorkers'
           property :worker_utilization_hint, as: 'workerUtilizationHint'
