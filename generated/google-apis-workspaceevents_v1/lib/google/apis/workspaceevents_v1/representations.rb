@@ -371,12 +371,14 @@ module Google
           property :payload_options, as: 'payloadOptions', class: Google::Apis::WorkspaceeventsV1::PayloadOptions, decorator: Google::Apis::WorkspaceeventsV1::PayloadOptions::Representation
       
           property :reconciling, as: 'reconciling'
+          property :service_account_authority, as: 'serviceAccountAuthority'
           property :state, as: 'state'
           property :suspension_reason, as: 'suspensionReason'
           property :target_resource, as: 'targetResource'
           property :ttl, as: 'ttl'
           property :uid, as: 'uid'
           property :update_time, as: 'updateTime'
+          property :user_authority, as: 'userAuthority'
         end
       end
       

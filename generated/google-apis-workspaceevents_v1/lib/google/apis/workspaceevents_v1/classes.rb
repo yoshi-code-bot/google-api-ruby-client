@@ -778,6 +778,14 @@ module Google
         attr_accessor :reconciling
         alias_method :reconciling?, :reconciling
       
+        # Output only. The service account that was used to authorize the creation of
+        # the subscription. This service account must be owned by the same Google Cloud
+        # project where you created this subscription. Format: `projects/`project_id`/
+        # serviceAccounts/`service_account_id``
+        # Corresponds to the JSON property `serviceAccountAuthority`
+        # @return [String]
+        attr_accessor :service_account_authority
+      
         # Output only. The state of the subscription. Determines whether the
         # subscription can receive events and deliver them to the notification endpoint.
         # Corresponds to the JSON property `state`
@@ -818,6 +826,15 @@ module Google
         # @return [String]
         attr_accessor :update_time
       
+        # Output only. The user who authorized the creation of the subscription. The
+        # user must be able to view the `target_resource`. For Google Workspace users,
+        # the ``user`` value is the [`user.id`](https://developers.google.com/workspace/
+        # admin/directory/reference/rest/v1/users#User.FIELDS.id) field from the
+        # Directory API. Format: `users/`user``
+        # Corresponds to the JSON property `userAuthority`
+        # @return [String]
+        attr_accessor :user_authority
+      
         def initialize(**args)
            update!(**args)
         end
@@ -833,12 +850,14 @@ module Google
           @notification_endpoint = args[:notification_endpoint] if args.key?(:notification_endpoint)
           @payload_options = args[:payload_options] if args.key?(:payload_options)
           @reconciling = args[:reconciling] if args.key?(:reconciling)
+          @service_account_authority = args[:service_account_authority] if args.key?(:service_account_authority)
           @state = args[:state] if args.key?(:state)
           @suspension_reason = args[:suspension_reason] if args.key?(:suspension_reason)
           @target_resource = args[:target_resource] if args.key?(:target_resource)
           @ttl = args[:ttl] if args.key?(:ttl)
           @uid = args[:uid] if args.key?(:uid)
           @update_time = args[:update_time] if args.key?(:update_time)
+          @user_authority = args[:user_authority] if args.key?(:user_authority)
         end
       end
       
