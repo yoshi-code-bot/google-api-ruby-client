@@ -448,7 +448,9 @@ module Google
         # @return [Hash<String,Google::Apis::ServiceconsumermanagementV1beta1::BackendRule>]
         attr_accessor :overrides_by_request_protocol
       
-        # no-lint
+        # Path translation specifies how to combine the backend address with the request
+        # path in order to produce the appropriate forwarding URL for the request. See
+        # PathTranslation for more details.
         # Corresponds to the JSON property `pathTranslation`
         # @return [String]
         attr_accessor :path_translation
@@ -789,7 +791,8 @@ module Google
         attr_accessor :reference_docs_uri
       
         # This message is used to configure the generation of a subset of the RPCs in a
-        # service for client libraries.
+        # service for client libraries. Note: This feature should not be used in most
+        # cases.
         # Corresponds to the JSON property `selectiveGapicGeneration`
         # @return [Google::Apis::ServiceconsumermanagementV1beta1::SelectiveGapicGeneration]
         attr_accessor :selective_gapic_generation
@@ -3167,7 +3170,8 @@ module Google
       end
       
       # This message is used to configure the generation of a subset of the RPCs in a
-      # service for client libraries.
+      # service for client libraries. Note: This feature should not be used in most
+      # cases.
       class SelectiveGapicGeneration
         include Google::Apis::Core::Hashable
       
@@ -3336,13 +3340,7 @@ module Google
       
         # Configuration for network endpoints. If this is empty, then an endpoint with
         # the same name as the service is automatically generated to service all defined
-        # APIs. WARNING: Defining any entries in the `endpoints` list disables the
-        # automatic generation of default endpoint variations (e.g., ``service`.clients6.
-        # google.com`, `content-`service`.googleapis.com`, and mTLS variants like ``
-        # service`.mtls.googleapis.com`). To retain these default variations, you are
-        # required to explicitly include your main service endpoint (e.g., `myservice.
-        # googleapis.com`) in this list alongside any other custom endpoints (like REP,
-        # GFE, etc.).
+        # APIs.
         # Corresponds to the JSON property `endpoints`
         # @return [Array<Google::Apis::ServiceconsumermanagementV1beta1::Endpoint>]
         attr_accessor :endpoints
