@@ -40,11 +40,17 @@ module Google
         attr_accessor :low_latency_journey_synthesis
         alias_method :low_latency_journey_synthesis?, :low_latency_journey_synthesis
       
-        # Optional. Input only. If true, relaxes safety filters for Gemini TTS.
+        # Optional. Input only. Deprecated, use safety_settings instead. If true,
+        # relaxes safety filters for Gemini TTS.
         # Corresponds to the JSON property `relaxSafetyFilters`
         # @return [Boolean]
         attr_accessor :relax_safety_filters
         alias_method :relax_safety_filters?, :relax_safety_filters
+      
+        # Safety settings for the request.
+        # Corresponds to the JSON property `safetySettings`
+        # @return [Google::Apis::TexttospeechV1::SafetySettings]
+        attr_accessor :safety_settings
       
         def initialize(**args)
            update!(**args)
@@ -55,6 +61,7 @@ module Google
           @enable_textnorm = args[:enable_textnorm] if args.key?(:enable_textnorm)
           @low_latency_journey_synthesis = args[:low_latency_journey_synthesis] if args.key?(:low_latency_journey_synthesis)
           @relax_safety_filters = args[:relax_safety_filters] if args.key?(:relax_safety_filters)
+          @safety_settings = args[:safety_settings] if args.key?(:safety_settings)
         end
       end
       
@@ -446,6 +453,50 @@ module Google
           @metadata = args[:metadata] if args.key?(:metadata)
           @name = args[:name] if args.key?(:name)
           @response = args[:response] if args.key?(:response)
+        end
+      end
+      
+      # Safety setting for a single harm category.
+      class SafetySetting
+        include Google::Apis::Core::Hashable
+      
+        # The harm category to apply the safety setting to.
+        # Corresponds to the JSON property `category`
+        # @return [String]
+        attr_accessor :category
+      
+        # The harm block threshold for the safety setting.
+        # Corresponds to the JSON property `threshold`
+        # @return [String]
+        attr_accessor :threshold
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @category = args[:category] if args.key?(:category)
+          @threshold = args[:threshold] if args.key?(:threshold)
+        end
+      end
+      
+      # Safety settings for the request.
+      class SafetySettings
+        include Google::Apis::Core::Hashable
+      
+        # The safety settings for the request.
+        # Corresponds to the JSON property `settings`
+        # @return [Array<Google::Apis::TexttospeechV1::SafetySetting>]
+        attr_accessor :settings
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @settings = args[:settings] if args.key?(:settings)
         end
       end
       
