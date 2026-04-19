@@ -213,7 +213,7 @@ module Google
       end
       
       # Log entry for Backup and Restore Job for resources using BackupPlan based
-      # protection. Next Id: 23
+      # protection. Next Id: 24
       class BdrBackupRestoreJobLog
         include Google::Apis::Core::Hashable
       
@@ -248,6 +248,11 @@ module Google
         # Corresponds to the JSON property `backupVaultName`
         # @return [String]
         attr_accessor :backup_vault_name
+      
+        # Canonical Data Source Name
+        # Corresponds to the JSON property `dataSourceName`
+        # @return [String]
+        attr_accessor :data_source_name
       
         # End time of the job.
         # Corresponds to the JSON property `endTime`
@@ -342,6 +347,7 @@ module Google
           @backup_retention_days = args[:backup_retention_days] if args.key?(:backup_retention_days)
           @backup_rule = args[:backup_rule] if args.key?(:backup_rule)
           @backup_vault_name = args[:backup_vault_name] if args.key?(:backup_vault_name)
+          @data_source_name = args[:data_source_name] if args.key?(:data_source_name)
           @end_time = args[:end_time] if args.key?(:end_time)
           @error_code = args[:error_code] if args.key?(:error_code)
           @error_message = args[:error_message] if args.key?(:error_message)

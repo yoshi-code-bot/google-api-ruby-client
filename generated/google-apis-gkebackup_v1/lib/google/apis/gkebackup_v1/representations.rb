@@ -529,6 +529,7 @@ module Google
           property :backup_retention_days, as: 'backupRetentionDays'
           property :backup_rule, as: 'backupRule'
           property :backup_vault_name, as: 'backupVaultName'
+          property :data_source_name, as: 'dataSourceName'
           property :end_time, as: 'endTime'
           property :error_code, as: 'errorCode'
           property :error_message, as: 'errorMessage'
