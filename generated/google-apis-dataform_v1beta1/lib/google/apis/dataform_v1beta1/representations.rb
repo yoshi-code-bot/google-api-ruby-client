@@ -202,6 +202,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class DeleteFolderTreeRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class DeleteTeamFolderTreeRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class DirectoryEntry
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1097,6 +1109,20 @@ module Google
       class DeleteFile
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+        end
+      end
+      
+      class DeleteFolderTreeRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :force, as: 'force'
+        end
+      end
+      
+      class DeleteTeamFolderTreeRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :force, as: 'force'
         end
       end
       
