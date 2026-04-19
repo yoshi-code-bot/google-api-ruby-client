@@ -2134,8 +2134,7 @@ module Google
         #   TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` *
         #   `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `
         #   TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `
-        #   TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_INVENTORY_MODE` * `
-        #   TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `
+        #   TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `
         #   LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `
         #   TARGETING_TYPE_YOUTUBE_VIDEO` (only for `
         #   LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)
@@ -2203,8 +2202,7 @@ module Google
         #   TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` *
         #   `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `
         #   TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `
-        #   TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_INVENTORY_MODE` * `
-        #   TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `
+        #   TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `
         #   LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `
         #   TARGETING_TYPE_YOUTUBE_VIDEO` (only for `
         #   LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)
@@ -3281,8 +3279,7 @@ module Google
         #   Required. Identifies the type of this assigned targeting option. Supported
         #   targeting types: * `TARGETING_TYPE_CHANNEL` * `
         #   TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `
-        #   TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD` * `
-        #   TARGETING_TYPE_INVENTORY_MODE`
+        #   TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
         # @param [Google::Apis::DisplayvideoV2::AssignedTargetingOption] assigned_targeting_option_object
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
@@ -3321,8 +3318,7 @@ module Google
         #   Required. Identifies the type of this assigned targeting option. Supported
         #   targeting types: * `TARGETING_TYPE_CHANNEL` * `
         #   TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `
-        #   TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD` * `
-        #   TARGETING_TYPE_INVENTORY_MODE`
+        #   TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD`
         # @param [String] assigned_targeting_option_id
         #   Required. The ID of the assigned targeting option to delete.
         # @param [String] fields
@@ -5260,220 +5256,6 @@ module Google
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
           command.query['partnerId'] = partner_id unless partner_id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Creates a new inventory source. Returns the newly created inventory source if
-        # successful.
-        # @param [Google::Apis::DisplayvideoV2::InventorySource] inventory_source_object
-        # @param [Fixnum] advertiser_id
-        #   The ID of the advertiser that the request is being made within.
-        # @param [Fixnum] partner_id
-        #   The ID of the partner that the request is being made within.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::DisplayvideoV2::InventorySource] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::DisplayvideoV2::InventorySource]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_inventory_source(inventory_source_object = nil, advertiser_id: nil, partner_id: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v2/inventorySources', options)
-          command.request_representation = Google::Apis::DisplayvideoV2::InventorySource::Representation
-          command.request_object = inventory_source_object
-          command.response_representation = Google::Apis::DisplayvideoV2::InventorySource::Representation
-          command.response_class = Google::Apis::DisplayvideoV2::InventorySource
-          command.query['advertiserId'] = advertiser_id unless advertiser_id.nil?
-          command.query['partnerId'] = partner_id unless partner_id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Edits read/write accessors of an inventory source. Returns the updated
-        # read_write_accessors for the inventory source.
-        # @param [Fixnum] inventory_source_id
-        #   Required. The ID of inventory source to update.
-        # @param [Google::Apis::DisplayvideoV2::EditInventorySourceReadWriteAccessorsRequest] edit_inventory_source_read_write_accessors_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::DisplayvideoV2::InventorySourceAccessors] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::DisplayvideoV2::InventorySourceAccessors]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def edit_inventory_source_read_write_accessors(inventory_source_id, edit_inventory_source_read_write_accessors_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v2/inventorySources/{+inventorySourceId}:editInventorySourceReadWriteAccessors', options)
-          command.request_representation = Google::Apis::DisplayvideoV2::EditInventorySourceReadWriteAccessorsRequest::Representation
-          command.request_object = edit_inventory_source_read_write_accessors_request_object
-          command.response_representation = Google::Apis::DisplayvideoV2::InventorySourceAccessors::Representation
-          command.response_class = Google::Apis::DisplayvideoV2::InventorySourceAccessors
-          command.params['inventorySourceId'] = inventory_source_id unless inventory_source_id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Gets an inventory source.
-        # @param [Fixnum] inventory_source_id
-        #   Required. The ID of the inventory source to fetch.
-        # @param [Fixnum] partner_id
-        #   Required. The ID of the DV360 partner to which the fetched inventory source is
-        #   permissioned.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::DisplayvideoV2::InventorySource] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::DisplayvideoV2::InventorySource]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_inventory_source(inventory_source_id, partner_id: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:get, 'v2/inventorySources/{+inventorySourceId}', options)
-          command.response_representation = Google::Apis::DisplayvideoV2::InventorySource::Representation
-          command.response_class = Google::Apis::DisplayvideoV2::InventorySource
-          command.params['inventorySourceId'] = inventory_source_id unless inventory_source_id.nil?
-          command.query['partnerId'] = partner_id unless partner_id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Lists inventory sources that are accessible to the current user. The order is
-        # defined by the order_by parameter. If a filter by entity_status is not
-        # specified, inventory sources with entity status `ENTITY_STATUS_ARCHIVED` will
-        # not be included in the results.
-        # @param [Fixnum] advertiser_id
-        #   The ID of the advertiser that has access to the inventory source.
-        # @param [String] filter
-        #   Allows filtering by inventory source fields. Supported syntax: * Filter
-        #   expressions are made up of one or more restrictions. * Restrictions can be
-        #   combined by `AND` or `OR` logical operators. A sequence of restrictions
-        #   implicitly uses `AND`. * A restriction has the form of ``field` `operator` `
-        #   value``. * All fields must use the `EQUALS (=)` operator. Supported fields: * `
-        #   status.entityStatus` * `commitment` * `deliveryMethod` * `rateDetails.rateType`
-        #   * `exchange` Examples: * All active inventory sources: `status.entityStatus="
-        #   ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or
-        #   Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="
-        #   EXCHANGE_RUBICON"` The length of this field should be no more than 500
-        #   characters. Reference our [filter `LIST` requests](/display-video/api/guides/
-        #   how-tos/filters) guide for more information.
-        # @param [String] order_by
-        #   Field by which to sort the list. Acceptable values are: * `displayName` (
-        #   default) The default sorting order is ascending. To specify descending order
-        #   for a field, a suffix "desc" should be added to the field name. For example, `
-        #   displayName desc`.
-        # @param [Fixnum] page_size
-        #   Requested page size. Must be between `1` and `200`. If unspecified will
-        #   default to `100`.
-        # @param [String] page_token
-        #   A token identifying a page of results the server should return. Typically,
-        #   this is the value of next_page_token returned from the previous call to `
-        #   ListInventorySources` method. If not specified, the first page of results will
-        #   be returned.
-        # @param [Fixnum] partner_id
-        #   The ID of the partner that has access to the inventory source.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::DisplayvideoV2::ListInventorySourcesResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::DisplayvideoV2::ListInventorySourcesResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def list_inventory_sources(advertiser_id: nil, filter: nil, order_by: nil, page_size: nil, page_token: nil, partner_id: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:get, 'v2/inventorySources', options)
-          command.response_representation = Google::Apis::DisplayvideoV2::ListInventorySourcesResponse::Representation
-          command.response_class = Google::Apis::DisplayvideoV2::ListInventorySourcesResponse
-          command.query['advertiserId'] = advertiser_id unless advertiser_id.nil?
-          command.query['filter'] = filter unless filter.nil?
-          command.query['orderBy'] = order_by unless order_by.nil?
-          command.query['pageSize'] = page_size unless page_size.nil?
-          command.query['pageToken'] = page_token unless page_token.nil?
-          command.query['partnerId'] = partner_id unless partner_id.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Updates an existing inventory source. Returns the updated inventory source if
-        # successful.
-        # @param [Fixnum] inventory_source_id
-        #   Output only. The unique ID of the inventory source. Assigned by the system.
-        # @param [Google::Apis::DisplayvideoV2::InventorySource] inventory_source_object
-        # @param [Fixnum] advertiser_id
-        #   The ID of the advertiser that the request is being made within.
-        # @param [Fixnum] partner_id
-        #   The ID of the partner that the request is being made within.
-        # @param [String] update_mask
-        #   Required. The mask to control which fields to update.
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::DisplayvideoV2::InventorySource] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::DisplayvideoV2::InventorySource]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_inventory_source(inventory_source_id, inventory_source_object = nil, advertiser_id: nil, partner_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:patch, 'v2/inventorySources/{+inventorySourceId}', options)
-          command.request_representation = Google::Apis::DisplayvideoV2::InventorySource::Representation
-          command.request_object = inventory_source_object
-          command.response_representation = Google::Apis::DisplayvideoV2::InventorySource::Representation
-          command.response_class = Google::Apis::DisplayvideoV2::InventorySource
-          command.params['inventorySourceId'] = inventory_source_id unless inventory_source_id.nil?
-          command.query['advertiserId'] = advertiser_id unless advertiser_id.nil?
-          command.query['partnerId'] = partner_id unless partner_id.nil?
-          command.query['updateMask'] = update_mask unless update_mask.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)

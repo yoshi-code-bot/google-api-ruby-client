@@ -1654,7 +1654,7 @@ module Google
         # CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `
         # TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `
         # TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `
-        # TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_INVENTORY_MODE`
+        # TARGETING_TYPE_KEYWORD`
         # Corresponds to the JSON property `createRequests`
         # @return [Array<Google::Apis::DisplayvideoV2::CreateAssignedTargetingOptionsRequest>]
         attr_accessor :create_requests
@@ -1663,7 +1663,7 @@ module Google
         # DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `
         # TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `
         # TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `
-        # TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_INVENTORY_MODE`
+        # TARGETING_TYPE_KEYWORD`
         # Corresponds to the JSON property `deleteRequests`
         # @return [Array<Google::Apis::DisplayvideoV2::DeleteAssignedTargetingOptionsRequest>]
         attr_accessor :delete_requests
@@ -3349,7 +3349,8 @@ module Google
         # attribution model will determine how conversions are counted. The Primary
         # model can be set by you for a floodlight config or group. More details [here](
         # https://support.google.com/displayvideo/answer/7409983). Only applicable to
-        # Demand Gen line items.
+        # Demand Gen line items. Retrieval and management of Demand Gen resources is
+        # currently in beta. This field is only available to allowlisted users.
         # Corresponds to the JSON property `primaryAttributionModelId`
         # @return [Fixnum]
         attr_accessor :primary_attribution_model_id
@@ -3924,39 +3925,6 @@ module Google
         end
       end
       
-      # Creative requirements configuration for the inventory source.
-      class CreativeConfig
-        include Google::Apis::Core::Hashable
-      
-        # The type of creative that can be assigned to the inventory source. Only the
-        # following types are supported: * `CREATIVE_TYPE_STANDARD` * `
-        # CREATIVE_TYPE_VIDEO`
-        # Corresponds to the JSON property `creativeType`
-        # @return [String]
-        attr_accessor :creative_type
-      
-        # The configuration for display creatives.
-        # Corresponds to the JSON property `displayCreativeConfig`
-        # @return [Google::Apis::DisplayvideoV2::InventorySourceDisplayCreativeConfig]
-        attr_accessor :display_creative_config
-      
-        # The configuration for video creatives.
-        # Corresponds to the JSON property `videoCreativeConfig`
-        # @return [Google::Apis::DisplayvideoV2::InventorySourceVideoCreativeConfig]
-        attr_accessor :video_creative_config
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @creative_type = args[:creative_type] if args.key?(:creative_type)
-          @display_creative_config = args[:display_creative_config] if args.key?(:display_creative_config)
-          @video_creative_config = args[:video_creative_config] if args.key?(:video_creative_config)
-        end
-      end
-      
       # A single custom bidding algorithm.
       class CustomBiddingAlgorithm
         include Google::Apis::Core::Hashable
@@ -4360,8 +4328,8 @@ module Google
         attr_accessor :start_hour
       
         # Required. The mechanism used to determine which timezone to use for this day
-        # and time targeting setting. For demand gen line items, this field is always
-        # TIME_ZONE_RESOLUTION_ADVERTISER.
+        # and time targeting setting. For Demand Gen line items, this field is always `
+        # TIME_ZONE_RESOLUTION_ADVERTISER`.
         # Corresponds to the JSON property `timeZoneResolution`
         # @return [String]
         attr_accessor :time_zone_resolution
@@ -4422,10 +4390,11 @@ module Google
       class DemandGenBiddingStrategy
         include Google::Apis::Core::Hashable
       
-        # Output only. If AG doesn't set value for tCPA or tROAS, line item bidding
-        # value will be the effective_bidding_value, if the bidding strategy type is not
-        # tCPA or tROAS, effective_bidding_value is always 0. For line item, it will be
-        # the same as the value field.
+        # Output only. The value effectively used by the bidding strategy. This field
+        # will be the same as value if set. If value is not set and the strategy is
+        # assigned to an ad group, this field will be inherited from the line item's
+        # bidding strategy. If type is not `DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPA`
+        # or `DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_ROAS`, this field will be 0.
         # Corresponds to the JSON property `effectiveBiddingValue`
         # @return [Fixnum]
         attr_accessor :effective_bidding_value
@@ -4435,15 +4404,16 @@ module Google
         # @return [String]
         attr_accessor :effective_bidding_value_source
       
-        # Optional. The type of the bidding strategy. This can only be set at the line
-        # item level.
+        # Optional. The type of the bidding strategy. This can only be set when assigned
+        # to a line item. Ad groups will inherit this value from their line item.
         # Corresponds to the JSON property `type`
         # @return [String]
         attr_accessor :type
       
-        # Optional. The value used by the bidding strategy. This can be set at the line
-        # item and ad group level. This field is only applicable for the following
-        # strategy types: * `DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `
+        # Optional. The value used by the bidding strategy. This can be set when
+        # assigned to line items or ad groups. This field is only applicable for the
+        # following strategy types: * `DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `
+        # DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPC` * `
         # DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_ROAS` Value of this field is in micros
         # of the advertiser's currency or ROAS value. For example, 1000000 represents 1.
         # 0 standard units of the currency or 100% ROAS value. If not using an
@@ -4471,14 +4441,14 @@ module Google
       
         # Optional. Immutable. Whether location and language targeting can be set at the
         # line item level. Otherwise, relevant targeting types must be assigned directly
-        # to the ad groups.
+        # to ad groups.
         # Corresponds to the JSON property `geoLanguageTargetingEnabled`
         # @return [Boolean]
         attr_accessor :geo_language_targeting_enabled
         alias_method :geo_language_targeting_enabled?, :geo_language_targeting_enabled
       
-        # Optional. The ID of the merchant which is linked to the line item for product
-        # feed.
+        # Optional. The ID of the Merchant Center account used to provide a product feed.
+        # This Merchant Center account must already be linked to the advertiser.
         # Corresponds to the JSON property `linkedMerchantId`
         # @return [Fixnum]
         attr_accessor :linked_merchant_id
@@ -5011,67 +4981,6 @@ module Google
         def update!(**args)
           @read_access_inherited = args[:read_access_inherited] if args.key?(:read_access_inherited)
           @read_advertiser_ids = args[:read_advertiser_ids] if args.key?(:read_advertiser_ids)
-        end
-      end
-      
-      # Request message for InventorySourceService.
-      # EditInventorySourceReadWriteAccessors.
-      class EditInventorySourceReadWriteAccessorsRequest
-        include Google::Apis::Core::Hashable
-      
-        # Update to the list of advertisers with read/write access to the inventory
-        # source.
-        # Corresponds to the JSON property `advertisersUpdate`
-        # @return [Google::Apis::DisplayvideoV2::EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate]
-        attr_accessor :advertisers_update
-      
-        # Set the partner context as read/write accessor of the inventory source. This
-        # will remove all other current read/write advertiser accessors.
-        # Corresponds to the JSON property `assignPartner`
-        # @return [Boolean]
-        attr_accessor :assign_partner
-        alias_method :assign_partner?, :assign_partner
-      
-        # Required. The partner context by which the accessors change is being made.
-        # Corresponds to the JSON property `partnerId`
-        # @return [Fixnum]
-        attr_accessor :partner_id
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @advertisers_update = args[:advertisers_update] if args.key?(:advertisers_update)
-          @assign_partner = args[:assign_partner] if args.key?(:assign_partner)
-          @partner_id = args[:partner_id] if args.key?(:partner_id)
-        end
-      end
-      
-      # Update to the list of advertisers with read/write access to the inventory
-      # source.
-      class EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate
-        include Google::Apis::Core::Hashable
-      
-        # The advertisers to add.
-        # Corresponds to the JSON property `addedAdvertisers`
-        # @return [Array<Fixnum>]
-        attr_accessor :added_advertisers
-      
-        # The advertisers to remove.
-        # Corresponds to the JSON property `removedAdvertisers`
-        # @return [Array<Fixnum>]
-        attr_accessor :removed_advertisers
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @added_advertisers = args[:added_advertisers] if args.key?(:added_advertisers)
-          @removed_advertisers = args[:removed_advertisers] if args.key?(:removed_advertisers)
         end
       end
       
@@ -6039,7 +5948,7 @@ module Google
         # @return [Google::Apis::DisplayvideoV2::CommonInStreamAttribute]
         attr_accessor :common_in_stream_attribute
       
-        # The custom parameters to pass custom values to tracking URL template.
+        # The custom parameters and accompanying values to add to the tracking URL.
         # Corresponds to the JSON property `customParameters`
         # @return [Hash<String,String>]
         attr_accessor :custom_parameters
@@ -6388,211 +6297,6 @@ module Google
         end
       end
       
-      # An inventory source. Next ID: 22
-      class InventorySource
-        include Google::Apis::Core::Hashable
-      
-        # Whether the inventory source has a guaranteed or non-guaranteed delivery.
-        # Corresponds to the JSON property `commitment`
-        # @return [String]
-        attr_accessor :commitment
-      
-        # The creative requirements of the inventory source. Not applicable for auction
-        # packages.
-        # Corresponds to the JSON property `creativeConfigs`
-        # @return [Array<Google::Apis::DisplayvideoV2::CreativeConfig>]
-        attr_accessor :creative_configs
-      
-        # The ID in the exchange space that uniquely identifies the inventory source.
-        # Must be unique across buyers within each exchange but not necessarily unique
-        # across exchanges.
-        # Corresponds to the JSON property `dealId`
-        # @return [String]
-        attr_accessor :deal_id
-      
-        # The delivery method of the inventory source. * For non-guaranteed inventory
-        # sources, the only acceptable value is `
-        # INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC`. * For guaranteed inventory
-        # sources, acceptable values are `INVENTORY_SOURCE_DELIVERY_METHOD_TAG` and `
-        # INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC`.
-        # Corresponds to the JSON property `deliveryMethod`
-        # @return [String]
-        attr_accessor :delivery_method
-      
-        # The display name of the inventory source. Must be UTF-8 encoded with a maximum
-        # size of 240 bytes.
-        # Corresponds to the JSON property `displayName`
-        # @return [String]
-        attr_accessor :display_name
-      
-        # The exchange to which the inventory source belongs.
-        # Corresponds to the JSON property `exchange`
-        # @return [String]
-        attr_accessor :exchange
-      
-        # Immutable. The ID of the guaranteed order that this inventory source belongs
-        # to. Only applicable when commitment is `INVENTORY_SOURCE_COMMITMENT_GUARANTEED`
-        # .
-        # Corresponds to the JSON property `guaranteedOrderId`
-        # @return [String]
-        attr_accessor :guaranteed_order_id
-      
-        # Output only. The unique ID of the inventory source. Assigned by the system.
-        # Corresponds to the JSON property `inventorySourceId`
-        # @return [Fixnum]
-        attr_accessor :inventory_source_id
-      
-        # Output only. The product type of the inventory source, denoting the way
-        # through which it sells inventory.
-        # Corresponds to the JSON property `inventorySourceProductType`
-        # @return [String]
-        attr_accessor :inventory_source_product_type
-      
-        # Denotes the type of the inventory source.
-        # Corresponds to the JSON property `inventorySourceType`
-        # @return [String]
-        attr_accessor :inventory_source_type
-      
-        # Output only. The resource name of the inventory source.
-        # Corresponds to the JSON property `name`
-        # @return [String]
-        attr_accessor :name
-      
-        # The publisher/seller name of the inventory source.
-        # Corresponds to the JSON property `publisherName`
-        # @return [String]
-        attr_accessor :publisher_name
-      
-        # The rate related settings of the inventory source.
-        # Corresponds to the JSON property `rateDetails`
-        # @return [Google::Apis::DisplayvideoV2::RateDetails]
-        attr_accessor :rate_details
-      
-        # Output only. The IDs of advertisers with read-only access to the inventory
-        # source.
-        # Corresponds to the JSON property `readAdvertiserIds`
-        # @return [Array<Fixnum>]
-        attr_accessor :read_advertiser_ids
-      
-        # Output only. The IDs of partners with read-only access to the inventory source.
-        # All advertisers of partners in this field inherit read-only access to the
-        # inventory source.
-        # Corresponds to the JSON property `readPartnerIds`
-        # @return [Array<Fixnum>]
-        attr_accessor :read_partner_ids
-      
-        # The partner or advertisers with access to the inventory source.
-        # Corresponds to the JSON property `readWriteAccessors`
-        # @return [Google::Apis::DisplayvideoV2::InventorySourceAccessors]
-        attr_accessor :read_write_accessors
-      
-        # The status related settings of the inventory source.
-        # Corresponds to the JSON property `status`
-        # @return [Google::Apis::DisplayvideoV2::InventorySourceStatus]
-        attr_accessor :status
-      
-        # A time range.
-        # Corresponds to the JSON property `timeRange`
-        # @return [Google::Apis::DisplayvideoV2::TimeRange]
-        attr_accessor :time_range
-      
-        # Output only. The timestamp when the inventory source was last updated.
-        # Assigned by the system.
-        # Corresponds to the JSON property `updateTime`
-        # @return [String]
-        attr_accessor :update_time
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @commitment = args[:commitment] if args.key?(:commitment)
-          @creative_configs = args[:creative_configs] if args.key?(:creative_configs)
-          @deal_id = args[:deal_id] if args.key?(:deal_id)
-          @delivery_method = args[:delivery_method] if args.key?(:delivery_method)
-          @display_name = args[:display_name] if args.key?(:display_name)
-          @exchange = args[:exchange] if args.key?(:exchange)
-          @guaranteed_order_id = args[:guaranteed_order_id] if args.key?(:guaranteed_order_id)
-          @inventory_source_id = args[:inventory_source_id] if args.key?(:inventory_source_id)
-          @inventory_source_product_type = args[:inventory_source_product_type] if args.key?(:inventory_source_product_type)
-          @inventory_source_type = args[:inventory_source_type] if args.key?(:inventory_source_type)
-          @name = args[:name] if args.key?(:name)
-          @publisher_name = args[:publisher_name] if args.key?(:publisher_name)
-          @rate_details = args[:rate_details] if args.key?(:rate_details)
-          @read_advertiser_ids = args[:read_advertiser_ids] if args.key?(:read_advertiser_ids)
-          @read_partner_ids = args[:read_partner_ids] if args.key?(:read_partner_ids)
-          @read_write_accessors = args[:read_write_accessors] if args.key?(:read_write_accessors)
-          @status = args[:status] if args.key?(:status)
-          @time_range = args[:time_range] if args.key?(:time_range)
-          @update_time = args[:update_time] if args.key?(:update_time)
-        end
-      end
-      
-      # The partner or advertisers with access to the inventory source.
-      class InventorySourceAccessors
-        include Google::Apis::Core::Hashable
-      
-        # The advertisers with access to the inventory source.
-        # Corresponds to the JSON property `advertisers`
-        # @return [Google::Apis::DisplayvideoV2::InventorySourceAccessorsAdvertiserAccessors]
-        attr_accessor :advertisers
-      
-        # The partner with access to the inventory source.
-        # Corresponds to the JSON property `partner`
-        # @return [Google::Apis::DisplayvideoV2::InventorySourceAccessorsPartnerAccessor]
-        attr_accessor :partner
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @advertisers = args[:advertisers] if args.key?(:advertisers)
-          @partner = args[:partner] if args.key?(:partner)
-        end
-      end
-      
-      # The advertisers with access to the inventory source.
-      class InventorySourceAccessorsAdvertiserAccessors
-        include Google::Apis::Core::Hashable
-      
-        # The IDs of the advertisers.
-        # Corresponds to the JSON property `advertiserIds`
-        # @return [Array<Fixnum>]
-        attr_accessor :advertiser_ids
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @advertiser_ids = args[:advertiser_ids] if args.key?(:advertiser_ids)
-        end
-      end
-      
-      # The partner with access to the inventory source.
-      class InventorySourceAccessorsPartnerAccessor
-        include Google::Apis::Core::Hashable
-      
-        # The ID of the partner.
-        # Corresponds to the JSON property `partnerId`
-        # @return [Fixnum]
-        attr_accessor :partner_id
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @partner_id = args[:partner_id] if args.key?(:partner_id)
-        end
-      end
-      
       # Targeting details for inventory source. This will be populated in the details
       # field of an AssignedTargetingOption when targeting_type is `
       # TARGETING_TYPE_INVENTORY_SOURCE`.
@@ -6612,25 +6316,6 @@ module Google
         # Update properties of this object
         def update!(**args)
           @inventory_source_id = args[:inventory_source_id] if args.key?(:inventory_source_id)
-        end
-      end
-      
-      # The configuration for display creatives.
-      class InventorySourceDisplayCreativeConfig
-        include Google::Apis::Core::Hashable
-      
-        # Dimensions.
-        # Corresponds to the JSON property `creativeSize`
-        # @return [Google::Apis::DisplayvideoV2::Dimensions]
-        attr_accessor :creative_size
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @creative_size = args[:creative_size] if args.key?(:creative_size)
         end
       end
       
@@ -6707,82 +6392,6 @@ module Google
         # Update properties of this object
         def update!(**args)
           @inventory_source_group_id = args[:inventory_source_group_id] if args.key?(:inventory_source_group_id)
-        end
-      end
-      
-      # The status related settings of the inventory source.
-      class InventorySourceStatus
-        include Google::Apis::Core::Hashable
-      
-        # Output only. The configuration status of the inventory source. Only applicable
-        # for guaranteed inventory sources. Acceptable values are `
-        # INVENTORY_SOURCE_CONFIG_STATUS_PENDING` and `
-        # INVENTORY_SOURCE_CONFIG_STATUS_COMPLETED`. An inventory source must be
-        # configured (fill in the required fields, choose creatives, and select a
-        # default campaign) before it can serve.
-        # Corresponds to the JSON property `configStatus`
-        # @return [String]
-        attr_accessor :config_status
-      
-        # The user-provided reason for pausing this inventory source. Must not exceed
-        # 100 characters. Only applicable when entity_status is set to `
-        # ENTITY_STATUS_PAUSED`.
-        # Corresponds to the JSON property `entityPauseReason`
-        # @return [String]
-        attr_accessor :entity_pause_reason
-      
-        # Whether or not the inventory source is servable. Acceptable values are `
-        # ENTITY_STATUS_ACTIVE`, `ENTITY_STATUS_ARCHIVED`, and `ENTITY_STATUS_PAUSED`.
-        # Default value is `ENTITY_STATUS_ACTIVE`.
-        # Corresponds to the JSON property `entityStatus`
-        # @return [String]
-        attr_accessor :entity_status
-      
-        # Output only. The seller-provided reason for pausing this inventory source.
-        # Only applicable for inventory sources synced directly from the publishers and
-        # when seller_status is set to `ENTITY_STATUS_PAUSED`.
-        # Corresponds to the JSON property `sellerPauseReason`
-        # @return [String]
-        attr_accessor :seller_pause_reason
-      
-        # Output only. The status set by the seller for the inventory source. Only
-        # applicable for inventory sources synced directly from the publishers.
-        # Acceptable values are `ENTITY_STATUS_ACTIVE` and `ENTITY_STATUS_PAUSED`.
-        # Corresponds to the JSON property `sellerStatus`
-        # @return [String]
-        attr_accessor :seller_status
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @config_status = args[:config_status] if args.key?(:config_status)
-          @entity_pause_reason = args[:entity_pause_reason] if args.key?(:entity_pause_reason)
-          @entity_status = args[:entity_status] if args.key?(:entity_status)
-          @seller_pause_reason = args[:seller_pause_reason] if args.key?(:seller_pause_reason)
-          @seller_status = args[:seller_status] if args.key?(:seller_status)
-        end
-      end
-      
-      # The configuration for video creatives.
-      class InventorySourceVideoCreativeConfig
-        include Google::Apis::Core::Hashable
-      
-        # The duration requirements for the video creatives that can be assigned to the
-        # inventory source.
-        # Corresponds to the JSON property `duration`
-        # @return [String]
-        attr_accessor :duration
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @duration = args[:duration] if args.key?(:duration)
         end
       end
       
@@ -6962,8 +6571,13 @@ module Google
       class KeywordAssignedTargetingOptionDetails
         include Google::Apis::Core::Hashable
       
-        # Optional. The policy names to exempt the keyword from. This field is only
-        # applicable for Demand Gen keywords, which are positively targeted.
+        # Optional. The policy names to exempt the keyword from. When attempting to
+        # target a keyword that violates a policy, the error returned will include the
+        # name of the relevant policy. Use that name in this field to exempt the
+        # targeted keyword from the policy. This field is only applicable for positively-
+        # targeted keywords assigned to Demand Gen resources. Retrieval and management
+        # of Demand Gen resources is currently in beta. This field is only available to
+        # allowlisted users.
         # Corresponds to the JSON property `exemptedPolicyNames`
         # @return [Array<String>]
         attr_accessor :exempted_policy_names
@@ -7167,6 +6781,18 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Optional. Whether to enable DV360's bid optimization for fixed bid line items.
+        # By default, DV360 optimizes your fixed bid by automatically lowering bids for
+        # impressions that are less likely to perform well. This optimization is enabled
+        # by default (value is true). When this field is set to `false`, this
+        # optimization is disabled, and the bid will not be lowered for any reason. This
+        # setting only applies to line items with a `bidding_strategy` of type `
+        # FIXED_BID`.
+        # Corresponds to the JSON property `optimizeFixedBidding`
+        # @return [Boolean]
+        attr_accessor :optimize_fixed_bidding
+        alias_method :optimize_fixed_bidding?, :optimize_fixed_bidding
+      
         # Settings that control the rate at which a budget is spent.
         # Corresponds to the JSON property `pacing`
         # @return [Google::Apis::DisplayvideoV2::Pacing]
@@ -7238,6 +6864,7 @@ module Google
           @line_item_type = args[:line_item_type] if args.key?(:line_item_type)
           @mobile_app = args[:mobile_app] if args.key?(:mobile_app)
           @name = args[:name] if args.key?(:name)
+          @optimize_fixed_bidding = args[:optimize_fixed_bidding] if args.key?(:optimize_fixed_bidding)
           @pacing = args[:pacing] if args.key?(:pacing)
           @partner_costs = args[:partner_costs] if args.key?(:partner_costs)
           @partner_revenue_model = args[:partner_revenue_model] if args.key?(:partner_revenue_model)
@@ -7282,10 +6909,8 @@ module Google
       
         # Required. The type of the budget allocation. `
         # LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC` is only applicable when automatic
-        # budget allocation is enabled for the parent insertion order. For demand gen
-        # line items, budget allocation type must be `
-        # LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED`. Demand Gen line items do not support
-        # other budget allocation types.
+        # budget allocation is enabled for the parent insertion order. This field must
+        # be set to `LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED` for Demand Gen line items.
         # Corresponds to the JSON property `budgetAllocationType`
         # @return [String]
         attr_accessor :budget_allocation_type
@@ -7780,33 +7405,6 @@ module Google
         # Update properties of this object
         def update!(**args)
           @inventory_source_groups = args[:inventory_source_groups] if args.key?(:inventory_source_groups)
-          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
-        end
-      end
-      
-      # 
-      class ListInventorySourcesResponse
-        include Google::Apis::Core::Hashable
-      
-        # The list of inventory sources. This list will be absent if empty.
-        # Corresponds to the JSON property `inventorySources`
-        # @return [Array<Google::Apis::DisplayvideoV2::InventorySource>]
-        attr_accessor :inventory_sources
-      
-        # A token to retrieve the next page of results. Pass this value in the
-        # page_token field in the subsequent call to `ListInventorySources` method to
-        # retrieve the next page of results.
-        # Corresponds to the JSON property `nextPageToken`
-        # @return [String]
-        attr_accessor :next_page_token
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @inventory_sources = args[:inventory_sources] if args.key?(:inventory_sources)
           @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
         end
       end
@@ -8575,42 +8173,6 @@ module Google
         end
       end
       
-      # Represents an amount of money with its currency type.
-      class Money
-        include Google::Apis::Core::Hashable
-      
-        # The three-letter currency code defined in ISO 4217.
-        # Corresponds to the JSON property `currencyCode`
-        # @return [String]
-        attr_accessor :currency_code
-      
-        # Number of nano (10^-9) units of the amount. The value must be between -999,999,
-        # 999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be
-        # positive or zero. If `units` is zero, `nanos` can be positive, zero, or
-        # negative. If `units` is negative, `nanos` must be negative or zero. For
-        # example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
-        # Corresponds to the JSON property `nanos`
-        # @return [Fixnum]
-        attr_accessor :nanos
-      
-        # The whole units of the amount. For example if `currencyCode` is `"USD"`, then
-        # 1 unit is one US dollar.
-        # Corresponds to the JSON property `units`
-        # @return [Fixnum]
-        attr_accessor :units
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @currency_code = args[:currency_code] if args.key?(:currency_code)
-          @nanos = args[:nanos] if args.key?(:nanos)
-          @units = args[:units] if args.key?(:units)
-        end
-      end
-      
       # Details for native content position assigned targeting option. This will be
       # populated in the native_content_position_details field when targeting_type is `
       # TARGETING_TYPE_NATIVE_CONTENT_POSITION`. Explicitly targeting all options is
@@ -8763,7 +8325,7 @@ module Google
         # @return [Google::Apis::DisplayvideoV2::CommonInStreamAttribute]
         attr_accessor :common_in_stream_attribute
       
-        # The custom parameters to pass custom values to tracking URL template.
+        # The custom parameters and accompanying values to add to the tracking URL.
         # Corresponds to the JSON property `customParameters`
         # @return [Hash<String,String>]
         attr_accessor :custom_parameters
@@ -9398,8 +8960,9 @@ module Google
         # @return [Fixnum]
         attr_accessor :markup_amount
       
-        # Required. The markup type of the partner revenue model. Demand Gen line items
-        # only support `PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP`.
+        # Required. The markup type of the partner revenue model. This field must be set
+        # to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP` for Demand Gen
+        # line items.
         # Corresponds to the JSON property `markupType`
         # @return [String]
         attr_accessor :markup_type
@@ -9831,45 +9394,6 @@ module Google
         def update!(**args)
           @publisher_name = args[:publisher_name] if args.key?(:publisher_name)
           @status = args[:status] if args.key?(:status)
-        end
-      end
-      
-      # The rate related settings of the inventory source.
-      class RateDetails
-        include Google::Apis::Core::Hashable
-      
-        # The rate type. Acceptable values are `INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED`, `
-        # INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR`, and `INVENTORY_SOURCE_RATE_TYPE_CPD`.
-        # Corresponds to the JSON property `inventorySourceRateType`
-        # @return [String]
-        attr_accessor :inventory_source_rate_type
-      
-        # Represents an amount of money with its currency type.
-        # Corresponds to the JSON property `minimumSpend`
-        # @return [Google::Apis::DisplayvideoV2::Money]
-        attr_accessor :minimum_spend
-      
-        # Represents an amount of money with its currency type.
-        # Corresponds to the JSON property `rate`
-        # @return [Google::Apis::DisplayvideoV2::Money]
-        attr_accessor :rate
-      
-        # Required for guaranteed inventory sources. The number of impressions
-        # guaranteed by the seller.
-        # Corresponds to the JSON property `unitsPurchased`
-        # @return [Fixnum]
-        attr_accessor :units_purchased
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @inventory_source_rate_type = args[:inventory_source_rate_type] if args.key?(:inventory_source_rate_type)
-          @minimum_spend = args[:minimum_spend] if args.key?(:minimum_spend)
-          @rate = args[:rate] if args.key?(:rate)
-          @units_purchased = args[:units_purchased] if args.key?(:units_purchased)
         end
       end
       
@@ -10479,7 +10003,9 @@ module Google
         include Google::Apis::Core::Hashable
       
         # Optional. Whether to exclude demographic expansion for Optimized Targeting.
-        # This field only applies to Demand Gen ad groups.
+        # This field can only be set for Demand Gen ad groups. Retrieval and management
+        # of Demand Gen resources is currently in beta. This field is only available to
+        # allowlisted users.
         # Corresponds to the JSON property `excludeDemographicExpansion`
         # @return [Boolean]
         attr_accessor :exclude_demographic_expansion
@@ -10827,8 +10353,8 @@ module Google
         attr_accessor :brand_lift_vendor_configs
       
         # Optional. The third-party vendors measuring brand safety. The following third-
-        # party vendors are applicable: * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `
-        # THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE` * `THIRD_PARTY_VENDOR_ZEFR`
+        # party vendors are applicable: * `THIRD_PARTY_VENDOR_ZEFR` * `
+        # THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE`
         # Corresponds to the JSON property `brandSafetyVendorConfigs`
         # @return [Array<Google::Apis::DisplayvideoV2::ThirdPartyVendorConfig>]
         attr_accessor :brand_safety_vendor_configs
@@ -10970,31 +10496,6 @@ module Google
           @adloox = args[:adloox] if args.key?(:adloox)
           @double_verify = args[:double_verify] if args.key?(:double_verify)
           @integral_ad_science = args[:integral_ad_science] if args.key?(:integral_ad_science)
-        end
-      end
-      
-      # A time range.
-      class TimeRange
-        include Google::Apis::Core::Hashable
-      
-        # Required. The upper bound of a time range, inclusive.
-        # Corresponds to the JSON property `endTime`
-        # @return [String]
-        attr_accessor :end_time
-      
-        # Required. The lower bound of a time range, inclusive.
-        # Corresponds to the JSON property `startTime`
-        # @return [String]
-        attr_accessor :start_time
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @end_time = args[:end_time] if args.key?(:end_time)
-          @start_time = args[:start_time] if args.key?(:start_time)
         end
       end
       
@@ -11438,7 +10939,7 @@ module Google
         # @return [Array<Google::Apis::DisplayvideoV2::ImageAsset>]
         attr_accessor :companion_banners
       
-        # The custom parameters to pass custom values to tracking URL template.
+        # The custom parameters and accompanying values to add to the tracking URL.
         # Corresponds to the JSON property `customParameters`
         # @return [Hash<String,String>]
         attr_accessor :custom_parameters
@@ -11473,7 +10974,7 @@ module Google
         # @return [Array<String>]
         attr_accessor :headlines
       
-        # The list of lone headlines shown on the call-to-action banner.
+        # The list of long headlines shown on the call-to-action banner.
         # Corresponds to the JSON property `longHeadlines`
         # @return [Array<String>]
         attr_accessor :long_headlines
@@ -11939,8 +11440,8 @@ module Google
         # @return [Fixnum]
         attr_accessor :lead_form_id
       
-        # Optional. The ID of the merchant which is linked to the line item for product
-        # feed.
+        # Optional. The ID of the Merchant Center account used to provide a product feed.
+        # This Merchant Center account must already be linked to the advertiser.
         # Corresponds to the JSON property `linkedMerchantId`
         # @return [Fixnum]
         attr_accessor :linked_merchant_id
@@ -12118,7 +11619,8 @@ module Google
         # @return [String]
         attr_accessor :unavailable_reason
       
-        # Required. The YouTube video asset id. This is ad_asset.ad_asset_id.
+        # Required. The YouTube video asset id. This is the adAssetId of an AdAsset
+        # resource.
         # Corresponds to the JSON property `videoAssetId`
         # @return [Fixnum]
         attr_accessor :video_asset_id
