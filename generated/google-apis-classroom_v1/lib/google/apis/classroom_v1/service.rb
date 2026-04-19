@@ -198,8 +198,8 @@ module Google
         # INVALID_ARGUMENT` if the query argument is malformed. * `NOT_FOUND` if any
         # users specified in the query arguments do not exist.
         # @param [Array<String>, String] course_states
-        #   Restricts returned courses to those in one of the specified states The default
-        #   value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
+        #   Restricts returned courses to those in one of the specified states. If
+        #   unspecified, Courses in any state are returned.
         # @param [Fixnum] page_size
         #   Maximum number of items to return. Zero or unspecified indicates that the
         #   server may assign a maximum. The server may return fewer than the specified
@@ -212,12 +212,12 @@ module Google
         #   Restricts returned courses to those having a student with the specified
         #   identifier. The identifier can be one of the following: * the numeric
         #   identifier for the user * the email address of the user * the string literal `"
-        #   me"`, indicating the requesting user
+        #   me"`, indicating the requesting user If specified, `teacher_id` must be empty.
         # @param [String] teacher_id
         #   Restricts returned courses to those having a teacher with the specified
         #   identifier. The identifier can be one of the following: * the numeric
         #   identifier for the user * the email address of the user * the string literal `"
-        #   me"`, indicating the requesting user
+        #   me"`, indicating the requesting user If specified, `student_id` must be empty.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
