@@ -666,6 +666,12 @@ module Google
         # @return [String]
         attr_accessor :expire_time
       
+        # FilestoreInstanceBackupProperties represents the properties of a Filestore
+        # instance that are backed up by the datasource. .
+        # Corresponds to the JSON property `filestoreInstanceBackupProperties`
+        # @return [Google::Apis::BackupdrV1::FilestoreInstanceBackupProperties]
+        attr_accessor :filestore_instance_backup_properties
+      
         # GCPBackupPlanInfo captures the plan configuration details of Google Cloud
         # resources at the time of backup.
         # Corresponds to the JSON property `gcpBackupPlanInfo`
@@ -749,6 +755,7 @@ module Google
           @enforced_retention_end_time = args[:enforced_retention_end_time] if args.key?(:enforced_retention_end_time)
           @etag = args[:etag] if args.key?(:etag)
           @expire_time = args[:expire_time] if args.key?(:expire_time)
+          @filestore_instance_backup_properties = args[:filestore_instance_backup_properties] if args.key?(:filestore_instance_backup_properties)
           @gcp_backup_plan_info = args[:gcp_backup_plan_info] if args.key?(:gcp_backup_plan_info)
           @gcp_resource = args[:gcp_resource] if args.key?(:gcp_resource)
           @kms_key_versions = args[:kms_key_versions] if args.key?(:kms_key_versions)
@@ -1247,6 +1254,11 @@ module Google
         # @return [String]
         attr_accessor :backup_vault_service_account
       
+        # --- ComputeInstanceBackupPlanProperties Message ---
+        # Corresponds to the JSON property `computeInstanceBackupPlanProperties`
+        # @return [Google::Apis::BackupdrV1::ComputeInstanceBackupPlanProperties]
+        attr_accessor :compute_instance_backup_plan_properties
+      
         # Output only. When the `BackupPlan` was created.
         # Corresponds to the JSON property `createTime`
         # @return [String]
@@ -1343,6 +1355,7 @@ module Google
           @backup_rules = args[:backup_rules] if args.key?(:backup_rules)
           @backup_vault = args[:backup_vault] if args.key?(:backup_vault)
           @backup_vault_service_account = args[:backup_vault_service_account] if args.key?(:backup_vault_service_account)
+          @compute_instance_backup_plan_properties = args[:compute_instance_backup_plan_properties] if args.key?(:compute_instance_backup_plan_properties)
           @create_time = args[:create_time] if args.key?(:create_time)
           @description = args[:description] if args.key?(:description)
           @disk_backup_plan_properties = args[:disk_backup_plan_properties] if args.key?(:disk_backup_plan_properties)
@@ -2016,6 +2029,28 @@ module Google
         end
       end
       
+      # --- ComputeInstanceBackupPlanProperties Message ---
+      class ComputeInstanceBackupPlanProperties
+        include Google::Apis::Core::Hashable
+      
+        # Optional. Indicates whether to perform a guest flush operation before taking a
+        # compute backup. When set to false, the system will create crash-consistent
+        # backups. Default value is false.
+        # Corresponds to the JSON property `guestFlush`
+        # @return [Boolean]
+        attr_accessor :guest_flush
+        alias_method :guest_flush?, :guest_flush
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @guest_flush = args[:guest_flush] if args.key?(:guest_flush)
+        end
+      end
+      
       # ComputeInstanceBackupProperties represents Compute Engine instance backup
       # properties.
       class ComputeInstanceBackupProperties
@@ -2049,6 +2084,14 @@ module Google
         # Corresponds to the JSON property `guestAccelerator`
         # @return [Array<Google::Apis::BackupdrV1::AcceleratorConfig>]
         attr_accessor :guest_accelerator
+      
+        # Optional. Indicates whether to perform a guest flush operation before taking a
+        # compute backup. When set to false, the system will create crash-consistent
+        # backups. Default value is false.
+        # Corresponds to the JSON property `guestFlush`
+        # @return [Boolean]
+        attr_accessor :guest_flush
+        alias_method :guest_flush?, :guest_flush
       
         # KeyRevocationActionType of the instance. Supported options are "STOP" and "
         # NONE". The default value is "NONE" if it is not specified.
@@ -2121,6 +2164,7 @@ module Google
           @description = args[:description] if args.key?(:description)
           @disk = args[:disk] if args.key?(:disk)
           @guest_accelerator = args[:guest_accelerator] if args.key?(:guest_accelerator)
+          @guest_flush = args[:guest_flush] if args.key?(:guest_flush)
           @key_revocation_action_type = args[:key_revocation_action_type] if args.key?(:key_revocation_action_type)
           @labels = args[:labels] if args.key?(:labels)
           @machine_type = args[:machine_type] if args.key?(:machine_type)
@@ -2660,6 +2704,12 @@ module Google
         # @return [Google::Apis::BackupdrV1::DiskDataSourceProperties]
         attr_accessor :disk_datasource_properties
       
+        # FilestoreInstanceDataSourceProperties represents the properties of a Filestore
+        # resource that are stored in the DataSource. .
+        # Corresponds to the JSON property `filestoreInstanceDatasourceProperties`
+        # @return [Google::Apis::BackupdrV1::FilestoreInstanceDataSourceProperties]
+        attr_accessor :filestore_instance_datasource_properties
+      
         # Output only. Full resource pathname URL of the source Google Cloud resource.
         # Corresponds to the JSON property `gcpResourcename`
         # @return [String]
@@ -2686,6 +2736,7 @@ module Google
           @cloud_sql_instance_datasource_properties = args[:cloud_sql_instance_datasource_properties] if args.key?(:cloud_sql_instance_datasource_properties)
           @compute_instance_datasource_properties = args[:compute_instance_datasource_properties] if args.key?(:compute_instance_datasource_properties)
           @disk_datasource_properties = args[:disk_datasource_properties] if args.key?(:disk_datasource_properties)
+          @filestore_instance_datasource_properties = args[:filestore_instance_datasource_properties] if args.key?(:filestore_instance_datasource_properties)
           @gcp_resourcename = args[:gcp_resourcename] if args.key?(:gcp_resourcename)
           @location = args[:location] if args.key?(:location)
           @type = args[:type] if args.key?(:type)
@@ -2707,6 +2758,12 @@ module Google
         # Corresponds to the JSON property `cloudSqlInstanceProperties`
         # @return [Google::Apis::BackupdrV1::CloudSqlInstanceDataSourceReferenceProperties]
         attr_accessor :cloud_sql_instance_properties
+      
+        # FilestoreInstanceDataSourceReferenceProperties represents the properties of a
+        # Filestore resource that are stored in the DataSourceReference. .
+        # Corresponds to the JSON property `filestoreInstanceProperties`
+        # @return [Google::Apis::BackupdrV1::FilestoreInstanceDataSourceReferenceProperties]
+        attr_accessor :filestore_instance_properties
       
         # Output only. The resource name of the Google Cloud resource. Ex: projects/`
         # project`/zones/`zone`/instances/`instance`
@@ -2734,6 +2791,7 @@ module Google
         def update!(**args)
           @alloy_db_cluster_properties = args[:alloy_db_cluster_properties] if args.key?(:alloy_db_cluster_properties)
           @cloud_sql_instance_properties = args[:cloud_sql_instance_properties] if args.key?(:cloud_sql_instance_properties)
+          @filestore_instance_properties = args[:filestore_instance_properties] if args.key?(:filestore_instance_properties)
           @gcp_resourcename = args[:gcp_resourcename] if args.key?(:gcp_resourcename)
           @location = args[:location] if args.key?(:location)
           @type = args[:type] if args.key?(:type)
@@ -3531,6 +3589,79 @@ module Google
         end
       end
       
+      # FilestoreInstanceBackupProperties represents the properties of a Filestore
+      # instance that are backed up by the datasource. .
+      class FilestoreInstanceBackupProperties
+        include Google::Apis::Core::Hashable
+      
+        # Output only. The source instance of the backup.
+        # Corresponds to the JSON property `sourceInstance`
+        # @return [String]
+        attr_accessor :source_instance
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @source_instance = args[:source_instance] if args.key?(:source_instance)
+        end
+      end
+      
+      # FilestoreInstanceDataSourceProperties represents the properties of a Filestore
+      # resource that are stored in the DataSource. .
+      class FilestoreInstanceDataSourceProperties
+        include Google::Apis::Core::Hashable
+      
+        # Output only. The instance creation timestamp.
+        # Corresponds to the JSON property `instanceCreateTime`
+        # @return [String]
+        attr_accessor :instance_create_time
+      
+        # Output only. Name of the Filestore instance backed up by the datasource.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @instance_create_time = args[:instance_create_time] if args.key?(:instance_create_time)
+          @name = args[:name] if args.key?(:name)
+        end
+      end
+      
+      # FilestoreInstanceDataSourceReferenceProperties represents the properties of a
+      # Filestore resource that are stored in the DataSourceReference. .
+      class FilestoreInstanceDataSourceReferenceProperties
+        include Google::Apis::Core::Hashable
+      
+        # Output only. The instance creation timestamp.
+        # Corresponds to the JSON property `instanceCreateTime`
+        # @return [String]
+        attr_accessor :instance_create_time
+      
+        # Output only. Name of the Filestore instance backed up by the datasource.
+        # Format: projects/`project`/instances/`instance`
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @instance_create_time = args[:instance_create_time] if args.key?(:instance_create_time)
+          @name = args[:name] if args.key?(:name)
+        end
+      end
+      
       # Message for finalizing a Backup.
       class FinalizeBackupRequest
         include Google::Apis::Core::Hashable
@@ -3881,6 +4012,13 @@ module Google
         # @return [String]
         attr_accessor :resource_type
       
+        # Optional. If set, validates the request and returns the result, but does not
+        # actually run it.
+        # Corresponds to the JSON property `validateOnly`
+        # @return [Boolean]
+        attr_accessor :validate_only
+        alias_method :validate_only?, :validate_only
+      
         def initialize(**args)
            update!(**args)
         end
@@ -3891,6 +4029,7 @@ module Google
           @cloud_sql_instance_initialization_config = args[:cloud_sql_instance_initialization_config] if args.key?(:cloud_sql_instance_initialization_config)
           @request_id = args[:request_id] if args.key?(:request_id)
           @resource_type = args[:resource_type] if args.key?(:resource_type)
+          @validate_only = args[:validate_only] if args.key?(:validate_only)
         end
       end
       
