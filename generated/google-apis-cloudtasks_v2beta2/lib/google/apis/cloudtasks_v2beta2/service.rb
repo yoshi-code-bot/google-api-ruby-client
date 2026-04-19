@@ -152,10 +152,15 @@ module Google
         end
         
         # Lists information about the supported locations for this service. This method
-        # can be called in two ways: * **List all public locations:** Use the path `GET /
-        # v1/locations`. * **List project-visible locations:** Use the path `GET /v1/
-        # projects/`project_id`/locations`. This may include public locations as well as
-        # private or other locations specifically visible to the project.
+        # lists locations based on the resource scope provided in the [
+        # ListLocationsRequest.name] field: * **Global locations**: If `name` is empty,
+        # the method lists the public locations available to all projects. * **Project-
+        # specific locations**: If `name` follows the format `projects/`project``, the
+        # method lists locations visible to that specific project. This includes public,
+        # private, or other project-specific locations enabled for the project. For gRPC
+        # and client library implementations, the resource name is passed as the `name`
+        # field. For direct service calls, the resource name is incorporated into the
+        # request path based on the specific service implementation and version.
         # @param [String] name
         #   The resource that owns the locations collection, if applicable.
         # @param [Array<String>, String] extra_location_types
@@ -238,6 +243,37 @@ module Google
           command.response_class = Google::Apis::CloudtasksV2beta2::CmekConfig
           command.params['name'] = name unless name.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Gets the latest state of a long-running operation. Clients can use this method
+        # to poll the operation result at intervals as recommended by the API service.
+        # @param [String] name
+        #   The name of the operation resource.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::CloudtasksV2beta2::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::CloudtasksV2beta2::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_operation(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v2beta2/{+name}', options)
+          command.response_representation = Google::Apis::CloudtasksV2beta2::Operation::Representation
+          command.response_class = Google::Apis::CloudtasksV2beta2::Operation
+          command.params['name'] = name unless name.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
