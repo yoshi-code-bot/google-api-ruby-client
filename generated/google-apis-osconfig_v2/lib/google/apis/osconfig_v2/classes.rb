@@ -686,8 +686,8 @@ module Google
         # @return [Google::Apis::OsconfigV2::GoogleCloudOsconfigV2PolicyOrchestratorOrchestrationState]
         attr_accessor :orchestration_state
       
-        # Output only. Set to true, if the there are ongoing changes being applied by
-        # the orchestrator.
+        # Output only. Set to true, if there are ongoing changes being applied by the
+        # orchestrator.
         # Corresponds to the JSON property `reconciling`
         # @return [Boolean]
         attr_accessor :reconciling
@@ -1469,7 +1469,7 @@ module Google
       class OsPolicyResourceFileResource
         include Google::Apis::Core::Hashable
       
-        # A a file with this content. The size of the content is limited to 32KiB.
+        # A file with this content. The size of the content is limited to 32KiB.
         # Corresponds to the JSON property `content`
         # @return [String]
         attr_accessor :content
