@@ -514,6 +514,152 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Creates a connector config.
+        # @param [String] parent
+        #   Required. Format: customers/`customer`
+        # @param [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig] google_chrome_management_versions_v1_connector_config_object
+        # @param [String] connector_config_id
+        #   Optional. ID to use for the connector config, which becomes the final
+        #   component of the connector config's resource name. If provided, the ID must be
+        #   1-63 characters long, and contain only lowercase letters, digits, and hyphens.
+        #   It must start with a letter, and end with a letter or number. If not provided,
+        #   the connector config will be assigned a random UUID.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_customer_connector_config(parent, google_chrome_management_versions_v1_connector_config_object = nil, connector_config_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+parent}/connectorConfigs', options)
+          command.request_representation = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig::Representation
+          command.request_object = google_chrome_management_versions_v1_connector_config_object
+          command.response_representation = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig::Representation
+          command.response_class = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig
+          command.params['parent'] = parent unless parent.nil?
+          command.query['connectorConfigId'] = connector_config_id unless connector_config_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a connector config.
+        # @param [String] name
+        #   Required. Format: customers/`customer`/connectorConfigs/`connector_config`
+        # @param [String] etag
+        #   Optional. The etag of the connector config. If an etag is provided and does
+        #   not match the current etag of the connector config, deletion will be blocked
+        #   and an ABORTED error will be returned.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ChromemanagementV1::GoogleProtobufEmpty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ChromemanagementV1::GoogleProtobufEmpty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_customer_connector_config(name, etag: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:delete, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::ChromemanagementV1::GoogleProtobufEmpty::Representation
+          command.response_class = Google::Apis::ChromemanagementV1::GoogleProtobufEmpty
+          command.params['name'] = name unless name.nil?
+          command.query['etag'] = etag unless etag.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Gets a connector config with customer ID and config ID.
+        # @param [String] name
+        #   Required. Format: customers/`customer`/connectorConfigs/`connector_config`
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_customer_connector_config(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig::Representation
+          command.response_class = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists connector configs of a customer.
+        # @param [String] parent
+        #   Required. Format: customers/`customer`
+        # @param [Fixnum] page_size
+        #   Optional. The maximum number of connector configs to return. The default page
+        #   size is 50 if page_size is unspecified, and the maximum page size allowed is
+        #   100. Values above 100 will be capped at 100.
+        # @param [String] page_token
+        #   Optional. A page token, received from a previous `ListConnectorConfigs` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `ListConnectorConfigs` must match the call that
+        #   provided the page token.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ListConnectorConfigsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ListConnectorConfigsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_customer_connector_configs(parent, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+parent}/connectorConfigs', options)
+          command.response_representation = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ListConnectorConfigsResponse::Representation
+          command.response_class = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ListConnectorConfigsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Deletes the data collected from a Chrome browser profile.
         # @param [String] name
         #   Required. Format: customers/`customer_id`/profiles/`profile_permanent_id`
