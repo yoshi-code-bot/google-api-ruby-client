@@ -120,10 +120,15 @@ module Google
         end
         
         # Lists information about the supported locations for this service. This method
-        # can be called in two ways: * **List all public locations:** Use the path `GET /
-        # v1/locations`. * **List project-visible locations:** Use the path `GET /v1/
-        # projects/`project_id`/locations`. This may include public locations as well as
-        # private or other locations specifically visible to the project.
+        # lists locations based on the resource scope provided in the [
+        # ListLocationsRequest.name] field: * **Global locations**: If `name` is empty,
+        # the method lists the public locations available to all projects. * **Project-
+        # specific locations**: If `name` follows the format `projects/`project``, the
+        # method lists locations visible to that specific project. This includes public,
+        # private, or other project-specific locations enabled for the project. For gRPC
+        # and client library implementations, the resource name is passed as the `name`
+        # field. For direct service calls, the resource name is incorporated into the
+        # request path based on the specific service implementation and version.
         # @param [String] name
         #   The resource that owns the locations collection, if applicable.
         # @param [Array<String>, String] extra_location_types
@@ -621,6 +626,9 @@ module Google
         #   accidentally creating duplicate commitments. The request ID must be a valid
         #   UUID with the exception that zero UUID is not supported (00000000-0000-0000-
         #   0000-000000000000).
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -638,7 +646,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_location_network_peering(parent, network_peering_object = nil, network_peering_id: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def create_project_location_network_peering(parent, network_peering_object = nil, network_peering_id: nil, request_id: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:post, 'v1/{+parent}/networkPeerings', options)
           command.request_representation = Google::Apis::VmwareengineV1::NetworkPeering::Representation
           command.request_object = network_peering_object
@@ -647,6 +655,7 @@ module Google
           command.params['parent'] = parent unless parent.nil?
           command.query['networkPeeringId'] = network_peering_id unless network_peering_id.nil?
           command.query['requestId'] = request_id unless request_id.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -829,6 +838,9 @@ module Google
         #   update_mask` are relative to the resource, not the full request. A field will
         #   be overwritten if it is in the mask. If the user does not provide a mask then
         #   all fields will be overwritten.
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -846,7 +858,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_project_location_network_peering(name, network_peering_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def patch_project_location_network_peering(name, network_peering_object = nil, request_id: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:patch, 'v1/{+name}', options)
           command.request_representation = Google::Apis::VmwareengineV1::NetworkPeering::Representation
           command.request_object = network_peering_object
@@ -855,6 +867,7 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -941,6 +954,9 @@ module Google
         #   accidentally creating duplicate commitments. The request ID must be a valid
         #   UUID with the exception that zero UUID is not supported (00000000-0000-0000-
         #   0000-000000000000).
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -958,7 +974,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_location_network_policy(parent, network_policy_object = nil, network_policy_id: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def create_project_location_network_policy(parent, network_policy_object = nil, network_policy_id: nil, request_id: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:post, 'v1/{+parent}/networkPolicies', options)
           command.request_representation = Google::Apis::VmwareengineV1::NetworkPolicy::Representation
           command.request_object = network_policy_object
@@ -967,6 +983,7 @@ module Google
           command.params['parent'] = parent unless parent.nil?
           command.query['networkPolicyId'] = network_policy_id unless network_policy_id.nil?
           command.query['requestId'] = request_id unless request_id.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -1196,6 +1213,9 @@ module Google
         #   update_mask` are relative to the resource, not the full request. A field will
         #   be overwritten if it is in the mask. If the user does not provide a mask then
         #   all fields will be overwritten.
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -1213,7 +1233,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_project_location_network_policy(name, network_policy_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def patch_project_location_network_policy(name, network_policy_object = nil, request_id: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:patch, 'v1/{+name}', options)
           command.request_representation = Google::Apis::VmwareengineV1::NetworkPolicy::Representation
           command.request_object = network_policy_object
@@ -1222,6 +1242,7 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -1254,6 +1275,9 @@ module Google
         #   creating duplicate commitments. The request ID must be a valid UUID with the
         #   exception that zero UUID is not supported (00000000-0000-0000-0000-
         #   000000000000).
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -1271,7 +1295,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_location_network_policy_external_access_rule(parent, external_access_rule_object = nil, external_access_rule_id: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def create_project_location_network_policy_external_access_rule(parent, external_access_rule_object = nil, external_access_rule_id: nil, request_id: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:post, 'v1/{+parent}/externalAccessRules', options)
           command.request_representation = Google::Apis::VmwareengineV1::ExternalAccessRule::Representation
           command.request_object = external_access_rule_object
@@ -1280,6 +1304,7 @@ module Google
           command.params['parent'] = parent unless parent.nil?
           command.query['externalAccessRuleId'] = external_access_rule_id unless external_access_rule_id.nil?
           command.query['requestId'] = request_id unless request_id.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -1454,6 +1479,9 @@ module Google
         #   update_mask` are relative to the resource, not the full request. A field will
         #   be overwritten if it is in the mask. If the user does not provide a mask then
         #   all fields will be overwritten.
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the/
+        #   / request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -1471,7 +1499,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_project_location_network_policy_external_access_rule(name, external_access_rule_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def patch_project_location_network_policy_external_access_rule(name, external_access_rule_object = nil, request_id: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:patch, 'v1/{+name}', options)
           command.request_representation = Google::Apis::VmwareengineV1::ExternalAccessRule::Representation
           command.request_object = external_access_rule_object
@@ -1480,6 +1508,7 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -1710,8 +1739,8 @@ module Google
         #   Optional. The request ID must be a valid UUID with the exception that zero
         #   UUID is not supported (00000000-0000-0000-0000-000000000000).
         # @param [Boolean] validate_only
-        #   Optional. True if you want the request to be validated and not executed; false
-        #   otherwise.
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2006,6 +2035,9 @@ module Google
         #   relative to the resource, not the full request. A field will be overwritten if
         #   it is in the mask. If the user does not provide a mask then all fields will be
         #   overwritten.
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2023,7 +2055,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_project_location_private_cloud(name, private_cloud_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def patch_project_location_private_cloud(name, private_cloud_object = nil, request_id: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:patch, 'v1/{+name}', options)
           command.request_representation = Google::Apis::VmwareengineV1::PrivateCloud::Representation
           command.request_object = private_cloud_object
@@ -2032,6 +2064,7 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -2414,8 +2447,8 @@ module Google
         #   Optional. The request ID must be a valid UUID with the exception that zero
         #   UUID is not supported (00000000-0000-0000-0000-000000000000).
         # @param [Boolean] validate_only
-        #   Optional. True if you want the request to be validated and not executed; false
-        #   otherwise.
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2679,8 +2712,8 @@ module Google
         #   it is in the mask. If the user does not provide a mask then all fields will be
         #   overwritten.
         # @param [Boolean] validate_only
-        #   Optional. True if you want the request to be validated and not executed; false
-        #   otherwise.
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2929,6 +2962,9 @@ module Google
         #   from accidentally creating duplicate commitments. The request ID must be a
         #   valid UUID with the exception that zero UUID is not supported (00000000-0000-
         #   0000-0000-000000000000).
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -2946,7 +2982,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_location_private_cloud_external_address(parent, external_address_object = nil, external_address_id: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def create_project_location_private_cloud_external_address(parent, external_address_object = nil, external_address_id: nil, request_id: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:post, 'v1/{+parent}/externalAddresses', options)
           command.request_representation = Google::Apis::VmwareengineV1::ExternalAddress::Representation
           command.request_object = external_address_object
@@ -2955,6 +2991,7 @@ module Google
           command.params['parent'] = parent unless parent.nil?
           command.query['externalAddressId'] = external_address_id unless external_address_id.nil?
           command.query['requestId'] = request_id unless request_id.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -3134,6 +3171,9 @@ module Google
         #   update_mask` are relative to the resource, not the full request. A field will
         #   be overwritten if it is in the mask. If the user does not provide a mask then
         #   all fields will be overwritten.
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -3151,7 +3191,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_project_location_private_cloud_external_address(name, external_address_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def patch_project_location_private_cloud_external_address(name, external_address_object = nil, request_id: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:patch, 'v1/{+name}', options)
           command.request_representation = Google::Apis::VmwareengineV1::ExternalAddress::Representation
           command.request_object = external_address_object
@@ -3160,6 +3200,7 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -4293,6 +4334,9 @@ module Google
         #   accidentally creating duplicate commitments. The request ID must be a valid
         #   UUID with the exception that zero UUID is not supported (00000000-0000-0000-
         #   0000-000000000000).
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -4310,7 +4354,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_location_private_connection(parent, private_connection_object = nil, private_connection_id: nil, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def create_project_location_private_connection(parent, private_connection_object = nil, private_connection_id: nil, request_id: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:post, 'v1/{+parent}/privateConnections', options)
           command.request_representation = Google::Apis::VmwareengineV1::PrivateConnection::Representation
           command.request_object = private_connection_object
@@ -4319,6 +4363,7 @@ module Google
           command.params['parent'] = parent unless parent.nil?
           command.query['privateConnectionId'] = private_connection_id unless private_connection_id.nil?
           command.query['requestId'] = request_id unless request_id.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -4496,6 +4541,9 @@ module Google
         #   update_mask` are relative to the resource, not the full request. A field will
         #   be overwritten if it is in the mask. If the user does not provide a mask then
         #   all fields will be overwritten.
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -4513,7 +4561,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_project_location_private_connection(name, private_connection_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def patch_project_location_private_connection(name, private_connection_object = nil, request_id: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:patch, 'v1/{+name}', options)
           command.request_representation = Google::Apis::VmwareengineV1::PrivateConnection::Representation
           command.request_object = private_connection_object
@@ -4522,6 +4570,7 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -4592,6 +4641,9 @@ module Google
         #   accidentally creating duplicate commitments. The request ID must be a valid
         #   UUID with the exception that zero UUID is not supported (00000000-0000-0000-
         #   0000-000000000000).
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] vmware_engine_network_id
         #   Required. The user-provided identifier of the new VMware Engine network. This
         #   identifier must be unique among VMware Engine network resources within the
@@ -4620,7 +4672,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def create_project_location_vmware_engine_network(parent, vmware_engine_network_object = nil, request_id: nil, vmware_engine_network_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def create_project_location_vmware_engine_network(parent, vmware_engine_network_object = nil, request_id: nil, validate_only: nil, vmware_engine_network_id: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:post, 'v1/{+parent}/vmwareEngineNetworks', options)
           command.request_representation = Google::Apis::VmwareengineV1::VmwareEngineNetwork::Representation
           command.request_object = vmware_engine_network_object
@@ -4628,6 +4680,7 @@ module Google
           command.response_class = Google::Apis::VmwareengineV1::Operation
           command.params['parent'] = parent unless parent.nil?
           command.query['requestId'] = request_id unless request_id.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['vmwareEngineNetworkId'] = vmware_engine_network_id unless vmware_engine_network_id.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
@@ -4815,6 +4868,9 @@ module Google
         #   be overwritten if it is in the mask. If the user does not provide a mask then
         #   all fields will be overwritten. Only the following fields can be updated: `
         #   description`.
+        # @param [Boolean] validate_only
+        #   Optional. If set to `true`, only validates the request but doesn’t execute the
+        #   request. If set to `false`, validates and executes the request.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -4832,7 +4888,7 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def patch_project_location_vmware_engine_network(name, vmware_engine_network_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def patch_project_location_vmware_engine_network(name, vmware_engine_network_object = nil, request_id: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:patch, 'v1/{+name}', options)
           command.request_representation = Google::Apis::VmwareengineV1::VmwareEngineNetwork::Representation
           command.request_object = vmware_engine_network_object
@@ -4841,6 +4897,7 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)

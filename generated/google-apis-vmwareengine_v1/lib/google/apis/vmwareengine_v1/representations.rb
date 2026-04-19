@@ -1163,6 +1163,7 @@ module Google
       
           property :ignore_colocation, as: 'ignoreColocation'
           property :request_id, as: 'requestId'
+          property :validate_only, as: 'validateOnly'
         end
       end
       
@@ -1532,6 +1533,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :datastore, as: 'datastore'
           property :request_id, as: 'requestId'
+          property :validate_only, as: 'validateOnly'
         end
       end
       
