@@ -2163,6 +2163,7 @@ module Google
           property :alloydb_cluster_id, as: 'alloydbClusterId'
           property :cloud_sql_id, as: 'cloudSqlId'
           property :database, as: 'database'
+          property :enable_iam_authentication, as: 'enableIamAuthentication'
           property :forward_ssh_connectivity, as: 'forwardSshConnectivity', class: Google::Apis::DatamigrationV1::ForwardSshTunnelConnectivity, decorator: Google::Apis::DatamigrationV1::ForwardSshTunnelConnectivity::Representation
       
           property :host, as: 'host'
