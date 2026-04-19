@@ -124,6 +124,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class AuthzPolicyAuthzRuleToRequestOperationMcp
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class AuthzPolicyAuthzRuleToRequestOperationMcpMethod
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class AuthzPolicyCustomProvider
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -764,6 +776,7 @@ module Google
       
           hash :labels, as: 'labels'
           property :name, as: 'name'
+          property :policy_profile, as: 'policyProfile'
           property :target, as: 'target', class: Google::Apis::NetworksecurityV1::AuthzPolicyTarget, decorator: Google::Apis::NetworksecurityV1::AuthzPolicyTarget::Representation
       
           property :update_time, as: 'updateTime'
@@ -874,6 +887,8 @@ module Google
       
           collection :hosts, as: 'hosts', class: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleStringMatch, decorator: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleStringMatch::Representation
       
+          property :mcp, as: 'mcp', class: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleToRequestOperationMcp, decorator: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleToRequestOperationMcp::Representation
+      
           collection :methods_prop, as: 'methods'
           collection :paths, as: 'paths', class: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleStringMatch, decorator: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleStringMatch::Representation
       
@@ -884,6 +899,24 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :headers, as: 'headers', class: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleHeaderMatch, decorator: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleHeaderMatch::Representation
+      
+        end
+      end
+      
+      class AuthzPolicyAuthzRuleToRequestOperationMcp
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :base_protocol_methods_option, as: 'baseProtocolMethodsOption'
+          collection :methods_prop, as: 'methods', class: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleToRequestOperationMcpMethod, decorator: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleToRequestOperationMcpMethod::Representation
+      
+        end
+      end
+      
+      class AuthzPolicyAuthzRuleToRequestOperationMcpMethod
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :name, as: 'name'
+          collection :params, as: 'params', class: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleStringMatch, decorator: Google::Apis::NetworksecurityV1::AuthzPolicyAuthzRuleStringMatch::Representation
       
         end
       end
@@ -1270,6 +1303,7 @@ module Google
       
           property :name, as: 'name'
           property :network, as: 'network'
+          property :network_cookie, as: 'networkCookie'
           property :reconciling, as: 'reconciling'
           property :state, as: 'state'
           property :update_time, as: 'updateTime'
