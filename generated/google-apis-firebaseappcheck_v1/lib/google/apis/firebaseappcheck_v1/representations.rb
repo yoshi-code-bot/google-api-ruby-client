@@ -400,6 +400,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :display_name, as: 'displayName'
+          property :etag, as: 'etag'
           property :name, as: 'name'
           property :token, as: 'token'
           property :update_time, as: 'updateTime'
@@ -663,7 +664,10 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :enforcement_mode, as: 'enforcementMode'
+          property :etag, as: 'etag'
           property :name, as: 'name'
+          property :replay_protection, as: 'replayProtection'
+          property :update_time, as: 'updateTime'
         end
       end
       
