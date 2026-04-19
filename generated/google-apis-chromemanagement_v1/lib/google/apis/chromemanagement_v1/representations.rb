@@ -676,7 +676,49 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleChromeManagementVersionsV1ConnectorConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1ConnectorConfigDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1ConnectorConfigStatus
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1CrowdStrikeConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleChromeManagementVersionsV1DeviceInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1DeviceTrustConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -694,6 +736,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleChromeManagementVersionsV1GoogleSecOpsConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -706,6 +754,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleChromeManagementVersionsV1ListConnectorConfigsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -713,6 +767,24 @@ module Google
       end
       
       class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1PaloAltoNetworksConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1PubSubConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1PubSubXdrConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -743,6 +815,12 @@ module Google
       end
       
       class GoogleChromeManagementVersionsV1ReportingDataPolicyData
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1ReportingSettings
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -790,6 +868,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleChromeManagementVersionsV1SplunkConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleChromeManagementVersionsV1SubjectAltName
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -809,6 +893,12 @@ module Google
       end
       
       class GoogleChromeManagementVersionsV1UploadCertificateResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleChromeManagementVersionsV1XdrSettings
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -871,6 +961,7 @@ module Google
           property :android_app_info, as: 'androidAppInfo', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementV1AndroidAppInfo, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementV1AndroidAppInfo::Representation
       
           property :app_id, as: 'appId'
+          collection :category_ids, as: 'categoryIds'
           property :chrome_app_info, as: 'chromeAppInfo', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementV1ChromeAppInfo, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementV1ChromeAppInfo::Representation
       
           property :description, as: 'description'
@@ -2110,6 +2201,83 @@ module Google
         end
       end
       
+      class GoogleChromeManagementVersionsV1ConnectorConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :details, as: 'details', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigDetails, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigDetails::Representation
+      
+          property :display_name, as: 'displayName'
+          property :etag, as: 'etag'
+          property :name, as: 'name'
+          property :status, as: 'status', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigStatus, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigStatus::Representation
+      
+          property :type, as: 'type'
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1ConnectorConfigDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :crowd_strike_config, as: 'crowdStrikeConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1CrowdStrikeConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1CrowdStrikeConfig::Representation
+      
+          property :crowd_strike_falcon_next_gen_config, as: 'crowdStrikeFalconNextGenConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig::Representation
+      
+          property :crowd_strike_xdr_config, as: 'crowdStrikeXdrConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig::Representation
+      
+          property :device_trust_config, as: 'deviceTrustConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1DeviceTrustConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1DeviceTrustConfig::Representation
+      
+          property :google_sec_ops_config, as: 'googleSecOpsConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1GoogleSecOpsConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1GoogleSecOpsConfig::Representation
+      
+          property :palo_alto_networks_config, as: 'paloAltoNetworksConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1PaloAltoNetworksConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1PaloAltoNetworksConfig::Representation
+      
+          property :pub_sub_config, as: 'pubSubConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1PubSubConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1PubSubConfig::Representation
+      
+          property :pub_sub_xdr_config, as: 'pubSubXdrConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1PubSubXdrConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1PubSubXdrConfig::Representation
+      
+          property :splunk_config, as: 'splunkConfig', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1SplunkConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1SplunkConfig::Representation
+      
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1ConnectorConfigStatus
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :failure_start_time, as: 'failureStartTime'
+          property :state, as: 'state'
+          property :update_time, as: 'updateTime'
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1CrowdStrikeConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :api_key, as: 'apiKey'
+          property :host, as: 'host'
+          property :reporting_settings, as: 'reportingSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings::Representation
+      
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :api_key, as: 'apiKey'
+          property :host, as: 'host'
+          property :reporting_settings, as: 'reportingSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings::Representation
+      
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :api_key, as: 'apiKey'
+          property :host, as: 'host'
+          property :xdr_settings, as: 'xdrSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1XdrSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1XdrSettings::Representation
+      
+        end
+      end
+      
       class GoogleChromeManagementVersionsV1DeviceInfo
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2117,6 +2285,16 @@ module Google
           property :device_type, as: 'deviceType'
           property :hostname, as: 'hostname'
           property :machine, as: 'machine'
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1DeviceTrustConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :scope, as: 'scope'
+          collection :service_accounts, as: 'serviceAccounts'
+          property :service_provider, as: 'serviceProvider'
+          collection :url_matchers, as: 'urlMatchers'
         end
       end
       
@@ -2131,6 +2309,16 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :profile_adapter_config_reference, as: 'profileAdapterConfigReference'
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1GoogleSecOpsConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :api_key, as: 'apiKey'
+          property :host, as: 'host'
+          property :reporting_settings, as: 'reportingSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings::Representation
+      
         end
       end
       
@@ -2154,6 +2342,16 @@ module Google
         end
       end
       
+      class GoogleChromeManagementVersionsV1ListConnectorConfigsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :connector_configs, as: 'connectorConfigs', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+          property :total_size, as: 'totalSize'
+        end
+      end
+      
       class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2165,6 +2363,34 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :third_party_profile_user, as: 'thirdPartyProfileUser', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ThirdPartyProfileUser, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ThirdPartyProfileUser::Representation
+      
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1PaloAltoNetworksConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :api_key, as: 'apiKey'
+          property :host, as: 'host'
+          property :reporting_settings, as: 'reportingSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings::Representation
+      
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1PubSubConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :reporting_settings, as: 'reportingSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings::Representation
+      
+          property :topic_full_path, as: 'topicFullPath'
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1PubSubXdrConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :topic_full_path, as: 'topicFullPath'
+          property :xdr_settings, as: 'xdrSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1XdrSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1XdrSettings::Representation
       
         end
       end
@@ -2230,6 +2456,15 @@ module Google
         end
       end
       
+      class GoogleChromeManagementVersionsV1ReportingSettings
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :enabled_default_events, as: 'enabledDefaultEvents'
+          collection :enabled_device_events, as: 'enabledDeviceEvents'
+          collection :enabled_opt_in_events, as: 'enabledOptInEvents'
+        end
+      end
+      
       class GoogleChromeManagementVersionsV1ScepCaConnection
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2289,6 +2524,19 @@ module Google
         end
       end
       
+      class GoogleChromeManagementVersionsV1SplunkConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :hec_token, as: 'hecToken'
+          property :host, as: 'host'
+          property :port_number, as: 'portNumber'
+          property :reporting_settings, as: 'reportingSettings', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ReportingSettings::Representation
+      
+          property :source, as: 'source'
+          property :unsecure_scheme, as: 'unsecureScheme'
+        end
+      end
+      
       class GoogleChromeManagementVersionsV1SubjectAltName
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2315,6 +2563,13 @@ module Google
       class GoogleChromeManagementVersionsV1UploadCertificateResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+        end
+      end
+      
+      class GoogleChromeManagementVersionsV1XdrSettings
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :enable_all_xdr_events, as: 'enableAllXdrEvents'
         end
       end
       
