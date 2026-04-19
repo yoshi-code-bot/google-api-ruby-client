@@ -278,6 +278,13 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Optional. Immutable. Defines the type of authorization being performed. If not
+        # specified, `REQUEST_AUTHZ` is applied. This field cannot be changed once
+        # AuthzPolicy is created.
+        # Corresponds to the JSON property `policyProfile`
+        # @return [String]
+        attr_accessor :policy_profile
+      
         # Specifies the set of targets to which this policy should be applied to.
         # Corresponds to the JSON property `target`
         # @return [Google::Apis::NetworksecurityV1beta1::AuthzPolicyTarget]
@@ -301,6 +308,7 @@ module Google
           @http_rules = args[:http_rules] if args.key?(:http_rules)
           @labels = args[:labels] if args.key?(:labels)
           @name = args[:name] if args.key?(:name)
+          @policy_profile = args[:policy_profile] if args.key?(:policy_profile)
           @target = args[:target] if args.key?(:target)
           @update_time = args[:update_time] if args.key?(:update_time)
         end
@@ -642,6 +650,12 @@ module Google
         # @return [Array<Google::Apis::NetworksecurityV1beta1::AuthzPolicyAuthzRuleStringMatch>]
         attr_accessor :hosts
       
+        # Describes a set of MCP protocol attributes to match against for a given MCP
+        # request.
+        # Corresponds to the JSON property `mcp`
+        # @return [Google::Apis::NetworksecurityV1beta1::AuthzPolicyAuthzRuleToRequestOperationMcp]
+        attr_accessor :mcp
+      
         # Optional. A list of HTTP methods to match against. Each entry must be a valid
         # HTTP method name (GET, PUT, POST, HEAD, PATCH, DELETE, OPTIONS). It only
         # allows exact match and is always case sensitive. Limited to 10 methods per
@@ -668,6 +682,7 @@ module Google
         def update!(**args)
           @header_set = args[:header_set] if args.key?(:header_set)
           @hosts = args[:hosts] if args.key?(:hosts)
+          @mcp = args[:mcp] if args.key?(:mcp)
           @methods_prop = args[:methods_prop] if args.key?(:methods_prop)
           @paths = args[:paths] if args.key?(:paths)
         end
@@ -693,6 +708,71 @@ module Google
         # Update properties of this object
         def update!(**args)
           @headers = args[:headers] if args.key?(:headers)
+        end
+      end
+      
+      # Describes a set of MCP protocol attributes to match against for a given MCP
+      # request.
+      class AuthzPolicyAuthzRuleToRequestOperationMcp
+        include Google::Apis::Core::Hashable
+      
+        # Optional. If specified, matches on the MCP protocol’s non-access specific
+        # methods namely: * initialize * completion/ * logging/ * notifications/ * ping
+        # Defaults to SKIP_BASE_PROTOCOL_METHODS if not specified.
+        # Corresponds to the JSON property `baseProtocolMethodsOption`
+        # @return [String]
+        attr_accessor :base_protocol_methods_option
+      
+        # Optional. A list of MCP methods and associated parameters to match on. It is
+        # recommended to use this field to match on tools, prompts and resource accesses
+        # while setting the baseProtocolMethodsOption to MATCH_BASE_PROTOCOL_METHODS to
+        # match on all the other MCP protocol methods. Limited to 10 MCP methods per
+        # Authorization Policy.
+        # Corresponds to the JSON property `methods`
+        # @return [Array<Google::Apis::NetworksecurityV1beta1::AuthzPolicyAuthzRuleToRequestOperationMcpMethod>]
+        attr_accessor :methods_prop
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @base_protocol_methods_option = args[:base_protocol_methods_option] if args.key?(:base_protocol_methods_option)
+          @methods_prop = args[:methods_prop] if args.key?(:methods_prop)
+        end
+      end
+      
+      # Describes a set of MCP methods to match against.
+      class AuthzPolicyAuthzRuleToRequestOperationMcpMethod
+        include Google::Apis::Core::Hashable
+      
+        # Required. The MCP method to match against. Allowed values are as follows: 1. `
+        # tools`, `prompts`, `resources` - these will match against all sub methods
+        # under the respective methods. 2. `prompts/list`, `tools/list`, `resources/list`
+        # , `resources/templates/list` 3. `prompts/get`, `tools/call`, `resources/
+        # subscribe`, `resources/unsubscribe`, `resources/read` Params cannot be
+        # specified for categories 1 and 2.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Optional. A list of MCP method parameters to match against. The match can be
+        # one of exact, prefix, suffix, or contains (substring match). Matches are
+        # always case sensitive unless the ignoreCase is set. Limited to 10 MCP method
+        # parameters per Authorization Policy.
+        # Corresponds to the JSON property `params`
+        # @return [Array<Google::Apis::NetworksecurityV1beta1::AuthzPolicyAuthzRuleStringMatch>]
+        attr_accessor :params
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @name = args[:name] if args.key?(:name)
+          @params = args[:params] if args.key?(:params)
         end
       end
       
@@ -769,17 +849,19 @@ module Google
       class AuthzPolicyTarget
         include Google::Apis::Core::Hashable
       
-        # Required. All gateways and forwarding rules referenced by this policy and
-        # extensions must share the same load balancing scheme. Supported values: `
-        # INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [
-        # Backend services overview](https://cloud.google.com/load-balancing/docs/
-        # backend-service).
+        # Optional. All gateways and forwarding rules referenced by this policy and
+        # extensions must share the same load balancing scheme. Required only when
+        # targeting forwarding rules. If targeting Secure Web Proxy, this field must be `
+        # INTERNAL_MANAGED` or not specified. Must not be specified when targeting Agent
+        # Gateway. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more
+        # information, refer to [Backend services overview](https://cloud.google.com/
+        # load-balancing/docs/backend-service).
         # Corresponds to the JSON property `loadBalancingScheme`
         # @return [String]
         attr_accessor :load_balancing_scheme
       
-        # Required. A list of references to the Forwarding Rules on which this policy
-        # will be applied.
+        # Required. A list of references to the Forwarding Rules, Secure Web Proxy
+        # Gateways, or Agent Gateways on which this policy will be applied.
         # Corresponds to the JSON property `resources`
         # @return [Array<String>]
         attr_accessor :resources
@@ -1249,7 +1331,9 @@ module Google
         # @return [Array<Google::Apis::NetworksecurityV1beta1::FirewallEndpointAssociationReference>]
         attr_accessor :associations
       
-        # Required. Project to bill on endpoint uptime usage.
+        # Optional. Project to charge for the deployed firewall endpoint. This field
+        # must be specified when creating the endpoint in the organization scope, and
+        # should be omitted otherwise.
         # Corresponds to the JSON property `billingProjectId`
         # @return [String]
         attr_accessor :billing_project_id
@@ -2396,6 +2480,13 @@ module Google
         # @return [String]
         attr_accessor :network
       
+        # Output only. Identifier used by the data-path. See the NSI GENEVE format for
+        # more details: https://docs.cloud.google.com/network-security-integration/docs/
+        # understand-geneve#network_id
+        # Corresponds to the JSON property `networkCookie`
+        # @return [Fixnum]
+        attr_accessor :network_cookie
+      
         # Output only. The current state of the resource does not match the user's
         # intended state, and the system is working to reconcile them. This part of the
         # normal operation (e.g. adding a new location to the target deployment group).
@@ -2429,6 +2520,7 @@ module Google
           @locations_details = args[:locations_details] if args.key?(:locations_details)
           @name = args[:name] if args.key?(:name)
           @network = args[:network] if args.key?(:network)
+          @network_cookie = args[:network_cookie] if args.key?(:network_cookie)
           @reconciling = args[:reconciling] if args.key?(:reconciling)
           @state = args[:state] if args.key?(:state)
           @update_time = args[:update_time] if args.key?(:update_time)
