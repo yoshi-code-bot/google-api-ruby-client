@@ -232,10 +232,31 @@ module Google
       class Counters
         include Google::Apis::Core::Hashable
       
-        # Output only. Number of objects failed.
+        # Output only. The number of objects that failed due to user errors or service
+        # errors.
         # Corresponds to the JSON property `failedObjectCount`
         # @return [Fixnum]
         attr_accessor :failed_object_count
+      
+        # Output only. Number of object custom contexts created. This field is only
+        # populated for jobs with the UpdateObjectCustomContext transformation.
+        # Corresponds to the JSON property `objectCustomContextsCreated`
+        # @return [Fixnum]
+        attr_accessor :object_custom_contexts_created
+      
+        # Output only. Number of object custom contexts deleted. This field is only
+        # populated for jobs with the UpdateObjectCustomContext transformation.
+        # Corresponds to the JSON property `objectCustomContextsDeleted`
+        # @return [Fixnum]
+        attr_accessor :object_custom_contexts_deleted
+      
+        # Output only. Number of object custom contexts updated. This counter tracks
+        # custom contexts where the key already existed, but the payload was modified.
+        # This field is only populated for jobs with the UpdateObjectCustomContext
+        # transformation.
+        # Corresponds to the JSON property `objectCustomContextsUpdated`
+        # @return [Fixnum]
+        attr_accessor :object_custom_contexts_updated
       
         # Output only. Number of objects completed.
         # Corresponds to the JSON property `succeededObjectCount`
@@ -260,6 +281,9 @@ module Google
         # Update properties of this object
         def update!(**args)
           @failed_object_count = args[:failed_object_count] if args.key?(:failed_object_count)
+          @object_custom_contexts_created = args[:object_custom_contexts_created] if args.key?(:object_custom_contexts_created)
+          @object_custom_contexts_deleted = args[:object_custom_contexts_deleted] if args.key?(:object_custom_contexts_deleted)
+          @object_custom_contexts_updated = args[:object_custom_contexts_updated] if args.key?(:object_custom_contexts_updated)
           @succeeded_object_count = args[:succeeded_object_count] if args.key?(:succeeded_object_count)
           @total_bytes_found = args[:total_bytes_found] if args.key?(:total_bytes_found)
           @total_object_count = args[:total_object_count] if args.key?(:total_object_count)
