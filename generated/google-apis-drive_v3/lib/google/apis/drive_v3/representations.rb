@@ -106,6 +106,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class ClientEncryptionDetails
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Comment
         class Representation < Google::Apis::Core::JsonRepresentation; end
         
@@ -125,6 +131,12 @@ module Google
       end
       
       class ContentRestriction
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class DecryptionMetadata
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -233,6 +245,12 @@ module Google
       end
       
       class FileList
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GenerateCseTokenResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -614,6 +632,15 @@ module Google
         end
       end
       
+      class ClientEncryptionDetails
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :decryption_metadata, as: 'decryptionMetadata', class: Google::Apis::DriveV3::DecryptionMetadata, decorator: Google::Apis::DriveV3::DecryptionMetadata::Representation
+      
+          property :encryption_state, as: 'encryptionState'
+        end
+      end
+      
       class Comment
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -669,6 +696,19 @@ module Google
       
           property :system_restricted, as: 'systemRestricted'
           property :type, as: 'type'
+        end
+      end
+      
+      class DecryptionMetadata
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :aes256_gcm_chunk_size, as: 'aes256GcmChunkSize'
+          property :encryption_resource_key_hash, as: 'encryptionResourceKeyHash'
+          property :jwt, as: 'jwt'
+          property :kacls_id, :numeric_string => true, as: 'kaclsId'
+          property :kacls_name, as: 'kaclsName'
+          property :key_format, as: 'keyFormat'
+          property :wrapped_key, as: 'wrappedKey'
         end
       end
       
@@ -777,6 +817,8 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           hash :app_properties, as: 'appProperties'
           property :capabilities, as: 'capabilities', class: Google::Apis::DriveV3::File::Capabilities, decorator: Google::Apis::DriveV3::File::Capabilities::Representation
+      
+          property :client_encryption_details, as: 'clientEncryptionDetails', class: Google::Apis::DriveV3::ClientEncryptionDetails, decorator: Google::Apis::DriveV3::ClientEncryptionDetails::Representation
       
           property :content_hints, as: 'contentHints', class: Google::Apis::DriveV3::File::ContentHints, decorator: Google::Apis::DriveV3::File::ContentHints::Representation
       
@@ -1008,6 +1050,17 @@ module Google
           property :incomplete_search, as: 'incompleteSearch'
           property :kind, as: 'kind'
           property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
+      class GenerateCseTokenResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :current_kacls_id, :numeric_string => true, as: 'currentKaclsId'
+          property :current_kacls_name, as: 'currentKaclsName'
+          property :file_id, as: 'fileId'
+          property :jwt, as: 'jwt'
+          property :kind, as: 'kind'
         end
       end
       
