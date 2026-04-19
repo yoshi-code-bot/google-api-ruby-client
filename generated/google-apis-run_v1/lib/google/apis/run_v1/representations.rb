@@ -310,6 +310,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleDevtoolsCloudbuildV1GenericArtifact
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleDevtoolsCloudbuildV1GenericArtifactDependency
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleDevtoolsCloudbuildV1GitConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -443,6 +455,12 @@ module Google
       end
       
       class GoogleDevtoolsCloudbuildV1TimeSpan
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleDevtoolsCloudbuildV1UploadedGenericArtifact
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1301,6 +1319,8 @@ module Google
       class GoogleDevtoolsCloudbuildV1Artifacts
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          collection :generic_artifacts, as: 'genericArtifacts', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GenericArtifact, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GenericArtifact::Representation
+      
           collection :go_modules, as: 'goModules', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GoModule, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GoModule::Representation
       
           collection :images, as: 'images'
@@ -1464,6 +1484,8 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :empty, as: 'empty'
+          property :generic_artifact, as: 'genericArtifact', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GenericArtifactDependency, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GenericArtifactDependency::Representation
+      
           property :git_source, as: 'gitSource', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GitSourceDependency, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1GitSourceDependency::Representation
       
         end
@@ -1491,6 +1513,22 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :file_hash, as: 'fileHash', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1Hash, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1Hash::Representation
       
+        end
+      end
+      
+      class GoogleDevtoolsCloudbuildV1GenericArtifact
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :folder, as: 'folder'
+          property :registry_path, as: 'registryPath'
+        end
+      end
+      
+      class GoogleDevtoolsCloudbuildV1GenericArtifactDependency
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :dest_path, as: 'destPath'
+          property :resource, as: 'resource'
         end
       end
       
@@ -1632,6 +1670,8 @@ module Google
       
           collection :build_step_images, as: 'buildStepImages'
           collection :build_step_outputs, as: 'buildStepOutputs'
+          collection :generic_artifacts, as: 'genericArtifacts', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1UploadedGenericArtifact, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1UploadedGenericArtifact::Representation
+      
           collection :go_modules, as: 'goModules', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1UploadedGoModule, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1UploadedGoModule::Representation
       
           collection :images, as: 'images', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1BuiltImage, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1BuiltImage::Representation
@@ -1732,6 +1772,20 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :end_time, as: 'endTime'
           property :start_time, as: 'startTime'
+        end
+      end
+      
+      class GoogleDevtoolsCloudbuildV1UploadedGenericArtifact
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :artifact_fingerprint, as: 'artifactFingerprint', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1FileHashes, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1FileHashes::Representation
+      
+          property :artifact_registry_package, as: 'artifactRegistryPackage'
+          hash :file_hashes, as: 'fileHashes', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1FileHashes, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1FileHashes::Representation
+      
+          property :push_timing, as: 'pushTiming', class: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1TimeSpan, decorator: Google::Apis::RunV1::GoogleDevtoolsCloudbuildV1TimeSpan::Representation
+      
+          property :uri, as: 'uri'
         end
       end
       
