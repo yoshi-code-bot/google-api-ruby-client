@@ -244,6 +244,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class FindGroupChatsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class FormAction
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -562,6 +568,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleChatV1Section
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Group
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -617,6 +629,18 @@ module Google
       end
       
       class ListReactionsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ListSectionItemsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ListSectionsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -742,6 +766,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class MoveSectionItemRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class MoveSectionItemResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class OnClick
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -761,6 +797,18 @@ module Google
       end
       
       class PermissionSettings
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class PositionSectionRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class PositionSectionResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -821,6 +869,12 @@ module Google
       end
       
       class Section
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SectionItem
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1346,6 +1400,15 @@ module Google
       class Empty
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+        end
+      end
+      
+      class FindGroupChatsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :next_page_token, as: 'nextPageToken'
+          collection :spaces, as: 'spaces', class: Google::Apis::ChatV1::Space, decorator: Google::Apis::ChatV1::Space::Representation
+      
         end
       end
       
@@ -1980,6 +2043,16 @@ module Google
         end
       end
       
+      class GoogleChatV1Section
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :display_name, as: 'displayName'
+          property :name, as: 'name'
+          property :sort_order, as: 'sortOrder'
+          property :type, as: 'type'
+        end
+      end
+      
       class Group
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2080,6 +2153,24 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :next_page_token, as: 'nextPageToken'
           collection :reactions, as: 'reactions', class: Google::Apis::ChatV1::Reaction, decorator: Google::Apis::ChatV1::Reaction::Representation
+      
+        end
+      end
+      
+      class ListSectionItemsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :next_page_token, as: 'nextPageToken'
+          collection :section_items, as: 'sectionItems', class: Google::Apis::ChatV1::SectionItem, decorator: Google::Apis::ChatV1::SectionItem::Representation
+      
+        end
+      end
+      
+      class ListSectionsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :next_page_token, as: 'nextPageToken'
+          collection :sections, as: 'sections', class: Google::Apis::ChatV1::GoogleChatV1Section, decorator: Google::Apis::ChatV1::GoogleChatV1Section::Representation
       
         end
       end
@@ -2292,6 +2383,21 @@ module Google
         end
       end
       
+      class MoveSectionItemRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :target_section, as: 'targetSection'
+        end
+      end
+      
+      class MoveSectionItemResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :section_item, as: 'sectionItem', class: Google::Apis::ChatV1::SectionItem, decorator: Google::Apis::ChatV1::SectionItem::Representation
+      
+        end
+      end
+      
       class OnClick
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2336,6 +2442,22 @@ module Google
           property :toggle_history, as: 'toggleHistory', class: Google::Apis::ChatV1::PermissionSetting, decorator: Google::Apis::ChatV1::PermissionSetting::Representation
       
           property :use_at_mention_all, as: 'useAtMentionAll', class: Google::Apis::ChatV1::PermissionSetting, decorator: Google::Apis::ChatV1::PermissionSetting::Representation
+      
+        end
+      end
+      
+      class PositionSectionRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :relative_position, as: 'relativePosition'
+          property :sort_order, as: 'sortOrder'
+        end
+      end
+      
+      class PositionSectionResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :section, as: 'section', class: Google::Apis::ChatV1::GoogleChatV1Section, decorator: Google::Apis::ChatV1::GoogleChatV1Section::Representation
       
         end
       end
@@ -2441,6 +2563,14 @@ module Google
           property :header, as: 'header'
           collection :widgets, as: 'widgets', class: Google::Apis::ChatV1::WidgetMarkup, decorator: Google::Apis::ChatV1::WidgetMarkup::Representation
       
+        end
+      end
+      
+      class SectionItem
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :name, as: 'name'
+          property :space, as: 'space'
         end
       end
       

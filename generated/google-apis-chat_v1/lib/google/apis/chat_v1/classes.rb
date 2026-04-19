@@ -567,14 +567,15 @@ module Google
         # components of a card or dialog](https://developers.google.com/workspace/chat/
         # design-components-card-dialog). * For Google Workspace add-ons, see [Card-
         # based interfaces](https://developers.google.com/apps-script/add-ons/concepts/
-        # cards). Note: You can add up to 100 widgets per card. Any widgets beyond this
-        # limit are ignored. This limit applies to both card messages and dialogs in
-        # Google Chat apps, and to cards in Google Workspace add-ons. **Example: Card
-        # message for a Google Chat app** ![Example contact card](https://developers.
-        # google.com/workspace/chat/images/card_api_reference.png) To create the sample
-        # card message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "
-        # cardId": "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle":
-        # "Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
+        # cards). Note: You can add up to 100 widgets per card. If a section's widgets
+        # push the total count above 100, that entire section and all following sections
+        # are ignored. This limit applies to both card messages and dialogs in Google
+        # Chat apps, and to cards in Google Workspace add-ons. **Example: Card message
+        # for a Google Chat app** ![Example contact card](https://developers.google.com/
+        # workspace/chat/images/card_api_reference.png) To create the sample card
+        # message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "cardId":
+        # "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle": "
+        # Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
         # images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "
         # Avatar for Sasha" `, "sections": [ ` "header": "Contact Info", "collapsible":
         # true, "uncollapsibleWidgetsCount": 1, "widgets": [ ` "decoratedText": ` "
@@ -1284,14 +1285,15 @@ module Google
         # components of a card or dialog](https://developers.google.com/workspace/chat/
         # design-components-card-dialog). * For Google Workspace add-ons, see [Card-
         # based interfaces](https://developers.google.com/apps-script/add-ons/concepts/
-        # cards). Note: You can add up to 100 widgets per card. Any widgets beyond this
-        # limit are ignored. This limit applies to both card messages and dialogs in
-        # Google Chat apps, and to cards in Google Workspace add-ons. **Example: Card
-        # message for a Google Chat app** ![Example contact card](https://developers.
-        # google.com/workspace/chat/images/card_api_reference.png) To create the sample
-        # card message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "
-        # cardId": "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle":
-        # "Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
+        # cards). Note: You can add up to 100 widgets per card. If a section's widgets
+        # push the total count above 100, that entire section and all following sections
+        # are ignored. This limit applies to both card messages and dialogs in Google
+        # Chat apps, and to cards in Google Workspace add-ons. **Example: Card message
+        # for a Google Chat app** ![Example contact card](https://developers.google.com/
+        # workspace/chat/images/card_api_reference.png) To create the sample card
+        # message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "cardId":
+        # "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle": "
+        # Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
         # images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "
         # Avatar for Sasha" `, "sections": [ ` "header": "Contact Info", "collapsible":
         # true, "uncollapsibleWidgetsCount": 1, "widgets": [ ` "decoratedText": ` "
@@ -1450,6 +1452,34 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+        end
+      end
+      
+      # A response containing group chat spaces with exactly the calling user and the
+      # requested users. [Developer Preview](https://developers.google.com/workspace/
+      # preview):
+      class FindGroupChatsResponse
+        include Google::Apis::Core::Hashable
+      
+        # A token that you can send as `pageToken` to retrieve the next page of results.
+        # If empty, there are no subsequent pages.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # List of spaces in the requested (or first) page.
+        # Corresponds to the JSON property `spaces`
+        # @return [Array<Google::Apis::ChatV1::Space>]
+        attr_accessor :spaces
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @spaces = args[:spaces] if args.key?(:spaces)
         end
       end
       
@@ -1861,14 +1891,15 @@ module Google
       # components of a card or dialog](https://developers.google.com/workspace/chat/
       # design-components-card-dialog). * For Google Workspace add-ons, see [Card-
       # based interfaces](https://developers.google.com/apps-script/add-ons/concepts/
-      # cards). Note: You can add up to 100 widgets per card. Any widgets beyond this
-      # limit are ignored. This limit applies to both card messages and dialogs in
-      # Google Chat apps, and to cards in Google Workspace add-ons. **Example: Card
-      # message for a Google Chat app** ![Example contact card](https://developers.
-      # google.com/workspace/chat/images/card_api_reference.png) To create the sample
-      # card message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "
-      # cardId": "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle":
-      # "Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
+      # cards). Note: You can add up to 100 widgets per card. If a section's widgets
+      # push the total count above 100, that entire section and all following sections
+      # are ignored. This limit applies to both card messages and dialogs in Google
+      # Chat apps, and to cards in Google Workspace add-ons. **Example: Card message
+      # for a Google Chat app** ![Example contact card](https://developers.google.com/
+      # workspace/chat/images/card_api_reference.png) To create the sample card
+      # message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "cardId":
+      # "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle": "
+      # Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
       # images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "
       # Avatar for Sasha" `, "sections": [ ` "header": "Contact Info", "collapsible":
       # true, "uncollapsibleWidgetsCount": 1, "widgets": [ ` "decoratedText": ` "
@@ -3222,14 +3253,15 @@ module Google
         # components of a card or dialog](https://developers.google.com/workspace/chat/
         # design-components-card-dialog). * For Google Workspace add-ons, see [Card-
         # based interfaces](https://developers.google.com/apps-script/add-ons/concepts/
-        # cards). Note: You can add up to 100 widgets per card. Any widgets beyond this
-        # limit are ignored. This limit applies to both card messages and dialogs in
-        # Google Chat apps, and to cards in Google Workspace add-ons. **Example: Card
-        # message for a Google Chat app** ![Example contact card](https://developers.
-        # google.com/workspace/chat/images/card_api_reference.png) To create the sample
-        # card message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "
-        # cardId": "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle":
-        # "Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
+        # cards). Note: You can add up to 100 widgets per card. If a section's widgets
+        # push the total count above 100, that entire section and all following sections
+        # are ignored. This limit applies to both card messages and dialogs in Google
+        # Chat apps, and to cards in Google Workspace add-ons. **Example: Card message
+        # for a Google Chat app** ![Example contact card](https://developers.google.com/
+        # workspace/chat/images/card_api_reference.png) To create the sample card
+        # message in Google Chat, use the following JSON: ``` ` "cardsV2": [ ` "cardId":
+        # "unique-card-id", "card": ` "header": ` "title": "Sasha", "subtitle": "
+        # Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/
         # images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "
         # Avatar for Sasha" `, "sections": [ ` "header": "Contact Info", "collapsible":
         # true, "uncollapsibleWidgetsCount": 1, "widgets": [ ` "decoratedText": ` "
@@ -4341,6 +4373,59 @@ module Google
         end
       end
       
+      # Represents a [section](https://support.google.com/chat/answer/16059854) in
+      # Google Chat. Sections help users organize their spaces. There are two types of
+      # sections: 1. **System Sections:** These are predefined sections managed by
+      # Google Chat. Their resource names are fixed, and they cannot be created,
+      # deleted, or have their `display_name` modified. Examples include: * `users/`
+      # user`/sections/default-direct-messages` * `users/`user`/sections/default-
+      # spaces` * `users/`user`/sections/default-apps` 2. **Custom Sections:** These
+      # are sections created and managed by the user. Creating a custom section using `
+      # CreateSection` **requires** a `display_name`. Custom sections can be updated
+      # using `UpdateSection` and deleted using `DeleteSection`.
+      class GoogleChatV1Section
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The section's display name. Only populated for sections of type `
+        # CUSTOM_SECTION`. Supports up to 80 characters. Required when creating a `
+        # CUSTOM_SECTION`.
+        # Corresponds to the JSON property `displayName`
+        # @return [String]
+        attr_accessor :display_name
+      
+        # Identifier. Resource name of the section. For system sections, the section ID
+        # is a constant string: - DEFAULT_DIRECT_MESSAGES: `users/`user`/sections/
+        # default-direct-messages` - DEFAULT_SPACES: `users/`user`/sections/default-
+        # spaces` - DEFAULT_APPS: `users/`user`/sections/default-apps` Format: `users/`
+        # user`/sections/`section``
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Output only. The order of the section in relation to other sections. Sections
+        # with a lower `sort_order` value appear before sections with a higher value.
+        # Corresponds to the JSON property `sortOrder`
+        # @return [Fixnum]
+        attr_accessor :sort_order
+      
+        # Required. The type of the section.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @display_name = args[:display_name] if args.key?(:display_name)
+          @name = args[:name] if args.key?(:name)
+          @sort_order = args[:sort_order] if args.key?(:sort_order)
+          @type = args[:type] if args.key?(:type)
+        end
+      end
+      
       # A Google Group in Google Chat.
       class Group
         include Google::Apis::Core::Hashable
@@ -4683,6 +4768,58 @@ module Google
         def update!(**args)
           @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
           @reactions = args[:reactions] if args.key?(:reactions)
+        end
+      end
+      
+      # Response message for listing section items.
+      class ListSectionItemsResponse
+        include Google::Apis::Core::Hashable
+      
+        # A token, which can be sent as `page_token` to retrieve the next page. If this
+        # field is omitted, there are no subsequent pages.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # The section items from the specified section.
+        # Corresponds to the JSON property `sectionItems`
+        # @return [Array<Google::Apis::ChatV1::SectionItem>]
+        attr_accessor :section_items
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @section_items = args[:section_items] if args.key?(:section_items)
+        end
+      end
+      
+      # Response message for listing sections.
+      class ListSectionsResponse
+        include Google::Apis::Core::Hashable
+      
+        # A token, which can be sent as `page_token` to retrieve the next page. If this
+        # field is omitted, there are no subsequent pages.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # The sections from the specified user.
+        # Corresponds to the JSON property `sections`
+        # @return [Array<Google::Apis::ChatV1::GoogleChatV1Section>]
+        attr_accessor :sections
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @sections = args[:sections] if args.key?(:sections)
         end
       end
       
@@ -5140,15 +5277,15 @@ module Google
         # formatting. This field might not capture all formatting visible in the UI, but
         # includes the following: * [Markup syntax](https://developers.google.com/
         # workspace/chat/format-messages) for bold, italic, strikethrough, monospace,
-        # monospace block, and bulleted list. * [User mentions](https://developers.
-        # google.com/workspace/chat/format-messages#messages-@mention) using the format `
-        # `. * Custom hyperlinks using the format `<`url`|`rendered_text`>` where the
-        # first string is the URL and the second is the rendered text—for example, ``. *
-        # Custom emoji using the format `:`emoji_name`:`—for example, `:smile:`. This
-        # doesn't apply to Unicode emoji, such as `U+1F600` for a grinning face emoji. *
-        # Bullet list items using asterisks (`*`)—for example, `* item`. For more
-        # information, see [View text formatting sent in a message](https://developers.
-        # google.com/workspace/chat/format-messages#
+        # monospace block, bulleted list, and block quote. * [User mentions](https://
+        # developers.google.com/workspace/chat/format-messages#messages-@mention) using
+        # the format ``. * Custom hyperlinks using the format `<`url`|`rendered_text`>`
+        # where the first string is the URL and the second is the rendered text—for
+        # example, ``. * Custom emoji using the format `:`emoji_name`:`—for example, `:
+        # smile:`. This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning
+        # face emoji. * Bullet list items using asterisks (`*`)—for example, `* item`.
+        # For more information, see [View text formatting sent in a message](https://
+        # developers.google.com/workspace/chat/format-messages#
         # view_text_formatting_sent_in_a_message)
         # Corresponds to the JSON property `formattedText`
         # @return [String]
@@ -5403,6 +5540,46 @@ module Google
         end
       end
       
+      # Request message for moving a section item across sections.
+      class MoveSectionItemRequest
+        include Google::Apis::Core::Hashable
+      
+        # Required. The resource name of the section to move the section item to. Format:
+        # `users/`user`/sections/`section``
+        # Corresponds to the JSON property `targetSection`
+        # @return [String]
+        attr_accessor :target_section
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @target_section = args[:target_section] if args.key?(:target_section)
+        end
+      end
+      
+      # Response message for moving a section item.
+      class MoveSectionItemResponse
+        include Google::Apis::Core::Hashable
+      
+        # A user's defined section item. This is used to represent section items, such
+        # as spaces, grouped under a section.
+        # Corresponds to the JSON property `sectionItem`
+        # @return [Google::Apis::ChatV1::SectionItem]
+        attr_accessor :section_item
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @section_item = args[:section_item] if args.key?(:section_item)
+        end
+      end
+      
       # An `onclick` action (for example, open a link).
       class OnClick
         include Google::Apis::Core::Hashable
@@ -5544,6 +5721,63 @@ module Google
           @reply_messages = args[:reply_messages] if args.key?(:reply_messages)
           @toggle_history = args[:toggle_history] if args.key?(:toggle_history)
           @use_at_mention_all = args[:use_at_mention_all] if args.key?(:use_at_mention_all)
+        end
+      end
+      
+      # Request message for positioning a section.
+      class PositionSectionRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The relative position of the section in the list of sections.
+        # Corresponds to the JSON property `relativePosition`
+        # @return [String]
+        attr_accessor :relative_position
+      
+        # Optional. The absolute position of the section in the list of sections. The
+        # position must be greater than 0. If the position is greater than the number of
+        # sections, the section will be appended to the end of the list. This operation
+        # inserts the section at the given position and shifts the original section at
+        # that position, and those below it, to the next position.
+        # Corresponds to the JSON property `sortOrder`
+        # @return [Fixnum]
+        attr_accessor :sort_order
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @relative_position = args[:relative_position] if args.key?(:relative_position)
+          @sort_order = args[:sort_order] if args.key?(:sort_order)
+        end
+      end
+      
+      # Response message for positioning a section.
+      class PositionSectionResponse
+        include Google::Apis::Core::Hashable
+      
+        # Represents a [section](https://support.google.com/chat/answer/16059854) in
+        # Google Chat. Sections help users organize their spaces. There are two types of
+        # sections: 1. **System Sections:** These are predefined sections managed by
+        # Google Chat. Their resource names are fixed, and they cannot be created,
+        # deleted, or have their `display_name` modified. Examples include: * `users/`
+        # user`/sections/default-direct-messages` * `users/`user`/sections/default-
+        # spaces` * `users/`user`/sections/default-apps` 2. **Custom Sections:** These
+        # are sections created and managed by the user. Creating a custom section using `
+        # CreateSection` **requires** a `display_name`. Custom sections can be updated
+        # using `UpdateSection` and deleted using `DeleteSection`.
+        # Corresponds to the JSON property `section`
+        # @return [Google::Apis::ChatV1::GoogleChatV1Section]
+        attr_accessor :section
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @section = args[:section] if args.key?(:section)
         end
       end
       
@@ -5881,6 +6115,33 @@ module Google
         def update!(**args)
           @header = args[:header] if args.key?(:header)
           @widgets = args[:widgets] if args.key?(:widgets)
+        end
+      end
+      
+      # A user's defined section item. This is used to represent section items, such
+      # as spaces, grouped under a section.
+      class SectionItem
+        include Google::Apis::Core::Hashable
+      
+        # Identifier. The resource name of the section item. Format: `users/`user`/
+        # sections/`section`/items/`item``
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Optional. The space resource name. Format: `spaces/`space``
+        # Corresponds to the JSON property `space`
+        # @return [String]
+        attr_accessor :space
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @name = args[:name] if args.key?(:name)
+          @space = args[:space] if args.key?(:space)
         end
       end
       
