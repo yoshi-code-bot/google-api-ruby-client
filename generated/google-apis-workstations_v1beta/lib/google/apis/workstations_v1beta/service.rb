@@ -209,7 +209,7 @@ module Google
         #   Required. Parent resource name.
         # @param [Google::Apis::WorkstationsV1beta::WorkstationCluster] workstation_cluster_object
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] workstation_cluster_id
         #   Required. ID to use for the workstation cluster.
@@ -255,7 +255,7 @@ module Google
         #   workstation cluster are also deleted. Otherwise, the request only works if the
         #   workstation cluster has no configurations or workstations.
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   apply it.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
@@ -368,7 +368,7 @@ module Google
         #   Required. Mask that specifies which fields in the workstation cluster should
         #   be updated.
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
@@ -407,7 +407,7 @@ module Google
         #   Required. Parent resource name.
         # @param [Google::Apis::WorkstationsV1beta::WorkstationConfig] workstation_config_object
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] workstation_config_id
         #   Required. ID to use for the workstation configuration.
@@ -453,7 +453,7 @@ module Google
         #   deleted. Otherwise, the request works only if the workstation configuration
         #   has no workstations.
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
@@ -649,7 +649,7 @@ module Google
         #   Required. Mask specifying which fields in the workstation configuration should
         #   be updated.
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
@@ -764,7 +764,7 @@ module Google
         #   Required. Parent resource name.
         # @param [Google::Apis::WorkstationsV1beta::Workstation] workstation_object
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] workstation_id
         #   Required. ID to use for the workstation.
@@ -806,7 +806,7 @@ module Google
         #   Optional. If set, the request will be rejected if the latest version of the
         #   workstation on the server does not have this ETag.
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
@@ -1030,14 +1030,12 @@ module Google
         #   Identifier. Full name of this workstation.
         # @param [Google::Apis::WorkstationsV1beta::Workstation] workstation_object
         # @param [Boolean] allow_missing
-        #   Optional. If set and the workstation configuration is not found, a new
-        #   workstation configuration is created. In this situation, update_mask is
-        #   ignored.
+        #   Optional. If set and the workstation is not found, a new workstation is
+        #   created. In this situation, update_mask is ignored.
         # @param [String] update_mask
-        #   Required. Mask specifying which fields in the workstation configuration should
-        #   be updated.
+        #   Required. Mask specifying which fields in the workstation should be updated.
         # @param [Boolean] validate_only
-        #   Optional. If set, validate the request and preview the review, but do not
+        #   Optional. If set, validate the request and preview the result, but do not
         #   actually apply it.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.

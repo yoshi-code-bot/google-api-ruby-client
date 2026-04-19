@@ -817,6 +817,8 @@ module Google
           hash :tags, as: 'tags'
           property :uid, as: 'uid'
           property :update_time, as: 'updateTime'
+          property :workstation_authorization_url, as: 'workstationAuthorizationUrl'
+          property :workstation_launch_url, as: 'workstationLaunchUrl'
         end
       end
       
