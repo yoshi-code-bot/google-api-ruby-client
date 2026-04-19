@@ -2126,7 +2126,9 @@ module Google
           property :network_attachment_uri, as: 'networkAttachmentUri'
           collection :psc_auto_connections, as: 'pscAutoConnections', class: Google::Apis::SqladminV1::PscAutoConnectionConfig, decorator: Google::Apis::SqladminV1::PscAutoConnectionConfig::Representation
       
+          property :psc_auto_dns_enabled, as: 'pscAutoDnsEnabled'
           property :psc_enabled, as: 'pscEnabled'
+          property :psc_write_endpoint_dns_enabled, as: 'pscWriteEndpointDnsEnabled'
         end
       end
       

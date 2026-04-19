@@ -1899,7 +1899,7 @@ module Google
         # @return [String]
         attr_accessor :application
       
-        # Optional. When set to true, the API caller identity associated with the
+        # Optional. When set to `true`, the API caller identity associated with the
         # request is used for database authentication. The API caller must be an IAM
         # user in the database.
         # Corresponds to the JSON property `autoIamAuthn`
@@ -4706,8 +4706,8 @@ module Google
         attr_accessor :consumer_network_status
       
         # Optional. This is the project ID of consumer service project of this consumer
-        # endpoint. Optional. This is only applicable if consumer_network is a shared
-        # vpc network.
+        # endpoint. This is only applicable if `consumer_network` is a shared VPC
+        # network.
         # Corresponds to the JSON property `consumerProject`
         # @return [String]
         attr_accessor :consumer_project
@@ -4761,11 +4761,31 @@ module Google
         # @return [Array<Google::Apis::SqladminV1::PscAutoConnectionConfig>]
         attr_accessor :psc_auto_connections
       
+        # Optional. Indicates whether PSC DNS automation is enabled for this instance.
+        # When enabled, Cloud SQL provisions a universal DNS record across all networks
+        # configured with Private Service Connect (PSC) auto-connections. This will
+        # default to true for new instances when Private Service Connect is enabled.
+        # Corresponds to the JSON property `pscAutoDnsEnabled`
+        # @return [Boolean]
+        attr_accessor :psc_auto_dns_enabled
+        alias_method :psc_auto_dns_enabled?, :psc_auto_dns_enabled
+      
         # Whether PSC connectivity is enabled for this instance.
         # Corresponds to the JSON property `pscEnabled`
         # @return [Boolean]
         attr_accessor :psc_enabled
         alias_method :psc_enabled?, :psc_enabled
+      
+        # Optional. Indicates whether PSC write endpoint DNS automation is enabled for
+        # this instance. When enabled, Cloud SQL provisions a universal global DNS
+        # record across all networks configured with Private Service Connect (PSC) auto-
+        # connections that always points to the cluster primary instance. This feature
+        # is only supported for Enterprise Plus edition. This will default to true for
+        # new Enterprise Plus instances when `psc_auto_dns_enabled` is enabled.
+        # Corresponds to the JSON property `pscWriteEndpointDnsEnabled`
+        # @return [Boolean]
+        attr_accessor :psc_write_endpoint_dns_enabled
+        alias_method :psc_write_endpoint_dns_enabled?, :psc_write_endpoint_dns_enabled
       
         def initialize(**args)
            update!(**args)
@@ -4776,7 +4796,9 @@ module Google
           @allowed_consumer_projects = args[:allowed_consumer_projects] if args.key?(:allowed_consumer_projects)
           @network_attachment_uri = args[:network_attachment_uri] if args.key?(:network_attachment_uri)
           @psc_auto_connections = args[:psc_auto_connections] if args.key?(:psc_auto_connections)
+          @psc_auto_dns_enabled = args[:psc_auto_dns_enabled] if args.key?(:psc_auto_dns_enabled)
           @psc_enabled = args[:psc_enabled] if args.key?(:psc_enabled)
+          @psc_write_endpoint_dns_enabled = args[:psc_write_endpoint_dns_enabled] if args.key?(:psc_write_endpoint_dns_enabled)
         end
       end
       
