@@ -138,7 +138,7 @@ module Google
         # @return [String]
         attr_accessor :name
       
-        # Optional. Network resources available to the cluster. Must contain at most one
+        # Optional. Network resources available to the cluster. Must contain exactly one
         # value. Keys specify the ID of the network resource by which it can be
         # referenced elsewhere, and must conform to [RFC-1034](https://datatracker.ietf.
         # org/doc/html/rfc1034) (lower-case, alphanumeric, and at most 63 characters).
@@ -1781,7 +1781,7 @@ module Google
       class SlurmNodeSet
         include Google::Apis::Core::Hashable
       
-        # Optional. ID of the compute resource on which this nodeset will run. Must
+        # Required. ID of the compute resource on which this nodeset will run. Must
         # match a key in the cluster's compute_resources.
         # Corresponds to the JSON property `computeId`
         # @return [String]
