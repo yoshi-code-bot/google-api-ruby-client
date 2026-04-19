@@ -123,10 +123,15 @@ module Google
         end
         
         # Lists information about the supported locations for this service. This method
-        # can be called in two ways: * **List all public locations:** Use the path `GET /
-        # v1/locations`. * **List project-visible locations:** Use the path `GET /v1/
-        # projects/`project_id`/locations`. This may include public locations as well as
-        # private or other locations specifically visible to the project.
+        # lists locations based on the resource scope provided in the [
+        # ListLocationsRequest.name] field: * **Global locations**: If `name` is empty,
+        # the method lists the public locations available to all projects. * **Project-
+        # specific locations**: If `name` follows the format `projects/`project``, the
+        # method lists locations visible to that specific project. This includes public,
+        # private, or other project-specific locations enabled for the project. For gRPC
+        # and client library implementations, the resource name is passed as the `name`
+        # field. For direct service calls, the resource name is incorporated into the
+        # request path based on the specific service implementation and version.
         # @param [String] name
         #   The resource that owns the locations collection, if applicable.
         # @param [Array<String>, String] extra_location_types
@@ -2800,6 +2805,79 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Gets details of a single RemoteTransportProfile.
+        # @param [String] name
+        #   Required. Name of the resource.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::NetworkconnectivityV1::RemoteTransportProfile] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::NetworkconnectivityV1::RemoteTransportProfile]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_remote_transport_profile(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::NetworkconnectivityV1::RemoteTransportProfile::Representation
+          command.response_class = Google::Apis::NetworkconnectivityV1::RemoteTransportProfile
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists RemoteTransportProfiles in a given project and location.
+        # @param [String] parent
+        #   Required. Parent value for ListRemoteTransportProfilesRequest.
+        # @param [String] filter
+        #   Optional. Filtering results.
+        # @param [String] order_by
+        #   Optional. Hint for how to order the results.
+        # @param [Fixnum] page_size
+        #   Optional. Requested page size. Server may return fewer items than requested.
+        #   If unspecified, server will pick an appropriate default.
+        # @param [String] page_token
+        #   Optional. A token identifying a page of results the server should return.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::NetworkconnectivityV1::ListRemoteTransportProfilesResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::NetworkconnectivityV1::ListRemoteTransportProfilesResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_project_location_remote_transport_profiles(parent, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+parent}/remoteTransportProfiles', options)
+          command.response_representation = Google::Apis::NetworkconnectivityV1::ListRemoteTransportProfilesResponse::Representation
+          command.response_class = Google::Apis::NetworkconnectivityV1::ListRemoteTransportProfilesResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Deletes a single ServiceClass.
         # @param [String] name
         #   Required. The name of the ServiceClass to delete.
@@ -2871,51 +2949,6 @@ module Google
           command.response_representation = Google::Apis::NetworkconnectivityV1::ServiceClass::Representation
           command.response_class = Google::Apis::NetworkconnectivityV1::ServiceClass
           command.params['name'] = name unless name.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Gets the access control policy for a resource. Returns an empty policy if the
-        # resource exists and does not have a policy set.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy is being requested. See [Resource
-        #   names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Fixnum] options_requested_policy_version
-        #   Optional. The maximum policy version that will be used to format the policy.
-        #   Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-        #   rejected. Requests for policies with any conditional role bindings must
-        #   specify version 3. Policies with no conditional role bindings may specify any
-        #   valid value or leave the field unset. The policy in the response might use the
-        #   policy version that you specified, or it might use a lower policy version. For
-        #   example, if you specify version 3, but the policy has no conditional role
-        #   bindings, the response uses version 1. To learn which resources support
-        #   conditions in their IAM policies, see the [IAM documentation](https://cloud.
-        #   google.com/iam/help/conditions/resource-policies).
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::Policy] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::Policy]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_project_location_service_class_iam_policy(resource, options_requested_policy_version: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:get, 'v1/{+resource}:getIamPolicy', options)
-          command.response_representation = Google::Apis::NetworkconnectivityV1::Policy::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::Policy
-          command.params['resource'] = resource unless resource.nil?
-          command.query['options.requestedPolicyVersion'] = options_requested_policy_version unless options_requested_policy_version.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -3012,82 +3045,6 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Sets the access control policy on the specified resource. Replaces any
-        # existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `
-        # PERMISSION_DENIED` errors.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy is being specified. See [Resource
-        #   names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Google::Apis::NetworkconnectivityV1::SetIamPolicyRequest] set_iam_policy_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::Policy] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::Policy]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def set_service_class_iam_policy(resource, set_iam_policy_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v1/{+resource}:setIamPolicy', options)
-          command.request_representation = Google::Apis::NetworkconnectivityV1::SetIamPolicyRequest::Representation
-          command.request_object = set_iam_policy_request_object
-          command.response_representation = Google::Apis::NetworkconnectivityV1::Policy::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::Policy
-          command.params['resource'] = resource unless resource.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Returns permissions that a caller has on the specified resource. If the
-        # resource does not exist, this will return an empty set of permissions, not a `
-        # NOT_FOUND` error. Note: This operation is designed to be used for building
-        # permission-aware UIs and command-line tools, not for authorization checking.
-        # This operation may "fail open" without warning.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy detail is being requested. See [
-        #   Resource names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Google::Apis::NetworkconnectivityV1::TestIamPermissionsRequest] test_iam_permissions_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def test_service_class_iam_permissions(resource, test_iam_permissions_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v1/{+resource}:testIamPermissions', options)
-          command.request_representation = Google::Apis::NetworkconnectivityV1::TestIamPermissionsRequest::Representation
-          command.request_object = test_iam_permissions_request_object
-          command.response_representation = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse
-          command.params['resource'] = resource unless resource.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -3220,51 +3177,6 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Gets the access control policy for a resource. Returns an empty policy if the
-        # resource exists and does not have a policy set.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy is being requested. See [Resource
-        #   names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Fixnum] options_requested_policy_version
-        #   Optional. The maximum policy version that will be used to format the policy.
-        #   Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-        #   rejected. Requests for policies with any conditional role bindings must
-        #   specify version 3. Policies with no conditional role bindings may specify any
-        #   valid value or leave the field unset. The policy in the response might use the
-        #   policy version that you specified, or it might use a lower policy version. For
-        #   example, if you specify version 3, but the policy has no conditional role
-        #   bindings, the response uses version 1. To learn which resources support
-        #   conditions in their IAM policies, see the [IAM documentation](https://cloud.
-        #   google.com/iam/help/conditions/resource-policies).
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::Policy] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::Policy]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_project_location_service_connection_map_iam_policy(resource, options_requested_policy_version: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:get, 'v1/{+resource}:getIamPolicy', options)
-          command.response_representation = Google::Apis::NetworkconnectivityV1::Policy::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::Policy
-          command.params['resource'] = resource unless resource.nil?
-          command.query['options.requestedPolicyVersion'] = options_requested_policy_version unless options_requested_policy_version.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
         # Lists ServiceConnectionMaps in a given project and location.
         # @param [String] parent
         #   Required. The parent resource's name. ex. projects/123/locations/us-east1
@@ -3356,82 +3268,6 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Sets the access control policy on the specified resource. Replaces any
-        # existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `
-        # PERMISSION_DENIED` errors.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy is being specified. See [Resource
-        #   names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Google::Apis::NetworkconnectivityV1::SetIamPolicyRequest] set_iam_policy_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::Policy] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::Policy]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def set_service_connection_map_iam_policy(resource, set_iam_policy_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v1/{+resource}:setIamPolicy', options)
-          command.request_representation = Google::Apis::NetworkconnectivityV1::SetIamPolicyRequest::Representation
-          command.request_object = set_iam_policy_request_object
-          command.response_representation = Google::Apis::NetworkconnectivityV1::Policy::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::Policy
-          command.params['resource'] = resource unless resource.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Returns permissions that a caller has on the specified resource. If the
-        # resource does not exist, this will return an empty set of permissions, not a `
-        # NOT_FOUND` error. Note: This operation is designed to be used for building
-        # permission-aware UIs and command-line tools, not for authorization checking.
-        # This operation may "fail open" without warning.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy detail is being requested. See [
-        #   Resource names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Google::Apis::NetworkconnectivityV1::TestIamPermissionsRequest] test_iam_permissions_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def test_service_connection_map_iam_permissions(resource, test_iam_permissions_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v1/{+resource}:testIamPermissions', options)
-          command.request_representation = Google::Apis::NetworkconnectivityV1::TestIamPermissionsRequest::Representation
-          command.request_object = test_iam_permissions_request_object
-          command.response_representation = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse
-          command.params['resource'] = resource unless resource.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -3582,51 +3418,6 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Gets the access control policy for a resource. Returns an empty policy if the
-        # resource exists and does not have a policy set.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy is being requested. See [Resource
-        #   names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Fixnum] options_requested_policy_version
-        #   Optional. The maximum policy version that will be used to format the policy.
-        #   Valid values are 0, 1, and 3. Requests specifying an invalid value will be
-        #   rejected. Requests for policies with any conditional role bindings must
-        #   specify version 3. Policies with no conditional role bindings may specify any
-        #   valid value or leave the field unset. The policy in the response might use the
-        #   policy version that you specified, or it might use a lower policy version. For
-        #   example, if you specify version 3, but the policy has no conditional role
-        #   bindings, the response uses version 1. To learn which resources support
-        #   conditions in their IAM policies, see the [IAM documentation](https://cloud.
-        #   google.com/iam/help/conditions/resource-policies).
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::Policy] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::Policy]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def get_project_location_service_connection_policy_iam_policy(resource, options_requested_policy_version: nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:get, 'v1/{+resource}:getIamPolicy', options)
-          command.response_representation = Google::Apis::NetworkconnectivityV1::Policy::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::Policy
-          command.params['resource'] = resource unless resource.nil?
-          command.query['options.requestedPolicyVersion'] = options_requested_policy_version unless options_requested_policy_version.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
         # Lists ServiceConnectionPolicies in a given project and location.
         # @param [String] parent
         #   Required. The parent resource's name. ex. projects/123/locations/us-east1
@@ -3718,82 +3509,6 @@ module Google
           command.params['name'] = name unless name.nil?
           command.query['requestId'] = request_id unless request_id.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Sets the access control policy on the specified resource. Replaces any
-        # existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `
-        # PERMISSION_DENIED` errors.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy is being specified. See [Resource
-        #   names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Google::Apis::NetworkconnectivityV1::SetIamPolicyRequest] set_iam_policy_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::Policy] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::Policy]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def set_service_connection_policy_iam_policy(resource, set_iam_policy_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v1/{+resource}:setIamPolicy', options)
-          command.request_representation = Google::Apis::NetworkconnectivityV1::SetIamPolicyRequest::Representation
-          command.request_object = set_iam_policy_request_object
-          command.response_representation = Google::Apis::NetworkconnectivityV1::Policy::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::Policy
-          command.params['resource'] = resource unless resource.nil?
-          command.query['fields'] = fields unless fields.nil?
-          command.query['quotaUser'] = quota_user unless quota_user.nil?
-          execute_or_queue_command(command, &block)
-        end
-        
-        # Returns permissions that a caller has on the specified resource. If the
-        # resource does not exist, this will return an empty set of permissions, not a `
-        # NOT_FOUND` error. Note: This operation is designed to be used for building
-        # permission-aware UIs and command-line tools, not for authorization checking.
-        # This operation may "fail open" without warning.
-        # @param [String] resource
-        #   REQUIRED: The resource for which the policy detail is being requested. See [
-        #   Resource names](https://cloud.google.com/apis/design/resource_names) for the
-        #   appropriate value for this field.
-        # @param [Google::Apis::NetworkconnectivityV1::TestIamPermissionsRequest] test_iam_permissions_request_object
-        # @param [String] fields
-        #   Selector specifying which fields to include in a partial response.
-        # @param [String] quota_user
-        #   Available to use for quota purposes for server-side applications. Can be any
-        #   arbitrary string assigned to a user, but should not exceed 40 characters.
-        # @param [Google::Apis::RequestOptions] options
-        #   Request-specific options
-        #
-        # @yield [result, err] Result & error if block supplied
-        # @yieldparam result [Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse] parsed result object
-        # @yieldparam err [StandardError] error object if request failed
-        #
-        # @return [Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse]
-        #
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def test_service_connection_policy_iam_permissions(resource, test_iam_permissions_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
-          command = make_simple_command(:post, 'v1/{+resource}:testIamPermissions', options)
-          command.request_representation = Google::Apis::NetworkconnectivityV1::TestIamPermissionsRequest::Representation
-          command.request_object = test_iam_permissions_request_object
-          command.response_representation = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse::Representation
-          command.response_class = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse
-          command.params['resource'] = resource unless resource.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -4304,6 +4019,221 @@ module Google
           command.response_representation = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse::Representation
           command.response_class = Google::Apis::NetworkconnectivityV1::TestIamPermissionsResponse
           command.params['resource'] = resource unless resource.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Creates a new Transport in a given project and location.
+        # @param [String] parent
+        #   Required. Value for parent.
+        # @param [Google::Apis::NetworkconnectivityV1::Transport] transport_object
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes since the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] transport_id
+        #   Required. Id of the requesting object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project_location_transport(parent, transport_object = nil, request_id: nil, transport_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+parent}/transports', options)
+          command.request_representation = Google::Apis::NetworkconnectivityV1::Transport::Representation
+          command.request_object = transport_object
+          command.response_representation = Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation::Representation
+          command.response_class = Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation
+          command.params['parent'] = parent unless parent.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['transportId'] = transport_id unless transport_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a single Transport.
+        # @param [String] name
+        #   Required. Name of the resource.
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes after the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_transport(name, request_id: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:delete, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation::Representation
+          command.response_class = Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation
+          command.params['name'] = name unless name.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Gets details of a single Transport.
+        # @param [String] name
+        #   Required. Name of the resource.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::NetworkconnectivityV1::Transport] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::NetworkconnectivityV1::Transport]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_transport(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::NetworkconnectivityV1::Transport::Representation
+          command.response_class = Google::Apis::NetworkconnectivityV1::Transport
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Lists Transports in a given project and location.
+        # @param [String] parent
+        #   Required. Parent value for ListTransportsRequest.
+        # @param [String] filter
+        #   Optional. Filtering results.
+        # @param [String] order_by
+        #   Optional. Hint for how to order the results.
+        # @param [Fixnum] page_size
+        #   Optional. Requested page size. Server may return fewer items than requested.
+        #   If unspecified, server will pick an appropriate default.
+        # @param [String] page_token
+        #   Optional. A token identifying a page of results the server should return.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::NetworkconnectivityV1::ListTransportsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::NetworkconnectivityV1::ListTransportsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def list_project_location_transports(parent, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+parent}/transports', options)
+          command.response_representation = Google::Apis::NetworkconnectivityV1::ListTransportsResponse::Representation
+          command.response_class = Google::Apis::NetworkconnectivityV1::ListTransportsResponse
+          command.params['parent'] = parent unless parent.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Updates the parameters of a single Transport.
+        # @param [String] name
+        #   Identifier. Name of the resource.
+        # @param [Google::Apis::NetworkconnectivityV1::Transport] transport_object
+        # @param [String] request_id
+        #   Optional. An optional request ID to identify requests. Specify a unique
+        #   request ID so that if you must retry your request, the server will know to
+        #   ignore the request if it has already been completed. The server will guarantee
+        #   that for at least 60 minutes since the first request. For example, consider a
+        #   situation where you make an initial request and the request times out. If you
+        #   make the request again with the same request ID, the server can check if
+        #   original operation with the same request ID was received, and if so, will
+        #   ignore the second request. This prevents clients from accidentally creating
+        #   duplicate commitments. The request ID must be a valid UUID with the exception
+        #   that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+        # @param [String] update_mask
+        #   Optional. Field mask is used to specify the fields to be overwritten in the
+        #   Transport resource by the update. The fields specified in the update_mask are
+        #   relative to the resource, not the full request. A field will be overwritten if
+        #   it is in the mask. If the user does not provide a mask then all fields present
+        #   in the request will be overwritten.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def patch_project_location_transport(name, transport_object = nil, request_id: nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:patch, 'v1/{+name}', options)
+          command.request_representation = Google::Apis::NetworkconnectivityV1::Transport::Representation
+          command.request_object = transport_object
+          command.response_representation = Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation::Representation
+          command.response_class = Google::Apis::NetworkconnectivityV1::GoogleLongrunningOperation
+          command.params['name'] = name unless name.nil?
+          command.query['requestId'] = request_id unless request_id.nil?
+          command.query['updateMask'] = update_mask unless update_mask.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
