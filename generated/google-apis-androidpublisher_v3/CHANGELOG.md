@@ -1,5 +1,9 @@
 # Release history for google-apis-androidpublisher_v3
 
+### v0.99.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260416
+
 ### v0.98.0 (2026-03-22)
 
 * Regenerated from discovery document revision 20260318
