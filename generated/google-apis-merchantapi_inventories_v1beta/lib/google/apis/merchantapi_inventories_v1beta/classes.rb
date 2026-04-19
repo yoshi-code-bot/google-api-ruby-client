@@ -176,6 +176,21 @@ module Google
         # @return [String]
         attr_accessor :availability
       
+        # Output only. The unpadded base64url encoded name of the `LocalInventory`
+        # resource. Format: `accounts/`account`/products/`product`/localInventories/`
+        # store_code`` where the ``product`` segment is the unpadded base64url encoded
+        # value of the identifier of the form `content_language~feed_label~offer_id`.
+        # Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw/localInventories/store123`
+        # for the decoded product ID `en~US~sku/123` and `store_code` "store123". Can be
+        # used directly as input to the API methods that require the local product
+        # identifier within the local inventory name to be encoded if it contains
+        # special characters, for example [`GetLocalInventory`](https://developers.
+        # google.com/merchant/api/reference/rest/inventories_v1beta/accounts.products.
+        # localInventories/get).
+        # Corresponds to the JSON property `base64EncodedName`
+        # @return [String]
+        attr_accessor :base64_encoded_name
+      
         # A list of custom (merchant-provided) attributes. You can also use `
         # CustomAttribute` to submit any attribute of the data specification in its
         # generic form.
@@ -202,8 +217,8 @@ module Google
         # any part of the product identifier (like `offer_id`) contains characters such
         # as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`
         # for `store_code` "store123", the ``product`` segment must be the base64url
-        # encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
-        # for the local inventory would be `accounts/123/products/ZW5-VVMtc2t1LzEyMw/
+        # encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name
+        # for the local inventory would be `accounts/123/products/ZW5-VVN-c2t1LzEyMw/
         # localInventories/store123`. 2. **Plain Format**: The ``product`` segment is
         # the tilde-separated string `content_language~feed_label~offer_id`. This format
         # is suitable only when `content_language`, `feed_label`, and `offer_id` do not
@@ -211,10 +226,7 @@ module Google
         # the **Encoded Format** for all product IDs to ensure correct parsing,
         # especially those containing special characters. The presence of tilde (`~`)
         # characters in the ``product`` segment is used to differentiate between the two
-        # formats. Note: For calls to the v1beta version, the plain format for the
-        # product segment is `channel~content_language~feed_label~offer_id`. For example,
-        # the full resource name for a local inventory at `store_code` "store123" would
-        # be: `accounts/123/products/online~en~US~sku123/localInventories/store123`.
+        # formats.
         # Corresponds to the JSON property `name`
         # @return [String]
         attr_accessor :name
@@ -275,6 +287,7 @@ module Google
         def update!(**args)
           @account = args[:account] if args.key?(:account)
           @availability = args[:availability] if args.key?(:availability)
+          @base64_encoded_name = args[:base64_encoded_name] if args.key?(:base64_encoded_name)
           @custom_attributes = args[:custom_attributes] if args.key?(:custom_attributes)
           @instore_product_location = args[:instore_product_location] if args.key?(:instore_product_location)
           @name = args[:name] if args.key?(:name)
@@ -457,6 +470,21 @@ module Google
         # @return [String]
         attr_accessor :availability
       
+        # Output only. The unpadded base64url encoded name of the `RegionalInventory`
+        # resource. Format: `accounts/`account`/products/`product`/regionalInventories/`
+        # region`` where the ``product`` segment is the unpadded base64url encoded value
+        # of the identifier of the form `content_language~feed_label~offer_id`. Example:
+        # `accounts/123/products/ZW5-VVN-c2t1LzEyMw/regionalInventories/region123` for
+        # the decoded product ID `en~US~sku/123` and `region` "region123". Can be used
+        # directly as input to the API methods that require the product identifier
+        # within the regional inventory name to be encoded if it contains special
+        # characters, for example [`GetRegionalInventory`](https://developers.google.com/
+        # merchant/api/reference/rest/inventories_v1beta/accounts.products.
+        # regionalInventories/get).
+        # Corresponds to the JSON property `base64EncodedName`
+        # @return [String]
+        attr_accessor :base64_encoded_name
+      
         # A list of custom (merchant-provided) attributes. You can also use `
         # CustomAttribute` to submit any attribute of the data specification in its
         # generic form.
@@ -472,25 +500,22 @@ module Google
         # local products, the structure is: `local~content_language~feed_label~offer_id`.
         # Example: `local~en~US~sku123` The format of the ``product`` segment in the
         # URL is automatically detected by the server, supporting two options: 1. **
-        # Encoded Format**: The ``product`` segment is an unpadded base64url encoded
+        # Encoded Format**: The ``product`` segment is an **unpadded base64url** encoded
         # string (RFC 4648 Section 5). The decoded string must result in the `
         # content_language~feed_label~offer_id` structure. This encoding MUST be used if
         # any part of the product identifier (like `offer_id`) contains characters such
         # as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`
-        # for `region` "region123", the ``product`` segment must be the base64url
-        # encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
-        # for the regional inventory would be `accounts/123/products/ZW5-VVMtc2t1LzEyMw/
-        # regionalInventories/region123`. 2. **Plain Format**: The ``product`` segment
-        # is the tilde-separated string `content_language~feed_label~offer_id`. This
-        # format is suitable only when `content_language`, `feed_label`, and `offer_id`
-        # do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend
-        # using the **Encoded Format** for all product IDs to ensure correct parsing,
-        # especially those containing special characters. The presence of tilde (`~`)
-        # characters in the ``product`` segment is used to differentiate between the two
-        # formats. Note: For calls to the v1beta version, the plain format for the
-        # product segment is `channel~content_language~feed_label~offer_id`. For example,
-        # the full resource name for a regional inventory in `region` "region123" would
-        # be: `accounts/123/products/online~en~US~sku123/regionalInventories/region123`.
+        # for `region` "region123", the ``product`` segment must be the unpadded
+        # base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full
+        # resource name for the regional inventory would be `accounts/123/products/ZW5-
+        # VVN-c2t1LzEyMw/regionalInventories/region123`. 2. **Plain Format**: The ``
+        # product`` segment is the tilde-separated string `content_language~feed_label~
+        # offer_id`. This format is suitable only when `content_language`, `feed_label`,
+        # and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`.
+        # We recommend using the **Encoded Format** for all product IDs to ensure
+        # correct parsing, especially those containing special characters. The presence
+        # of tilde (`~`) characters in the ``product`` segment is used to differentiate
+        # between the two formats.
         # Corresponds to the JSON property `name`
         # @return [String]
         attr_accessor :name
@@ -528,6 +553,7 @@ module Google
         def update!(**args)
           @account = args[:account] if args.key?(:account)
           @availability = args[:availability] if args.key?(:availability)
+          @base64_encoded_name = args[:base64_encoded_name] if args.key?(:base64_encoded_name)
           @custom_attributes = args[:custom_attributes] if args.key?(:custom_attributes)
           @name = args[:name] if args.key?(:name)
           @price = args[:price] if args.key?(:price)

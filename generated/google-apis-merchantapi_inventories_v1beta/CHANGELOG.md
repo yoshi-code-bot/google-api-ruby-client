@@ -1,5 +1,9 @@
 # Release history for google-apis-merchantapi_inventories_v1beta
 
+### v0.12.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260411
+
 ### v0.11.0 (2025-11-23)
 
 * Regenerated from discovery document revision 20251118
