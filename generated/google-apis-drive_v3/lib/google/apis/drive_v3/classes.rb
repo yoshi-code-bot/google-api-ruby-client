@@ -877,6 +877,32 @@ module Google
         end
       end
       
+      # Details about the client-side encryption applied to the file.
+      class ClientEncryptionDetails
+        include Google::Apis::Core::Hashable
+      
+        # Representation of the CSE DecryptionMetadata.
+        # Corresponds to the JSON property `decryptionMetadata`
+        # @return [Google::Apis::DriveV3::DecryptionMetadata]
+        attr_accessor :decryption_metadata
+      
+        # The encryption state of the file. The values expected here are: - encrypted -
+        # unencrypted
+        # Corresponds to the JSON property `encryptionState`
+        # @return [String]
+        attr_accessor :encryption_state
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @decryption_metadata = args[:decryption_metadata] if args.key?(:decryption_metadata)
+          @encryption_state = args[:encryption_state] if args.key?(:encryption_state)
+        end
+      end
+      
       # A comment on a file. Some resource methods (such as `comments.update`) require
       # a `commentId`. Use the `comments.list` method to retrieve the ID for a comment
       # in a file.
@@ -1117,6 +1143,67 @@ module Google
           @restriction_time = args[:restriction_time] if args.key?(:restriction_time)
           @system_restricted = args[:system_restricted] if args.key?(:system_restricted)
           @type = args[:type] if args.key?(:type)
+        end
+      end
+      
+      # Representation of the CSE DecryptionMetadata.
+      class DecryptionMetadata
+        include Google::Apis::Core::Hashable
+      
+        # Chunk size used if content was encrypted with the AES 256 GCM Cipher. Possible
+        # values are: - default - small
+        # Corresponds to the JSON property `aes256GcmChunkSize`
+        # @return [String]
+        attr_accessor :aes256_gcm_chunk_size
+      
+        # The URL-safe Base64 encoded HMAC-SHA256 digest of the resource metadata with
+        # its DEK (Data Encryption Key); see https://developers.google.com/workspace/cse/
+        # reference
+        # Corresponds to the JSON property `encryptionResourceKeyHash`
+        # @return [String]
+        attr_accessor :encryption_resource_key_hash
+      
+        # The signed JSON Web Token (JWT) which can be used to authorize the requesting
+        # user with the Key ACL Service (KACLS). The JWT asserts that the requesting
+        # user has at least read permissions on the file.
+        # Corresponds to the JSON property `jwt`
+        # @return [String]
+        attr_accessor :jwt
+      
+        # The ID of the KACLS (Key ACL Service) used to encrypt the file.
+        # Corresponds to the JSON property `kaclsId`
+        # @return [Fixnum]
+        attr_accessor :kacls_id
+      
+        # The name of the KACLS (Key ACL Service) used to encrypt the file.
+        # Corresponds to the JSON property `kaclsName`
+        # @return [String]
+        attr_accessor :kacls_name
+      
+        # Key format for the unwrapped key. Must be `tinkAesGcmKey`.
+        # Corresponds to the JSON property `keyFormat`
+        # @return [String]
+        attr_accessor :key_format
+      
+        # The URL-safe Base64 encoded wrapped key used to encrypt the contents of the
+        # file.
+        # Corresponds to the JSON property `wrappedKey`
+        # @return [String]
+        attr_accessor :wrapped_key
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @aes256_gcm_chunk_size = args[:aes256_gcm_chunk_size] if args.key?(:aes256_gcm_chunk_size)
+          @encryption_resource_key_hash = args[:encryption_resource_key_hash] if args.key?(:encryption_resource_key_hash)
+          @jwt = args[:jwt] if args.key?(:jwt)
+          @kacls_id = args[:kacls_id] if args.key?(:kacls_id)
+          @kacls_name = args[:kacls_name] if args.key?(:kacls_name)
+          @key_format = args[:key_format] if args.key?(:key_format)
+          @wrapped_key = args[:wrapped_key] if args.key?(:wrapped_key)
         end
       end
       
@@ -1630,6 +1717,11 @@ module Google
         # @return [Google::Apis::DriveV3::File::Capabilities]
         attr_accessor :capabilities
       
+        # Details about the client-side encryption applied to the file.
+        # Corresponds to the JSON property `clientEncryptionDetails`
+        # @return [Google::Apis::DriveV3::ClientEncryptionDetails]
+        attr_accessor :client_encryption_details
+      
         # Additional information about the content of the file. These fields are never
         # populated in responses.
         # Corresponds to the JSON property `contentHints`
@@ -1955,8 +2047,8 @@ module Google
         attr_accessor :thumbnail_version
       
         # Whether the file has been trashed, either explicitly or from a trashed parent
-        # folder. Only the owner may trash a file, and other users cannot see files in
-        # the owner's trash.
+        # folder. Only the owner may trash a file, but other users can still access the
+        # file in the owner's trash until it's permanently deleted.
         # Corresponds to the JSON property `trashed`
         # @return [Boolean]
         attr_accessor :trashed
@@ -2030,6 +2122,7 @@ module Google
         def update!(**args)
           @app_properties = args[:app_properties] if args.key?(:app_properties)
           @capabilities = args[:capabilities] if args.key?(:capabilities)
+          @client_encryption_details = args[:client_encryption_details] if args.key?(:client_encryption_details)
           @content_hints = args[:content_hints] if args.key?(:content_hints)
           @content_restrictions = args[:content_restrictions] if args.key?(:content_restrictions)
           @copy_requires_writer_permission = args[:copy_requires_writer_permission] if args.key?(:copy_requires_writer_permission)
@@ -2849,6 +2942,50 @@ module Google
           @incomplete_search = args[:incomplete_search] if args.key?(:incomplete_search)
           @kind = args[:kind] if args.key?(:kind)
           @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
+      # JWT and associated metadata used to generate CSE files.
+      class GenerateCseTokenResponse
+        include Google::Apis::Core::Hashable
+      
+        # The current Key ACL Service (KACLS) ID associated with the JWT.
+        # Corresponds to the JSON property `currentKaclsId`
+        # @return [Fixnum]
+        attr_accessor :current_kacls_id
+      
+        # Name of the KACLs that the returned KACLs ID points to.
+        # Corresponds to the JSON property `currentKaclsName`
+        # @return [String]
+        attr_accessor :current_kacls_name
+      
+        # The fileId for which the JWT was generated.
+        # Corresponds to the JSON property `fileId`
+        # @return [String]
+        attr_accessor :file_id
+      
+        # The signed JSON Web Token (JWT) for the file.
+        # Corresponds to the JSON property `jwt`
+        # @return [String]
+        attr_accessor :jwt
+      
+        # Output only. Identifies what kind of resource this is. Value: the fixed string
+        # `"drive#generateCseTokenResponse"`.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @current_kacls_id = args[:current_kacls_id] if args.key?(:current_kacls_id)
+          @current_kacls_name = args[:current_kacls_name] if args.key?(:current_kacls_name)
+          @file_id = args[:file_id] if args.key?(:file_id)
+          @jwt = args[:jwt] if args.key?(:jwt)
+          @kind = args[:kind] if args.key?(:kind)
         end
       end
       
