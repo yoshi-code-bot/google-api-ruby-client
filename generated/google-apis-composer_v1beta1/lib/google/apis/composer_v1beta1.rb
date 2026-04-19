@@ -34,6 +34,9 @@ module Google
 
       # See, edit, configure, and delete your Google Cloud Composer data and see the email address for your Google Account
       AUTH_CLOUDCOMPOSER = 'https://www.googleapis.com/auth/cloudcomposer'
+
+      # See your Google Cloud Composer data and the email address of your Google Account
+      AUTH_CLOUDCOMPOSER_READONLY = 'https://www.googleapis.com/auth/cloudcomposer.readonly'
     end
   end
 end
