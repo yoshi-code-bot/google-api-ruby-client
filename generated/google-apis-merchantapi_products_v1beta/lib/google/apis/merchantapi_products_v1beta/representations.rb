@@ -505,6 +505,7 @@ module Google
       
           property :automated_discounts, as: 'automatedDiscounts', class: Google::Apis::MerchantapiProductsV1beta::AutomatedDiscounts, decorator: Google::Apis::MerchantapiProductsV1beta::AutomatedDiscounts::Representation
       
+          property :base64_encoded_name, as: 'base64EncodedName'
           property :channel, as: 'channel'
           property :content_language, as: 'contentLanguage'
           collection :custom_attributes, as: 'customAttributes', class: Google::Apis::MerchantapiProductsV1beta::CustomAttribute, decorator: Google::Apis::MerchantapiProductsV1beta::CustomAttribute::Representation
@@ -551,6 +552,8 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :attributes, as: 'attributes', class: Google::Apis::MerchantapiProductsV1beta::Attributes, decorator: Google::Apis::MerchantapiProductsV1beta::Attributes::Representation
       
+          property :base64_encoded_name, as: 'base64EncodedName'
+          property :base64_encoded_product, as: 'base64EncodedProduct'
           property :channel, as: 'channel'
           property :content_language, as: 'contentLanguage'
           collection :custom_attributes, as: 'customAttributes', class: Google::Apis::MerchantapiProductsV1beta::CustomAttribute, decorator: Google::Apis::MerchantapiProductsV1beta::CustomAttribute::Representation
