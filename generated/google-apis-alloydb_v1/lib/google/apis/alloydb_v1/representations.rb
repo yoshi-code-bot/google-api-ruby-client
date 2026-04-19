@@ -1369,6 +1369,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :id, as: 'id'
           property :ip, as: 'ip'
+          property :is_hot_standby, as: 'isHotStandby'
           property :state, as: 'state'
           property :zone_id, as: 'zoneId'
         end
@@ -1788,6 +1789,7 @@ module Google
       
           property :maintenance_info, as: 'maintenanceInfo', class: Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo, decorator: Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo::Representation
       
+          collection :modes, as: 'modes'
           property :primary_resource_id, as: 'primaryResourceId', class: Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId, decorator: Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId::Representation
       
           property :primary_resource_location, as: 'primaryResourceLocation'
@@ -1828,6 +1830,7 @@ module Google
       
           property :full_resource_name, as: 'fullResourceName'
           property :last_refresh_time, as: 'lastRefreshTime'
+          property :location, as: 'location'
           property :resource_id, as: 'resourceId', class: Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId, decorator: Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId::Representation
       
           property :signal_bool_value, as: 'signalBoolValue'

@@ -2444,6 +2444,13 @@ module Google
         # @return [String]
         attr_accessor :ip
       
+        # Output only. Indicates whether the node set up to be configured as a hot
+        # standby.
+        # Corresponds to the JSON property `isHotStandby`
+        # @return [Boolean]
+        attr_accessor :is_hot_standby
+        alias_method :is_hot_standby?, :is_hot_standby
+      
         # Output only. Determined by state of the compute VM and postgres-service health.
         # Compute VM state can have values listed in https://cloud.google.com/compute/
         # docs/instances/instance-life-cycle and postgres-service health can have values:
@@ -2465,6 +2472,7 @@ module Google
         def update!(**args)
           @id = args[:id] if args.key?(:id)
           @ip = args[:ip] if args.key?(:ip)
+          @is_hot_standby = args[:is_hot_standby] if args.key?(:is_hot_standby)
           @state = args[:state] if args.key?(:state)
           @zone_id = args[:zone_id] if args.key?(:zone_id)
         end
@@ -3744,7 +3752,7 @@ module Google
       
         # Database resource signal data. This is used to send signals to Condor which
         # are based on the DB/Instance/Fleet level configurations. These will be used to
-        # send signals for all inventory types. Next ID: 9
+        # send signals for all inventory types. Next ID: 10
         # Corresponds to the JSON property `databaseResourceSignalData`
         # @return [Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData]
         attr_accessor :database_resource_signal_data
@@ -3779,7 +3787,7 @@ module Google
         # @return [Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId]
         attr_accessor :resource_id
       
-        # Common model for database resource instance metadata. Next ID: 31
+        # Common model for database resource instance metadata. Next ID: 32
         # Corresponds to the JSON property `resourceMetadata`
         # @return [Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata]
         attr_accessor :resource_metadata
@@ -3977,7 +3985,7 @@ module Google
         end
       end
       
-      # Common model for database resource instance metadata. Next ID: 31
+      # Common model for database resource instance metadata. Next ID: 32
       class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata
         include Google::Apis::Core::Hashable
       
@@ -4076,6 +4084,11 @@ module Google
         # @return [Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo]
         attr_accessor :maintenance_info
       
+        # Optional. The modes of the database resource.
+        # Corresponds to the JSON property `modes`
+        # @return [Array<String>]
+        attr_accessor :modes
+      
         # DatabaseResourceId will serve as primary key for any resource ingestion event.
         # Corresponds to the JSON property `primaryResourceId`
         # @return [Google::Apis::AlloydbV1::StorageDatabasecenterPartnerapiV1mainDatabaseResourceId]
@@ -4166,6 +4179,7 @@ module Google
           @location = args[:location] if args.key?(:location)
           @machine_configuration = args[:machine_configuration] if args.key?(:machine_configuration)
           @maintenance_info = args[:maintenance_info] if args.key?(:maintenance_info)
+          @modes = args[:modes] if args.key?(:modes)
           @primary_resource_id = args[:primary_resource_id] if args.key?(:primary_resource_id)
           @primary_resource_location = args[:primary_resource_location] if args.key?(:primary_resource_location)
           @product = args[:product] if args.key?(:product)
@@ -4255,7 +4269,7 @@ module Google
       
       # Database resource signal data. This is used to send signals to Condor which
       # are based on the DB/Instance/Fleet level configurations. These will be used to
-      # send signals for all inventory types. Next ID: 9
+      # send signals for all inventory types. Next ID: 10
       class StorageDatabasecenterPartnerapiV1mainDatabaseResourceSignalData
         include Google::Apis::Core::Hashable
       
@@ -4273,6 +4287,11 @@ module Google
         # Corresponds to the JSON property `lastRefreshTime`
         # @return [String]
         attr_accessor :last_refresh_time
+      
+        # Resource location.
+        # Corresponds to the JSON property `location`
+        # @return [String]
+        attr_accessor :location
       
         # DatabaseResourceId will serve as primary key for any resource ingestion event.
         # Corresponds to the JSON property `resourceId`
@@ -4310,6 +4329,7 @@ module Google
           @backup_run = args[:backup_run] if args.key?(:backup_run)
           @full_resource_name = args[:full_resource_name] if args.key?(:full_resource_name)
           @last_refresh_time = args[:last_refresh_time] if args.key?(:last_refresh_time)
+          @location = args[:location] if args.key?(:location)
           @resource_id = args[:resource_id] if args.key?(:resource_id)
           @signal_bool_value = args[:signal_bool_value] if args.key?(:signal_bool_value)
           @signal_metadata_list = args[:signal_metadata_list] if args.key?(:signal_metadata_list)
