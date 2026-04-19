@@ -148,6 +148,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class Progress
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Replica
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -407,6 +413,8 @@ module Google
           property :api_version, as: 'apiVersion'
           property :create_time, as: 'createTime'
           property :end_time, as: 'endTime'
+          property :progress, as: 'progress', class: Google::Apis::SecretmanagerV1beta2::Progress, decorator: Google::Apis::SecretmanagerV1beta2::Progress::Representation
+      
           property :requested_cancellation, as: 'requestedCancellation'
           property :status_message, as: 'statusMessage'
           property :target, as: 'target'
@@ -423,6 +431,15 @@ module Google
       
           property :etag, :base64 => true, as: 'etag'
           property :version, as: 'version'
+        end
+      end
+      
+      class Progress
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :completed_version_count, as: 'completedVersionCount'
+          property :failed_version_count, as: 'failedVersionCount'
+          property :total_version_count, as: 'totalVersionCount'
         end
       end
       
