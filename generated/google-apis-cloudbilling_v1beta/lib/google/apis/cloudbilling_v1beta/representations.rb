@@ -22,7 +22,67 @@ module Google
   module Apis
     module CloudbillingV1beta
       
+      class AgenticQueryInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Array
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class BillingData
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class BillingDataResource
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ColumnInfo
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class DataSet
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Datetime
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Decimal
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class FinalResult
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GenerateInsightsRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GenerateInsightsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -346,16 +406,195 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class Insight
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class InteropLink
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Map
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class MapEntry
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Money
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class Range
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Rejection
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Row
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Struct
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SuggestedChart
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SuggestedQuery
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class UserContext
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ValueProto
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class AgenticQueryInfo
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :columns, as: 'columns'
+          property :filter, as: 'filter'
+          property :group_by, as: 'groupBy'
+          property :limit, as: 'limit'
+          property :order_by, as: 'orderBy'
+          collection :parents, as: 'parents'
+          property :view, as: 'view'
+        end
+      end
+      
+      class Array
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :element, as: 'element', class: Google::Apis::CloudbillingV1beta::ValueProto, decorator: Google::Apis::CloudbillingV1beta::ValueProto::Representation
+      
+        end
+      end
+      
+      class BillingData
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :column_info, as: 'columnInfo', class: Google::Apis::CloudbillingV1beta::ColumnInfo, decorator: Google::Apis::CloudbillingV1beta::ColumnInfo::Representation
+      
+          collection :rows, as: 'rows', class: Google::Apis::CloudbillingV1beta::Row, decorator: Google::Apis::CloudbillingV1beta::Row::Representation
+      
+        end
+      end
+      
+      class BillingDataResource
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :billing_account, as: 'billingAccount'
+          property :resource, as: 'resource'
+        end
+      end
+      
+      class ColumnInfo
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :column, as: 'column'
+        end
+      end
+      
+      class DataSet
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :billing_data, as: 'billingData', class: Google::Apis::CloudbillingV1beta::BillingData, decorator: Google::Apis::CloudbillingV1beta::BillingData::Representation
+      
+          property :query_info, as: 'queryInfo', class: Google::Apis::CloudbillingV1beta::AgenticQueryInfo, decorator: Google::Apis::CloudbillingV1beta::AgenticQueryInfo::Representation
+      
+          property :suggested_chart, as: 'suggestedChart', class: Google::Apis::CloudbillingV1beta::SuggestedChart, decorator: Google::Apis::CloudbillingV1beta::SuggestedChart::Representation
+      
+        end
+      end
+      
+      class Datetime
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :bit_field_datetime_seconds, :numeric_string => true, as: 'bitFieldDatetimeSeconds'
+          property :nanos, as: 'nanos'
+        end
+      end
+      
       class Decimal
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :value, as: 'value'
+        end
+      end
+      
+      class FinalResult
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :data_sets, as: 'dataSets', class: Google::Apis::CloudbillingV1beta::DataSet, decorator: Google::Apis::CloudbillingV1beta::DataSet::Representation
+      
+          property :full_analysis, as: 'fullAnalysis'
+          collection :insights, as: 'insights', class: Google::Apis::CloudbillingV1beta::Insight, decorator: Google::Apis::CloudbillingV1beta::Insight::Representation
+      
+          collection :interop_links, as: 'interopLinks', class: Google::Apis::CloudbillingV1beta::InteropLink, decorator: Google::Apis::CloudbillingV1beta::InteropLink::Representation
+      
+          collection :suggested_queries, as: 'suggestedQueries', class: Google::Apis::CloudbillingV1beta::SuggestedQuery, decorator: Google::Apis::CloudbillingV1beta::SuggestedQuery::Representation
+      
+          property :summary, as: 'summary'
+        end
+      end
+      
+      class GenerateInsightsRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :filter, as: 'filter'
+          property :overridden_max_iteration_counts, as: 'overriddenMaxIterationCounts'
+          collection :parents, as: 'parents', class: Google::Apis::CloudbillingV1beta::BillingDataResource, decorator: Google::Apis::CloudbillingV1beta::BillingDataResource::Representation
+      
+          property :prompt, as: 'prompt'
+          property :user_context, as: 'userContext', class: Google::Apis::CloudbillingV1beta::UserContext, decorator: Google::Apis::CloudbillingV1beta::UserContext::Representation
+      
+        end
+      end
+      
+      class GenerateInsightsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :final_result, as: 'finalResult', class: Google::Apis::CloudbillingV1beta::FinalResult, decorator: Google::Apis::CloudbillingV1beta::FinalResult::Representation
+      
+          property :rejection, as: 'rejection', class: Google::Apis::CloudbillingV1beta::Rejection, decorator: Google::Apis::CloudbillingV1beta::Rejection::Representation
+      
+          property :summary_chunk, as: 'summaryChunk'
+          property :thought_chunk, as: 'thoughtChunk'
         end
       end
       
@@ -850,12 +1089,149 @@ module Google
         end
       end
       
+      class Insight
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :description, as: 'description'
+          property :severity, as: 'severity'
+          property :title, as: 'title'
+        end
+      end
+      
+      class InteropLink
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :label, as: 'label'
+          property :link_type, as: 'linkType'
+          property :url, as: 'url'
+        end
+      end
+      
+      class Map
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :entry, as: 'entry', class: Google::Apis::CloudbillingV1beta::MapEntry, decorator: Google::Apis::CloudbillingV1beta::MapEntry::Representation
+      
+        end
+      end
+      
+      class MapEntry
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :key, as: 'key', class: Google::Apis::CloudbillingV1beta::ValueProto, decorator: Google::Apis::CloudbillingV1beta::ValueProto::Representation
+      
+          property :value, as: 'value', class: Google::Apis::CloudbillingV1beta::ValueProto, decorator: Google::Apis::CloudbillingV1beta::ValueProto::Representation
+      
+        end
+      end
+      
       class Money
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :currency_code, as: 'currencyCode'
           property :nanos, as: 'nanos'
           property :units, :numeric_string => true, as: 'units'
+        end
+      end
+      
+      class Range
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :end, as: 'end', class: Google::Apis::CloudbillingV1beta::ValueProto, decorator: Google::Apis::CloudbillingV1beta::ValueProto::Representation
+      
+          property :start, as: 'start', class: Google::Apis::CloudbillingV1beta::ValueProto, decorator: Google::Apis::CloudbillingV1beta::ValueProto::Representation
+      
+        end
+      end
+      
+      class Rejection
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :display_message, as: 'displayMessage'
+          property :reason, as: 'reason'
+        end
+      end
+      
+      class Row
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :values, as: 'values', class: Google::Apis::CloudbillingV1beta::ValueProto, decorator: Google::Apis::CloudbillingV1beta::ValueProto::Representation
+      
+        end
+      end
+      
+      class Struct
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :field, as: 'field', class: Google::Apis::CloudbillingV1beta::ValueProto, decorator: Google::Apis::CloudbillingV1beta::ValueProto::Representation
+      
+        end
+      end
+      
+      class SuggestedChart
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :chart_title, as: 'chartTitle'
+          property :chart_type, as: 'chartType'
+          property :series_field, as: 'seriesField'
+          property :x_axis_field, as: 'xAxisField'
+          property :x_axis_label, as: 'xAxisLabel'
+          property :y_axis_field, as: 'yAxisField'
+          property :y_axis_label, as: 'yAxisLabel'
+        end
+      end
+      
+      class SuggestedQuery
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :query, as: 'query'
+        end
+      end
+      
+      class UserContext
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :persona, as: 'persona'
+          property :role, as: 'role'
+        end
+      end
+      
+      class ValueProto
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :value_proto_switch_must_have_a_default, as: 'ValueProtoSwitchMustHaveADefault'
+          property :array_value, as: 'arrayValue', class: Google::Apis::CloudbillingV1beta::Array, decorator: Google::Apis::CloudbillingV1beta::Array::Representation
+      
+          property :bignumeric_value, :base64 => true, as: 'bignumericValue'
+          property :bool_value, as: 'boolValue'
+          property :bytes_value, :base64 => true, as: 'bytesValue'
+          property :date_value, as: 'dateValue'
+          property :datetime_value, as: 'datetimeValue', class: Google::Apis::CloudbillingV1beta::Datetime, decorator: Google::Apis::CloudbillingV1beta::Datetime::Representation
+      
+          property :double_value, as: 'doubleValue'
+          property :enum_value, as: 'enumValue'
+          property :float_value, as: 'floatValue'
+          property :geography_value, :base64 => true, as: 'geographyValue'
+          property :int32_value, as: 'int32Value'
+          property :int64_value, :numeric_string => true, as: 'int64Value'
+          property :interval_value, :base64 => true, as: 'intervalValue'
+          property :json_value, as: 'jsonValue'
+          property :map_value, as: 'mapValue', class: Google::Apis::CloudbillingV1beta::Map, decorator: Google::Apis::CloudbillingV1beta::Map::Representation
+      
+          property :numeric_value, :base64 => true, as: 'numericValue'
+          property :proto_value, :base64 => true, as: 'protoValue'
+          property :range_value, as: 'rangeValue', class: Google::Apis::CloudbillingV1beta::Range, decorator: Google::Apis::CloudbillingV1beta::Range::Representation
+      
+          property :string_value, as: 'stringValue'
+          property :struct_value, as: 'structValue', class: Google::Apis::CloudbillingV1beta::Struct, decorator: Google::Apis::CloudbillingV1beta::Struct::Representation
+      
+          property :time_value, :numeric_string => true, as: 'timeValue'
+          property :timestamp_pico_value, :base64 => true, as: 'timestampPicoValue'
+          property :timestamp_value, as: 'timestampValue'
+          property :tokenlist_value, :base64 => true, as: 'tokenlistValue'
+          property :uint32_value, as: 'uint32Value'
+          property :uint64_value, :numeric_string => true, as: 'uint64Value'
+          property :uuid_value, :base64 => true, as: 'uuidValue'
         end
       end
     end
