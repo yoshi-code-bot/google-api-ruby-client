@@ -203,12 +203,19 @@ module Google
       class ActionInfo
         include Google::Apis::Core::Hashable
       
+        # Google Cloud Storage location of the content that violated the rule. This
+        # field has format: "/"
+        # Corresponds to the JSON property `evidenceLockerFilePath`
+        # @return [String]
+        attr_accessor :evidence_locker_file_path
+      
         def initialize(**args)
            update!(**args)
         end
       
         # Update properties of this object
         def update!(**args)
+          @evidence_locker_file_path = args[:evidence_locker_file_path] if args.key?(:evidence_locker_file_path)
         end
       end
       
@@ -1151,6 +1158,44 @@ module Google
         def update!(**args)
           @email = args[:email] if args.key?(:email)
           @takeout_request_id = args[:takeout_request_id] if args.key?(:takeout_request_id)
+        end
+      end
+      
+      # Alerts for when a user is restricted from syncing content from clients such as
+      # Drive for Desktop.
+      class DriveSyncStateChanged
+        include Google::Apis::Core::Hashable
+      
+        # Email of the user affected.
+        # Corresponds to the JSON property `email`
+        # @return [String]
+        attr_accessor :email
+      
+        # Time at which sync was paused.
+        # Corresponds to the JSON property `syncPauseStartTime`
+        # @return [String]
+        attr_accessor :sync_pause_start_time
+      
+        # The current sync state.
+        # Corresponds to the JSON property `syncState`
+        # @return [String]
+        attr_accessor :sync_state
+      
+        # The reason for the sync state change.
+        # Corresponds to the JSON property `syncStateChangeReason`
+        # @return [String]
+        attr_accessor :sync_state_change_reason
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @email = args[:email] if args.key?(:email)
+          @sync_pause_start_time = args[:sync_pause_start_time] if args.key?(:sync_pause_start_time)
+          @sync_state = args[:sync_state] if args.key?(:sync_state)
+          @sync_state_change_reason = args[:sync_state_change_reason] if args.key?(:sync_state_change_reason)
         end
       end
       

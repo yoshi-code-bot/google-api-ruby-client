@@ -202,6 +202,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class DriveSyncStateChanged
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Empty
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -526,6 +532,7 @@ module Google
       class ActionInfo
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :evidence_locker_file_path, as: 'evidenceLockerFilePath'
         end
       end
       
@@ -778,6 +785,16 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :email, as: 'email'
           property :takeout_request_id, as: 'takeoutRequestId'
+        end
+      end
+      
+      class DriveSyncStateChanged
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :email, as: 'email'
+          property :sync_pause_start_time, as: 'syncPauseStartTime'
+          property :sync_state, as: 'syncState'
+          property :sync_state_change_reason, as: 'syncStateChangeReason'
         end
       end
       
