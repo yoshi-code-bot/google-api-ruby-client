@@ -4417,10 +4417,12 @@ module Google
         # @param [Boolean] expand
         #   Optional. Specifies whether to expand the results. Set to `true` to expand the
         #   results. This query parameter is not valid if you use the `count` or `startKey`
-        #   query parameters.
+        #   query parameters. **Note**: If set to `true`, the `apigee.developerapps.get`
+        #   permission is required.
         # @param [Boolean] shallow_expand
         #   Optional. Specifies whether to expand the results in shallow mode. Set to `
-        #   true` to expand the results in shallow mode.
+        #   true` to expand the results in shallow mode. **Note**: If set to `true`, the `
+        #   apigee.developerapps.get` permission is required.
         # @param [String] start_key
         #   **Note**: Must be used in conjunction with the `count` parameter. Name of the
         #   developer app from which to start displaying the list of developer apps. For

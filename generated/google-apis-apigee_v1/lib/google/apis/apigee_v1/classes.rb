@@ -22,55 +22,6 @@ module Google
   module Apis
     module ApigeeV1
       
-      # Profile describing the data handling characteristics of an MCP tool. When used
-      # within the McpTool.meta field, this message should be packed into a google.
-      # protobuf.Any and associated with the key: "google.com/tool.profiles/
-      # data_handling"
-      class ApiservingMcpMcpToolDataHandlingProfile
-        include Google::Apis::Core::Hashable
-      
-        # // The data access level of the tool's inputs.
-        # Corresponds to the JSON property `inputDataAccessLevel`
-        # @return [String]
-        attr_accessor :input_data_access_level
-      
-        # The data access level of the tool's outputs.
-        # Corresponds to the JSON property `outputDataAccessLevel`
-        # @return [String]
-        attr_accessor :output_data_access_level
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @input_data_access_level = args[:input_data_access_level] if args.key?(:input_data_access_level)
-          @output_data_access_level = args[:output_data_access_level] if args.key?(:output_data_access_level)
-        end
-      end
-      
-      # Profile describing the lifecycle stage of an MCP tool. When used within the
-      # McpTool.meta field, this message should be packed into a google.protobuf.Any
-      # and associated with the key: "google.com/tool.profiles/lifecycle"
-      class ApiservingMcpMcpToolLifecycleProfile
-        include Google::Apis::Core::Hashable
-      
-        # Output only. The current launch state of the MCP tool.
-        # Corresponds to the JSON property `launchState`
-        # @return [String]
-        attr_accessor :launch_state
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @launch_state = args[:launch_state] if args.key?(:launch_state)
-        end
-      end
-      
       # Describes why a bundle is invalid. Intended for use in error details.
       class EdgeConfigstoreBundleBadBundle
         include Google::Apis::Core::Hashable
@@ -5030,8 +4981,7 @@ module Google
         # @return [Fixnum]
         attr_accessor :ip_header_index
       
-        # Required. The name of the header to extract the client ip from. We are
-        # currently only supporting the X-Forwarded-For header.
+        # Required. The name of the header to extract the client ip from.
         # Corresponds to the JSON property `ipHeaderName`
         # @return [String]
         attr_accessor :ip_header_name
@@ -5173,8 +5123,8 @@ module Google
         # @return [Array<Google::Apis::ApigeeV1::GoogleCloudApigeeV1TargetServerConfig>]
         attr_accessor :targets
       
-        # NEXT ID: 9 RuntimeTraceConfig defines the configurations for distributed trace
-        # in an environment.
+        # NEXT ID: 10 RuntimeTraceConfig defines the configurations for distributed
+        # trace in an environment.
         # Corresponds to the JSON property `traceConfig`
         # @return [Google::Apis::ApigeeV1::GoogleCloudApigeeV1RuntimeTraceConfig]
         attr_accessor :trace_config
@@ -10244,8 +10194,8 @@ module Google
         end
       end
       
-      # NEXT ID: 9 RuntimeTraceConfig defines the configurations for distributed trace
-      # in an environment.
+      # NEXT ID: 10 RuntimeTraceConfig defines the configurations for distributed
+      # trace in an environment.
       class GoogleCloudApigeeV1RuntimeTraceConfig
         include Google::Apis::Core::Hashable
       
@@ -10267,12 +10217,12 @@ module Google
         # @return [String]
         attr_accessor :name
       
-        # If `true`, the runtime uses OpenTelemetry Protocol (OTLP) to send trace data.
-        # Configuration Requirements (if `open_telemetry_protocol_enabled` is `true`): -
-        # Allowed `Exporter`s: `CLOUD_TRACE` or `OPEN_TELEMETRY_COLLECTOR`. - If `
-        # Exporter` is `OPEN_TELEMETRY_COLLECTOR`: - `endpoint` refers to a valid OTLP
-        # collector URL. - If `Exporter` is `CLOUD_TRACE`: - `endpoint` refers to a
-        # valid project ID
+        # Optional. If `true`, the runtime uses OpenTelemetry Protocol (OTLP) to send
+        # trace data. Configuration Requirements (if `open_telemetry_protocol_enabled`
+        # is `true`): - Allowed `Exporter`s: `CLOUD_TRACE` or `OPEN_TELEMETRY_COLLECTOR`.
+        # - If `Exporter` is `OPEN_TELEMETRY_COLLECTOR`: - `endpoint` refers to a valid
+        # OTLP collector URL. - If `Exporter` is `CLOUD_TRACE`: - `endpoint` refers to a
+        # valid project ID Deprecated: Use trace_protocol instead.
         # Corresponds to the JSON property `openTelemetryProtocolEnabled`
         # @return [Boolean]
         attr_accessor :open_telemetry_protocol_enabled
@@ -10302,6 +10252,11 @@ module Google
         # @return [Google::Apis::ApigeeV1::GoogleCloudApigeeV1RuntimeTraceSamplingConfig]
         attr_accessor :sampling_config
       
+        # Optional. The trace protocol to use.
+        # Corresponds to the JSON property `traceProtocol`
+        # @return [String]
+        attr_accessor :trace_protocol
+      
         def initialize(**args)
            update!(**args)
         end
@@ -10316,10 +10271,11 @@ module Google
           @revision_create_time = args[:revision_create_time] if args.key?(:revision_create_time)
           @revision_id = args[:revision_id] if args.key?(:revision_id)
           @sampling_config = args[:sampling_config] if args.key?(:sampling_config)
+          @trace_protocol = args[:trace_protocol] if args.key?(:trace_protocol)
         end
       end
       
-      # NEXT ID: 8 Trace configuration override for a specific API proxy in an
+      # NEXT ID: 9 Trace configuration override for a specific API proxy in an
       # environment.
       class GoogleCloudApigeeV1RuntimeTraceConfigOverride
         include Google::Apis::Core::Hashable
@@ -10336,12 +10292,12 @@ module Google
         # @return [String]
         attr_accessor :name
       
-        # If `true`, the runtime uses OpenTelemetry Protocol (OTLP) to send trace data.
-        # Configuration Requirements (if `open_telemetry_protocol_enabled` is `true`): -
-        # Allowed `Exporter`s: `CLOUD_TRACE` or `OPEN_TELEMETRY_COLLECTOR`. - If `
-        # Exporter` is `OPEN_TELEMETRY_COLLECTOR`: - `endpoint` refers to a valid OTLP
-        # collector URL. - If `Exporter` is `CLOUD_TRACE`: - `endpoint` refers to a
-        # valid project ID
+        # Optional. If `true`, the runtime uses OpenTelemetry Protocol (OTLP) to send
+        # trace data. Configuration Requirements (if `open_telemetry_protocol_enabled`
+        # is `true`): - Allowed `Exporter`s: `CLOUD_TRACE` or `OPEN_TELEMETRY_COLLECTOR`.
+        # - If `Exporter` is `OPEN_TELEMETRY_COLLECTOR`: - `endpoint` refers to a valid
+        # OTLP collector URL. - If `Exporter` is `CLOUD_TRACE`: - `endpoint` refers to a
+        # valid project ID Deprecated: Use trace_protocol instead.
         # Corresponds to the JSON property `openTelemetryProtocolEnabled`
         # @return [Boolean]
         attr_accessor :open_telemetry_protocol_enabled
@@ -10366,6 +10322,11 @@ module Google
         # @return [Google::Apis::ApigeeV1::GoogleCloudApigeeV1RuntimeTraceSamplingConfig]
         attr_accessor :sampling_config
       
+        # Optional. The trace protocol to use.
+        # Corresponds to the JSON property `traceProtocol`
+        # @return [String]
+        attr_accessor :trace_protocol
+      
         # Unique ID for the configuration override. The ID will only change if the
         # override is deleted and recreated. Corresponds to name's "override" field.
         # Corresponds to the JSON property `uid`
@@ -10384,6 +10345,7 @@ module Google
           @revision_create_time = args[:revision_create_time] if args.key?(:revision_create_time)
           @revision_id = args[:revision_id] if args.key?(:revision_id)
           @sampling_config = args[:sampling_config] if args.key?(:sampling_config)
+          @trace_protocol = args[:trace_protocol] if args.key?(:trace_protocol)
           @uid = args[:uid] if args.key?(:uid)
         end
       end
@@ -13006,8 +12968,9 @@ module Google
         attr_accessor :endpoint
       
         # Required. Exporter that is used to view the distributed trace captured using
-        # OpenCensus. An exporter sends traces to any backend that is capable of
-        # consuming them. Recorded spans can be exported by registered exporters.
+        # the chosen trace protocol. An exporter sends traces to any backend that is
+        # capable of consuming them. Recorded spans can be exported by registered
+        # exporters.
         # Corresponds to the JSON property `exporter`
         # @return [String]
         attr_accessor :exporter
