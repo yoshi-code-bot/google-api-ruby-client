@@ -1786,7 +1786,7 @@ module Google
         # @return [String]
         attr_accessor :etag
       
-        # Optional. If set, validate the request and preview the review, but do not
+        # Optional. If set, validate the request and preview the result, but do not
         # actually apply it.
         # Corresponds to the JSON property `validateOnly`
         # @return [Boolean]
@@ -1854,7 +1854,7 @@ module Google
         # @return [String]
         attr_accessor :etag
       
-        # Optional. If set, validate the request and preview the review, but do not
+        # Optional. If set, validate the request and preview the result, but do not
         # actually apply it.
         # Corresponds to the JSON property `validateOnly`
         # @return [Boolean]
@@ -2235,6 +2235,27 @@ module Google
         # @return [String]
         attr_accessor :update_time
       
+        # Optional. Specifies the redirect URL for unauthorized requests received by
+        # workstation VMs in this cluster. Redirects to this endpoint will send a base64
+        # encoded `state` query param containing the target workstation name and
+        # original request hostname. The endpoint is responsible for retrieving a token
+        # using `GenerateAccessToken` and redirecting back to the original hostname with
+        # the token.
+        # Corresponds to the JSON property `workstationAuthorizationUrl`
+        # @return [String]
+        attr_accessor :workstation_authorization_url
+      
+        # Optional. Specifies the launch URL for workstations in this cluster. Requests
+        # sent to unstarted workstations will be redirected to this URL. Requests
+        # redirected to the launch endpoint will be sent with a `workstation` and `
+        # project` query parameter containing the full workstation resource name and
+        # project ID, respectively. The launch endpoint is responsible for starting the
+        # workstation, polling it until it reaches `STATE_RUNNING`, and then issuing a
+        # redirect to the workstation's host URL.
+        # Corresponds to the JSON property `workstationLaunchUrl`
+        # @return [String]
+        attr_accessor :workstation_launch_url
+      
         def initialize(**args)
            update!(**args)
         end
@@ -2262,6 +2283,8 @@ module Google
           @tags = args[:tags] if args.key?(:tags)
           @uid = args[:uid] if args.key?(:uid)
           @update_time = args[:update_time] if args.key?(:update_time)
+          @workstation_authorization_url = args[:workstation_authorization_url] if args.key?(:workstation_authorization_url)
+          @workstation_launch_url = args[:workstation_launch_url] if args.key?(:workstation_launch_url)
         end
       end
       
@@ -2451,10 +2474,11 @@ module Google
         attr_accessor :replica_zones
       
         # Optional. Number of seconds that a workstation can run until it is
-        # automatically shut down. We recommend that workstations be shut down daily to
-        # reduce costs and so that security updates can be applied upon restart. The
-        # idle_timeout and running_timeout fields are independent of each other. Note
-        # that the running_timeout field shuts down VMs after the specified time,
+        # automatically shut down. This field applies to workstations in both
+        # STATE_RUNNING and STATE_SUSPENDED. We recommend that workstations be shut down
+        # daily to reduce costs and so that security updates can be applied upon restart.
+        # The idle_timeout and running_timeout fields are independent of each other.
+        # Note that the running_timeout field shuts down VMs after the specified time,
         # regardless of whether or not the VMs are idle. Provide duration terminated by `
         # s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12
         # hours). A value of `"0s"` indicates that workstations using this configuration
