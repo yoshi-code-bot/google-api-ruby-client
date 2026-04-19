@@ -412,6 +412,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class ErrorHandlingSettingsEndSessionConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ErrorHandlingSettingsFallbackResponseConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class EvaluationMetricsThresholds
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -707,6 +719,18 @@ module Google
       end
       
       class MetricAnalysisSettings
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class MockConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class MockedToolCall
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1165,6 +1189,7 @@ module Google
       class AgentTool
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :agent, as: 'agent'
           property :description, as: 'description'
           property :name, as: 'name'
           property :root_agent, as: 'rootAgent'
@@ -1559,6 +1584,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :disable_conversation_logging, as: 'disableConversationLogging'
+          property :retention_window, as: 'retentionWindow'
         end
       end
       
@@ -1797,7 +1823,26 @@ module Google
       class ErrorHandlingSettings
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :end_session_config, as: 'endSessionConfig', class: Google::Apis::CesV1::ErrorHandlingSettingsEndSessionConfig, decorator: Google::Apis::CesV1::ErrorHandlingSettingsEndSessionConfig::Representation
+      
           property :error_handling_strategy, as: 'errorHandlingStrategy'
+          property :fallback_response_config, as: 'fallbackResponseConfig', class: Google::Apis::CesV1::ErrorHandlingSettingsFallbackResponseConfig, decorator: Google::Apis::CesV1::ErrorHandlingSettingsFallbackResponseConfig::Representation
+      
+        end
+      end
+      
+      class ErrorHandlingSettingsEndSessionConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :escalate_session, as: 'escalateSession'
+        end
+      end
+      
+      class ErrorHandlingSettingsFallbackResponseConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          hash :custom_fallback_messages, as: 'customFallbackMessages'
+          property :max_fallback_attempts, as: 'maxFallbackAttempts'
         end
       end
       
@@ -1875,6 +1920,8 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           hash :args, as: 'args'
           hash :context, as: 'context'
+          property :mock_config, as: 'mockConfig', class: Google::Apis::CesV1::MockConfig, decorator: Google::Apis::CesV1::MockConfig::Representation
+      
           property :tool, as: 'tool'
           property :toolset_tool, as: 'toolsetTool', class: Google::Apis::CesV1::ToolsetTool, decorator: Google::Apis::CesV1::ToolsetTool::Representation
       
@@ -2318,6 +2365,27 @@ module Google
         end
       end
       
+      class MockConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :mocked_tool_calls, as: 'mockedToolCalls', class: Google::Apis::CesV1::MockedToolCall, decorator: Google::Apis::CesV1::MockedToolCall::Representation
+      
+          property :unmatched_tool_call_behavior, as: 'unmatchedToolCallBehavior'
+        end
+      end
+      
+      class MockedToolCall
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          hash :expected_args_pattern, as: 'expectedArgsPattern'
+          hash :mock_response, as: 'mockResponse'
+          property :tool, as: 'tool'
+          property :tool_id, as: 'toolId'
+          property :toolset, as: 'toolset', class: Google::Apis::CesV1::ToolsetTool, decorator: Google::Apis::CesV1::ToolsetTool::Representation
+      
+        end
+      end
+      
       class ModelSettings
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2631,6 +2699,7 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :deployment, as: 'deployment'
+          property :enable_text_streaming, as: 'enableTextStreaming'
           property :entry_agent, as: 'entryAgent'
           collection :historical_contexts, as: 'historicalContexts', class: Google::Apis::CesV1::Message, decorator: Google::Apis::CesV1::Message::Representation
       
@@ -2979,6 +3048,8 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           hash :field_mappings, as: 'fieldMappings'
           property :mode, as: 'mode'
+          property :python_function, as: 'pythonFunction', class: Google::Apis::CesV1::PythonFunction, decorator: Google::Apis::CesV1::PythonFunction::Representation
+      
           property :python_script, as: 'pythonScript'
           property :source_tool_name, as: 'sourceToolName'
         end
