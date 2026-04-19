@@ -1,5 +1,9 @@
 # Release history for google-apis-oracledatabase_v1
 
+### v0.26.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260415
+
 ### v0.25.0 (2026-03-15)
 
 * Regenerated from discovery document revision 20260225
