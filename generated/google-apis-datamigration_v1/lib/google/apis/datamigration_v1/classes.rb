@@ -4372,6 +4372,13 @@ module Google
         # @return [String]
         attr_accessor :database
       
+        # Optional. If true, Database Migration Service will use IAM database
+        # authentication to connect to the database.
+        # Corresponds to the JSON property `enableIamAuthentication`
+        # @return [Boolean]
+        attr_accessor :enable_iam_authentication
+        alias_method :enable_iam_authentication?, :enable_iam_authentication
+      
         # Forward SSH Tunnel connectivity.
         # Corresponds to the JSON property `forwardSshConnectivity`
         # @return [Google::Apis::DatamigrationV1::ForwardSshTunnelConnectivity]
@@ -4446,6 +4453,7 @@ module Google
           @alloydb_cluster_id = args[:alloydb_cluster_id] if args.key?(:alloydb_cluster_id)
           @cloud_sql_id = args[:cloud_sql_id] if args.key?(:cloud_sql_id)
           @database = args[:database] if args.key?(:database)
+          @enable_iam_authentication = args[:enable_iam_authentication] if args.key?(:enable_iam_authentication)
           @forward_ssh_connectivity = args[:forward_ssh_connectivity] if args.key?(:forward_ssh_connectivity)
           @host = args[:host] if args.key?(:host)
           @network_architecture = args[:network_architecture] if args.key?(:network_architecture)
