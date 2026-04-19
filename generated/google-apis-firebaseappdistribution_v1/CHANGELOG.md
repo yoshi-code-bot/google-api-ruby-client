@@ -1,5 +1,9 @@
 # Release history for google-apis-firebaseappdistribution_v1
 
+### v0.18.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260408
+
 ### v0.17.0 (2026-01-18)
 
 * Regenerated from discovery document revision 20260113
