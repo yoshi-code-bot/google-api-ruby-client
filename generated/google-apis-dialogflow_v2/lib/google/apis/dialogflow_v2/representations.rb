@@ -1510,6 +1510,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleCloudDialogflowV2CesAppSpec
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleCloudDialogflowV2CesToolSpec
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -3191,6 +3203,12 @@ module Google
       end
       
       class GoogleCloudDialogflowV2ToolTlsConfigCaCert
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleCloudDialogflowV2ToolsetTool
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -6591,6 +6609,22 @@ module Google
         end
       end
       
+      class GoogleCloudDialogflowV2CesAppSpec
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :ces_app, as: 'cesApp'
+          property :confirmation_requirement, as: 'confirmationRequirement'
+        end
+      end
+      
+      class GoogleCloudDialogflowV2CesToolSpec
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :ces_tool, as: 'cesTool'
+          property :confirmation_requirement, as: 'confirmationRequirement'
+        end
+      end
+      
       class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -7313,6 +7347,10 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :agent_coaching_context, as: 'agentCoachingContext', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2AgentCoachingContext, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2AgentCoachingContext::Representation
       
+          collection :ces_app_specs, as: 'cesAppSpecs', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2CesAppSpec, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2CesAppSpec::Representation
+      
+          collection :ces_tool_specs, as: 'cesToolSpecs', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2CesToolSpec, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2CesToolSpec::Representation
+      
           property :create_time, as: 'createTime'
           property :description, as: 'description'
           property :free_form_context, as: 'freeFormContext', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2FreeFormContext, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2FreeFormContext::Representation
@@ -7326,6 +7364,8 @@ module Google
           property :summarization_context, as: 'summarizationContext', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2SummarizationContext, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2SummarizationContext::Representation
       
           collection :tools, as: 'tools'
+          collection :toolset_tools, as: 'toolsetTools', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2ToolsetTool, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2ToolsetTool::Representation
+      
           property :trigger_event, as: 'triggerEvent'
           property :update_time, as: 'updateTime'
         end
@@ -9386,6 +9426,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :create_time, as: 'createTime'
           hash :input_parameters, as: 'inputParameters'
           property :state, as: 'state'
@@ -9400,6 +9443,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :content, as: 'content'
           property :create_time, as: 'createTime'
           property :error, as: 'error', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2ToolCallResultError, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2ToolCallResultError::Representation
@@ -9493,6 +9539,15 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :cert, :base64 => true, as: 'cert'
           property :display_name, as: 'displayName'
+        end
+      end
+      
+      class GoogleCloudDialogflowV2ToolsetTool
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :confirmation_requirement, as: 'confirmationRequirement'
+          property :operation_id, as: 'operationId'
+          property :toolset, as: 'toolset'
         end
       end
       
@@ -10875,6 +10930,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :create_time, as: 'createTime'
           hash :input_parameters, as: 'inputParameters'
           property :state, as: 'state'
@@ -10889,6 +10947,9 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :action, as: 'action'
           property :answer_record, as: 'answerRecord'
+          property :ces_app, as: 'cesApp'
+          property :ces_tool, as: 'cesTool'
+          property :ces_toolset, as: 'cesToolset'
           property :content, as: 'content'
           property :create_time, as: 'createTime'
           property :error, as: 'error', class: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2beta1ToolCallResultError, decorator: Google::Apis::DialogflowV2::GoogleCloudDialogflowV2beta1ToolCallResultError::Representation
