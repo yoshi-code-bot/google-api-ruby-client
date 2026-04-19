@@ -315,8 +315,10 @@ module Google
           property :best_guess, as: 'bestGuess'
           property :from_bytes, as: 'fromBytes'
           property :from_file_name, as: 'fromFileName'
+          property :from_fusion_id, as: 'fromFusionId'
           property :from_header, as: 'fromHeader'
           property :from_url_path, as: 'fromUrlPath'
+          property :fusion_id_detection_metadata, :base64 => true, as: 'fusionIdDetectionMetadata'
         end
       end
       
