@@ -1,5 +1,9 @@
 # Release history for google-apis-parametermanager_v1
 
+### v0.7.0 (2026-04-19)
+
+* Regenerated from discovery document revision 20260325
+
 ### v0.6.0 (2026-03-15)
 
 * Regenerated from discovery document revision 20260309
