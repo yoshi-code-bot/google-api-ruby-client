@@ -64,7 +64,9 @@ module Google
         # googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS` for service
         # accounts, * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/
         # global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID` for workload identity
-        # pool identities.
+        # pool identities. * The special value `unknown_or_deleted_user` represents
+        # principals which cannot be read from the user info service, for example
+        # deleted users.
         # Corresponds to the JSON property `principal`
         # @return [String]
         attr_accessor :principal
