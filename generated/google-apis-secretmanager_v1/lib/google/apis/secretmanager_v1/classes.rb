@@ -670,15 +670,21 @@ module Google
         # @return [String]
         attr_accessor :api_version
       
-        # Output only. The time the operation was created.
+        # Output only. Time the operation was created.
         # Corresponds to the JSON property `createTime`
         # @return [String]
         attr_accessor :create_time
       
-        # Output only. The time the operation finished running.
+        # Output only. Time the operation finished running.
         # Corresponds to the JSON property `endTime`
         # @return [String]
         attr_accessor :end_time
+      
+        # Represents progress information for operations involving multiple secret
+        # versions.
+        # Corresponds to the JSON property `progress`
+        # @return [Google::Apis::SecretmanagerV1::Progress]
+        attr_accessor :progress
       
         # Output only. Identifies whether the user has requested cancellation of the
         # operation. Operations that have been cancelled successfully have google.
@@ -713,6 +719,7 @@ module Google
           @api_version = args[:api_version] if args.key?(:api_version)
           @create_time = args[:create_time] if args.key?(:create_time)
           @end_time = args[:end_time] if args.key?(:end_time)
+          @progress = args[:progress] if args.key?(:progress)
           @requested_cancellation = args[:requested_cancellation] if args.key?(:requested_cancellation)
           @status_message = args[:status_message] if args.key?(:status_message)
           @target = args[:target] if args.key?(:target)
@@ -812,6 +819,40 @@ module Google
           @bindings = args[:bindings] if args.key?(:bindings)
           @etag = args[:etag] if args.key?(:etag)
           @version = args[:version] if args.key?(:version)
+        end
+      end
+      
+      # Represents progress information for operations involving multiple secret
+      # versions.
+      class Progress
+        include Google::Apis::Core::Hashable
+      
+        # Output only. Number of secret versions that have been successfully processed
+        # so far.
+        # Corresponds to the JSON property `completedVersionCount`
+        # @return [Fixnum]
+        attr_accessor :completed_version_count
+      
+        # Output only. Number of secret versions that failed to process.
+        # Corresponds to the JSON property `failedVersionCount`
+        # @return [Fixnum]
+        attr_accessor :failed_version_count
+      
+        # Output only. Provides the total number of secret versions to be processed by
+        # the operation.
+        # Corresponds to the JSON property `totalVersionCount`
+        # @return [Fixnum]
+        attr_accessor :total_version_count
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @completed_version_count = args[:completed_version_count] if args.key?(:completed_version_count)
+          @failed_version_count = args[:failed_version_count] if args.key?(:failed_version_count)
+          @total_version_count = args[:total_version_count] if args.key?(:total_version_count)
         end
       end
       
