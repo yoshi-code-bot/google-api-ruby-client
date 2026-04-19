@@ -1118,6 +1118,7 @@ module Google
       
           property :operation, as: 'operation', class: Google::Apis::LoggingV2::LogEntryOperation, decorator: Google::Apis::LoggingV2::LogEntryOperation::Representation
       
+          hash :otel, as: 'otel'
           hash :proto_payload, as: 'protoPayload'
           property :receive_timestamp, as: 'receiveTimestamp'
           property :resource, as: 'resource', class: Google::Apis::LoggingV2::MonitoredResource, decorator: Google::Apis::LoggingV2::MonitoredResource::Representation

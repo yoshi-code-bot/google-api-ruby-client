@@ -2230,6 +2230,15 @@ module Google
         # @return [Google::Apis::LoggingV2::LogEntryOperation]
         attr_accessor :operation
       
+        # Optional. The structured OpenTelemetry protocol payload. Contains the
+        # OpenTelemetry Resource, Instrumentation Scope, and Entities attributes for
+        # this log as they are defined in the OTLP specification, and any other fields
+        # that do not have a direct analog in the LogEntry. See https://opentelemetry.io/
+        # docs/specs/otel/logs/data-model/
+        # Corresponds to the JSON property `otel`
+        # @return [Hash<String,Object>]
+        attr_accessor :otel
+      
         # The log entry payload, represented as a protocol buffer. Some Google Cloud
         # Platform services use this field for their log entry payloads.The following
         # protocol buffer types are supported; user-defined types are not supported:"
@@ -2351,6 +2360,7 @@ module Google
           @log_name = args[:log_name] if args.key?(:log_name)
           @metadata = args[:metadata] if args.key?(:metadata)
           @operation = args[:operation] if args.key?(:operation)
+          @otel = args[:otel] if args.key?(:otel)
           @proto_payload = args[:proto_payload] if args.key?(:proto_payload)
           @receive_timestamp = args[:receive_timestamp] if args.key?(:receive_timestamp)
           @resource = args[:resource] if args.key?(:resource)
