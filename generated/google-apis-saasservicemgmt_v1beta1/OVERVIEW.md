@@ -1,6 +1,6 @@
-# Simple REST client for version V1beta1 of the SaaS Runtime API
+# Simple REST client for version V1beta1 of the App Lifecycle Manager API
 
-This is a simple client library for version V1beta1 of the SaaS Runtime API. It provides:
+This is a simple client library for version V1beta1 of the App Lifecycle Manager API. It provides:
 
 * A client object that connects to the HTTP/JSON REST endpoint for the service.
 * Ruby objects for data structures related to the service.
@@ -65,7 +65,7 @@ More detailed descriptions of the Google simple REST clients are available in tw
 
 (Note: the above documents are written for the simple REST clients in general, and their examples may not reflect the Saasservicemgmt service in particular.)
 
-For reference information on specific calls in the SaaS Runtime API, see the {Google::Apis::SaasservicemgmtV1beta1::SaaSServiceManagementService class reference docs}.
+For reference information on specific calls in the App Lifecycle Manager API, see the {Google::Apis::SaasservicemgmtV1beta1::SaaSServiceManagementService class reference docs}.
 
 ## Which client should I use?
 

@@ -19,13 +19,13 @@ require 'google/apis/saasservicemgmt_v1beta1/gem_version.rb'
 
 module Google
   module Apis
-    # SaaS Runtime API
+    # App Lifecycle Manager API
     #
     # Model, deploy, and operate your SaaS at scale.
     #
     # @see https://cloud.google.com/saas-runtime/docs
     module SaasservicemgmtV1beta1
-      # Version of the SaaS Runtime API this client connects to.
+      # Version of the App Lifecycle Manager API this client connects to.
       # This is NOT the gem version.
       VERSION = 'V1beta1'
 
