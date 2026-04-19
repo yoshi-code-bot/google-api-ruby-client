@@ -3005,6 +3005,8 @@ module Google
           property :delete_time, as: 'deleteTime'
           property :display_name, as: 'displayName'
           property :etag, as: 'etag'
+          property :ignored_clusters_selector, as: 'ignoredClustersSelector', class: Google::Apis::GkehubV1alpha::ClusterSelector, decorator: Google::Apis::GkehubV1alpha::ClusterSelector::Representation
+      
           hash :labels, as: 'labels'
           property :name, as: 'name'
           collection :stages, as: 'stages', class: Google::Apis::GkehubV1alpha::Stage, decorator: Google::Apis::GkehubV1alpha::Stage::Representation

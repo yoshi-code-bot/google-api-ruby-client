@@ -6275,6 +6275,11 @@ module Google
         # @return [String]
         attr_accessor :etag
       
+        # Selector for clusters.
+        # Corresponds to the JSON property `ignoredClustersSelector`
+        # @return [Google::Apis::GkehubV1alpha::ClusterSelector]
+        attr_accessor :ignored_clusters_selector
+      
         # Optional. Labels for this Rollout Sequence.
         # Corresponds to the JSON property `labels`
         # @return [Hash<String,String>]
@@ -6318,6 +6323,7 @@ module Google
           @delete_time = args[:delete_time] if args.key?(:delete_time)
           @display_name = args[:display_name] if args.key?(:display_name)
           @etag = args[:etag] if args.key?(:etag)
+          @ignored_clusters_selector = args[:ignored_clusters_selector] if args.key?(:ignored_clusters_selector)
           @labels = args[:labels] if args.key?(:labels)
           @name = args[:name] if args.key?(:name)
           @stages = args[:stages] if args.key?(:stages)
