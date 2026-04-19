@@ -3265,6 +3265,26 @@ module Google
         # @return [Fixnum]
         attr_accessor :max_connections_per_instance
       
+        # Defines a maximum number of in-flight requests for the whole NEG or
+        # instance group. Not available if backend's balancingMode isRATE or CONNECTION.
+        # Corresponds to the JSON property `maxInFlightRequests`
+        # @return [Fixnum]
+        attr_accessor :max_in_flight_requests
+      
+        # Defines a maximum number of in-flight requests for a single endpoint.
+        # Not available if backend's balancingMode is RATE
+        # or CONNECTION.
+        # Corresponds to the JSON property `maxInFlightRequestsPerEndpoint`
+        # @return [Fixnum]
+        attr_accessor :max_in_flight_requests_per_endpoint
+      
+        # Defines a maximum number of in-flight requests for a single VM.
+        # Not available if backend's balancingMode is RATE
+        # or CONNECTION.
+        # Corresponds to the JSON property `maxInFlightRequestsPerInstance`
+        # @return [Fixnum]
+        attr_accessor :max_in_flight_requests_per_instance
+      
         # Defines a maximum number of HTTP requests per second (RPS). For
         # usage guidelines, seeRate
         # balancing mode and Utilization
@@ -3320,6 +3340,11 @@ module Google
         # @return [String]
         attr_accessor :preference
       
+        # 
+        # Corresponds to the JSON property `trafficDuration`
+        # @return [String]
+        attr_accessor :traffic_duration
+      
         def initialize(**args)
            update!(**args)
         end
@@ -3335,12 +3360,16 @@ module Google
           @max_connections = args[:max_connections] if args.key?(:max_connections)
           @max_connections_per_endpoint = args[:max_connections_per_endpoint] if args.key?(:max_connections_per_endpoint)
           @max_connections_per_instance = args[:max_connections_per_instance] if args.key?(:max_connections_per_instance)
+          @max_in_flight_requests = args[:max_in_flight_requests] if args.key?(:max_in_flight_requests)
+          @max_in_flight_requests_per_endpoint = args[:max_in_flight_requests_per_endpoint] if args.key?(:max_in_flight_requests_per_endpoint)
+          @max_in_flight_requests_per_instance = args[:max_in_flight_requests_per_instance] if args.key?(:max_in_flight_requests_per_instance)
           @max_rate = args[:max_rate] if args.key?(:max_rate)
           @max_rate_per_endpoint = args[:max_rate_per_endpoint] if args.key?(:max_rate_per_endpoint)
           @max_rate_per_instance = args[:max_rate_per_instance] if args.key?(:max_rate_per_instance)
           @max_utilization = args[:max_utilization] if args.key?(:max_utilization)
           @orchestration_info = args[:orchestration_info] if args.key?(:orchestration_info)
           @preference = args[:preference] if args.key?(:preference)
+          @traffic_duration = args[:traffic_duration] if args.key?(:traffic_duration)
         end
       end
       
@@ -3450,6 +3479,14 @@ module Google
         # @return [Google::Apis::ComputeV1::BackendBucketParams]
         attr_accessor :params
       
+        # Output only. [Output Only] URL of the region where the regional backend bucket
+        # resides. This field is not applicable to global backend buckets.
+        # You must specify this field as part of the HTTP request URL. It is
+        # not settable as a field in the request body.
+        # Corresponds to the JSON property `region`
+        # @return [String]
+        attr_accessor :region
+      
         # [Output Only] Server-defined URL for the resource.
         # Corresponds to the JSON property `selfLink`
         # @return [String]
@@ -3479,8 +3516,133 @@ module Google
           @load_balancing_scheme = args[:load_balancing_scheme] if args.key?(:load_balancing_scheme)
           @name = args[:name] if args.key?(:name)
           @params = args[:params] if args.key?(:params)
+          @region = args[:region] if args.key?(:region)
           @self_link = args[:self_link] if args.key?(:self_link)
           @used_by = args[:used_by] if args.key?(:used_by)
+        end
+      end
+      
+      # 
+      class BackendBucketAggregatedList
+        include Google::Apis::Core::Hashable
+      
+        # [Output Only] Unique identifier for the resource; defined by the server.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        # A list of BackendBucketsScopedList resources.
+        # Corresponds to the JSON property `items`
+        # @return [Hash<String,Google::Apis::ComputeV1::BackendBucketsScopedList>]
+        attr_accessor :items
+      
+        # Output only. Type of resource.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        # [Output Only] This token allows you to get the next page of results for
+        # list requests. If the number of results is larger thanmaxResults, use the
+        # nextPageToken as a value for
+        # the query parameter pageToken in the next list request.
+        # Subsequent list requests will have their own nextPageToken to
+        # continue paging through the results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # Output only. [Output Only] Server-defined URL for this resource.
+        # Corresponds to the JSON property `selfLink`
+        # @return [String]
+        attr_accessor :self_link
+      
+        # [Output Only] Informational warning message.
+        # Corresponds to the JSON property `warning`
+        # @return [Google::Apis::ComputeV1::BackendBucketAggregatedList::Warning]
+        attr_accessor :warning
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @id = args[:id] if args.key?(:id)
+          @items = args[:items] if args.key?(:items)
+          @kind = args[:kind] if args.key?(:kind)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @self_link = args[:self_link] if args.key?(:self_link)
+          @warning = args[:warning] if args.key?(:warning)
+        end
+        
+        # [Output Only] Informational warning message.
+        class Warning
+          include Google::Apis::Core::Hashable
+        
+          # [Output Only] A warning code, if applicable. For example, Compute
+          # Engine returns NO_RESULTS_ON_PAGE if there
+          # are no results in the response.
+          # Corresponds to the JSON property `code`
+          # @return [String]
+          attr_accessor :code
+        
+          # [Output Only] Metadata about this warning in key:
+          # value format. For example:
+          # "data": [
+          # `
+          # "key": "scope",
+          # "value": "zones/us-east1-d"
+          # `
+          # Corresponds to the JSON property `data`
+          # @return [Array<Google::Apis::ComputeV1::BackendBucketAggregatedList::Warning::Datum>]
+          attr_accessor :data
+        
+          # [Output Only] A human-readable description of the warning code.
+          # Corresponds to the JSON property `message`
+          # @return [String]
+          attr_accessor :message
+        
+          def initialize(**args)
+             update!(**args)
+          end
+        
+          # Update properties of this object
+          def update!(**args)
+            @code = args[:code] if args.key?(:code)
+            @data = args[:data] if args.key?(:data)
+            @message = args[:message] if args.key?(:message)
+          end
+          
+          # 
+          class Datum
+            include Google::Apis::Core::Hashable
+          
+            # [Output Only] A key that provides more detail on the warning being
+            # returned. For example, for warnings where there are no results in a list
+            # request for a particular zone, this key might be scope and
+            # the key value might be the zone name. Other examples might be a key
+            # indicating a deprecated resource and a suggested replacement, or a
+            # warning about invalid network settings (for example, if an instance
+            # attempts to perform IP forwarding but is not enabled for IP forwarding).
+            # Corresponds to the JSON property `key`
+            # @return [String]
+            attr_accessor :key
+          
+            # [Output Only] A warning data value corresponding to the key.
+            # Corresponds to the JSON property `value`
+            # @return [String]
+            attr_accessor :value
+          
+            def initialize(**args)
+               update!(**args)
+            end
+          
+            # Update properties of this object
+            def update!(**args)
+              @key = args[:key] if args.key?(:key)
+              @value = args[:value] if args.key?(:value)
+            end
+          end
         end
       end
       
@@ -3864,6 +4026,132 @@ module Google
         end
       end
       
+      # 
+      class BackendBucketListUsable
+        include Google::Apis::Core::Hashable
+      
+        # [Output Only] Unique identifier for the resource; defined by the server.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        # A list of BackendBucket resources.
+        # Corresponds to the JSON property `items`
+        # @return [Array<Google::Apis::ComputeV1::BackendBucket>]
+        attr_accessor :items
+      
+        # Output only. [Output Only] Type of resource. Alwayscompute#
+        # usableBackendBucketList for lists of usable backend
+        # buckets.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        # [Output Only] This token allows you to get the next page of results for
+        # list requests. If the number of results is larger thanmaxResults, use the
+        # nextPageToken as a value for
+        # the query parameter pageToken in the next list request.
+        # Subsequent list requests will have their own nextPageToken to
+        # continue paging through the results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # Output only. [Output Only] Server-defined URL for this resource.
+        # Corresponds to the JSON property `selfLink`
+        # @return [String]
+        attr_accessor :self_link
+      
+        # [Output Only] Informational warning message.
+        # Corresponds to the JSON property `warning`
+        # @return [Google::Apis::ComputeV1::BackendBucketListUsable::Warning]
+        attr_accessor :warning
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @id = args[:id] if args.key?(:id)
+          @items = args[:items] if args.key?(:items)
+          @kind = args[:kind] if args.key?(:kind)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @self_link = args[:self_link] if args.key?(:self_link)
+          @warning = args[:warning] if args.key?(:warning)
+        end
+        
+        # [Output Only] Informational warning message.
+        class Warning
+          include Google::Apis::Core::Hashable
+        
+          # [Output Only] A warning code, if applicable. For example, Compute
+          # Engine returns NO_RESULTS_ON_PAGE if there
+          # are no results in the response.
+          # Corresponds to the JSON property `code`
+          # @return [String]
+          attr_accessor :code
+        
+          # [Output Only] Metadata about this warning in key:
+          # value format. For example:
+          # "data": [
+          # `
+          # "key": "scope",
+          # "value": "zones/us-east1-d"
+          # `
+          # Corresponds to the JSON property `data`
+          # @return [Array<Google::Apis::ComputeV1::BackendBucketListUsable::Warning::Datum>]
+          attr_accessor :data
+        
+          # [Output Only] A human-readable description of the warning code.
+          # Corresponds to the JSON property `message`
+          # @return [String]
+          attr_accessor :message
+        
+          def initialize(**args)
+             update!(**args)
+          end
+        
+          # Update properties of this object
+          def update!(**args)
+            @code = args[:code] if args.key?(:code)
+            @data = args[:data] if args.key?(:data)
+            @message = args[:message] if args.key?(:message)
+          end
+          
+          # 
+          class Datum
+            include Google::Apis::Core::Hashable
+          
+            # [Output Only] A key that provides more detail on the warning being
+            # returned. For example, for warnings where there are no results in a list
+            # request for a particular zone, this key might be scope and
+            # the key value might be the zone name. Other examples might be a key
+            # indicating a deprecated resource and a suggested replacement, or a
+            # warning about invalid network settings (for example, if an instance
+            # attempts to perform IP forwarding but is not enabled for IP forwarding).
+            # Corresponds to the JSON property `key`
+            # @return [String]
+            attr_accessor :key
+          
+            # [Output Only] A warning data value corresponding to the key.
+            # Corresponds to the JSON property `value`
+            # @return [String]
+            attr_accessor :value
+          
+            def initialize(**args)
+               update!(**args)
+            end
+          
+            # Update properties of this object
+            def update!(**args)
+              @key = args[:key] if args.key?(:key)
+              @value = args[:value] if args.key?(:value)
+            end
+          end
+        end
+      end
+      
       # Additional Backend Bucket parameters.
       class BackendBucketParams
         include Google::Apis::Core::Hashable
@@ -3911,6 +4199,103 @@ module Google
         # Update properties of this object
         def update!(**args)
           @reference = args[:reference] if args.key?(:reference)
+        end
+      end
+      
+      # 
+      class BackendBucketsScopedList
+        include Google::Apis::Core::Hashable
+      
+        # A list of BackendBuckets contained in this scope.
+        # Corresponds to the JSON property `backendBuckets`
+        # @return [Array<Google::Apis::ComputeV1::BackendBucket>]
+        attr_accessor :backend_buckets
+      
+        # Informational warning which replaces the list of
+        # backend services when the list is empty.
+        # Corresponds to the JSON property `warning`
+        # @return [Google::Apis::ComputeV1::BackendBucketsScopedList::Warning]
+        attr_accessor :warning
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @backend_buckets = args[:backend_buckets] if args.key?(:backend_buckets)
+          @warning = args[:warning] if args.key?(:warning)
+        end
+        
+        # Informational warning which replaces the list of
+        # backend services when the list is empty.
+        class Warning
+          include Google::Apis::Core::Hashable
+        
+          # [Output Only] A warning code, if applicable. For example, Compute
+          # Engine returns NO_RESULTS_ON_PAGE if there
+          # are no results in the response.
+          # Corresponds to the JSON property `code`
+          # @return [String]
+          attr_accessor :code
+        
+          # [Output Only] Metadata about this warning in key:
+          # value format. For example:
+          # "data": [
+          # `
+          # "key": "scope",
+          # "value": "zones/us-east1-d"
+          # `
+          # Corresponds to the JSON property `data`
+          # @return [Array<Google::Apis::ComputeV1::BackendBucketsScopedList::Warning::Datum>]
+          attr_accessor :data
+        
+          # [Output Only] A human-readable description of the warning code.
+          # Corresponds to the JSON property `message`
+          # @return [String]
+          attr_accessor :message
+        
+          def initialize(**args)
+             update!(**args)
+          end
+        
+          # Update properties of this object
+          def update!(**args)
+            @code = args[:code] if args.key?(:code)
+            @data = args[:data] if args.key?(:data)
+            @message = args[:message] if args.key?(:message)
+          end
+          
+          # 
+          class Datum
+            include Google::Apis::Core::Hashable
+          
+            # [Output Only] A key that provides more detail on the warning being
+            # returned. For example, for warnings where there are no results in a list
+            # request for a particular zone, this key might be scope and
+            # the key value might be the zone name. Other examples might be a key
+            # indicating a deprecated resource and a suggested replacement, or a
+            # warning about invalid network settings (for example, if an instance
+            # attempts to perform IP forwarding but is not enabled for IP forwarding).
+            # Corresponds to the JSON property `key`
+            # @return [String]
+            attr_accessor :key
+          
+            # [Output Only] A warning data value corresponding to the key.
+            # Corresponds to the JSON property `value`
+            # @return [String]
+            attr_accessor :value
+          
+            def initialize(**args)
+               update!(**args)
+            end
+          
+            # Update properties of this object
+            def update!(**args)
+              @key = args[:key] if args.key?(:key)
+              @value = args[:value] if args.key?(:value)
+            end
+          end
         end
       end
       
@@ -4273,7 +4658,7 @@ module Google
         # field.
         # 
         # This field is applicable to either:
-        # - A regional backend service with the service_protocol set to HTTP,
+        # - A regional backend service with the service protocol set to HTTP,
         # HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
         # INTERNAL_MANAGED.
         # - A global backend service with the
@@ -6571,6 +6956,17 @@ module Google
       class BulkInsertDiskResource
         include Google::Apis::Core::Hashable
       
+        # The parameters for the instant snapshot group.
+        # Corresponds to the JSON property `instantSnapshotGroupParameters`
+        # @return [Google::Apis::ComputeV1::InstantSnapshotGroupParameters]
+        attr_accessor :instant_snapshot_group_parameters
+      
+        # The parameters for the snapshot group. The usage of snapshot group feature
+        # is restricted.
+        # Corresponds to the JSON property `snapshotGroupParameters`
+        # @return [Google::Apis::ComputeV1::SnapshotGroupParameters]
+        attr_accessor :snapshot_group_parameters
+      
         # The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
         # This may be a full or partial URL, such as:
         # 
@@ -6594,6 +6990,8 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @instant_snapshot_group_parameters = args[:instant_snapshot_group_parameters] if args.key?(:instant_snapshot_group_parameters)
+          @snapshot_group_parameters = args[:snapshot_group_parameters] if args.key?(:snapshot_group_parameters)
           @source_consistency_group_policy = args[:source_consistency_group_policy] if args.key?(:source_consistency_group_policy)
         end
       end
@@ -6951,6 +7349,246 @@ module Google
         end
       end
       
+      # Message containing CachePolicy configuration for URL Map's Route Action.
+      class CachePolicy
+        include Google::Apis::Core::Hashable
+      
+        # Bypass the cache when the specified request headers are matched by name,
+        # e.g. Pragma or Authorization headers. Values are case-insensitive. Up to 5
+        # header names can be specified. The cache is bypassed for all `cacheMode`
+        # values.
+        # Corresponds to the JSON property `cacheBypassRequestHeaderNames`
+        # @return [Array<String>]
+        attr_accessor :cache_bypass_request_header_names
+      
+        # Message containing what to include in the cache key for a request for Cache
+        # Policy defined on Route Action.
+        # Corresponds to the JSON property `cacheKeyPolicy`
+        # @return [Google::Apis::ComputeV1::CachePolicyCacheKeyPolicy]
+        attr_accessor :cache_key_policy
+      
+        # Specifies the cache setting for all responses from this route. If not
+        # specified, Cloud CDN uses `CACHE_ALL_STATIC` mode.
+        # Corresponds to the JSON property `cacheMode`
+        # @return [String]
+        attr_accessor :cache_mode
+      
+        # A Duration represents a fixed-length span of time represented
+        # as a count of seconds and fractions of seconds at nanosecond
+        # resolution. It is independent of any calendar and concepts like "day"
+        # or "month". Range is approximately 10,000 years.
+        # Corresponds to the JSON property `clientTtl`
+        # @return [Google::Apis::ComputeV1::Duration]
+        attr_accessor :client_ttl
+      
+        # A Duration represents a fixed-length span of time represented
+        # as a count of seconds and fractions of seconds at nanosecond
+        # resolution. It is independent of any calendar and concepts like "day"
+        # or "month". Range is approximately 10,000 years.
+        # Corresponds to the JSON property `defaultTtl`
+        # @return [Google::Apis::ComputeV1::Duration]
+        attr_accessor :default_ttl
+      
+        # A Duration represents a fixed-length span of time represented
+        # as a count of seconds and fractions of seconds at nanosecond
+        # resolution. It is independent of any calendar and concepts like "day"
+        # or "month". Range is approximately 10,000 years.
+        # Corresponds to the JSON property `maxTtl`
+        # @return [Google::Apis::ComputeV1::Duration]
+        attr_accessor :max_ttl
+      
+        # Negative caching allows per-status code TTLs to be set, in order
+        # to apply fine-grained caching for common errors or redirects.
+        # This can reduce the load on your origin and improve end-user
+        # experience by reducing response latency.
+        # When the `cacheMode` is set to `CACHE_ALL_STATIC` or
+        # `USE_ORIGIN_HEADERS`, negative caching applies to responses with
+        # the specified response code that lack any Cache-Control, Expires, or
+        # Pragma: no-cache directives. When the `cacheMode` is set to
+        # `FORCE_CACHE_ALL`, negative caching applies to all responses
+        # with the specified response code, and overrides any caching headers. By
+        # default, Cloud CDN applies the following TTLs to these HTTP status codes:
+        # * 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m
+        # * 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s
+        # * 405 (Method Not Found), 501 (Not Implemented): 60s
+        # These defaults can be overridden in `negativeCachingPolicy`.
+        # If not specified, Cloud CDN applies negative caching by default.
+        # Corresponds to the JSON property `negativeCaching`
+        # @return [Boolean]
+        attr_accessor :negative_caching
+        alias_method :negative_caching?, :negative_caching
+      
+        # Sets a cache TTL for the specified HTTP status code.
+        # `negativeCaching` must be enabled to configure `negativeCachingPolicy`.
+        # Omitting the policy and leaving `negativeCaching` enabled will use Cloud
+        # CDN's default cache TTLs. Note that when specifying an explicit
+        # `negativeCachingPolicy`, you should take care to specify a cache TTL for
+        # all response codes that you wish to cache. Cloud CDN will not apply any
+        # default negative caching when a policy exists.
+        # Corresponds to the JSON property `negativeCachingPolicy`
+        # @return [Array<Google::Apis::ComputeV1::CachePolicyNegativeCachingPolicy>]
+        attr_accessor :negative_caching_policy
+      
+        # If true then Cloud CDN will combine multiple concurrent cache fill
+        # requests into a small number of requests to the origin. If not specified,
+        # Cloud CDN applies request coalescing by default.
+        # Corresponds to the JSON property `requestCoalescing`
+        # @return [Boolean]
+        attr_accessor :request_coalescing
+        alias_method :request_coalescing?, :request_coalescing
+      
+        # A Duration represents a fixed-length span of time represented
+        # as a count of seconds and fractions of seconds at nanosecond
+        # resolution. It is independent of any calendar and concepts like "day"
+        # or "month". Range is approximately 10,000 years.
+        # Corresponds to the JSON property `serveWhileStale`
+        # @return [Google::Apis::ComputeV1::Duration]
+        attr_accessor :serve_while_stale
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @cache_bypass_request_header_names = args[:cache_bypass_request_header_names] if args.key?(:cache_bypass_request_header_names)
+          @cache_key_policy = args[:cache_key_policy] if args.key?(:cache_key_policy)
+          @cache_mode = args[:cache_mode] if args.key?(:cache_mode)
+          @client_ttl = args[:client_ttl] if args.key?(:client_ttl)
+          @default_ttl = args[:default_ttl] if args.key?(:default_ttl)
+          @max_ttl = args[:max_ttl] if args.key?(:max_ttl)
+          @negative_caching = args[:negative_caching] if args.key?(:negative_caching)
+          @negative_caching_policy = args[:negative_caching_policy] if args.key?(:negative_caching_policy)
+          @request_coalescing = args[:request_coalescing] if args.key?(:request_coalescing)
+          @serve_while_stale = args[:serve_while_stale] if args.key?(:serve_while_stale)
+        end
+      end
+      
+      # Message containing what to include in the cache key for a request for Cache
+      # Policy defined on Route Action.
+      class CachePolicyCacheKeyPolicy
+        include Google::Apis::Core::Hashable
+      
+        # Names of query string parameters to exclude in cache keys. All other
+        # parameters will be included. Either specify `excludedQueryParameters`
+        # or `includedQueryParameters`, not both. '&' and '=' will be percent
+        # encoded and not treated as delimiters.
+        # Note: This field applies to routes that use backend services. Attempting
+        # to set it on a route that points exclusively to Backend Buckets will
+        # result in a configuration error. For routes that point to a Backend
+        # Bucket, use `includedQueryParameters` to define which parameters should
+        # be part of the cache key.
+        # Corresponds to the JSON property `excludedQueryParameters`
+        # @return [Array<String>]
+        attr_accessor :excluded_query_parameters
+      
+        # If true, requests to different hosts will be cached separately.
+        # Note: This setting is only applicable to routes that use a Backend
+        # Service. It does not affect requests served by a Backend Bucket, as the
+        # host is never included in a Backend Bucket's cache key. Attempting to set
+        # it on a route that points exclusively to Backend Buckets will result in a
+        # configuration error.
+        # Corresponds to the JSON property `includeHost`
+        # @return [Boolean]
+        attr_accessor :include_host
+        alias_method :include_host?, :include_host
+      
+        # If true, http and https requests will be cached separately.
+        # Note: This setting is only applicable to routes that use a Backend
+        # Service. It does not affect requests served by a Backend Bucket, as the
+        # protocol is never included in a Backend Bucket's cache key. Attempting to
+        # set on a route that points exclusively to Backend Buckets will result in
+        # a configuration error.
+        # Corresponds to the JSON property `includeProtocol`
+        # @return [Boolean]
+        attr_accessor :include_protocol
+        alias_method :include_protocol?, :include_protocol
+      
+        # If true, include query string parameters in the cache key according to
+        # `includedQueryParameters` and `excludedQueryParameters`. If neither
+        # is set, the entire query string will be included. If false, the query
+        # string will be excluded from the cache key entirely.
+        # Note: This field applies to routes that use backend services. Attempting
+        # to set it on a route that points exclusively to Backend Buckets will
+        # result in a configuration error. For routes that point to a Backend
+        # Bucket, use `includedQueryParameters` to define which parameters should
+        # be part of the cache key.
+        # Corresponds to the JSON property `includeQueryString`
+        # @return [Boolean]
+        attr_accessor :include_query_string
+        alias_method :include_query_string?, :include_query_string
+      
+        # Allows HTTP cookies (by name) to be used in the cache key.
+        # The name=value pair will be used in the cache key Cloud CDN generates.
+        # Note: This setting is only applicable to routes that use a Backend
+        # Service. It does not affect requests served by a Backend Bucket.
+        # Attempting to set it on a route that points exclusively to Backend
+        # Buckets will result in a configuration error. Up to 5 cookie names can be
+        # specified.
+        # Corresponds to the JSON property `includedCookieNames`
+        # @return [Array<String>]
+        attr_accessor :included_cookie_names
+      
+        # Allows HTTP request headers (by name) to be used in the cache key.
+        # Corresponds to the JSON property `includedHeaderNames`
+        # @return [Array<String>]
+        attr_accessor :included_header_names
+      
+        # Names of query string parameters to include in cache keys. All other
+        # parameters will be excluded. Either specify `includedQueryParameters`
+        # or `excludedQueryParameters`, not both. '&' and '=' will be percent
+        # encoded and not treated as delimiters.
+        # Corresponds to the JSON property `includedQueryParameters`
+        # @return [Array<String>]
+        attr_accessor :included_query_parameters
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @excluded_query_parameters = args[:excluded_query_parameters] if args.key?(:excluded_query_parameters)
+          @include_host = args[:include_host] if args.key?(:include_host)
+          @include_protocol = args[:include_protocol] if args.key?(:include_protocol)
+          @include_query_string = args[:include_query_string] if args.key?(:include_query_string)
+          @included_cookie_names = args[:included_cookie_names] if args.key?(:included_cookie_names)
+          @included_header_names = args[:included_header_names] if args.key?(:included_header_names)
+          @included_query_parameters = args[:included_query_parameters] if args.key?(:included_query_parameters)
+        end
+      end
+      
+      # Specify CDN TTLs for response error codes.
+      class CachePolicyNegativeCachingPolicy
+        include Google::Apis::Core::Hashable
+      
+        # The HTTP status code to define a TTL against. Only HTTP status codes
+        # 300, 301, 302, 307, 308, 404, 405, 410, 421, 451 and 501 can be
+        # specified as values, and you cannot specify a status code more than
+        # once.
+        # Corresponds to the JSON property `code`
+        # @return [Fixnum]
+        attr_accessor :code
+      
+        # A Duration represents a fixed-length span of time represented
+        # as a count of seconds and fractions of seconds at nanosecond
+        # resolution. It is independent of any calendar and concepts like "day"
+        # or "month". Range is approximately 10,000 years.
+        # Corresponds to the JSON property `ttl`
+        # @return [Google::Apis::ComputeV1::Duration]
+        attr_accessor :ttl
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @code = args[:code] if args.key?(:code)
+          @ttl = args[:ttl] if args.key?(:ttl)
+        end
+      end
+      
       # A request to recommend the best way to consume the specified resources in the
       # future.
       class CalendarModeAdviceRequest
@@ -7178,6 +7816,11 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Additional commitment params.
+        # Corresponds to the JSON property `params`
+        # @return [Google::Apis::ComputeV1::CommitmentParams]
+        attr_accessor :params
+      
         # The minimum time duration that you commit to purchasing resources.
         # The plan that you choose determines the preset term length of the
         # commitment (which is 1 year or 3 years) and affects the discount rate that
@@ -7289,6 +7932,7 @@ module Google
           @license_resource = args[:license_resource] if args.key?(:license_resource)
           @merge_source_commitments = args[:merge_source_commitments] if args.key?(:merge_source_commitments)
           @name = args[:name] if args.key?(:name)
+          @params = args[:params] if args.key?(:params)
           @plan = args[:plan] if args.key?(:plan)
           @region = args[:region] if args.key?(:region)
           @reservations = args[:reservations] if args.key?(:reservations)
@@ -7557,6 +8201,31 @@ module Google
               @value = args[:value] if args.key?(:value)
             end
           end
+        end
+      end
+      
+      # Additional commitment params.
+      class CommitmentParams
+        include Google::Apis::Core::Hashable
+      
+        # Input only. Resource manager tags to be bound to the commitment. Tag keys and
+        # values have the same definition as resource
+        # manager tags. Keys and values can be either in numeric format,
+        # such as `tagKeys/`tag_key_id`` and `tagValues/`tag_value_id`` or in
+        # namespaced format such as ``org_id|project_id`/`tag_key_short_name`` and
+        # ``tag_value_short_name``. The field is ignored (both PUT &
+        # PATCH) when empty.
+        # Corresponds to the JSON property `resourceManagerTags`
+        # @return [Hash<String,String>]
+        attr_accessor :resource_manager_tags
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @resource_manager_tags = args[:resource_manager_tags] if args.key?(:resource_manager_tags)
         end
       end
       
@@ -7922,6 +8591,39 @@ module Google
         end
       end
       
+      # Response message for RegionCompositeHealthChecks.GetHealth
+      class CompositeHealthCheckHealth
+        include Google::Apis::Core::Hashable
+      
+        # Health sources and their corresponding health states.
+        # Corresponds to the JSON property `healthSources`
+        # @return [Array<Google::Apis::ComputeV1::CompositeHealthChecksGetHealthResponseHealthSourceHealth>]
+        attr_accessor :health_sources
+      
+        # Health state of the CompositeHealthCheck.
+        # Corresponds to the JSON property `healthState`
+        # @return [String]
+        attr_accessor :health_state
+      
+        # Output only. [Output Only] Type of resource. Alwayscompute#
+        # compositeHealthCheckHealth for the health of
+        # composite health checks.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @health_sources = args[:health_sources] if args.key?(:health_sources)
+          @health_state = args[:health_state] if args.key?(:health_state)
+          @kind = args[:kind] if args.key?(:kind)
+        end
+      end
+      
       # 
       class CompositeHealthCheckList
         include Google::Apis::Core::Hashable
@@ -8044,6 +8746,31 @@ module Google
               @value = args[:value] if args.key?(:value)
             end
           end
+        end
+      end
+      
+      # 
+      class CompositeHealthChecksGetHealthResponseHealthSourceHealth
+        include Google::Apis::Core::Hashable
+      
+        # Health state of the associated HealthSource resource.
+        # Corresponds to the JSON property `healthState`
+        # @return [String]
+        attr_accessor :health_state
+      
+        # Fully qualified URL of the associated HealthSource resource.
+        # Corresponds to the JSON property `source`
+        # @return [String]
+        attr_accessor :source
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @health_state = args[:health_state] if args.key?(:health_state)
+          @source = args[:source] if args.key?(:source)
         end
       end
       
@@ -10329,6 +11056,34 @@ module Google
               @value = args[:value] if args.key?(:value)
             end
           end
+        end
+      end
+      
+      # 
+      class DiskUpdateKmsKeyRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The new KMS key to replace the current one on the disk. If empty,
+        # the disk
+        # will be re-encrypted using the primary version of the disk's current KMS
+        # key.
+        # The KMS key can be provided in the following formats:
+        # 
+        # 
+        # - projects/project_id/locations/location/keyRings/key_ring/cryptoKeys/key
+        # Where project is the project ID or
+        # project number.
+        # Corresponds to the JSON property `kmsKeyName`
+        # @return [String]
+        attr_accessor :kms_key_name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @kms_key_name = args[:kms_key_name] if args.key?(:kms_key_name)
         end
       end
       
@@ -13708,6 +14463,11 @@ module Google
         # @return [String]
         attr_accessor :name_prefix
       
+        # Additional future reservation params.
+        # Corresponds to the JSON property `params`
+        # @return [Google::Apis::ComputeV1::FutureReservationParams]
+        attr_accessor :params
+      
         # Planning state before being submitted for evaluation
         # Corresponds to the JSON property `planningStatus`
         # @return [String]
@@ -13800,6 +14560,7 @@ module Google
           @kind = args[:kind] if args.key?(:kind)
           @name = args[:name] if args.key?(:name)
           @name_prefix = args[:name_prefix] if args.key?(:name_prefix)
+          @params = args[:params] if args.key?(:params)
           @planning_status = args[:planning_status] if args.key?(:planning_status)
           @reservation_mode = args[:reservation_mode] if args.key?(:reservation_mode)
           @reservation_name = args[:reservation_name] if args.key?(:reservation_name)
@@ -13847,6 +14608,32 @@ module Google
           @commitment_name = args[:commitment_name] if args.key?(:commitment_name)
           @commitment_plan = args[:commitment_plan] if args.key?(:commitment_plan)
           @previous_commitment_terms = args[:previous_commitment_terms] if args.key?(:previous_commitment_terms)
+        end
+      end
+      
+      # Additional future reservation params.
+      class FutureReservationParams
+        include Google::Apis::Core::Hashable
+      
+        # Input only. Resource manager tags to be bound to the future reservation. Tag
+        # keys and
+        # values have the same definition as resource
+        # manager tags. Keys and values can be either in numeric format,
+        # such as `tagKeys/`tag_key_id`` and `tagValues/`tag_value_id`` or in
+        # namespaced format such as ``org_id|project_id`/`tag_key_short_name`` and
+        # ``tag_value_short_name``. The field is ignored (both PUT &
+        # PATCH) when empty.
+        # Corresponds to the JSON property `resourceManagerTags`
+        # @return [Hash<String,String>]
+        attr_accessor :resource_manager_tags
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @resource_manager_tags = args[:resource_manager_tags] if args.key?(:resource_manager_tags)
         end
       end
       
@@ -15448,6 +16235,7 @@ module Google
         # - TDX_CAPABLE
         # - IDPF
         # - SNP_SVSM_CAPABLE
+        # - CCA_CAPABLE
         # For more information, see
         # Enabling guest operating system features.
         # Corresponds to the JSON property `type`
@@ -17583,6 +18371,38 @@ module Google
         end
       end
       
+      # Response message for RegionHealthSources.GetHealth
+      class HealthSourceHealth
+        include Google::Apis::Core::Hashable
+      
+        # Health state of the HealthSource.
+        # Corresponds to the JSON property `healthState`
+        # @return [String]
+        attr_accessor :health_state
+      
+        # Output only. [Output Only] Type of resource. Alwayscompute#healthSourceHealth
+        # for the health of health sources.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        # Health state details of the sources.
+        # Corresponds to the JSON property `sources`
+        # @return [Array<Google::Apis::ComputeV1::HealthSourcesGetHealthResponseSourceInfo>]
+        attr_accessor :sources
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @health_state = args[:health_state] if args.key?(:health_state)
+          @kind = args[:kind] if args.key?(:kind)
+          @sources = args[:sources] if args.key?(:sources)
+        end
+      end
+      
       # 
       class HealthSourceList
         include Google::Apis::Core::Hashable
@@ -17705,6 +18525,75 @@ module Google
               @value = args[:value] if args.key?(:value)
             end
           end
+        end
+      end
+      
+      # 
+      class HealthSourcesGetHealthResponseSourceInfo
+        include Google::Apis::Core::Hashable
+      
+        # Represents an instance group or network endpoint group behind the source
+        # backend service. Only used if the sourceType of the regionHealthSource
+        # is BACKEND_SERVICE.
+        # Corresponds to the JSON property `backends`
+        # @return [Array<Google::Apis::ComputeV1::HealthSourcesGetHealthResponseSourceInfoBackendInfo>]
+        attr_accessor :backends
+      
+        # Fully qualified URL of the forwarding rule associated with the source
+        # resource if it is a L4ILB backend service.
+        # Corresponds to the JSON property `forwardingRule`
+        # @return [String]
+        attr_accessor :forwarding_rule
+      
+        # Fully qualified URL of the associated source resource. This is always a
+        # backend service URL.
+        # Corresponds to the JSON property `source`
+        # @return [String]
+        attr_accessor :source
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @backends = args[:backends] if args.key?(:backends)
+          @forwarding_rule = args[:forwarding_rule] if args.key?(:forwarding_rule)
+          @source = args[:source] if args.key?(:source)
+        end
+      end
+      
+      # 
+      class HealthSourcesGetHealthResponseSourceInfoBackendInfo
+        include Google::Apis::Core::Hashable
+      
+        # Total number of endpoints when determining the health of the
+        # regionHealthSource.
+        # Corresponds to the JSON property `endpointCount`
+        # @return [Fixnum]
+        attr_accessor :endpoint_count
+      
+        # Fully qualified URL of an instance group or network endpoint group
+        # behind the source backend service.
+        # Corresponds to the JSON property `group`
+        # @return [String]
+        attr_accessor :group
+      
+        # Number of endpoints considered healthy when determining health of the
+        # regionHealthSource.
+        # Corresponds to the JSON property `healthyEndpointCount`
+        # @return [Fixnum]
+        attr_accessor :healthy_endpoint_count
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @endpoint_count = args[:endpoint_count] if args.key?(:endpoint_count)
+          @group = args[:group] if args.key?(:group)
+          @healthy_endpoint_count = args[:healthy_endpoint_count] if args.key?(:healthy_endpoint_count)
         end
       end
       
@@ -18768,6 +19657,11 @@ module Google
       class HttpRouteAction
         include Google::Apis::Core::Hashable
       
+        # Message containing CachePolicy configuration for URL Map's Route Action.
+        # Corresponds to the JSON property `cachePolicy`
+        # @return [Google::Apis::ComputeV1::CachePolicy]
+        attr_accessor :cache_policy
+      
         # The specification for allowing client-side cross-origin requests. For more
         # information about the W3C recommendation for cross-origin resource sharing
         # (CORS), see Fetch API Living
@@ -18841,6 +19735,7 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @cache_policy = args[:cache_policy] if args.key?(:cache_policy)
           @cors_policy = args[:cors_policy] if args.key?(:cors_policy)
           @fault_injection_policy = args[:fault_injection_policy] if args.key?(:fault_injection_policy)
           @max_stream_duration = args[:max_stream_duration] if args.key?(:max_stream_duration)
@@ -20119,12 +21014,6 @@ module Google
         # @return [Google::Apis::ComputeV1::InstanceParams]
         attr_accessor :params
       
-        # Partner Metadata assigned to the instance. A map from a subdomain
-        # (namespace) to entries map.
-        # Corresponds to the JSON property `partnerMetadata`
-        # @return [Hash<String,Google::Apis::ComputeV1::StructuredEntries>]
-        attr_accessor :partner_metadata
-      
         # The private IPv6 google access type for the VM.
         # If not specified, use  INHERIT_FROM_SUBNETWORK as default.
         # Corresponds to the JSON property `privateIpv6GoogleAccess`
@@ -20277,7 +21166,6 @@ module Google
           @network_interfaces = args[:network_interfaces] if args.key?(:network_interfaces)
           @network_performance_config = args[:network_performance_config] if args.key?(:network_performance_config)
           @params = args[:params] if args.key?(:params)
-          @partner_metadata = args[:partner_metadata] if args.key?(:partner_metadata)
           @private_ipv6_google_access = args[:private_ipv6_google_access] if args.key?(:private_ipv6_google_access)
           @reservation_affinity = args[:reservation_affinity] if args.key?(:reservation_affinity)
           @resource_policies = args[:resource_policies] if args.key?(:resource_policies)
@@ -20994,15 +21882,13 @@ module Google
         # @return [String]
         attr_accessor :base_instance_name
       
-        # Output only. [Output Only] The creation timestamp for this managed instance
-        # group inRFC3339
+        # Output only. The creation timestamp for this managed instance group inRFC3339
         # text format.
         # Corresponds to the JSON property `creationTimestamp`
         # @return [String]
         attr_accessor :creation_timestamp
       
-        # Output only. [Output Only] The list of instance actions and the number of
-        # instances
+        # Output only. The list of instance actions and the number of instances
         # in this managed instance group that are scheduled for each of those
         # actions.
         # Corresponds to the JSON property `currentActions`
@@ -21031,8 +21917,7 @@ module Google
         # @return [String]
         attr_accessor :fingerprint
       
-        # Output only. [Output Only] A unique identifier for this resource type. The
-        # server
+        # Output only. A unique identifier for this resource type. The server
         # generates this identifier.
         # Corresponds to the JSON property `id`
         # @return [Fixnum]
@@ -21046,7 +21931,7 @@ module Google
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerInstanceFlexibilityPolicy]
         attr_accessor :instance_flexibility_policy
       
-        # Output only. [Output Only] The URL of the Instance Group resource.
+        # Output only. The URL of the Instance Group resource.
         # Corresponds to the JSON property `instanceGroup`
         # @return [String]
         attr_accessor :instance_group
@@ -21065,8 +21950,8 @@ module Google
         # @return [String]
         attr_accessor :instance_template
       
-        # Output only. [Output Only] The resource type, which is alwayscompute#
-        # instanceGroupManager for managed instance groups.
+        # Output only. The resource type, which is alwayscompute#instanceGroupManager
+        # for managed instance groups.
         # Corresponds to the JSON property `kind`
         # @return [String]
         attr_accessor :kind
@@ -21100,20 +21985,19 @@ module Google
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerResourcePolicies]
         attr_accessor :resource_policies
       
-        # Output only. [Output Only] Reserved for future use.
+        # Output only. Reserved for future use.
         # Corresponds to the JSON property `satisfiesPzi`
         # @return [Boolean]
         attr_accessor :satisfies_pzi
         alias_method :satisfies_pzi?, :satisfies_pzi
       
-        # Output only. [Output Only] Reserved for future use.
+        # Output only. Reserved for future use.
         # Corresponds to the JSON property `satisfiesPzs`
         # @return [Boolean]
         attr_accessor :satisfies_pzs
         alias_method :satisfies_pzs?, :satisfies_pzs
       
-        # Output only. [Output Only] The URL for this managed instance group. The server
-        # defines
+        # Output only. The URL for this managed instance group. The server defines
         # this URL.
         # Corresponds to the JSON property `selfLink`
         # @return [String]
@@ -21129,7 +22013,7 @@ module Google
         # @return [Google::Apis::ComputeV1::StatefulPolicy]
         attr_accessor :stateful_policy
       
-        # Output only. [Output Only] The status of this managed instance group.
+        # Output only. The status of this managed instance group.
         # Corresponds to the JSON property `status`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatus]
         attr_accessor :status
@@ -21198,7 +22082,7 @@ module Google
         # @return [Array<Google::Apis::ComputeV1::InstanceGroupManagerVersion>]
         attr_accessor :versions
       
-        # Output only. [Output Only] The URL of azone
+        # Output only. The URL of azone
         # where the managed instance group is located (for zonal resources).
         # Corresponds to the JSON property `zone`
         # @return [String]
@@ -21250,16 +22134,14 @@ module Google
       class InstanceGroupManagerActionsSummary
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] The total number of instances in the managed
-        # instance group
+        # Output only. The total number of instances in the managed instance group
         # that are scheduled to be abandoned. Abandoning an instance removes it
         # from the managed instance group without deleting it.
         # Corresponds to the JSON property `abandoning`
         # @return [Fixnum]
         attr_accessor :abandoning
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be created or are currently being created. If the group
         # fails to create any of these instances, it tries again until it creates
         # the instance successfully.
@@ -21269,8 +22151,7 @@ module Google
         # @return [Fixnum]
         attr_accessor :creating
       
-        # Output only. [Output Only] The number of instances that the managed instance
-        # group
+        # Output only. The number of instances that the managed instance group
         # will attempt to create. The group attempts to create each instance
         # only once. If the group fails to create any of these instances, it
         # decreases the group's targetSize value accordingly.
@@ -21278,22 +22159,19 @@ module Google
         # @return [Fixnum]
         attr_accessor :creating_without_retries
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be deleted or are currently being deleted.
         # Corresponds to the JSON property `deleting`
         # @return [Fixnum]
         attr_accessor :deleting
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are running and have no scheduled actions.
         # Corresponds to the JSON property `none`
         # @return [Fixnum]
         attr_accessor :none
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be recreated or are currently being being recreated.
         # Recreating an instance deletes the existing root persistent disk
         # and creates a new disk from the image that is defined in the
@@ -21302,8 +22180,7 @@ module Google
         # @return [Fixnum]
         attr_accessor :recreating
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are being reconfigured with properties that do not require a restart
         # or a recreate action. For example, setting or removing target
         # pools for the instance.
@@ -21311,43 +22188,37 @@ module Google
         # @return [Fixnum]
         attr_accessor :refreshing
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be restarted or are currently being restarted.
         # Corresponds to the JSON property `restarting`
         # @return [Fixnum]
         attr_accessor :restarting
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be resumed or are currently being resumed.
         # Corresponds to the JSON property `resuming`
         # @return [Fixnum]
         attr_accessor :resuming
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be started or are currently being started.
         # Corresponds to the JSON property `starting`
         # @return [Fixnum]
         attr_accessor :starting
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be stopped or are currently being stopped.
         # Corresponds to the JSON property `stopping`
         # @return [Fixnum]
         attr_accessor :stopping
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are scheduled to be suspended or are currently being suspended.
         # Corresponds to the JSON property `suspending`
         # @return [Fixnum]
         attr_accessor :suspending
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group that
+        # Output only. The number of instances in the managed instance group that
         # are being verified. See the managedInstances[].currentAction
         # property in the listManagedInstances method documentation.
         # Corresponds to the JSON property `verifying`
@@ -21804,8 +22675,7 @@ module Google
       class InstanceGroupManagerResizeRequest
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] The creation timestamp for this resize request
-        # inRFC3339
+        # Output only. The creation timestamp for this resize request inRFC3339
         # text format.
         # Corresponds to the JSON property `creationTimestamp`
         # @return [String]
@@ -21816,16 +22686,15 @@ module Google
         # @return [String]
         attr_accessor :description
       
-        # Output only. [Output Only] A unique identifier for this resource type. The
-        # server
-        # generates this identifier.
+        # Output only. A unique identifier for this resource type. The server generates
+        # this
+        # identifier.
         # Corresponds to the JSON property `id`
         # @return [Fixnum]
         attr_accessor :id
       
-        # Output only. [Output Only] The resource type, which is alwayscompute#
-        # instanceGroupManagerResizeRequest for
-        # resize requests.
+        # Output only. The resource type, which is alwayscompute#
+        # instanceGroupManagerResizeRequest for resize requests.
         # Corresponds to the JSON property `kind`
         # @return [String]
         attr_accessor :kind
@@ -21836,7 +22705,7 @@ module Google
         # @return [String]
         attr_accessor :name
       
-        # Output only. [Output Only] The URL of aregion
+        # Output only. The URL of a region
         # where the resize request is located. Populated only for regional resize
         # requests.
         # Corresponds to the JSON property `region`
@@ -21858,29 +22727,27 @@ module Google
         # @return [Fixnum]
         attr_accessor :resize_by
       
-        # Output only. [Output Only] The URL for this resize request. The server defines
-        # this URL.
+        # Output only. The URL for this resize request. The server defines this URL.
         # Corresponds to the JSON property `selfLink`
         # @return [String]
         attr_accessor :self_link
       
-        # Output only. [Output Only] Server-defined URL for this resource with the
-        # resource id.
+        # Output only. Server-defined URL for this resource with the resource id.
         # Corresponds to the JSON property `selfLinkWithId`
         # @return [String]
         attr_accessor :self_link_with_id
       
-        # Output only. [Output only] Current state of the request.
+        # Output only. Current state of the request.
         # Corresponds to the JSON property `state`
         # @return [String]
         attr_accessor :state
       
-        # Output only. [Output only] Status of the request.
+        # Output only. Status of the request.
         # Corresponds to the JSON property `status`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerResizeRequestStatus]
         attr_accessor :status
       
-        # Output only. [Output Only] The URL of azone
+        # Output only. The URL of a zone
         # where the resize request is located. Populated only for zonal resize
         # requests.
         # Corresponds to the JSON property `zone`
@@ -21913,24 +22780,24 @@ module Google
       class InstanceGroupManagerResizeRequestStatus
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output only] Fatal errors encountered during the queueing or
-        # provisioning phases of the ResizeRequest that caused the transition to
-        # the FAILED state. Contrary to the last_attempt errors, this field is
-        # final and errors are never removed from here, as the ResizeRequest is not
-        # going to retry.
+        # Output only. Fatal errors encountered during the queueing or provisioning
+        # phases of
+        # the ResizeRequest that caused the transition to the FAILED state.
+        # Contrary to the last_attempt errors, this field is final and errors are
+        # never removed from here, as the ResizeRequest is not going to retry.
         # Corresponds to the JSON property `error`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerResizeRequestStatus::Error]
         attr_accessor :error
       
-        # Output only. [Output only] Information about the last attempt to fulfill the
-        # request.
-        # The value is temporary since the ResizeRequest can retry, as long as it's
-        # still active and the last attempt value can either be cleared or replaced
-        # with a different error. Since ResizeRequest retries infrequently, the
-        # value may be stale and no longer show an active problem. The value is
-        # cleared when ResizeRequest transitions to the final state (becomes
-        # inactive). If the final state is FAILED the error describing it will be
-        # storred in the "error" field only.
+        # Output only. Information about the last attempt to fulfill the request. The
+        # value is
+        # temporary since the ResizeRequest can retry, as long as it's still active
+        # and the last attempt value can either be cleared or replaced with a
+        # different error. Since ResizeRequest retries infrequently, the value may
+        # be stale and no longer show an active problem. The value is cleared when
+        # ResizeRequest transitions to the final state (becomes inactive). If the
+        # final state is FAILED the error describing it will be stored in the
+        # "error" field only.
         # Corresponds to the JSON property `lastAttempt`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerResizeRequestStatusLastAttempt]
         attr_accessor :last_attempt
@@ -21945,11 +22812,11 @@ module Google
           @last_attempt = args[:last_attempt] if args.key?(:last_attempt)
         end
         
-        # Output only. [Output only] Fatal errors encountered during the queueing or
-        # provisioning phases of the ResizeRequest that caused the transition to
-        # the FAILED state. Contrary to the last_attempt errors, this field is
-        # final and errors are never removed from here, as the ResizeRequest is not
-        # going to retry.
+        # Output only. Fatal errors encountered during the queueing or provisioning
+        # phases of
+        # the ResizeRequest that caused the transition to the FAILED state.
+        # Contrary to the last_attempt errors, this field is final and errors are
+        # never removed from here, as the ResizeRequest is not going to retry.
         class Error
           include Google::Apis::Core::Hashable
         
@@ -22401,18 +23268,18 @@ module Google
       class InstanceGroupManagerStatus
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output only] Status of all-instances configuration on the group.
+        # Output only. Status of all-instances configuration on the group.
         # Corresponds to the JSON property `allInstancesConfig`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusAllInstancesConfig]
         attr_accessor :all_instances_config
       
-        # Output only. [Output Only] The accelerator topology applied to this MIG.
+        # Output only. The accelerator topology applied to this MIG.
         # Currently only one accelerator topology is supported.
         # Corresponds to the JSON property `appliedAcceleratorTopologies`
         # @return [Array<Google::Apis::ComputeV1::InstanceGroupManagerStatusAcceleratorTopology>]
         attr_accessor :applied_accelerator_topologies
       
-        # Output only. [Output Only] The URL of theAutoscaler
+        # Output only. The URL of theAutoscaler
         # that targets this instance group manager.
         # Corresponds to the JSON property `autoscaler`
         # @return [String]
@@ -22432,8 +23299,7 @@ module Google
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusInstanceStatusSummary]
         attr_accessor :current_instance_statuses
       
-        # Output only. [Output Only] A bit indicating whether the managed instance group
-        # is in a
+        # Output only. A bit indicating whether the managed instance group is in a
         # stable state. A stable state means that: none of the instances in the
         # managed instance group is currently undergoing any type of change (for
         # example, creation, restart, or deletion); no future changes are scheduled
@@ -22444,13 +23310,12 @@ module Google
         attr_accessor :is_stable
         alias_method :is_stable?, :is_stable
       
-        # Output only. [Output Only] Stateful status of the given Instance Group Manager.
+        # Output only. Stateful status of the given Instance Group Manager.
         # Corresponds to the JSON property `stateful`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusStateful]
         attr_accessor :stateful
       
-        # Output only. [Output Only] A status of consistency of Instances' versions with
-        # their
+        # Output only. A status of consistency of Instances' versions with their
         # target version specified by version field on Instance Group
         # Manager.
         # Corresponds to the JSON property `versionTarget`
@@ -22478,18 +23343,18 @@ module Google
       class InstanceGroupManagerStatusAcceleratorTopology
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] Topology in the format of: "16x16", "4x4x4", etc.
+        # Output only. Topology in the format of: "16x16", "4x4x4", etc.
         # The value is the same as configured in the WorkloadPolicy.
         # Corresponds to the JSON property `acceleratorTopology`
         # @return [String]
         attr_accessor :accelerator_topology
       
-        # Output only. [Output Only] The state of the accelerator topology.
+        # Output only. The state of the accelerator topology.
         # Corresponds to the JSON property `state`
         # @return [String]
         attr_accessor :state
       
-        # Output only. [Output Only] The result of the latest accelerator topology state
+        # Output only. The result of the latest accelerator topology state
         # check.
         # Corresponds to the JSON property `stateDetails`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails]
@@ -22511,13 +23376,12 @@ module Google
       class InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] Encountered errors.
+        # Output only. Encountered errors.
         # Corresponds to the JSON property `error`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails::Error]
         attr_accessor :error
       
-        # Output only. [Output Only] Timestamp is shown only if there is an error. The
-        # field
+        # Output only. Timestamp is shown only if there is an error. The field
         # has // RFC3339 //
         # text format.
         # Corresponds to the JSON property `timestamp`
@@ -22534,7 +23398,7 @@ module Google
           @timestamp = args[:timestamp] if args.key?(:timestamp)
         end
         
-        # Output only. [Output Only] Encountered errors.
+        # Output only. Encountered errors.
         class Error
           include Google::Apis::Core::Hashable
         
@@ -22660,13 +23524,13 @@ module Google
       class InstanceGroupManagerStatusAllInstancesConfig
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] Current all-instances configuration revision.
+        # Output only. Current all-instances configuration revision.
         # This value is in RFC3339 text format.
         # Corresponds to the JSON property `currentRevision`
         # @return [String]
         attr_accessor :current_revision
       
-        # Output only. [Output Only] A bit indicating whether this configuration has
+        # Output only. A bit indicating whether this configuration has
         # been applied to all managed instances in the group.
         # Corresponds to the JSON property `effective`
         # @return [Boolean]
@@ -22689,15 +23553,13 @@ module Google
       class InstanceGroupManagerStatusBulkInstanceOperation
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] Informs whether bulk instance operation is in
-        # progress.
+        # Output only. Informs whether bulk instance operation is in progress.
         # Corresponds to the JSON property `inProgress`
         # @return [Boolean]
         attr_accessor :in_progress
         alias_method :in_progress?, :in_progress
       
-        # Output only. [Output Only] Information from the last progress check of bulk
-        # instance
+        # Output only. Information from the last progress check of bulk instance
         # operation.
         # Corresponds to the JSON property `lastProgressCheck`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck]
@@ -22718,13 +23580,12 @@ module Google
       class InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] Errors encountered during bulk instance operation.
+        # Output only. Errors encountered during bulk instance operation.
         # Corresponds to the JSON property `error`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck::Error]
         attr_accessor :error
       
-        # Output only. [Output Only] Timestamp of the last progress check of bulk
-        # instance
+        # Output only. Timestamp of the last progress check of bulk instance
         # operation. Timestamp is in RFC3339 text format.
         # Corresponds to the JSON property `timestamp`
         # @return [String]
@@ -22740,7 +23601,7 @@ module Google
           @timestamp = args[:timestamp] if args.key?(:timestamp)
         end
         
-        # Output only. [Output Only] Errors encountered during bulk instance operation.
+        # Output only. Errors encountered during bulk instance operation.
         class Error
           include Google::Apis::Core::Hashable
         
@@ -22869,15 +23730,13 @@ module Google
       class InstanceGroupManagerStatusInstanceStatusSummary
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have DEPROVISIONING status.
         # Corresponds to the JSON property `deprovisioning`
         # @return [Fixnum]
         attr_accessor :deprovisioning
       
-        # Output only. [Output Only] The number of instances that have not been created
-        # yet or
+        # Output only. The number of instances that have not been created yet or
         # have been deleted. Includes only instances that would be shown in the
         # listManagedInstances method and not all instances that have been
         # deleted in the lifetime of the MIG.
@@ -22887,8 +23746,7 @@ module Google
         # @return [Fixnum]
         attr_accessor :non_existent
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have PENDING status, that is FlexStart instances that are waiting
         # for resources. Instances that do not exist because of the other reasons
         # are counted as 'non_existent'.
@@ -22896,71 +23754,61 @@ module Google
         # @return [Fixnum]
         attr_accessor :pending
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have PENDING_STOP status.
         # Corresponds to the JSON property `pendingStop`
         # @return [Fixnum]
         attr_accessor :pending_stop
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have PROVISIONING status.
         # Corresponds to the JSON property `provisioning`
         # @return [Fixnum]
         attr_accessor :provisioning
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have REPAIRING status.
         # Corresponds to the JSON property `repairing`
         # @return [Fixnum]
         attr_accessor :repairing
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have RUNNING status.
         # Corresponds to the JSON property `running`
         # @return [Fixnum]
         attr_accessor :running
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have STAGING status.
         # Corresponds to the JSON property `staging`
         # @return [Fixnum]
         attr_accessor :staging
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have STOPPED status.
         # Corresponds to the JSON property `stopped`
         # @return [Fixnum]
         attr_accessor :stopped
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have STOPPING status.
         # Corresponds to the JSON property `stopping`
         # @return [Fixnum]
         attr_accessor :stopping
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have SUSPENDED status.
         # Corresponds to the JSON property `suspended`
         # @return [Fixnum]
         attr_accessor :suspended
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have SUSPENDING status.
         # Corresponds to the JSON property `suspending`
         # @return [Fixnum]
         attr_accessor :suspending
       
-        # Output only. [Output Only] The number of instances in the managed instance
-        # group
+        # Output only. The number of instances in the managed instance group
         # that have TERMINATED status.
         # Corresponds to the JSON property `terminated`
         # @return [Fixnum]
@@ -22992,7 +23840,7 @@ module Google
       class InstanceGroupManagerStatusStateful
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] A bit indicating whether the managed instance group
+        # Output only. A bit indicating whether the managed instance group
         # has stateful configuration, that is, if you have configured any items
         # in a stateful policy or in per-instance configs.
         # The group might report that it has no stateful configuration even when
@@ -23003,8 +23851,7 @@ module Google
         attr_accessor :has_stateful_config
         alias_method :has_stateful_config?, :has_stateful_config
       
-        # Output only. [Output Only] Status of per-instance configurations on the
-        # instances.
+        # Output only. Status of per-instance configurations on the instances.
         # Corresponds to the JSON property `perInstanceConfigs`
         # @return [Google::Apis::ComputeV1::InstanceGroupManagerStatusStatefulPerInstanceConfigs]
         attr_accessor :per_instance_configs
@@ -23047,8 +23894,7 @@ module Google
       class InstanceGroupManagerStatusVersionTarget
         include Google::Apis::Core::Hashable
       
-        # Output only. [Output Only] A bit indicating whether version target has been
-        # reached
+        # Output only. A bit indicating whether version target has been reached
         # in this managed instance group, i.e. all instances are in their target
         # version. Instances' target version are specified byversion field on Instance
         # Group Manager.
@@ -24689,12 +25535,6 @@ module Google
         # @return [Google::Apis::ComputeV1::NetworkPerformanceConfig]
         attr_accessor :network_performance_config
       
-        # Partner Metadata assigned to the instance properties. A map from a
-        # subdomain (namespace) to entries map.
-        # Corresponds to the JSON property `partnerMetadata`
-        # @return [Hash<String,Google::Apis::ComputeV1::StructuredEntries>]
-        attr_accessor :partner_metadata
-      
         # The private IPv6 google access type for VMs.
         # If not specified, use  INHERIT_FROM_SUBNETWORK as default.
         # Note that for MachineImage, this is not supported yet.
@@ -24771,7 +25611,6 @@ module Google
           @min_cpu_platform = args[:min_cpu_platform] if args.key?(:min_cpu_platform)
           @network_interfaces = args[:network_interfaces] if args.key?(:network_interfaces)
           @network_performance_config = args[:network_performance_config] if args.key?(:network_performance_config)
-          @partner_metadata = args[:partner_metadata] if args.key?(:partner_metadata)
           @private_ipv6_google_access = args[:private_ipv6_google_access] if args.key?(:private_ipv6_google_access)
           @reservation_affinity = args[:reservation_affinity] if args.key?(:reservation_affinity)
           @resource_manager_tags = args[:resource_manager_tags] if args.key?(:resource_manager_tags)
@@ -26033,6 +26872,23 @@ module Google
         # @return [String]
         attr_accessor :source_disk_id
       
+        # Output only. [Output Only] URL of the source instant snapshot this instant
+        # snapshot is
+        # part of. Note that the source instant snapshot group must be in the same
+        # zone/region as the instant snapshot to be created. This can be a full or
+        # valid partial URL.
+        # Corresponds to the JSON property `sourceInstantSnapshotGroup`
+        # @return [String]
+        attr_accessor :source_instant_snapshot_group
+      
+        # Output only. [Output Only] The ID value of the source instant snapshot group
+        # this
+        # InstantSnapshot is part of. This value may be used to determine whether the
+        # InstantSnapshot was created as part of an InstantSnapshotGroup creation.
+        # Corresponds to the JSON property `sourceInstantSnapshotGroupId`
+        # @return [String]
+        attr_accessor :source_instant_snapshot_group_id
+      
         # Output only. [Output Only] The status of the instantSnapshot. This can
         # beCREATING, DELETING, FAILED, orREADY.
         # Corresponds to the JSON property `status`
@@ -26070,6 +26926,8 @@ module Google
           @self_link_with_id = args[:self_link_with_id] if args.key?(:self_link_with_id)
           @source_disk = args[:source_disk] if args.key?(:source_disk)
           @source_disk_id = args[:source_disk_id] if args.key?(:source_disk_id)
+          @source_instant_snapshot_group = args[:source_instant_snapshot_group] if args.key?(:source_instant_snapshot_group)
+          @source_instant_snapshot_group_id = args[:source_instant_snapshot_group_id] if args.key?(:source_instant_snapshot_group_id)
           @status = args[:status] if args.key?(:status)
           @zone = args[:zone] if args.key?(:zone)
         end
@@ -26204,6 +27062,190 @@ module Google
               @value = args[:value] if args.key?(:value)
             end
           end
+        end
+      end
+      
+      # Represents an InstantSnapshotGroup resource.
+      # An instant snapshot group is a set of instant snapshots that represents a
+      # point in time state of a consistency group.
+      class InstantSnapshotGroup
+        include Google::Apis::Core::Hashable
+      
+        # Output only. [Output Only] Creation timestamp inRFC3339
+        # text format.
+        # Corresponds to the JSON property `creationTimestamp`
+        # @return [String]
+        attr_accessor :creation_timestamp
+      
+        # Optional. An optional description of this resource. Provide this property when
+        # you
+        # create the resource.
+        # Corresponds to the JSON property `description`
+        # @return [String]
+        attr_accessor :description
+      
+        # Output only. [Output Only] The unique identifier for the resource. This
+        # identifier is
+        # defined by the server.
+        # Corresponds to the JSON property `id`
+        # @return [Fixnum]
+        attr_accessor :id
+      
+        # Output only. [Output Only] Type of the resource. Alwayscompute#
+        # instantSnapshotGroup for InstantSnapshotGroup
+        # resources.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        # Identifier. Name of the resource; provided by the client when the resource is
+        # created.
+        # The name must be 1-63 characters long, and comply withRFC1035.
+        # Specifically, the name must be 1-63 characters long and match the regular
+        # expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+        # character must be a lowercase letter, and all following characters must be
+        # a dash, lowercase letter, or digit, except the last character, which cannot
+        # be a dash.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # Output only. [Output Only] URL of the region where the instant snapshot group
+        # resides.
+        # You must specify this field as part of the HTTP request URL. It is
+        # not settable as a field in the request body.
+        # Corresponds to the JSON property `region`
+        # @return [String]
+        attr_accessor :region
+      
+        # 
+        # Corresponds to the JSON property `resourceStatus`
+        # @return [Google::Apis::ComputeV1::InstantSnapshotGroupResourceStatus]
+        attr_accessor :resource_status
+      
+        # Output only. [Output Only] Server-defined URL for the resource.
+        # Corresponds to the JSON property `selfLink`
+        # @return [String]
+        attr_accessor :self_link
+      
+        # Output only. [Output Only] Server-defined URL for this resource's resource id.
+        # Corresponds to the JSON property `selfLinkWithId`
+        # @return [String]
+        attr_accessor :self_link_with_id
+      
+        # 
+        # Corresponds to the JSON property `sourceConsistencyGroup`
+        # @return [String]
+        attr_accessor :source_consistency_group
+      
+        # Output only. [Output Only]
+        # Corresponds to the JSON property `status`
+        # @return [String]
+        attr_accessor :status
+      
+        # Output only. [Output Only] URL of the zone where the instant snapshot group
+        # resides.
+        # You must specify this field as part of the HTTP request URL. It is
+        # not settable as a field in the request body.
+        # Corresponds to the JSON property `zone`
+        # @return [String]
+        attr_accessor :zone
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @creation_timestamp = args[:creation_timestamp] if args.key?(:creation_timestamp)
+          @description = args[:description] if args.key?(:description)
+          @id = args[:id] if args.key?(:id)
+          @kind = args[:kind] if args.key?(:kind)
+          @name = args[:name] if args.key?(:name)
+          @region = args[:region] if args.key?(:region)
+          @resource_status = args[:resource_status] if args.key?(:resource_status)
+          @self_link = args[:self_link] if args.key?(:self_link)
+          @self_link_with_id = args[:self_link_with_id] if args.key?(:self_link_with_id)
+          @source_consistency_group = args[:source_consistency_group] if args.key?(:source_consistency_group)
+          @status = args[:status] if args.key?(:status)
+          @zone = args[:zone] if args.key?(:zone)
+        end
+      end
+      
+      # 
+      class InstantSnapshotGroupParameters
+        include Google::Apis::Core::Hashable
+      
+        # The source instant snapshot group used to create disks. You can provide
+        # this as a partial or full URL to the resource. For example, the following
+        # are valid values:
+        # 
+        # 
+        # - https://www.googleapis.com/compute/v1/projects/project/zones/zone/
+        # instantSnapshotGroups/instantSnapshotGroup
+        # - projects/project/zones/zone/instantSnapshotGroups/instantSnapshotGroup
+        # - zones/zone/instantSnapshotGroups/instantSnapshotGroup
+        # Corresponds to the JSON property `sourceInstantSnapshotGroup`
+        # @return [String]
+        attr_accessor :source_instant_snapshot_group
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @source_instant_snapshot_group = args[:source_instant_snapshot_group] if args.key?(:source_instant_snapshot_group)
+        end
+      end
+      
+      # 
+      class InstantSnapshotGroupResourceStatus
+        include Google::Apis::Core::Hashable
+      
+        # Output only. [Output Only]
+        # Corresponds to the JSON property `consistencyMembershipResolutionTime`
+        # @return [String]
+        attr_accessor :consistency_membership_resolution_time
+      
+        # Output only. [Output Only]
+        # Corresponds to the JSON property `sourceInfo`
+        # @return [Google::Apis::ComputeV1::InstantSnapshotGroupSourceInfo]
+        attr_accessor :source_info
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @consistency_membership_resolution_time = args[:consistency_membership_resolution_time] if args.key?(:consistency_membership_resolution_time)
+          @source_info = args[:source_info] if args.key?(:source_info)
+        end
+      end
+      
+      # 
+      class InstantSnapshotGroupSourceInfo
+        include Google::Apis::Core::Hashable
+      
+        # 
+        # Corresponds to the JSON property `consistencyGroup`
+        # @return [String]
+        attr_accessor :consistency_group
+      
+        # 
+        # Corresponds to the JSON property `consistencyGroupId`
+        # @return [String]
+        attr_accessor :consistency_group_id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @consistency_group = args[:consistency_group] if args.key?(:consistency_group)
+          @consistency_group_id = args[:consistency_group_id] if args.key?(:consistency_group_id)
         end
       end
       
@@ -31531,6 +32573,143 @@ module Google
         end
       end
       
+      # Contains a list of InstantSnapshotGroup resources.
+      class ListInstantSnapshotGroups
+        include Google::Apis::Core::Hashable
+      
+        # 
+        # Corresponds to the JSON property `etag`
+        # @return [String]
+        attr_accessor :etag
+      
+        # [Output Only] Unique identifier for the resource; defined by the server.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        # A list of InstantSnapshotGroup resources.
+        # Corresponds to the JSON property `items`
+        # @return [Array<Google::Apis::ComputeV1::InstantSnapshotGroup>]
+        attr_accessor :items
+      
+        # Output only. Type of resource.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        # [Output Only] This token allows you to get the next page of results for
+        # list requests. If the number of results is larger thanmaxResults, use the
+        # nextPageToken as a value for
+        # the query parameter pageToken in the next list request.
+        # Subsequent list requests will have their own nextPageToken to
+        # continue paging through the results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # Output only. [Output Only] Server-defined URL for this resource.
+        # Corresponds to the JSON property `selfLink`
+        # @return [String]
+        attr_accessor :self_link
+      
+        # Output only. [Output Only] Unreachable resources.
+        # end_interface: MixerListResponseWithEtagBuilder
+        # Corresponds to the JSON property `unreachables`
+        # @return [Array<String>]
+        attr_accessor :unreachables
+      
+        # [Output Only] Informational warning message.
+        # Corresponds to the JSON property `warning`
+        # @return [Google::Apis::ComputeV1::ListInstantSnapshotGroups::Warning]
+        attr_accessor :warning
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @etag = args[:etag] if args.key?(:etag)
+          @id = args[:id] if args.key?(:id)
+          @items = args[:items] if args.key?(:items)
+          @kind = args[:kind] if args.key?(:kind)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @self_link = args[:self_link] if args.key?(:self_link)
+          @unreachables = args[:unreachables] if args.key?(:unreachables)
+          @warning = args[:warning] if args.key?(:warning)
+        end
+        
+        # [Output Only] Informational warning message.
+        class Warning
+          include Google::Apis::Core::Hashable
+        
+          # [Output Only] A warning code, if applicable. For example, Compute
+          # Engine returns NO_RESULTS_ON_PAGE if there
+          # are no results in the response.
+          # Corresponds to the JSON property `code`
+          # @return [String]
+          attr_accessor :code
+        
+          # [Output Only] Metadata about this warning in key:
+          # value format. For example:
+          # "data": [
+          # `
+          # "key": "scope",
+          # "value": "zones/us-east1-d"
+          # `
+          # Corresponds to the JSON property `data`
+          # @return [Array<Google::Apis::ComputeV1::ListInstantSnapshotGroups::Warning::Datum>]
+          attr_accessor :data
+        
+          # [Output Only] A human-readable description of the warning code.
+          # Corresponds to the JSON property `message`
+          # @return [String]
+          attr_accessor :message
+        
+          def initialize(**args)
+             update!(**args)
+          end
+        
+          # Update properties of this object
+          def update!(**args)
+            @code = args[:code] if args.key?(:code)
+            @data = args[:data] if args.key?(:data)
+            @message = args[:message] if args.key?(:message)
+          end
+          
+          # 
+          class Datum
+            include Google::Apis::Core::Hashable
+          
+            # [Output Only] A key that provides more detail on the warning being
+            # returned. For example, for warnings where there are no results in a list
+            # request for a particular zone, this key might be scope and
+            # the key value might be the zone name. Other examples might be a key
+            # indicating a deprecated resource and a suggested replacement, or a
+            # warning about invalid network settings (for example, if an instance
+            # attempts to perform IP forwarding but is not enabled for IP forwarding).
+            # Corresponds to the JSON property `key`
+            # @return [String]
+            attr_accessor :key
+          
+            # [Output Only] A warning data value corresponding to the key.
+            # Corresponds to the JSON property `value`
+            # @return [String]
+            attr_accessor :value
+          
+            def initialize(**args)
+               update!(**args)
+            end
+          
+            # Update properties of this object
+            def update!(**args)
+              @key = args[:key] if args.key?(:key)
+              @value = args[:value] if args.key?(:value)
+            end
+          end
+        end
+      end
+      
       # 
       class LocalDisk
         include Google::Apis::Core::Hashable
@@ -33611,6 +34790,12 @@ module Google
         # @return [Array<String>]
         attr_accessor :secondary_ip_cidr_ranges
       
+        # The service class id of the producer service to which the IP was
+        # assigned.
+        # Corresponds to the JSON property `serviceClassId`
+        # @return [String]
+        attr_accessor :service_class_id
+      
         # The status of a connected endpoint to this network attachment.
         # Corresponds to the JSON property `status`
         # @return [String]
@@ -33639,6 +34824,7 @@ module Google
           @ipv6_address = args[:ipv6_address] if args.key?(:ipv6_address)
           @project_id_or_num = args[:project_id_or_num] if args.key?(:project_id_or_num)
           @secondary_ip_cidr_ranges = args[:secondary_ip_cidr_ranges] if args.key?(:secondary_ip_cidr_ranges)
+          @service_class_id = args[:service_class_id] if args.key?(:service_class_id)
           @status = args[:status] if args.key?(:status)
           @subnetwork = args[:subnetwork] if args.key?(:subnetwork)
           @subnetwork_cidr_range = args[:subnetwork_cidr_range] if args.key?(:subnetwork_cidr_range)
@@ -35482,6 +36668,14 @@ module Google
         # @return [Fixnum]
         attr_accessor :queue_count
       
+        # Optional. Producer Service's Service class Id for the region of this network
+        # interface. Can only be used with network_attachment. It is not possible to
+        # use on its own however, network_attachment can be used without
+        # service_class_id.
+        # Corresponds to the JSON property `serviceClassId`
+        # @return [String]
+        attr_accessor :service_class_id
+      
         # The stack type for this network interface. To assign only IPv4 addresses,
         # use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, useIPV4_IPV6. If not
         # specified, IPV4_ONLY is used.
@@ -35536,6 +36730,7 @@ module Google
           @nic_type = args[:nic_type] if args.key?(:nic_type)
           @parent_nic_name = args[:parent_nic_name] if args.key?(:parent_nic_name)
           @queue_count = args[:queue_count] if args.key?(:queue_count)
+          @service_class_id = args[:service_class_id] if args.key?(:service_class_id)
           @stack_type = args[:stack_type] if args.key?(:stack_type)
           @subnetwork = args[:subnetwork] if args.key?(:subnetwork)
           @vlan = args[:vlan] if args.key?(:vlan)
@@ -40770,39 +41965,6 @@ module Google
         end
       end
       
-      # Model definition of partner_metadata field.
-      # To be used in dedicated Partner Metadata methods and to be inlined in
-      # the Instance and InstanceTemplate resources.
-      class PartnerMetadata
-        include Google::Apis::Core::Hashable
-      
-        # Instance-level hash to be used for optimistic
-        # locking.
-        # Corresponds to the JSON property `fingerprint`
-        # NOTE: Values are automatically base64 encoded/decoded in the client library.
-        # @return [String]
-        attr_accessor :fingerprint
-      
-        # Partner Metadata assigned to the instance. A map from a subdomain to
-        # entries map. Subdomain name must be compliant withRFC1035
-        # definition. The total size of all keys and values must be less than 2MB.
-        # Subdomain 'metadata.compute.googleapis.com' is reserverd for instance's
-        # metadata.
-        # Corresponds to the JSON property `partnerMetadata`
-        # @return [Hash<String,Google::Apis::ComputeV1::StructuredEntries>]
-        attr_accessor :partner_metadata
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @fingerprint = args[:fingerprint] if args.key?(:fingerprint)
-          @partner_metadata = args[:partner_metadata] if args.key?(:partner_metadata)
-        end
-      end
-      
       # A matcher for the path portion of the URL. The BackendService
       # from the longest-matched rule will serve the URL. If no rule was matched, the
       # default service is used.
@@ -43410,6 +44572,34 @@ module Google
       end
       
       # 
+      class RegionDiskUpdateKmsKeyRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The new KMS key to replace the current one on the disk. If empty,
+        # the disk
+        # will be re-encrypted using the primary version of the disk's current KMS
+        # key.
+        # The KMS key can be provided in the following formats:
+        # 
+        # 
+        # - projects/project_id/locations/location/keyRings/key_ring/cryptoKeys/key
+        # Where project is the project ID or
+        # project number.
+        # Corresponds to the JSON property `kmsKeyName`
+        # @return [String]
+        attr_accessor :kms_key_name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @kms_key_name = args[:kms_key_name] if args.key?(:kms_key_name)
+        end
+      end
+      
+      # 
       class RegionDisksAddResourcePoliciesRequest
         include Google::Apis::Core::Hashable
       
@@ -44997,6 +46187,32 @@ module Google
           @bindings = args[:bindings] if args.key?(:bindings)
           @etag = args[:etag] if args.key?(:etag)
           @policy = args[:policy] if args.key?(:policy)
+        end
+      end
+      
+      # 
+      class RegionSnapshotUpdateKmsKeyRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The new KMS key to replace the current one on the snapshot. If empty,
+        # the
+        # snapshot will be re-encrypted using the primary version of the snapshot's
+        # current KMS key.
+        # The KMS key can be provided in the following formats:
+        # 
+        # 
+        # - projects/project_id/locations/region/keyRings/region/cryptoKeys/key
+        # Corresponds to the JSON property `kmsKeyName`
+        # @return [String]
+        attr_accessor :kms_key_name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @kms_key_name = args[:kms_key_name] if args.key?(:kms_key_name)
         end
       end
       
@@ -54442,6 +55658,13 @@ module Google
         # @return [Google::Apis::ComputeV1::SnapshotParams]
         attr_accessor :params
       
+        # Output only. [Output Only] URL of the region where the snapshot resides. Only
+        # applicable
+        # for regional snapshots.
+        # Corresponds to the JSON property `region`
+        # @return [String]
+        attr_accessor :region
+      
         # Output only. Reserved for future use.
         # Corresponds to the JSON property `satisfiesPzi`
         # @return [Boolean]
@@ -54473,6 +55696,20 @@ module Google
         # Corresponds to the JSON property `snapshotEncryptionKey`
         # @return [Google::Apis::ComputeV1::CustomerEncryptionKey]
         attr_accessor :snapshot_encryption_key
+      
+        # Output only. [Output Only] The unique ID of the snapshot group that this
+        # snapshot
+        # belongs to. The usage of snapshot group feature is restricted.
+        # Corresponds to the JSON property `snapshotGroupId`
+        # @return [String]
+        attr_accessor :snapshot_group_id
+      
+        # Output only. [Output only] The snapshot group that this snapshot belongs to.
+        # The usage
+        # of snapshot group feature is restricted.
+        # Corresponds to the JSON property `snapshotGroupName`
+        # @return [String]
+        attr_accessor :snapshot_group_name
       
         # Indicates the type of the snapshot.
         # Corresponds to the JSON property `snapshotType`
@@ -54602,10 +55839,13 @@ module Google
           @location_hint = args[:location_hint] if args.key?(:location_hint)
           @name = args[:name] if args.key?(:name)
           @params = args[:params] if args.key?(:params)
+          @region = args[:region] if args.key?(:region)
           @satisfies_pzi = args[:satisfies_pzi] if args.key?(:satisfies_pzi)
           @satisfies_pzs = args[:satisfies_pzs] if args.key?(:satisfies_pzs)
           @self_link = args[:self_link] if args.key?(:self_link)
           @snapshot_encryption_key = args[:snapshot_encryption_key] if args.key?(:snapshot_encryption_key)
+          @snapshot_group_id = args[:snapshot_group_id] if args.key?(:snapshot_group_id)
+          @snapshot_group_name = args[:snapshot_group_name] if args.key?(:snapshot_group_name)
           @snapshot_type = args[:snapshot_type] if args.key?(:snapshot_type)
           @source_disk = args[:source_disk] if args.key?(:source_disk)
           @source_disk_encryption_key = args[:source_disk_encryption_key] if args.key?(:source_disk_encryption_key)
@@ -54620,6 +55860,49 @@ module Google
           @storage_bytes = args[:storage_bytes] if args.key?(:storage_bytes)
           @storage_bytes_status = args[:storage_bytes_status] if args.key?(:storage_bytes_status)
           @storage_locations = args[:storage_locations] if args.key?(:storage_locations)
+        end
+      end
+      
+      # 
+      class SnapshotGroupParameters
+        include Google::Apis::Core::Hashable
+      
+        # URLs of the zones where disks should be replicated to. Only applicable
+        # for regional resources.
+        # Corresponds to the JSON property `replicaZones`
+        # @return [Array<String>]
+        attr_accessor :replica_zones
+      
+        # The source snapshot group used to create disks. You can provide this as a
+        # partial or full URL to the resource. For example, the following are valid
+        # values:
+        # 
+        # 
+        # - https://www.googleapis.com/compute/v1/projects/project/global/
+        # snapshotGroups/snapshotGroup
+        # - projects/project/global/snapshotGroups/snapshotGroup
+        # - global/snapshotGroups/snapshotGroup
+        # Corresponds to the JSON property `sourceSnapshotGroup`
+        # @return [String]
+        attr_accessor :source_snapshot_group
+      
+        # URL of the disk type resource describing which disk type to use to create
+        # disks. Provide this when creating the disk. For example:projects/project/zones/
+        # zone/diskTypes/pd-ssd. See Persistent disk
+        # types.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @replica_zones = args[:replica_zones] if args.key?(:replica_zones)
+          @source_snapshot_group = args[:source_snapshot_group] if args.key?(:source_snapshot_group)
+          @type = args[:type] if args.key?(:type)
         end
       end
       
@@ -54777,6 +56060,12 @@ module Google
       class SnapshotSettings
         include Google::Apis::Core::Hashable
       
+        # (Regional snapshots use only)Policy of which location is allowed to access
+        # snapshot.
+        # Corresponds to the JSON property `accessLocation`
+        # @return [Google::Apis::ComputeV1::SnapshotSettingsAccessLocation]
+        attr_accessor :access_location
+      
         # Policy of which storage location is going to be resolved, and additional
         # data that particularizes how the policy is going to be carried out.
         # Corresponds to the JSON property `storageLocation`
@@ -54789,7 +56078,53 @@ module Google
       
         # Update properties of this object
         def update!(**args)
+          @access_location = args[:access_location] if args.key?(:access_location)
           @storage_location = args[:storage_location] if args.key?(:storage_location)
+        end
+      end
+      
+      # 
+      class SnapshotSettingsAccessLocation
+        include Google::Apis::Core::Hashable
+      
+        # List of regions that can restore a regional
+        # snapshot from the current region
+        # Corresponds to the JSON property `locations`
+        # @return [Hash<String,Google::Apis::ComputeV1::SnapshotSettingsAccessLocationAccessLocationPreference>]
+        attr_accessor :locations
+      
+        # Policy of which location is allowed to access snapshot.
+        # Corresponds to the JSON property `policy`
+        # @return [String]
+        attr_accessor :policy
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @locations = args[:locations] if args.key?(:locations)
+          @policy = args[:policy] if args.key?(:policy)
+        end
+      end
+      
+      # A structure for specifying an allowed target region.
+      class SnapshotSettingsAccessLocationAccessLocationPreference
+        include Google::Apis::Core::Hashable
+      
+        # Accessible region name
+        # Corresponds to the JSON property `region`
+        # @return [String]
+        attr_accessor :region
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @region = args[:region] if args.key?(:region)
         end
       end
       
@@ -54837,6 +56172,32 @@ module Google
         # Update properties of this object
         def update!(**args)
           @name = args[:name] if args.key?(:name)
+        end
+      end
+      
+      # 
+      class SnapshotUpdateKmsKeyRequest
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The new KMS key to replace the current one on the snapshot. If empty,
+        # the
+        # snapshot will be re-encrypted using the primary version of the snapshot's
+        # current KMS key.
+        # The KMS key can be provided in the following formats:
+        # 
+        # 
+        # - projects/project_id/locations/region/keyRings/key_ring/cryptoKeys/key
+        # Corresponds to the JSON property `kmsKeyName`
+        # @return [String]
+        attr_accessor :kms_key_name
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @kms_key_name = args[:kms_key_name] if args.key?(:kms_key_name)
         end
       end
       
@@ -57719,26 +59080,6 @@ module Google
               @value = args[:value] if args.key?(:value)
             end
           end
-        end
-      end
-      
-      # 
-      class StructuredEntries
-        include Google::Apis::Core::Hashable
-      
-        # Map of a partner metadata that belong to the same subdomain.
-        # It accepts any value including google.protobuf.Struct.
-        # Corresponds to the JSON property `entries`
-        # @return [Hash<String,Object>]
-        attr_accessor :entries
-      
-        def initialize(**args)
-           update!(**args)
-        end
-      
-        # Update properties of this object
-        def update!(**args)
-          @entries = args[:entries] if args.key?(:entries)
         end
       end
       
