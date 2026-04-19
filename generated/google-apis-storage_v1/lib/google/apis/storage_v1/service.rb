@@ -275,7 +275,7 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Updates the config(ttl and admissionPolicy) of an Anywhere Cache instance.
+        # Updates the config of an Anywhere Cache instance.
         # @param [String] bucket
         #   Name of the parent bucket.
         # @param [String] anywhere_cache_id

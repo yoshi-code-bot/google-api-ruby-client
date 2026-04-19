@@ -80,6 +80,12 @@ module Google
         # @return [String]
         attr_accessor :id
       
+        # Specifies whether objects are ingested into the cache upon write.
+        # Corresponds to the JSON property `ingestOnWrite`
+        # @return [Boolean]
+        attr_accessor :ingest_on_write
+        alias_method :ingest_on_write?, :ingest_on_write
+      
         # The kind of item this is. For Anywhere Cache, this is always storage#
         # anywhereCache.
         # Corresponds to the JSON property `kind`
@@ -128,6 +134,7 @@ module Google
           @bucket = args[:bucket] if args.key?(:bucket)
           @create_time = args[:create_time] if args.key?(:create_time)
           @id = args[:id] if args.key?(:id)
+          @ingest_on_write = args[:ingest_on_write] if args.key?(:ingest_on_write)
           @kind = args[:kind] if args.key?(:kind)
           @pending_update = args[:pending_update] if args.key?(:pending_update)
           @self_link = args[:self_link] if args.key?(:self_link)
