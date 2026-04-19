@@ -477,9 +477,8 @@ module Google
         # @return [Google::Apis::ManagedkafkaV1::CapacityConfig]
         attr_accessor :capacity_config
       
-        # Optional. Configurations for the worker that are overridden from the defaults.
-        # The key of the map is a Kafka Connect worker property name, for example: `
-        # exactly.once.source.support`.
+        # Optional. Reserved for future use. This field is meant for worker config
+        # overrides, but is unsupported for now.
         # Corresponds to the JSON property `config`
         # @return [Hash<String,String>]
         attr_accessor :config
