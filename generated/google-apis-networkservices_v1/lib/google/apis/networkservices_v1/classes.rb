@@ -843,6 +843,14 @@ module Google
         # @return [Array<String>]
         attr_accessor :addresses
       
+        # Optional. If true, the Gateway will listen on all ports. This is mutually
+        # exclusive with the `ports` field. This field only applies to gateways of type '
+        # SECURE_WEB_GATEWAY'.
+        # Corresponds to the JSON property `allPorts`
+        # @return [Boolean]
+        attr_accessor :all_ports
+        alias_method :all_ports?, :all_ports
+      
         # Optional. If true, the gateway will allow traffic from clients outside of the
         # region where the gateway is located. This field is configurable only for
         # gateways of type SECURE_WEB_GATEWAY.
@@ -968,6 +976,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @addresses = args[:addresses] if args.key?(:addresses)
+          @all_ports = args[:all_ports] if args.key?(:all_ports)
           @allow_global_access = args[:allow_global_access] if args.key?(:allow_global_access)
           @certificate_urls = args[:certificate_urls] if args.key?(:certificate_urls)
           @create_time = args[:create_time] if args.key?(:create_time)
