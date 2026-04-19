@@ -671,6 +671,8 @@ module Google
           property :cloud_run_revision, as: 'cloudRunRevision', class: Google::Apis::NetworkmanagementV1beta1::CloudRunRevisionEndpoint, decorator: Google::Apis::NetworkmanagementV1beta1::CloudRunRevisionEndpoint::Representation
       
           property :cloud_sql_instance, as: 'cloudSqlInstance'
+          property :datastream_private_connection, as: 'datastreamPrivateConnection'
+          property :dms_private_connection, as: 'dmsPrivateConnection'
           property :forwarding_rule, as: 'forwardingRule'
           property :forwarding_rule_target, as: 'forwardingRuleTarget'
           property :fqdn, as: 'fqdn'

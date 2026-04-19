@@ -902,6 +902,20 @@ module Google
         # @return [String]
         attr_accessor :cloud_sql_instance
       
+        # A [Datastream Private Connection](https://docs.cloud.google.com/datastream/
+        # docs/reference/rest/v1/projects.locations.privateConnections) name format:
+        # projects/`project`/locations/`location`/privateConnections/`privateConnection`.
+        # Corresponds to the JSON property `datastreamPrivateConnection`
+        # @return [String]
+        attr_accessor :datastream_private_connection
+      
+        # A [DMS Private Connection](https://docs.cloud.google.com/database-migration/
+        # docs/reference/rest/v1/projects.locations.privateConnections) name format:
+        # projects/`project`/locations/`location`/privateConnections/`privateConnection`.
+        # Corresponds to the JSON property `dmsPrivateConnection`
+        # @return [String]
+        attr_accessor :dms_private_connection
+      
         # A forwarding rule and its corresponding IP address represent the frontend
         # configuration of a Google Cloud load balancer. Forwarding rules are also used
         # for protocol forwarding, Private Service Connect and other network services to
@@ -1004,6 +1018,8 @@ module Google
           @cloud_function = args[:cloud_function] if args.key?(:cloud_function)
           @cloud_run_revision = args[:cloud_run_revision] if args.key?(:cloud_run_revision)
           @cloud_sql_instance = args[:cloud_sql_instance] if args.key?(:cloud_sql_instance)
+          @datastream_private_connection = args[:datastream_private_connection] if args.key?(:datastream_private_connection)
+          @dms_private_connection = args[:dms_private_connection] if args.key?(:dms_private_connection)
           @forwarding_rule = args[:forwarding_rule] if args.key?(:forwarding_rule)
           @forwarding_rule_target = args[:forwarding_rule_target] if args.key?(:forwarding_rule_target)
           @fqdn = args[:fqdn] if args.key?(:fqdn)
@@ -2935,7 +2951,9 @@ module Google
       
         # Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED
         # routes only. If set for POLICY_BASED route, this is a region of VLAN
-        # attachments for Cloud Interconnect the route applies to.
+        # attachments for Cloud Interconnect the route applies to. If set to "all" for
+        # POLICY_BASED route, the route applies to VLAN attachments of Cloud
+        # Interconnect in all regions.
         # Corresponds to the JSON property `region`
         # @return [String]
         attr_accessor :region
