@@ -240,14 +240,14 @@ module Google
         attr_accessor :google_product_category
       
         # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/
-        # 188494#gtin)) of the item. You can provide up to 10 GTINs. Deprecated: Use `
-        # gtins` instead.
+        # 6324461)) of the item. You can provide up to 10 GTINs. Deprecated: Use `gtins`
+        # instead.
         # Corresponds to the JSON property `gtin`
         # @return [Array<String>]
         attr_accessor :gtin
       
         # A list of Global Trade Item Numbers ([GTIN](https://support.google.com/
-        # merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
+        # merchants/answer/6324461)) of the item. You can provide up to 10 GTINs.
         # Corresponds to the JSON property `gtins`
         # @return [Array<String>]
         attr_accessor :gtins
@@ -368,7 +368,7 @@ module Google
         attr_accessor :mobile_link_template
       
         # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/
-        # 188494#mpn)) of the item.
+        # 6324482)) of the item.
         # Corresponds to the JSON property `mpn`
         # @return [String]
         attr_accessor :mpn
@@ -1258,6 +1258,18 @@ module Google
         # @return [Google::Apis::MerchantapiProductsV1beta::AutomatedDiscounts]
         attr_accessor :automated_discounts
       
+        # Output only. The **unpadded base64url encoded name** of the product. Format: `
+        # accounts/`account`/products/`product`` where the last section `product` is the
+        # unpadded base64url encoding of the `content_language~feed_label~offer_id` name.
+        # Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product
+        # name `accounts/123/products/en~US~sku/123`. This field can be used directly as
+        # input to the API methods that require the product name to be encoded if it
+        # contains special characters, for example [`GetProduct`](https://developers.
+        # google.com/merchant/api/reference/rest/products_v1beta/accounts.products/get).
+        # Corresponds to the JSON property `base64EncodedName`
+        # @return [String]
+        attr_accessor :base64_encoded_name
+      
         # Output only. The [channel](https://support.google.com/merchants/answer/7361332)
         # of the product.
         # Corresponds to the JSON property `channel`
@@ -1338,6 +1350,7 @@ module Google
         def update!(**args)
           @attributes = args[:attributes] if args.key?(:attributes)
           @automated_discounts = args[:automated_discounts] if args.key?(:automated_discounts)
+          @base64_encoded_name = args[:base64_encoded_name] if args.key?(:base64_encoded_name)
           @channel = args[:channel] if args.key?(:channel)
           @content_language = args[:content_language] if args.key?(:content_language)
           @custom_attributes = args[:custom_attributes] if args.key?(:custom_attributes)
@@ -1478,6 +1491,33 @@ module Google
         # @return [Google::Apis::MerchantapiProductsV1beta::Attributes]
         attr_accessor :attributes
       
+        # Output only. The **unpadded base64url encoded name** of the product input.
+        # Format: `accounts/`account`/productInputs/`productinput`` where the last
+        # section `productinput` is the unpadded base64url encoding of the `
+        # content_language~feed_label~offer_id` name. Example: `accounts/123/
+        # productInputs/ZW5-VVN-c2t1LzEyMw` for the decoded product input name `accounts/
+        # 123/productInputs/en~US~sku/123`. This field can be used directly as input to
+        # the API methods that require the product input name to be encoded if it
+        # contains special characters, for example [`GetProductInput`](https://
+        # developers.google.com/merchant/api/reference/rest/products_v1beta/accounts.
+        # productInputs/get).
+        # Corresponds to the JSON property `base64EncodedName`
+        # @return [String]
+        attr_accessor :base64_encoded_name
+      
+        # Output only. The **unpadded base64url encoded name** of the processed product.
+        # Format: `accounts/`account`/products/`product`` where the last section `
+        # product` is the unpadded base64url encoding of the `content_language~
+        # feed_label~offer_id` name. Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw`
+        # for the decoded product name `accounts/123/products/en~US~sku/123`. This field
+        # can be used directly as input to the API methods that require the product name
+        # to be encoded if it contains special characters, for example [`GetProduct`](
+        # https://developers.google.com/merchant/api/reference/rest/products_v1beta/
+        # accounts.products/get).
+        # Corresponds to the JSON property `base64EncodedProduct`
+        # @return [String]
+        attr_accessor :base64_encoded_product
+      
         # Immutable. The [channel](https://support.google.com/merchants/answer/7361332)
         # of the product.
         # Corresponds to the JSON property `channel`
@@ -1524,18 +1564,16 @@ module Google
         # structure. This encoding MUST be used if any part of the product identifier (
         # like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To
         # represent the product ID `en~US~sku/123`, the ``productinput`` segment must be
-        # the base64url encoding of this string, which is `ZW5-VVMtc2t1LzEyMw`. The full
-        # resource name for the product would be `accounts/123/productinputs/ZW5-
-        # VVMtc2t1LzEyMw`. 2. **Plain Format**: The ``productinput`` segment is the
+        # the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`.
+        # The full resource name for the product would be `accounts/123/productInputs/
+        # ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The ``productinput`` segment is the
         # tilde-separated string `content_language~feed_label~offer_id`. This format is
         # suitable only when `content_language`, `feed_label`, and `offer_id` do not
         # contain URL-problematic characters like `/`, `%`, or `~`. We recommend using
         # the **Encoded Format** for all product IDs to ensure correct parsing,
         # especially those containing special characters. The presence of tilde (`~`)
         # characters in the ``productinput`` segment is used to differentiate between
-        # the two formats. Note: For calls to the v1beta version, the plain format is `
-        # channel~content_language~feed_label~offer_id`, for example: `accounts/123/
-        # productinputs/online~en~US~sku123`.
+        # the two formats.
         # Corresponds to the JSON property `name`
         # @return [String]
         attr_accessor :name
@@ -1575,6 +1613,8 @@ module Google
         # Update properties of this object
         def update!(**args)
           @attributes = args[:attributes] if args.key?(:attributes)
+          @base64_encoded_name = args[:base64_encoded_name] if args.key?(:base64_encoded_name)
+          @base64_encoded_product = args[:base64_encoded_product] if args.key?(:base64_encoded_product)
           @channel = args[:channel] if args.key?(:channel)
           @content_language = args[:content_language] if args.key?(:content_language)
           @custom_attributes = args[:custom_attributes] if args.key?(:custom_attributes)
