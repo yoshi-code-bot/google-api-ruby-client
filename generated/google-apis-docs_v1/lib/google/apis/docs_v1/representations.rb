@@ -430,6 +430,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class InsertRichLinkRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class InsertSectionBreakRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -977,6 +983,12 @@ module Google
       end
       
       class UpdateDocumentTabPropertiesRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class UpdateNamedStyleRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1793,6 +1805,18 @@ module Google
         end
       end
       
+      class InsertRichLinkRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :end_of_segment_location, as: 'endOfSegmentLocation', class: Google::Apis::DocsV1::EndOfSegmentLocation, decorator: Google::Apis::DocsV1::EndOfSegmentLocation::Representation
+      
+          property :location, as: 'location', class: Google::Apis::DocsV1::Location, decorator: Google::Apis::DocsV1::Location::Representation
+      
+          property :rich_link_properties, as: 'richLinkProperties', class: Google::Apis::DocsV1::RichLinkProperties, decorator: Google::Apis::DocsV1::RichLinkProperties::Representation
+      
+        end
+      end
+      
       class InsertSectionBreakRequest
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -2341,6 +2365,8 @@ module Google
       
           property :insert_person, as: 'insertPerson', class: Google::Apis::DocsV1::InsertPersonRequest, decorator: Google::Apis::DocsV1::InsertPersonRequest::Representation
       
+          property :insert_rich_link, as: 'insertRichLink', class: Google::Apis::DocsV1::InsertRichLinkRequest, decorator: Google::Apis::DocsV1::InsertRichLinkRequest::Representation
+      
           property :insert_section_break, as: 'insertSectionBreak', class: Google::Apis::DocsV1::InsertSectionBreakRequest, decorator: Google::Apis::DocsV1::InsertSectionBreakRequest::Representation
       
           property :insert_table, as: 'insertTable', class: Google::Apis::DocsV1::InsertTableRequest, decorator: Google::Apis::DocsV1::InsertTableRequest::Representation
@@ -2366,6 +2392,8 @@ module Google
           property :update_document_style, as: 'updateDocumentStyle', class: Google::Apis::DocsV1::UpdateDocumentStyleRequest, decorator: Google::Apis::DocsV1::UpdateDocumentStyleRequest::Representation
       
           property :update_document_tab_properties, as: 'updateDocumentTabProperties', class: Google::Apis::DocsV1::UpdateDocumentTabPropertiesRequest, decorator: Google::Apis::DocsV1::UpdateDocumentTabPropertiesRequest::Representation
+      
+          property :update_named_style, as: 'updateNamedStyle', class: Google::Apis::DocsV1::UpdateNamedStyleRequest, decorator: Google::Apis::DocsV1::UpdateNamedStyleRequest::Representation
       
           property :update_paragraph_style, as: 'updateParagraphStyle', class: Google::Apis::DocsV1::UpdateParagraphStyleRequest, decorator: Google::Apis::DocsV1::UpdateParagraphStyleRequest::Representation
       
@@ -2955,6 +2983,16 @@ module Google
           property :fields, as: 'fields'
           property :tab_properties, as: 'tabProperties', class: Google::Apis::DocsV1::TabProperties, decorator: Google::Apis::DocsV1::TabProperties::Representation
       
+        end
+      end
+      
+      class UpdateNamedStyleRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :fields, as: 'fields'
+          property :named_style, as: 'namedStyle', class: Google::Apis::DocsV1::NamedStyle, decorator: Google::Apis::DocsV1::NamedStyle::Representation
+      
+          property :tab_id, as: 'tabId'
         end
       end
       

@@ -818,13 +818,14 @@ module Google
         attr_accessor :display_text
       
         # The language code of the DateElement. For example, `en`. If unset, the default
-        # locale is `en`. Limited to the following locales: `af`, `am`, `ar`, `az`, `be`,
-        # `bg`, `bn`, `ca`, `cs`, `da`, `de`, `el`, `en`, `en-CA`, `en-GB`, `es`, `es-
-        # 419`, `et`, `eu`, `fa`, `fi`, `fil`, `fr`, `fr-CA`, `gl`, `gu`, `hi`, `hr`, `
-        # hu`, `hy`, `id`, `is`, `it`, `iw`, `ja`, `ka`, `kk`, `km`, `kn`, `ko`, `lo`, `
-        # lt`, `lv`, `ml`, `mn`, `mr`, `ms`, `ne`, `nl`, `no`, `pa`, `pl`, `pt-BR`, `pt-
-        # PT`, `ro`, `ru`, `si`, `sk`, `sl`, `sr`, `sv`, `sw`, `ta`, `te`, `th`, `tr`, `
-        # uk`, `ur`, `vi`, `zh-CN`, `zh-HK`, `zh-TW`, `zu`, `cy`, `my`.
+        # locale is `en`. Limited to the following locales: `af`, `am`, `ar`, `as`, `az`,
+        # `be`, `bg`, `bn`, `ca`, `cs`, `da`, `de`, `el`, `en`, `en-CA`, `en-GB`, `es`,
+        # `es-419`, `et`, `eu`, `fa`, `fi`, `fil`, `fr`, `fr-CA`, `gl`, `gu`, `hi`, `hr`,
+        # `hu`, `hy`, `id`, `is`, `it`, `iw`, `ja`, `ka`, `kk`, `km`, `kn`, `ko`, `lo`,
+        # `lt`, `lv`, `mk`, `ml`, `mn`, `mr`, `ms`, `ne`, `nl`, `no`, `or`, `pa`, `pl`, `
+        # pt-BR`, `pt-PT`, `ro`, `ru`, `si`, `sk`, `sl`, `sq`, `sr`, `sv`, `sw`, `ta`, `
+        # te`, `th`, `tr`, `uk`, `ur`, `uz`, `vi`, `zh-CN`, `zh-HK`, `zh-TW`, `zu`, `cy`,
+        # `my`.
         # Corresponds to the JSON property `locale`
         # @return [String]
         attr_accessor :locale
@@ -837,7 +838,7 @@ module Google
         attr_accessor :time_format
       
         # The time zone of the DateElement, as defined by the Unicode Common Locale Data
-        # Repository (CLDR) project. For example, `America/New York`. If unset, the
+        # Repository (CLDR) project. For example, `America/New_York`. If unset, the
         # default time zone is `etc/UTC`.
         # Corresponds to the JSON property `timeZoneId`
         # @return [String]
@@ -848,7 +849,7 @@ module Google
         # time_zone_id is set, the timestamp is adjusted according to the time zone. For
         # example, a timestamp of `18000` with a date format of `DATE_FORMAT_ISO8601`
         # and time format of `TIME_FORMAT_HOUR_MINUTE` would be displayed as `1970-01-01
-        # 5:00 AM`. A timestamp of `18000` with date format of `DATE_FORMAT_8SO8601`,
+        # 5:00 AM`. A timestamp of `18000` with date format of `DATE_FORMAT_ISO8601`,
         # time format of `TIME_FORMAT_HOUR_MINUTE`, and time zone set to `America/
         # New_York` will instead be `1970-01-01 12:00 AM`.
         # Corresponds to the JSON property `timestamp`
@@ -2769,6 +2770,38 @@ module Google
           @end_of_segment_location = args[:end_of_segment_location] if args.key?(:end_of_segment_location)
           @location = args[:location] if args.key?(:location)
           @person_properties = args[:person_properties] if args.key?(:person_properties)
+        end
+      end
+      
+      # Inserts a RichLink at the specified location.
+      class InsertRichLinkRequest
+        include Google::Apis::Core::Hashable
+      
+        # Location at the end of a body, header, footer or footnote. The location is
+        # immediately before the last newline in the document segment.
+        # Corresponds to the JSON property `endOfSegmentLocation`
+        # @return [Google::Apis::DocsV1::EndOfSegmentLocation]
+        attr_accessor :end_of_segment_location
+      
+        # A particular location in the document.
+        # Corresponds to the JSON property `location`
+        # @return [Google::Apis::DocsV1::Location]
+        attr_accessor :location
+      
+        # Properties specific to a RichLink.
+        # Corresponds to the JSON property `richLinkProperties`
+        # @return [Google::Apis::DocsV1::RichLinkProperties]
+        attr_accessor :rich_link_properties
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @end_of_segment_location = args[:end_of_segment_location] if args.key?(:end_of_segment_location)
+          @location = args[:location] if args.key?(:location)
+          @rich_link_properties = args[:rich_link_properties] if args.key?(:rich_link_properties)
         end
       end
       
@@ -4781,6 +4814,11 @@ module Google
         # @return [Google::Apis::DocsV1::InsertPersonRequest]
         attr_accessor :insert_person
       
+        # Inserts a RichLink at the specified location.
+        # Corresponds to the JSON property `insertRichLink`
+        # @return [Google::Apis::DocsV1::InsertRichLinkRequest]
+        attr_accessor :insert_rich_link
+      
         # Inserts a section break at the given location. A newline character will be
         # inserted before the section break.
         # Corresponds to the JSON property `insertSectionBreak`
@@ -4855,6 +4893,11 @@ module Google
         # @return [Google::Apis::DocsV1::UpdateDocumentTabPropertiesRequest]
         attr_accessor :update_document_tab_properties
       
+        # Updates a named style.
+        # Corresponds to the JSON property `updateNamedStyle`
+        # @return [Google::Apis::DocsV1::UpdateNamedStyleRequest]
+        attr_accessor :update_named_style
+      
         # Update the styling of all paragraphs that overlap with the given range.
         # Corresponds to the JSON property `updateParagraphStyle`
         # @return [Google::Apis::DocsV1::UpdateParagraphStyleRequest]
@@ -4910,6 +4953,7 @@ module Google
           @insert_inline_image = args[:insert_inline_image] if args.key?(:insert_inline_image)
           @insert_page_break = args[:insert_page_break] if args.key?(:insert_page_break)
           @insert_person = args[:insert_person] if args.key?(:insert_person)
+          @insert_rich_link = args[:insert_rich_link] if args.key?(:insert_rich_link)
           @insert_section_break = args[:insert_section_break] if args.key?(:insert_section_break)
           @insert_table = args[:insert_table] if args.key?(:insert_table)
           @insert_table_column = args[:insert_table_column] if args.key?(:insert_table_column)
@@ -4923,6 +4967,7 @@ module Google
           @unmerge_table_cells = args[:unmerge_table_cells] if args.key?(:unmerge_table_cells)
           @update_document_style = args[:update_document_style] if args.key?(:update_document_style)
           @update_document_tab_properties = args[:update_document_tab_properties] if args.key?(:update_document_tab_properties)
+          @update_named_style = args[:update_named_style] if args.key?(:update_named_style)
           @update_paragraph_style = args[:update_paragraph_style] if args.key?(:update_paragraph_style)
           @update_section_style = args[:update_section_style] if args.key?(:update_section_style)
           @update_table_cell_style = args[:update_table_cell_style] if args.key?(:update_table_cell_style)
@@ -6980,6 +7025,47 @@ module Google
         def update!(**args)
           @fields = args[:fields] if args.key?(:fields)
           @tab_properties = args[:tab_properties] if args.key?(:tab_properties)
+        end
+      end
+      
+      # Updates a named style.
+      class UpdateNamedStyleRequest
+        include Google::Apis::Core::Hashable
+      
+        # The NamedStyle fields that should be updated. At least `named_style_type must
+        # be specified. The root `named_style` is implied and should not be specified. A
+        # single `"*"` can be used as short-hand for listing every field. For example,
+        # to update the text style to bold, set `fields` to include `"text_style"` and `"
+        # text_style.bold"`. To update the paragraph style's alignment property, set `
+        # fields` to include `"paragraph_style"` and `"paragraph_style.alignment"`. To
+        # reset a property to its default value, include its field name in the field
+        # mask but leave the field itself unset. Specifying `"text_style"` or `"
+        # paragraph_style"` with an empty TextStyle or ParagraphStyle will reset all of
+        # its nested fields.
+        # Corresponds to the JSON property `fields`
+        # @return [String]
+        attr_accessor :fields
+      
+        # A named style. Paragraphs in the document can inherit their TextStyle and
+        # ParagraphStyle from this named style when they have the same named style type.
+        # Corresponds to the JSON property `namedStyle`
+        # @return [Google::Apis::DocsV1::NamedStyle]
+        attr_accessor :named_style
+      
+        # The document tab to update. By default, the update is applied to the first tab.
+        # Corresponds to the JSON property `tabId`
+        # @return [String]
+        attr_accessor :tab_id
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @fields = args[:fields] if args.key?(:fields)
+          @named_style = args[:named_style] if args.key?(:named_style)
+          @tab_id = args[:tab_id] if args.key?(:tab_id)
         end
       end
       
