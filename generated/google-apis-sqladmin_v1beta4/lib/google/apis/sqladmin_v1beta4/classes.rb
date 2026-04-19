@@ -4762,11 +4762,31 @@ module Google
         # @return [Array<Google::Apis::SqladminV1beta4::PscAutoConnectionConfig>]
         attr_accessor :psc_auto_connections
       
+        # Optional. Indicates whether PSC DNS automation is enabled for this instance.
+        # When enabled, Cloud SQL provisions a universal DNS record across all networks
+        # configured with Private Service Connect (PSC) auto-connections. This will
+        # default to true for new instances when Private Service Connect is enabled.
+        # Corresponds to the JSON property `pscAutoDnsEnabled`
+        # @return [Boolean]
+        attr_accessor :psc_auto_dns_enabled
+        alias_method :psc_auto_dns_enabled?, :psc_auto_dns_enabled
+      
         # Whether PSC connectivity is enabled for this instance.
         # Corresponds to the JSON property `pscEnabled`
         # @return [Boolean]
         attr_accessor :psc_enabled
         alias_method :psc_enabled?, :psc_enabled
+      
+        # Optional. Indicates whether PSC write endpoint DNS automation is enabled for
+        # this instance. When enabled, Cloud SQL provisions a universal global DNS
+        # record across all networks configured with Private Service Connect (PSC) auto-
+        # connections that always points to the cluster primary instance. This feature
+        # is only supported for Enterprise Plus edition. This will default to true for
+        # new enterprise plus instances when `psc_auto_dns_enabled` is enabled.
+        # Corresponds to the JSON property `pscWriteEndpointDnsEnabled`
+        # @return [Boolean]
+        attr_accessor :psc_write_endpoint_dns_enabled
+        alias_method :psc_write_endpoint_dns_enabled?, :psc_write_endpoint_dns_enabled
       
         def initialize(**args)
            update!(**args)
@@ -4777,7 +4797,9 @@ module Google
           @allowed_consumer_projects = args[:allowed_consumer_projects] if args.key?(:allowed_consumer_projects)
           @network_attachment_uri = args[:network_attachment_uri] if args.key?(:network_attachment_uri)
           @psc_auto_connections = args[:psc_auto_connections] if args.key?(:psc_auto_connections)
+          @psc_auto_dns_enabled = args[:psc_auto_dns_enabled] if args.key?(:psc_auto_dns_enabled)
           @psc_enabled = args[:psc_enabled] if args.key?(:psc_enabled)
+          @psc_write_endpoint_dns_enabled = args[:psc_write_endpoint_dns_enabled] if args.key?(:psc_write_endpoint_dns_enabled)
         end
       end
       
