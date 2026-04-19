@@ -375,6 +375,54 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Updates an Instance.
+        # @param [String] name
+        #   The fully qualified name of this Instance. In CreateInstanceRequest, this
+        #   field is ignored, and instead composed from CreateInstanceRequest.parent and
+        #   CreateInstanceRequest.instance_id. Format: projects/`project`/locations/`
+        #   location`/instances/`instance_id`
+        # @param [Google::Apis::RunV2::GoogleCloudRunV2Instance] google_cloud_run_v2_instance_object
+        # @param [Boolean] allow_missing
+        #   Optional. If set to true, and if the Instance does not exist, it will create a
+        #   new one. The caller must have 'run.instances.create' permissions if this is
+        #   set to true and the Instance does not exist.
+        # @param [String] update_mask
+        #   Optional. The list of fields to be updated.
+        # @param [Boolean] validate_only
+        #   Optional. Indicates that the request should be validated and default values
+        #   populated, without persisting the request or updating any resources.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::RunV2::GoogleLongrunningOperation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::RunV2::GoogleLongrunningOperation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def patch_project_location_instance(name, google_cloud_run_v2_instance_object = nil, allow_missing: nil, update_mask: nil, validate_only: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:patch, 'v2/{+name}', options)
+          command.request_representation = Google::Apis::RunV2::GoogleCloudRunV2Instance::Representation
+          command.request_object = google_cloud_run_v2_instance_object
+          command.response_representation = Google::Apis::RunV2::GoogleLongrunningOperation::Representation
+          command.response_class = Google::Apis::RunV2::GoogleLongrunningOperation
+          command.params['name'] = name unless name.nil?
+          command.query['allowMissing'] = allow_missing unless allow_missing.nil?
+          command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['validateOnly'] = validate_only unless validate_only.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Starts an Instance.
         # @param [String] name
         #   Required. The name of the Instance to stop. Format: `projects/`project`/
