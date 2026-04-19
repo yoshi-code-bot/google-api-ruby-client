@@ -202,6 +202,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class DeleteFolderTreeRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class DeleteTeamFolderTreeRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class DirectoryEntry
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -275,6 +287,18 @@ module Google
       end
       
       class FilesystemEntryMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class Folder
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class FolderContentsEntry
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -424,6 +448,18 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class MoveFolderRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class MoveRepositoryRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Notebook
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -514,7 +550,25 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class QueryFolderContentsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class QueryRepositoryDirectoryContentsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class QueryTeamFolderContentsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class QueryUserRootContentsResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -598,6 +652,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class RootContentsEntry
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class ScheduledExecutionRecord
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -617,6 +677,12 @@ module Google
       end
       
       class SearchResult
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class SearchTeamFoldersResponse
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -653,6 +719,24 @@ module Google
       end
       
       class Target
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class TeamFolder
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class TeamFolderContentsEntry
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class TeamFolderSearchResult
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1028,6 +1112,20 @@ module Google
         end
       end
       
+      class DeleteFolderTreeRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :force, as: 'force'
+        end
+      end
+      
+      class DeleteTeamFolderTreeRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :force, as: 'force'
+        end
+      end
+      
       class DirectoryEntry
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1131,6 +1229,30 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :size_bytes, :numeric_string => true, as: 'sizeBytes'
           property :update_time, as: 'updateTime'
+        end
+      end
+      
+      class Folder
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :containing_folder, as: 'containingFolder'
+          property :create_time, as: 'createTime'
+          property :creator_iam_principal, as: 'creatorIamPrincipal'
+          property :display_name, as: 'displayName'
+          property :internal_metadata, as: 'internalMetadata'
+          property :name, as: 'name'
+          property :team_folder_name, as: 'teamFolderName'
+          property :update_time, as: 'updateTime'
+        end
+      end
+      
+      class FolderContentsEntry
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :folder, as: 'folder', class: Google::Apis::DataformV1::Folder, decorator: Google::Apis::DataformV1::Folder::Representation
+      
+          property :repository, as: 'repository', class: Google::Apis::DataformV1::Repository, decorator: Google::Apis::DataformV1::Repository::Representation
+      
         end
       end
       
@@ -1353,6 +1475,20 @@ module Google
         end
       end
       
+      class MoveFolderRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :destination_containing_folder, as: 'destinationContainingFolder'
+        end
+      end
+      
+      class MoveRepositoryRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :destination_containing_folder, as: 'destinationContainingFolder'
+        end
+      end
+      
       class Notebook
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -1491,10 +1627,37 @@ module Google
         end
       end
       
+      class QueryFolderContentsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :entries, as: 'entries', class: Google::Apis::DataformV1::FolderContentsEntry, decorator: Google::Apis::DataformV1::FolderContentsEntry::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
       class QueryRepositoryDirectoryContentsResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :directory_entries, as: 'directoryEntries', class: Google::Apis::DataformV1::DirectoryEntry, decorator: Google::Apis::DataformV1::DirectoryEntry::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
+      class QueryTeamFolderContentsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :entries, as: 'entries', class: Google::Apis::DataformV1::TeamFolderContentsEntry, decorator: Google::Apis::DataformV1::TeamFolderContentsEntry::Representation
+      
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
+      class QueryUserRootContentsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :entries, as: 'entries', class: Google::Apis::DataformV1::RootContentsEntry, decorator: Google::Apis::DataformV1::RootContentsEntry::Representation
       
           property :next_page_token, as: 'nextPageToken'
         end
@@ -1606,6 +1769,7 @@ module Google
       class Repository
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :containing_folder, as: 'containingFolder'
           property :create_time, as: 'createTime'
           property :data_encryption_state, as: 'dataEncryptionState', class: Google::Apis::DataformV1::DataEncryptionState, decorator: Google::Apis::DataformV1::DataEncryptionState::Representation
       
@@ -1619,6 +1783,7 @@ module Google
           property :npmrc_environment_variables_secret_version, as: 'npmrcEnvironmentVariablesSecretVersion'
           property :service_account, as: 'serviceAccount'
           property :set_authenticated_user_admin, as: 'setAuthenticatedUserAdmin'
+          property :team_folder_name, as: 'teamFolderName'
           property :workspace_compilation_overrides, as: 'workspaceCompilationOverrides', class: Google::Apis::DataformV1::WorkspaceCompilationOverrides, decorator: Google::Apis::DataformV1::WorkspaceCompilationOverrides::Representation
       
         end
@@ -1635,6 +1800,16 @@ module Google
       class ResetWorkspaceChangesResponse
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+        end
+      end
+      
+      class RootContentsEntry
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :folder, as: 'folder', class: Google::Apis::DataformV1::Folder, decorator: Google::Apis::DataformV1::Folder::Representation
+      
+          property :repository, as: 'repository', class: Google::Apis::DataformV1::Repository, decorator: Google::Apis::DataformV1::Repository::Representation
+      
         end
       end
       
@@ -1673,6 +1848,15 @@ module Google
           property :directory, as: 'directory', class: Google::Apis::DataformV1::DirectorySearchResult, decorator: Google::Apis::DataformV1::DirectorySearchResult::Representation
       
           property :file, as: 'file', class: Google::Apis::DataformV1::FileSearchResult, decorator: Google::Apis::DataformV1::FileSearchResult::Representation
+      
+        end
+      end
+      
+      class SearchTeamFoldersResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :next_page_token, as: 'nextPageToken'
+          collection :results, as: 'results', class: Google::Apis::DataformV1::TeamFolderSearchResult, decorator: Google::Apis::DataformV1::TeamFolderSearchResult::Representation
       
         end
       end
@@ -1725,6 +1909,36 @@ module Google
           property :database, as: 'database'
           property :name, as: 'name'
           property :schema, as: 'schema'
+        end
+      end
+      
+      class TeamFolder
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :create_time, as: 'createTime'
+          property :creator_iam_principal, as: 'creatorIamPrincipal'
+          property :display_name, as: 'displayName'
+          property :internal_metadata, as: 'internalMetadata'
+          property :name, as: 'name'
+          property :update_time, as: 'updateTime'
+        end
+      end
+      
+      class TeamFolderContentsEntry
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :folder, as: 'folder', class: Google::Apis::DataformV1::Folder, decorator: Google::Apis::DataformV1::Folder::Representation
+      
+          property :repository, as: 'repository', class: Google::Apis::DataformV1::Repository, decorator: Google::Apis::DataformV1::Repository::Representation
+      
+        end
+      end
+      
+      class TeamFolderSearchResult
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :team_folder, as: 'teamFolder', class: Google::Apis::DataformV1::TeamFolder, decorator: Google::Apis::DataformV1::TeamFolder::Representation
+      
         end
       end
       
@@ -1815,6 +2029,7 @@ module Google
           property :create_time, as: 'createTime'
           property :data_encryption_state, as: 'dataEncryptionState', class: Google::Apis::DataformV1::DataEncryptionState, decorator: Google::Apis::DataformV1::DataEncryptionState::Representation
       
+          property :disable_moves, as: 'disableMoves'
           property :internal_metadata, as: 'internalMetadata'
           property :name, as: 'name'
           property :private_resource_metadata, as: 'privateResourceMetadata', class: Google::Apis::DataformV1::PrivateResourceMetadata, decorator: Google::Apis::DataformV1::PrivateResourceMetadata::Representation

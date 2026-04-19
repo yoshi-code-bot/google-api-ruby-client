@@ -113,10 +113,15 @@ module Google
         end
         
         # Lists information about the supported locations for this service. This method
-        # can be called in two ways: * **List all public locations:** Use the path `GET /
-        # v1/locations`. * **List project-visible locations:** Use the path `GET /v1/
-        # projects/`project_id`/locations`. This may include public locations as well as
-        # private or other locations specifically visible to the project.
+        # lists locations based on the resource scope provided in the [
+        # ListLocationsRequest.name] field: * **Global locations**: If `name` is empty,
+        # the method lists the public locations available to all projects. * **Project-
+        # specific locations**: If `name` follows the format `projects/`project``, the
+        # method lists locations visible to that specific project. This includes public,
+        # private, or other project-specific locations enabled for the project. For gRPC
+        # and client library implementations, the resource name is passed as the `name`
+        # field. For direct service calls, the resource name is incorporated into the
+        # request path based on the specific service implementation and version.
         # @param [String] name
         #   The resource that owns the locations collection, if applicable.
         # @param [Array<String>, String] extra_location_types
@@ -163,6 +168,60 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Returns the contents of a caller's root folder in a given location. The root
+        # folder contains all resources that are created by the user and not contained
+        # in any other folder.
+        # @param [String] location
+        #   Required. Location of the user root folder to list contents for. Format:
+        #   projects/*/locations/*
+        # @param [String] filter
+        #   Optional. Optional filtering for the returned list. Filtering is currently
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
+        #   MyFolder""`
+        # @param [String] order_by
+        #   Optional. Field to additionally sort results by. Will order Folders before
+        #   Repositories, and then by `order_by` in ascending order. Supported keywords:
+        #   display_name (default), created_at, last_modified_at. Examples: * `orderBy="
+        #   display_name"` * `orderBy="display_name desc"`
+        # @param [Fixnum] page_size
+        #   Optional. Maximum number of paths to return. The server may return fewer items
+        #   than requested. If unspecified, the server will pick an appropriate default.
+        # @param [String] page_token
+        #   Optional. Page token received from a previous `QueryUserRootContents` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `QueryUserRootFolderContents`, with the exception of `
+        #   page_size`, must match the call that provided the page token.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::QueryUserRootContentsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::QueryUserRootContentsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def query_project_location_user_root_contents(location, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+location}:queryUserRootContents', options)
+          command.response_representation = Google::Apis::DataformV1::QueryUserRootContentsResponse::Representation
+          command.response_class = Google::Apis::DataformV1::QueryUserRootContentsResponse
+          command.params['location'] = location unless location.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Update default config for a given project and location. **Note:** *This method
         # does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard
         # entry (\*) is treated as a bad request, and when the `field_mask` is omitted,
@@ -197,6 +256,135 @@ module Google
           command.response_class = Google::Apis::DataformV1::Config
           command.params['name'] = name unless name.nil?
           command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Creates a new Folder in a given project and location.
+        # @param [String] parent
+        #   Required. The location in which to create the Folder. Must be in the format `
+        #   projects/*/locations/*`.
+        # @param [Google::Apis::DataformV1::Folder] folder_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Folder] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Folder]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project_location_folder(parent, folder_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+parent}/folders', options)
+          command.request_representation = Google::Apis::DataformV1::Folder::Representation
+          command.request_object = folder_object
+          command.response_representation = Google::Apis::DataformV1::Folder::Representation
+          command.response_class = Google::Apis::DataformV1::Folder
+          command.params['parent'] = parent unless parent.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a single Folder.
+        # @param [String] name
+        #   Required. The Folder's name.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_folder(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:delete, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::DataformV1::Empty::Representation
+          command.response_class = Google::Apis::DataformV1::Empty
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a Folder with its contents (Folders, Repositories, Workspaces,
+        # ReleaseConfigs, and WorkflowConfigs).
+        # @param [String] name
+        #   Required. The Folder's name. Format: projects/`project`/locations/`location`/
+        #   folders/`folder`
+        # @param [Google::Apis::DataformV1::DeleteFolderTreeRequest] delete_folder_tree_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_folder_tree(name, delete_folder_tree_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+name}:deleteTree', options)
+          command.request_representation = Google::Apis::DataformV1::DeleteFolderTreeRequest::Representation
+          command.request_object = delete_folder_tree_request_object
+          command.response_representation = Google::Apis::DataformV1::Operation::Representation
+          command.response_class = Google::Apis::DataformV1::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Fetches a single Folder.
+        # @param [String] name
+        #   Required. The Folder's name.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Folder] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Folder]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_folder(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::DataformV1::Folder::Representation
+          command.response_class = Google::Apis::DataformV1::Folder
+          command.params['name'] = name unless name.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -242,6 +430,130 @@ module Google
           command.response_class = Google::Apis::DataformV1::Policy
           command.params['resource'] = resource unless resource.nil?
           command.query['options.requestedPolicyVersion'] = options_requested_policy_version unless options_requested_policy_version.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Moves a Folder to a new Folder, TeamFolder, or the root location.
+        # @param [String] name
+        #   Required. The full resource name of the Folder to move.
+        # @param [Google::Apis::DataformV1::MoveFolderRequest] move_folder_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def move_folder(name, move_folder_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+name}:move', options)
+          command.request_representation = Google::Apis::DataformV1::MoveFolderRequest::Representation
+          command.request_object = move_folder_request_object
+          command.response_representation = Google::Apis::DataformV1::Operation::Representation
+          command.response_class = Google::Apis::DataformV1::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Updates a single Folder.
+        # @param [String] name
+        #   Identifier. The Folder's name.
+        # @param [Google::Apis::DataformV1::Folder] folder_object
+        # @param [String] update_mask
+        #   Optional. Specifies the fields to be updated in the Folder. If left unset, all
+        #   fields that can be updated, will be updated. A few fields cannot be updated
+        #   and will be ignored if specified in the update_mask (e.g. parent_name,
+        #   team_folder_name).
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Folder] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Folder]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def patch_project_location_folder(name, folder_object = nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:patch, 'v1/{+name}', options)
+          command.request_representation = Google::Apis::DataformV1::Folder::Representation
+          command.request_object = folder_object
+          command.response_representation = Google::Apis::DataformV1::Folder::Representation
+          command.response_class = Google::Apis::DataformV1::Folder
+          command.params['name'] = name unless name.nil?
+          command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Returns the contents of a given Folder.
+        # @param [String] folder
+        #   Required. Resource name of the Folder to list contents for. Format: projects/*/
+        #   locations/*/folders/*
+        # @param [String] filter
+        #   Optional. Optional filtering for the returned list. Filtering is currently
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
+        #   MyFolder""`
+        # @param [String] order_by
+        #   Optional. Field to additionally sort results by. Will order Folders before
+        #   Repositories, and then by `order_by` in ascending order. Supported keywords:
+        #   display_name (default), create_time, last_modified_time. Examples: * `orderBy="
+        #   display_name"` * `orderBy="display_name desc"`
+        # @param [Fixnum] page_size
+        #   Optional. Maximum number of paths to return. The server may return fewer items
+        #   than requested. If unspecified, the server will pick an appropriate default.
+        # @param [String] page_token
+        #   Optional. Page token received from a previous `QueryFolderContents` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `QueryFolderContents`, with the exception of `page_size`
+        #   , must match the call that provided the page token.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::QueryFolderContentsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::QueryFolderContentsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def query_project_location_folder_folder_contents(folder, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+folder}:queryFolderContents', options)
+          command.response_representation = Google::Apis::DataformV1::QueryFolderContentsResponse::Representation
+          command.response_class = Google::Apis::DataformV1::QueryFolderContentsResponse
+          command.params['folder'] = folder unless folder.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -810,6 +1122,39 @@ module Google
           command.query['orderBy'] = order_by unless order_by.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Moves a Repository to a new location.
+        # @param [String] name
+        #   Required. The full resource name of the repository to move.
+        # @param [Google::Apis::DataformV1::MoveRepositoryRequest] move_repository_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def move_repository(name, move_repository_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+name}:move', options)
+          command.request_representation = Google::Apis::DataformV1::MoveRepositoryRequest::Representation
+          command.request_object = move_repository_request_object
+          command.response_representation = Google::Apis::DataformV1::Operation::Representation
+          command.response_class = Google::Apis::DataformV1::Operation
+          command.params['name'] = name unless name.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -2622,6 +2967,135 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
+        # Creates a new TeamFolder in a given project and location.
+        # @param [String] parent
+        #   Required. The location in which to create the TeamFolder. Must be in the
+        #   format `projects/*/locations/*`.
+        # @param [Google::Apis::DataformV1::TeamFolder] team_folder_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::TeamFolder] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::TeamFolder]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def create_project_location_team_folder(parent, team_folder_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+parent}/teamFolders', options)
+          command.request_representation = Google::Apis::DataformV1::TeamFolder::Representation
+          command.request_object = team_folder_object
+          command.response_representation = Google::Apis::DataformV1::TeamFolder::Representation
+          command.response_class = Google::Apis::DataformV1::TeamFolder
+          command.params['parent'] = parent unless parent.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a single TeamFolder.
+        # @param [String] name
+        #   Required. The TeamFolder's name.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Empty] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Empty]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_team_folder(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:delete, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::DataformV1::Empty::Representation
+          command.response_class = Google::Apis::DataformV1::Empty
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+        # ReleaseConfigs, and WorkflowConfigs).
+        # @param [String] name
+        #   Required. The TeamFolder's name. Format: projects/`project`/locations/`
+        #   location`/teamFolders/`team_folder`
+        # @param [Google::Apis::DataformV1::DeleteTeamFolderTreeRequest] delete_team_folder_tree_request_object
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::Operation] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::Operation]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def delete_project_location_team_folder_tree(name, delete_team_folder_tree_request_object = nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:post, 'v1/{+name}:deleteTree', options)
+          command.request_representation = Google::Apis::DataformV1::DeleteTeamFolderTreeRequest::Representation
+          command.request_object = delete_team_folder_tree_request_object
+          command.response_representation = Google::Apis::DataformV1::Operation::Representation
+          command.response_class = Google::Apis::DataformV1::Operation
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Fetches a single TeamFolder.
+        # @param [String] name
+        #   Required. The TeamFolder's name.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::TeamFolder] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::TeamFolder]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def get_project_location_team_folder(name, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+name}', options)
+          command.response_representation = Google::Apis::DataformV1::TeamFolder::Representation
+          command.response_class = Google::Apis::DataformV1::TeamFolder
+          command.params['name'] = name unless name.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
         # Gets the access control policy for a resource. Returns an empty policy if the
         # resource exists and does not have a policy set.
         # @param [String] resource
@@ -2662,6 +3136,148 @@ module Google
           command.response_class = Google::Apis::DataformV1::Policy
           command.params['resource'] = resource unless resource.nil?
           command.query['options.requestedPolicyVersion'] = options_requested_policy_version unless options_requested_policy_version.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Updates a single TeamFolder.
+        # @param [String] name
+        #   Identifier. The TeamFolder's name.
+        # @param [Google::Apis::DataformV1::TeamFolder] team_folder_object
+        # @param [String] update_mask
+        #   Optional. Specifies the fields to be updated in the Folder. If left unset, all
+        #   fields will be updated.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::TeamFolder] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::TeamFolder]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def patch_project_location_team_folder(name, team_folder_object = nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:patch, 'v1/{+name}', options)
+          command.request_representation = Google::Apis::DataformV1::TeamFolder::Representation
+          command.request_object = team_folder_object
+          command.response_representation = Google::Apis::DataformV1::TeamFolder::Representation
+          command.response_class = Google::Apis::DataformV1::TeamFolder
+          command.params['name'] = name unless name.nil?
+          command.query['updateMask'] = update_mask unless update_mask.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Returns the contents of a given TeamFolder.
+        # @param [String] team_folder
+        #   Required. Resource name of the TeamFolder to list contents for. Format: `
+        #   projects/*/locations/*/teamFolders/*`.
+        # @param [String] filter
+        #   Optional. Optional filtering for the returned list. Filtering is currently
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
+        #   MyFolder""`
+        # @param [String] order_by
+        #   Optional. Field to additionally sort results by. Will order Folders before
+        #   Repositories, and then by `order_by` in ascending order. Supported keywords: `
+        #   display_name` (default), `create_time`, last_modified_time. Examples: * `
+        #   orderBy="display_name"` * `orderBy="display_name desc"`
+        # @param [Fixnum] page_size
+        #   Optional. Maximum number of paths to return. The server may return fewer items
+        #   than requested. If unspecified, the server will pick an appropriate default.
+        # @param [String] page_token
+        #   Optional. Page token received from a previous `QueryTeamFolderContents` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `QueryTeamFolderContents`, with the exception of `
+        #   page_size`, must match the call that provided the page token.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::QueryTeamFolderContentsResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::QueryTeamFolderContentsResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def query_project_location_team_folder_contents(team_folder, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+teamFolder}:queryContents', options)
+          command.response_representation = Google::Apis::DataformV1::QueryTeamFolderContentsResponse::Representation
+          command.response_class = Google::Apis::DataformV1::QueryTeamFolderContentsResponse
+          command.params['teamFolder'] = team_folder unless team_folder.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Returns all TeamFolders in a given location that the caller has access to and
+        # match the provided filter.
+        # @param [String] location
+        #   Required. Location in which to query TeamFolders. Format: `projects/*/
+        #   locations/*`.
+        # @param [String] filter
+        #   Optional. Optional filtering for the returned list. Filtering is currently
+        #   only supported on the `display_name` field. Example: * `filter="display_name="
+        #   MyFolder""`
+        # @param [String] order_by
+        #   Optional. Field to additionally sort results by. Supported keywords: `
+        #   display_name` (default), `create_time`, `last_modified_time`. Examples: * `
+        #   orderBy="display_name"` * `orderBy="display_name desc"`
+        # @param [Fixnum] page_size
+        #   Optional. Maximum number of TeamFolders to return. The server may return fewer
+        #   items than requested. If unspecified, the server will pick an appropriate
+        #   default.
+        # @param [String] page_token
+        #   Optional. Page token received from a previous `SearchTeamFolders` call.
+        #   Provide this to retrieve the subsequent page. When paginating, all other
+        #   parameters provided to `SearchTeamFolders`, with the exception of `page_size`,
+        #   must match the call that provided the page token.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::DataformV1::SearchTeamFoldersResponse] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::DataformV1::SearchTeamFoldersResponse]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def search_project_location_team_folders(location, filter: nil, order_by: nil, page_size: nil, page_token: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:get, 'v1/{+location}/teamFolders:search', options)
+          command.response_representation = Google::Apis::DataformV1::SearchTeamFoldersResponse::Representation
+          command.response_class = Google::Apis::DataformV1::SearchTeamFoldersResponse
+          command.params['location'] = location unless location.nil?
+          command.query['filter'] = filter unless filter.nil?
+          command.query['orderBy'] = order_by unless order_by.nil?
+          command.query['pageSize'] = page_size unless page_size.nil?
+          command.query['pageToken'] = page_token unless page_token.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
