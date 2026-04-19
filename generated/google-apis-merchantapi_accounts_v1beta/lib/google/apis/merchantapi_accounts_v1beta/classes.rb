@@ -122,8 +122,8 @@ module Google
         end
       end
       
-      # The `Account` message represents a business's account within Shopping Ads. It'
-      # s the primary entity for managing product data, settings, and interactions
+      # The `Account` message represents a business's account within Merchant Center.
+      # It's the primary entity for managing product data, settings, and interactions
       # with Google's services and external providers. Accounts can operate as
       # standalone entities or be part of a advanced account structure. In an advanced
       # account setup the parent account manages multiple sub-accounts. Establishing
@@ -374,7 +374,7 @@ module Google
         attr_accessor :external_account_id
       
         # The current status of establishing of the service. (for example, pending
-        # approval or approved).
+        # approval, approved, established).
         # Corresponds to the JSON property `handshake`
         # @return [Google::Apis::MerchantapiAccountsV1beta::Handshake]
         attr_accessor :handshake
@@ -1153,8 +1153,8 @@ module Google
       class CreateAndConfigureAccountRequest
         include Google::Apis::Core::Hashable
       
-        # The `Account` message represents a business's account within Shopping Ads. It'
-        # s the primary entity for managing product data, settings, and interactions
+        # The `Account` message represents a business's account within Merchant Center.
+        # It's the primary entity for managing product data, settings, and interactions
         # with Google's services and external providers. Accounts can operate as
         # standalone entities or be part of a advanced account structure. In an advanced
         # account setup the parent account manages multiple sub-accounts. Establishing
@@ -1718,7 +1718,7 @@ module Google
       end
       
       # The current status of establishing of the service. (for example, pending
-      # approval or approved).
+      # approval, approved, established).
       class Handshake
         include Google::Apis::Core::Hashable
       
@@ -3353,8 +3353,8 @@ module Google
       # com/merchants/answer/13889434) program, which enables products from a business'
       # s store to be shown across Google for free. The following list is the
       # available set of program resource IDs accessible through the API: * `checkout`
-      # * `free-listings` * `product-ratings` * `shopping-ads` * `youtube-shopping-
-      # checkout`
+      # * `free-listings` * `product-ratings` * `shopping-ads` * `youtube-affiliate` *
+      # `youtube-shopping-checkout`
       class Program
         include Google::Apis::Core::Hashable
       
