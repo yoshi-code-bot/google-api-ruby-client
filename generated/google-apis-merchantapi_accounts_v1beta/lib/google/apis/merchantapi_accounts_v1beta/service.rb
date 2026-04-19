@@ -673,7 +673,8 @@ module Google
         # @param [String] name
         #   Required. The name of the developer registration to be created for the
         #   merchant account that the GCP will be registered with. Format: `accounts/`
-        #   account`/developerRegistration`
+        #   account`/developerRegistration` The `account` used must be the same account
+        #   where user calling this API method is directly added to.
         # @param [Google::Apis::MerchantapiAccountsV1beta::RegisterGcpRequest] register_gcp_request_object
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
