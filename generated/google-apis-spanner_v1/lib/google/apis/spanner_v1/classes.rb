@@ -6001,7 +6001,7 @@ module Google
         # @return [String]
         attr_accessor :multiplexed_session_previous_transaction_id
       
-        # Read lock mode for the transaction.
+        # The read lock mode for the transaction.
         # Corresponds to the JSON property `readLockMode`
         # @return [String]
         attr_accessor :read_lock_mode
