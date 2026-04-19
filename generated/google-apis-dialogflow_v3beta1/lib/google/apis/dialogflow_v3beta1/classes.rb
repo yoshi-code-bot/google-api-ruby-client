@@ -18193,6 +18193,21 @@ module Google
         attr_accessor :answer_record
       
         # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
+      
+        # 
         # Corresponds to the JSON property `createTime`
         # @return [String]
         attr_accessor :create_time
@@ -18230,6 +18245,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @create_time = args[:create_time] if args.key?(:create_time)
           @input_parameters = args[:input_parameters] if args.key?(:input_parameters)
           @state = args[:state] if args.key?(:state)
@@ -18252,6 +18270,21 @@ module Google
         # Corresponds to the JSON property `answerRecord`
         # @return [String]
         attr_accessor :answer_record
+      
+        # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
       
         # 
         # Corresponds to the JSON property `content`
@@ -18287,6 +18320,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @content = args[:content] if args.key?(:content)
           @create_time = args[:create_time] if args.key?(:create_time)
           @error = args[:error] if args.key?(:error)
@@ -22548,6 +22584,21 @@ module Google
         attr_accessor :answer_record
       
         # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
+      
+        # 
         # Corresponds to the JSON property `createTime`
         # @return [String]
         attr_accessor :create_time
@@ -22585,6 +22636,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @create_time = args[:create_time] if args.key?(:create_time)
           @input_parameters = args[:input_parameters] if args.key?(:input_parameters)
           @state = args[:state] if args.key?(:state)
@@ -22607,6 +22661,21 @@ module Google
         # Corresponds to the JSON property `answerRecord`
         # @return [String]
         attr_accessor :answer_record
+      
+        # 
+        # Corresponds to the JSON property `cesApp`
+        # @return [String]
+        attr_accessor :ces_app
+      
+        # 
+        # Corresponds to the JSON property `cesTool`
+        # @return [String]
+        attr_accessor :ces_tool
+      
+        # 
+        # Corresponds to the JSON property `cesToolset`
+        # @return [String]
+        attr_accessor :ces_toolset
       
         # 
         # Corresponds to the JSON property `content`
@@ -22642,6 +22711,9 @@ module Google
         def update!(**args)
           @action = args[:action] if args.key?(:action)
           @answer_record = args[:answer_record] if args.key?(:answer_record)
+          @ces_app = args[:ces_app] if args.key?(:ces_app)
+          @ces_tool = args[:ces_tool] if args.key?(:ces_tool)
+          @ces_toolset = args[:ces_toolset] if args.key?(:ces_toolset)
           @content = args[:content] if args.key?(:content)
           @create_time = args[:create_time] if args.key?(:create_time)
           @error = args[:error] if args.key?(:error)
