@@ -2553,6 +2553,7 @@ module Google
       class Occurrence
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
+          property :advisory_publish_time, as: 'advisoryPublishTime'
           property :attestation, as: 'attestation', class: Google::Apis::ContaineranalysisV1::AttestationOccurrence, decorator: Google::Apis::ContaineranalysisV1::AttestationOccurrence::Representation
       
           property :build, as: 'build', class: Google::Apis::ContaineranalysisV1::BuildOccurrence, decorator: Google::Apis::ContaineranalysisV1::BuildOccurrence::Representation
