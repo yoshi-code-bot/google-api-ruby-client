@@ -891,7 +891,7 @@ module Google
       # A BeyondCorp AppConnection resource represents a BeyondCorp protected
       # AppConnection to a remote application. It creates all the necessary GCP
       # components needed for creating a BeyondCorp protected AppConnection. Multiple
-      # connectors can be authorised for a single AppConnection.
+      # connectors can be authorized for a single AppConnection.
       class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection
         include Google::Apis::Core::Hashable
       
@@ -901,7 +901,7 @@ module Google
         attr_accessor :application_endpoint
       
         # Optional. List of [google.cloud.beyondcorp.v1main.Connector.name] that are
-        # authorised to be associated with this AppConnection.
+        # authorized to be associated with this AppConnection.
         # Corresponds to the JSON property `connectors`
         # @return [Array<String>]
         attr_accessor :connectors
@@ -1189,7 +1189,7 @@ module Google
         # A BeyondCorp AppConnection resource represents a BeyondCorp protected
         # AppConnection to a remote application. It creates all the necessary GCP
         # components needed for creating a BeyondCorp protected AppConnection. Multiple
-        # connectors can be authorised for a single AppConnection.
+        # connectors can be authorized for a single AppConnection.
         # Corresponds to the JSON property `appConnection`
         # @return [Google::Apis::BeyondcorpV1alpha::GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection]
         attr_accessor :app_connection
@@ -1356,9 +1356,10 @@ module Google
         # @return [Google::Apis::BeyondcorpV1alpha::GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorPrincipalInfo]
         attr_accessor :principal_info
       
-        # ResourceInfo represents the information/status of an app connector resource.
-        # Such as: - remote_agent - container - runtime - appgateway - appconnector -
-        # appconnection - tunnel - logagent
+        # ResourceInfo represents the information or status of an app connector resource
+        # component that's used to report on various parts of the system. For example,
+        # ResourceInfo can be used to convey the status of a remote_agent, including the
+        # status of an appgateway for an runtime environment in a container instance.
         # Corresponds to the JSON property `resourceInfo`
         # @return [Google::Apis::BeyondcorpV1alpha::GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo]
         attr_accessor :resource_info
@@ -1697,9 +1698,10 @@ module Google
         # @return [String]
         attr_accessor :request_id
       
-        # ResourceInfo represents the information/status of an app connector resource.
-        # Such as: - remote_agent - container - runtime - appgateway - appconnector -
-        # appconnection - tunnel - logagent
+        # ResourceInfo represents the information or status of an app connector resource
+        # component that's used to report on various parts of the system. For example,
+        # ResourceInfo can be used to convey the status of a remote_agent, including the
+        # status of an appgateway for an runtime environment in a container instance.
         # Corresponds to the JSON property `resourceInfo`
         # @return [Google::Apis::BeyondcorpV1alpha::GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo]
         attr_accessor :resource_info
@@ -1742,9 +1744,10 @@ module Google
         end
       end
       
-      # ResourceInfo represents the information/status of an app connector resource.
-      # Such as: - remote_agent - container - runtime - appgateway - appconnector -
-      # appconnection - tunnel - logagent
+      # ResourceInfo represents the information or status of an app connector resource
+      # component that's used to report on various parts of the system. For example,
+      # ResourceInfo can be used to convey the status of a remote_agent, including the
+      # status of an appgateway for an runtime environment in a container instance.
       class GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo
         include Google::Apis::Core::Hashable
       
@@ -3184,7 +3187,7 @@ module Google
       class GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor
         include Google::Apis::Core::Hashable
       
-        # Required. Contains the URI path fragment where HTTP request is sent.
+        # Optional. Contains the URI path fragment where HTTP request is sent.
         # Corresponds to the JSON property `path`
         # @return [String]
         attr_accessor :path
