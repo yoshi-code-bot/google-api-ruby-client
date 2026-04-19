@@ -371,6 +371,14 @@ module Google
         # @return [String]
         attr_accessor :display_name
       
+        # Optional. This checksum is computed by the server based on the value of other
+        # fields, and may be sent on update and delete requests to ensure the client has
+        # an up-to-date value before proceeding. This etag is strongly validated as
+        # defined by RFC 7232.
+        # Corresponds to the JSON property `etag`
+        # @return [String]
+        attr_accessor :etag
+      
         # Required. The relative resource name of the debug token, in the format: ```
         # projects/`project_number`/apps/`app_id`/debugTokens/`debug_token_id` ```
         # Corresponds to the JSON property `name`
@@ -398,6 +406,7 @@ module Google
         # Update properties of this object
         def update!(**args)
           @display_name = args[:display_name] if args.key?(:display_name)
+          @etag = args[:etag] if args.key?(:etag)
           @name = args[:name] if args.key?(:name)
           @token = args[:token] if args.key?(:token)
           @update_time = args[:update_time] if args.key?(:update_time)
@@ -1577,6 +1586,20 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # Optional. The replay protection enforcement mode for this service. Note that
+        # this field cannot be set to a level higher than the overall App Check
+        # enforcement mode. For example, if the overall App Check enforcement mode is
+        # set to `UNENFORCED`, this field cannot be set to `ENFORCED`. In order to
+        # enforce replay protection, you must first enforce App Check. An HTTP 400 error
+        # will be returned in this case. By default, this field is set to `OFF`. Setting
+        # this field to `UNENFORCED` or `ENFORCED` is considered opting into replay
+        # protection. Once opted in, requests to your protected services may experience
+        # higher latency. To opt out of replay protection after opting in, set this
+        # field to `OFF`.
+        # Corresponds to the JSON property `replayProtection`
+        # @return [String]
+        attr_accessor :replay_protection
+      
         # Output only. Timestamp when this service configuration object was most
         # recently updated.
         # Corresponds to the JSON property `updateTime`
@@ -1592,6 +1615,7 @@ module Google
           @enforcement_mode = args[:enforcement_mode] if args.key?(:enforcement_mode)
           @etag = args[:etag] if args.key?(:etag)
           @name = args[:name] if args.key?(:name)
+          @replay_protection = args[:replay_protection] if args.key?(:replay_protection)
           @update_time = args[:update_time] if args.key?(:update_time)
         end
       end
