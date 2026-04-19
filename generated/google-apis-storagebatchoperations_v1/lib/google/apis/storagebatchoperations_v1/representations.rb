@@ -274,6 +274,9 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           property :failed_object_count, :numeric_string => true, as: 'failedObjectCount'
+          property :object_custom_contexts_created, :numeric_string => true, as: 'objectCustomContextsCreated'
+          property :object_custom_contexts_deleted, :numeric_string => true, as: 'objectCustomContextsDeleted'
+          property :object_custom_contexts_updated, :numeric_string => true, as: 'objectCustomContextsUpdated'
           property :succeeded_object_count, :numeric_string => true, as: 'succeededObjectCount'
           property :total_bytes_found, :numeric_string => true, as: 'totalBytesFound'
           property :total_object_count, :numeric_string => true, as: 'totalObjectCount'
