@@ -27,7 +27,7 @@ module Google
       class GoogleHomeEnterpriseSdmV1Device
         include Google::Apis::Core::Hashable
       
-        # Output only. The GHP device ID of the device.
+        # Output only. The Home APIs device ID of the device.
         # Corresponds to the JSON property `ghpName`
         # @return [String]
         attr_accessor :ghp_name
@@ -183,9 +183,9 @@ module Google
         # @return [String]
         attr_accessor :display_name
       
-        # Output only. The GHP name of the relation -- e.g., structure/room where the
-        # device is assigned to. For example: "homegraph.googleapis.com/Structure/ABC"
-        # or "homegraph.googleapis.com/Room/ABC"
+        # Output only. The Home APIs name of the relation -- e.g., structure/room where
+        # the device is assigned to. For example: "homegraph.googleapis.com/Structure/
+        # ABC" or "homegraph.googleapis.com/Room/ABC"
         # Corresponds to the JSON property `ghpParent`
         # @return [String]
         attr_accessor :ghp_parent
