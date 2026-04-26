@@ -4723,6 +4723,7 @@ module Google
         class Representation < Google::Apis::Core::JsonRepresentation
           property :allow_in_feed, as: 'allowInFeed'
           property :allow_in_stream, as: 'allowInStream'
+          property :allow_non_skippable_in_stream, as: 'allowNonSkippableInStream'
           property :allow_shorts, as: 'allowShorts'
         end
       end
