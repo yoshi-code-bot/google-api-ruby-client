@@ -521,7 +521,7 @@ module Google
       class TargetLocation
         include Google::Apis::Core::Hashable
       
-        # The address of the location to which the user is invited.
+        # The address of the location to which the user is invited. Not always populated.
         # Corresponds to the JSON property `address`
         # @return [String]
         attr_accessor :address
