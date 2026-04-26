@@ -3177,9 +3177,8 @@ module Google
         # TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `
         # TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `
         # TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `
-        # TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `
-        # TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `
-        # TARGETING_TYPE_YOUTUBE_VIDEO`
+        # TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_URL` * `
+        # TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
         # Corresponds to the JSON property `createRequests`
         # @return [Array<Google::Apis::DisplayvideoV4::CreateAssignedTargetingOptionsRequest>]
         attr_accessor :create_requests
@@ -3191,9 +3190,8 @@ module Google
         # TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `
         # TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `
         # TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `
-        # TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `
-        # TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `
-        # TARGETING_TYPE_YOUTUBE_VIDEO`
+        # TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_URL` * `
+        # TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
         # Corresponds to the JSON property `deleteRequests`
         # @return [Array<Google::Apis::DisplayvideoV4::DeleteAssignedTargetingOptionsRequest>]
         attr_accessor :delete_requests
@@ -14214,6 +14212,12 @@ module Google
         attr_accessor :allow_in_stream
         alias_method :allow_in_stream?, :allow_in_stream
       
+        # Optional. Indicates whether ads can serve as non-skippable in-stream format.
+        # Corresponds to the JSON property `allowNonSkippableInStream`
+        # @return [Boolean]
+        attr_accessor :allow_non_skippable_in_stream
+        alias_method :allow_non_skippable_in_stream?, :allow_non_skippable_in_stream
+      
         # Optional. Whether ads can serve as shorts format.
         # Corresponds to the JSON property `allowShorts`
         # @return [Boolean]
@@ -14228,6 +14232,7 @@ module Google
         def update!(**args)
           @allow_in_feed = args[:allow_in_feed] if args.key?(:allow_in_feed)
           @allow_in_stream = args[:allow_in_stream] if args.key?(:allow_in_stream)
+          @allow_non_skippable_in_stream = args[:allow_non_skippable_in_stream] if args.key?(:allow_non_skippable_in_stream)
           @allow_shorts = args[:allow_shorts] if args.key?(:allow_shorts)
         end
       end
@@ -14532,10 +14537,9 @@ module Google
         # The value used by the bidding strategy. When the bidding strategy is assigned
         # at the line item level, this field is only applicable for the following
         # strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `
-        # YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` * `
-        # YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_SHARE_OF_VOICE` When the
-        # bidding strategy is assigned at the ad group level, this field is only
-        # applicable for the following strategy types: * `
+        # YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` When the bidding
+        # strategy is assigned at the ad group level, this field is only applicable for
+        # the following strategy types: * `
         # YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `
         # YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `
         # YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `
