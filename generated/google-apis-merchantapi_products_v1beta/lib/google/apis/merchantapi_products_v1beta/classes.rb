@@ -1900,6 +1900,24 @@ module Google
         # @return [Fixnum]
         attr_accessor :location_id
       
+        # Optional. The label of the [loyalty program](https://support.google.com/
+        # merchants/answer/6324484). Must match one of the program labels set in
+        # loyalty_programs. When set (in combination with [loyalty_tier_label](https://
+        # support.google.com/merchants/answer/6324484)), this shipping option is only
+        # applicable to loyalty program members of the specified tier.
+        # Corresponds to the JSON property `loyaltyProgramLabel`
+        # @return [String]
+        attr_accessor :loyalty_program_label
+      
+        # Optional. The label of the [loyalty tier](https://support.google.com/merchants/
+        # answer/6324484) within the loyalty program. Must match one of the tiers set in
+        # the loyalty_programs. When set (in combination with [loyalty_program_label](
+        # https://support.google.com/merchants/answer/6324484)), this shipping option is
+        # only applicable to loyalty program members of the specified tier.
+        # Corresponds to the JSON property `loyaltyTierLabel`
+        # @return [String]
+        attr_accessor :loyalty_tier_label
+      
         # Maximum handling time (inclusive) between when the order is received and
         # shipped in business days. 0 means that the order is shipped on the same day as
         # it is received if it happens before the cut-off time. Both maxHandlingTime and
@@ -1969,6 +1987,8 @@ module Google
           @handling_cutoff_timezone = args[:handling_cutoff_timezone] if args.key?(:handling_cutoff_timezone)
           @location_group_name = args[:location_group_name] if args.key?(:location_group_name)
           @location_id = args[:location_id] if args.key?(:location_id)
+          @loyalty_program_label = args[:loyalty_program_label] if args.key?(:loyalty_program_label)
+          @loyalty_tier_label = args[:loyalty_tier_label] if args.key?(:loyalty_tier_label)
           @max_handling_time = args[:max_handling_time] if args.key?(:max_handling_time)
           @max_transit_time = args[:max_transit_time] if args.key?(:max_transit_time)
           @min_handling_time = args[:min_handling_time] if args.key?(:min_handling_time)

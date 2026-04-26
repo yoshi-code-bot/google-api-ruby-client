@@ -637,6 +637,8 @@ module Google
           property :handling_cutoff_timezone, as: 'handlingCutoffTimezone'
           property :location_group_name, as: 'locationGroupName'
           property :location_id, :numeric_string => true, as: 'locationId'
+          property :loyalty_program_label, as: 'loyaltyProgramLabel'
+          property :loyalty_tier_label, as: 'loyaltyTierLabel'
           property :max_handling_time, :numeric_string => true, as: 'maxHandlingTime'
           property :max_transit_time, :numeric_string => true, as: 'maxTransitTime'
           property :min_handling_time, :numeric_string => true, as: 'minHandlingTime'
