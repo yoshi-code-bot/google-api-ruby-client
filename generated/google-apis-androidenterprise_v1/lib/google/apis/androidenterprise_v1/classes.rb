@@ -2668,6 +2668,8 @@ module Google
       
         # The body of the private key credentials file, in string format. This is only
         # populated when the ServiceAccountKey is created, and is not stored by Google.
+        # When type is "pkcs12", the contents of the data field is base64 encoded and
+        # has the password "notasecret".
         # Corresponds to the JSON property `data`
         # @return [String]
         attr_accessor :data
