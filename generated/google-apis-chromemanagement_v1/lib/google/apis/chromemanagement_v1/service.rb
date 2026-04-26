@@ -557,10 +557,6 @@ module Google
         # Deletes a connector config.
         # @param [String] name
         #   Required. Format: customers/`customer`/connectorConfigs/`connector_config`
-        # @param [String] etag
-        #   Optional. The etag of the connector config. If an etag is provided and does
-        #   not match the current etag of the connector config, deletion will be blocked
-        #   and an ABORTED error will be returned.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -578,12 +574,11 @@ module Google
         # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
         # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
         # @raise [Google::Apis::AuthorizationError] Authorization is required
-        def delete_customer_connector_config(name, etag: nil, fields: nil, quota_user: nil, options: nil, &block)
+        def delete_customer_connector_config(name, fields: nil, quota_user: nil, options: nil, &block)
           command = make_simple_command(:delete, 'v1/{+name}', options)
           command.response_representation = Google::Apis::ChromemanagementV1::GoogleProtobufEmpty::Representation
           command.response_class = Google::Apis::ChromemanagementV1::GoogleProtobufEmpty
           command.params['name'] = name unless name.nil?
-          command.query['etag'] = etag unless etag.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)
@@ -655,6 +650,42 @@ module Google
           command.params['parent'] = parent unless parent.nil?
           command.query['pageSize'] = page_size unless page_size.nil?
           command.query['pageToken'] = page_token unless page_token.nil?
+          command.query['fields'] = fields unless fields.nil?
+          command.query['quotaUser'] = quota_user unless quota_user.nil?
+          execute_or_queue_command(command, &block)
+        end
+        
+        # Updates a connector config.
+        # @param [String] name
+        #   Identifier. Format: customers/`customer`/connectorConfigs/`connector_config`
+        # @param [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig] google_chrome_management_versions_v1_connector_config_object
+        # @param [String] update_mask
+        #   Optional. The update mask that can be used to specify which fields to update.
+        # @param [String] fields
+        #   Selector specifying which fields to include in a partial response.
+        # @param [String] quota_user
+        #   Available to use for quota purposes for server-side applications. Can be any
+        #   arbitrary string assigned to a user, but should not exceed 40 characters.
+        # @param [Google::Apis::RequestOptions] options
+        #   Request-specific options
+        #
+        # @yield [result, err] Result & error if block supplied
+        # @yieldparam result [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig] parsed result object
+        # @yieldparam err [StandardError] error object if request failed
+        #
+        # @return [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig]
+        #
+        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        def patch_customer_connector_config(name, google_chrome_management_versions_v1_connector_config_object = nil, update_mask: nil, fields: nil, quota_user: nil, options: nil, &block)
+          command = make_simple_command(:patch, 'v1/{+name}', options)
+          command.request_representation = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig::Representation
+          command.request_object = google_chrome_management_versions_v1_connector_config_object
+          command.response_representation = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig::Representation
+          command.response_class = Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig
+          command.params['name'] = name unless name.nil?
+          command.query['updateMask'] = update_mask unless update_mask.nil?
           command.query['fields'] = fields unless fields.nil?
           command.query['quotaUser'] = quota_user unless quota_user.nil?
           execute_or_queue_command(command, &block)

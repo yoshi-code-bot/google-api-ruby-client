@@ -2207,7 +2207,6 @@ module Google
           property :details, as: 'details', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigDetails, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigDetails::Representation
       
           property :display_name, as: 'displayName'
-          property :etag, as: 'etag'
           property :name, as: 'name'
           property :status, as: 'status', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigStatus, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigStatus::Representation
       
@@ -2348,7 +2347,6 @@ module Google
           collection :connector_configs, as: 'connectorConfigs', class: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig, decorator: Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfig::Representation
       
           property :next_page_token, as: 'nextPageToken'
-          property :total_size, as: 'totalSize'
         end
       end
       

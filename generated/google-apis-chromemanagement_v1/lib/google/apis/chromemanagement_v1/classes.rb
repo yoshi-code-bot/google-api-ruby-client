@@ -4911,7 +4911,7 @@ module Google
       class GoogleChromeManagementVersionsV1ConnectorConfig
         include Google::Apis::Core::Hashable
       
-        # The details of the connector config. LINT.IfChange
+        # The details of the connector config.
         # Corresponds to the JSON property `details`
         # @return [Google::Apis::ChromemanagementV1::GoogleChromeManagementVersionsV1ConnectorConfigDetails]
         attr_accessor :details
@@ -4920,13 +4920,6 @@ module Google
         # Corresponds to the JSON property `displayName`
         # @return [String]
         attr_accessor :display_name
-      
-        # Optional. This checksum is computed by the server based on the value of other
-        # fields, and may be sent on update and delete requests to ensure the client has
-        # an up-to-date value before proceeding.
-        # Corresponds to the JSON property `etag`
-        # @return [String]
-        attr_accessor :etag
       
         # Identifier. Format: customers/`customer`/connectorConfigs/`connector_config`
         # Corresponds to the JSON property `name`
@@ -4951,14 +4944,13 @@ module Google
         def update!(**args)
           @details = args[:details] if args.key?(:details)
           @display_name = args[:display_name] if args.key?(:display_name)
-          @etag = args[:etag] if args.key?(:etag)
           @name = args[:name] if args.key?(:name)
           @status = args[:status] if args.key?(:status)
           @type = args[:type] if args.key?(:type)
         end
       end
       
-      # The details of the connector config. LINT.IfChange
+      # The details of the connector config.
       class GoogleChromeManagementVersionsV1ConnectorConfigDetails
         include Google::Apis::Core::Hashable
       
@@ -5043,8 +5035,8 @@ module Google
         attr_accessor :state
       
         # Output only. Field recording time of most recent modification of the status.
-        # For ENABLED, this is the time the status was changed to ENABLED. For
-        # DISABLED_BY_FAILURES, this is the time of the most recent failed attempt to
+        # For `ENABLED`, this is the time the status was changed to `ENABLED`. For `
+        # DISABLED_BY_FAILURES`, this is the time of the most recent failed attempt to
         # send an event to this config.
         # Corresponds to the JSON property `updateTime`
         # @return [String]
@@ -5392,11 +5384,6 @@ module Google
         # @return [String]
         attr_accessor :next_page_token
       
-        # The total size of the connector configs list.
-        # Corresponds to the JSON property `totalSize`
-        # @return [Fixnum]
-        attr_accessor :total_size
-      
         def initialize(**args)
            update!(**args)
         end
@@ -5405,7 +5392,6 @@ module Google
         def update!(**args)
           @connector_configs = args[:connector_configs] if args.key?(:connector_configs)
           @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
-          @total_size = args[:total_size] if args.key?(:total_size)
         end
       end
       
