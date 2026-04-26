@@ -72,6 +72,12 @@ module Google
       # View chat and spaces in Google Chat
       AUTH_CHAT_SPACES_READONLY = 'https://www.googleapis.com/auth/chat.spaces.readonly'
 
+      # View and modify last read time for Google Chat conversations
+      AUTH_CHAT_USERS_READSTATE = 'https://www.googleapis.com/auth/chat.users.readstate'
+
+      # View last read time for Google Chat conversations
+      AUTH_CHAT_USERS_READSTATE_READONLY = 'https://www.googleapis.com/auth/chat.users.readstate.readonly'
+
       # See, edit, create, and delete all of your Google Drive files
       AUTH_DRIVE = 'https://www.googleapis.com/auth/drive'
 
