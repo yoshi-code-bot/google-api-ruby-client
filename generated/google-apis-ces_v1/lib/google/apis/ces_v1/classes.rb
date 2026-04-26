@@ -2493,6 +2493,11 @@ module Google
         # @return [String]
         attr_accessor :etag
       
+        # Experiment for the deployment.
+        # Corresponds to the JSON property `experimentConfig`
+        # @return [Google::Apis::CesV1::ExperimentConfig]
+        attr_accessor :experiment_config
+      
         # Identifier. The resource name of the deployment. Format: `projects/`project`/
         # locations/`location`/apps/`app`/deployments/`deployment``
         # Corresponds to the JSON property `name`
@@ -2515,6 +2520,7 @@ module Google
           @create_time = args[:create_time] if args.key?(:create_time)
           @display_name = args[:display_name] if args.key?(:display_name)
           @etag = args[:etag] if args.key?(:etag)
+          @experiment_config = args[:experiment_config] if args.key?(:experiment_config)
           @name = args[:name] if args.key?(:name)
           @update_time = args[:update_time] if args.key?(:update_time)
         end
@@ -3078,6 +3084,84 @@ module Google
           @tool = args[:tool] if args.key?(:tool)
           @toolset_tool = args[:toolset_tool] if args.key?(:toolset_tool)
           @variables = args[:variables] if args.key?(:variables)
+        end
+      end
+      
+      # Experiment for the deployment.
+      class ExperimentConfig
+        include Google::Apis::Core::Hashable
+      
+        # Version release for the experiment.
+        # Corresponds to the JSON property `versionRelease`
+        # @return [Google::Apis::CesV1::ExperimentConfigVersionRelease]
+        attr_accessor :version_release
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @version_release = args[:version_release] if args.key?(:version_release)
+        end
+      end
+      
+      # Version release for the experiment.
+      class ExperimentConfigVersionRelease
+        include Google::Apis::Core::Hashable
+      
+        # Optional. State of the version release.
+        # Corresponds to the JSON property `state`
+        # @return [String]
+        attr_accessor :state
+      
+        # Optional. Traffic allocations for the version release.
+        # Corresponds to the JSON property `trafficAllocations`
+        # @return [Array<Google::Apis::CesV1::ExperimentConfigVersionReleaseTrafficAllocation>]
+        attr_accessor :traffic_allocations
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @state = args[:state] if args.key?(:state)
+          @traffic_allocations = args[:traffic_allocations] if args.key?(:traffic_allocations)
+        end
+      end
+      
+      # Traffic allocation for the version release.
+      class ExperimentConfigVersionReleaseTrafficAllocation
+        include Google::Apis::Core::Hashable
+      
+        # Optional. App version of the traffic allocation. Format: `projects/`project`/
+        # locations/`location`/apps/`app`/versions/`version``
+        # Corresponds to the JSON property `appVersion`
+        # @return [String]
+        attr_accessor :app_version
+      
+        # Optional. Id of the traffic allocation. Free format string, up to 128
+        # characters.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        # Optional. Traffic percentage of the traffic allocation. Must be between 0 and
+        # 100.
+        # Corresponds to the JSON property `trafficPercentage`
+        # @return [Fixnum]
+        attr_accessor :traffic_percentage
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @app_version = args[:app_version] if args.key?(:app_version)
+          @id = args[:id] if args.key?(:id)
+          @traffic_percentage = args[:traffic_percentage] if args.key?(:traffic_percentage)
         end
       end
       
@@ -4348,6 +4432,11 @@ module Google
         # @return [Google::Apis::CesV1::RedactionConfig]
         attr_accessor :redaction_config
       
+        # Configuration for how the audio interactions should be recorded.
+        # Corresponds to the JSON property `unredactedAudioRecordingConfig`
+        # @return [Google::Apis::CesV1::AudioRecordingConfig]
+        attr_accessor :unredacted_audio_recording_config
+      
         def initialize(**args)
            update!(**args)
         end
@@ -4361,6 +4450,7 @@ module Google
           @evaluation_audio_recording_config = args[:evaluation_audio_recording_config] if args.key?(:evaluation_audio_recording_config)
           @metric_analysis_settings = args[:metric_analysis_settings] if args.key?(:metric_analysis_settings)
           @redaction_config = args[:redaction_config] if args.key?(:redaction_config)
+          @unredacted_audio_recording_config = args[:unredacted_audio_recording_config] if args.key?(:unredacted_audio_recording_config)
         end
       end
       
@@ -4589,7 +4679,7 @@ module Google
         # @return [Hash<String,Object>]
         attr_accessor :mock_response
       
-        # Required. Deprecated. Use tool_identifier instead.
+        # Optional. Deprecated. Use tool_identifier instead.
         # Corresponds to the JSON property `tool`
         # @return [String]
         attr_accessor :tool
@@ -6908,6 +6998,11 @@ module Google
         # @return [Google::Apis::CesV1::Schema]
         attr_accessor :parameters
       
+        # Configuration for the text response returned with the widget.
+        # Corresponds to the JSON property `textResponseConfig`
+        # @return [Google::Apis::CesV1::WidgetToolTextResponseConfig]
+        attr_accessor :text_response_config
+      
         # Optional. Configuration for rendering the widget.
         # Corresponds to the JSON property `uiConfig`
         # @return [Hash<String,Object>]
@@ -6929,6 +7024,7 @@ module Google
           @description = args[:description] if args.key?(:description)
           @name = args[:name] if args.key?(:name)
           @parameters = args[:parameters] if args.key?(:parameters)
+          @text_response_config = args[:text_response_config] if args.key?(:text_response_config)
           @ui_config = args[:ui_config] if args.key?(:ui_config)
           @widget_type = args[:widget_type] if args.key?(:widget_type)
         end
@@ -6978,6 +7074,38 @@ module Google
           @python_function = args[:python_function] if args.key?(:python_function)
           @python_script = args[:python_script] if args.key?(:python_script)
           @source_tool_name = args[:source_tool_name] if args.key?(:source_tool_name)
+        end
+      end
+      
+      # Configuration for the text response returned with the widget.
+      class WidgetToolTextResponseConfig
+        include Google::Apis::Core::Hashable
+      
+        # Optional. The static text response to return when type is STATIC.
+        # Corresponds to the JSON property `staticText`
+        # @return [String]
+        attr_accessor :static_text
+      
+        # Optional. Instruction for the LLM on how to generate the text response. Used
+        # as the description for the text response parameter if type is LLM_GENERATED.
+        # Corresponds to the JSON property `textResponseInstruction`
+        # @return [String]
+        attr_accessor :text_response_instruction
+      
+        # Optional. The strategy for providing the text response.
+        # Corresponds to the JSON property `type`
+        # @return [String]
+        attr_accessor :type
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @static_text = args[:static_text] if args.key?(:static_text)
+          @text_response_instruction = args[:text_response_instruction] if args.key?(:text_response_instruction)
+          @type = args[:type] if args.key?(:type)
         end
       end
     end

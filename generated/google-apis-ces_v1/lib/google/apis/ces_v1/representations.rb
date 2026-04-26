@@ -478,6 +478,24 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class ExperimentConfig
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ExperimentConfigVersionRelease
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ExperimentConfigVersionReleaseTrafficAllocation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class ExportAppRequest
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -1097,6 +1115,12 @@ module Google
       end
       
       class WidgetToolDataMapping
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class WidgetToolTextResponseConfig
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -1768,6 +1792,8 @@ module Google
           property :create_time, as: 'createTime'
           property :display_name, as: 'displayName'
           property :etag, as: 'etag'
+          property :experiment_config, as: 'experimentConfig', class: Google::Apis::CesV1::ExperimentConfig, decorator: Google::Apis::CesV1::ExperimentConfig::Representation
+      
           property :name, as: 'name'
           property :update_time, as: 'updateTime'
         end
@@ -1937,6 +1963,32 @@ module Google
           property :toolset_tool, as: 'toolsetTool', class: Google::Apis::CesV1::ToolsetTool, decorator: Google::Apis::CesV1::ToolsetTool::Representation
       
           hash :variables, as: 'variables'
+        end
+      end
+      
+      class ExperimentConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :version_release, as: 'versionRelease', class: Google::Apis::CesV1::ExperimentConfigVersionRelease, decorator: Google::Apis::CesV1::ExperimentConfigVersionRelease::Representation
+      
+        end
+      end
+      
+      class ExperimentConfigVersionRelease
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :state, as: 'state'
+          collection :traffic_allocations, as: 'trafficAllocations', class: Google::Apis::CesV1::ExperimentConfigVersionReleaseTrafficAllocation, decorator: Google::Apis::CesV1::ExperimentConfigVersionReleaseTrafficAllocation::Representation
+      
+        end
+      end
+      
+      class ExperimentConfigVersionReleaseTrafficAllocation
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :app_version, as: 'appVersion'
+          property :id, as: 'id'
+          property :traffic_percentage, as: 'trafficPercentage'
         end
       end
       
@@ -2310,6 +2362,8 @@ module Google
           property :metric_analysis_settings, as: 'metricAnalysisSettings', class: Google::Apis::CesV1::MetricAnalysisSettings, decorator: Google::Apis::CesV1::MetricAnalysisSettings::Representation
       
           property :redaction_config, as: 'redactionConfig', class: Google::Apis::CesV1::RedactionConfig, decorator: Google::Apis::CesV1::RedactionConfig::Representation
+      
+          property :unredacted_audio_recording_config, as: 'unredactedAudioRecordingConfig', class: Google::Apis::CesV1::AudioRecordingConfig, decorator: Google::Apis::CesV1::AudioRecordingConfig::Representation
       
         end
       end
@@ -3038,6 +3092,8 @@ module Google
           property :name, as: 'name'
           property :parameters, as: 'parameters', class: Google::Apis::CesV1::Schema, decorator: Google::Apis::CesV1::Schema::Representation
       
+          property :text_response_config, as: 'textResponseConfig', class: Google::Apis::CesV1::WidgetToolTextResponseConfig, decorator: Google::Apis::CesV1::WidgetToolTextResponseConfig::Representation
+      
           hash :ui_config, as: 'uiConfig'
           property :widget_type, as: 'widgetType'
         end
@@ -3052,6 +3108,15 @@ module Google
       
           property :python_script, as: 'pythonScript'
           property :source_tool_name, as: 'sourceToolName'
+        end
+      end
+      
+      class WidgetToolTextResponseConfig
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :static_text, as: 'staticText'
+          property :text_response_instruction, as: 'textResponseInstruction'
+          property :type, as: 'type'
         end
       end
     end
